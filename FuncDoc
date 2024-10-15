@@ -1,0 +1,155 @@
+phrase du sujet si jamais : Vous pouvez vous inspirer de la partie "serveur" du fichier de
+configuration NGINX.
+
+New fonctions
+
+----------------------------------------
+
+socketpair: est une fonction utilisée en programmation réseau sous Linux (et autres systèmes UNIX)
+    pour créer une paire de sockets connectés entre eux. Ces sockets sont généralement utilisés pour communiquer entre deux processus
+    (ou fils d'exécution) sur la même machine, sans passer par le réseau.
+
+    int socketpair(int domain, int type, int protocol, int sv[2]);
+    domain : Le domaine ou la famille de sockets, comme AF_UNIX (pour une communication locale).
+    type : Le type de socket, par exemple SOCK_STREAM pour des communications de type flux (comme TCP) ou SOCK_DGRAM pour des communications par datagrammes (comme UDP).
+    protocol : Généralement mis à 0, car les types de socket ont souvent un protocole par défaut.
+    sv[2] : Un tableau de deux entiers où les descripteurs de fichiers des deux sockets seront stockés
+
+htons: est une fonction utilisée pour convertir un entier 16 bits 
+    (généralement un numéro de port) depuis l'ordre des octets de la machine hôte (host byte order) vers l'ordre des octets du réseau (network byte order). 
+    Cela est nécessaire car différents systèmes peuvent utiliser différents ordres d'octets (endianness). 
+    Le réseau utilise le "big-endian", c'est pourquoi cette conversion est essentielle 
+    avant de transmettre des données via des sockets.
+
+    uint16_t htons(uint16_t hostshort);
+
+    hostshort : Un entier de 16 bits à convertir de l’ordre local (host) vers l’ordre du réseau (network).
+
+    htons est couramment utilisé pour s'assurer que les numéros de port sont dans le bon ordre avant de les utiliser avec des sockets,
+    notamment lors de la liaison (bind) ou de la connexion (connect) d'une socket à un port réseau.
+
+htonl(Host TO Network Long): convertir un entier non signé de 32 bits (typiquement un entier long non signé) du format d'octets de l'hôte (endianness de la machine) vers le format d'octets réseau (endianness standardisé à big-endian).
+    - Endianness fait référence à l'ordre dans lequel les octets d'un nombre sont stockés en mémoire. Il existe principalement deux types :
+
+    Little-endian : l'octet de poids faible est stocké en premier.
+    Big-endian : l'octet de poids fort est stocké en premier (c'est le format utilisé sur le réseau).
+Les systèmes de type Intel utilisent généralement le little-endian, tandis que les protocoles réseau (comme TCP/IP) utilisent le big-endian.
+
+Lorsqu'un ordinateur communique avec un autre via un réseau, les données doivent être envoyées dans un format standardisé, d'où la conversion en format big-endian pour assurer l'interopérabilité entre différentes architectures.
+
+
+ntohs(Network TO Host Short):  convertir un entier non signé de 16 bits 
+ntohl (Network TO Host Long): convertir un entier non signé de 32 bits 
+select: utilisée pour surveiller plusieurs descripteurs de fichier (sockets, fichiers, etc.) pour vérifier si l'un d'entre eux est prêt pour une opération d'entrée/sortie (lecture, écriture ou erreur). Cela permet de gérer plusieurs connexions de manière efficace sans avoir à bloquer l'exécution du programme sur une seule connexion.
+
+
+poll:  surveiller plusieurs descripteurs de fichiers (sockets, fichiers, etc.) pour détecter des événements tels que la possibilité de lecture, d’écriture ou la survenue d'erreurs. Elle est similaire à select(), mais offre plus de flexibilité pour les applications nécessitant la gestion de nombreux descripteurs de fichiers.
+
+epoll (epoll_create, epoll_ctl, epoll_wait): utilisée dans la programmation réseau en C pour surveiller plusieurs descripteurs de fichiers (comme des sockets) de manière efficace. Elle est particulièrement utile dans les applications qui nécessitent la gestion d'un grand nombre de connexions simultanées, offrant des performances meilleures que select() et poll().
+
+
+kqueue (kqueue, kevent): mécanisme d'alerte basé sur les événements disponible sur les systèmes BSD (comme FreeBSD et macOS). Elle permet de surveiller plusieurs descripteurs de fichiers pour différents événements de manière efficace, similaire à epoll sur Linux.
+
+kqueue
+
+    Crée une nouvelle file d'attente d'événements.
+    Retourne : Un descripteur de fichier pour la file d'attente d'événements, ou -1 en cas d'erreur.
+
+kevent
+
+    Modifie ou lit des événements dans la file d'attente.
+    Paramètres:
+        kq: descripteur de la file d'attente d'événements.
+        changelist: tableau d'événements à ajouter ou modifier (peut être NULL si aucun changement).
+        nchanges: nombre d'événements dans changelist.
+        eventlist: tableau pour stocker les événements déclenchés.
+        nevents: nombre maximum d'événements à retourner.
+        timeout: durée d'attente (peut être NULL pour attendre indéfiniment).
+    Retourne : Nombre d'événements déclenchés, ou -1 en cas d'erreur.
+
+socket: utilisée en C pour créer un descripteur de socket, qui est un point de communication pour l'échange de données sur un réseau.
+
+domain : spécifie la famille d'adresses du socket. Les valeurs courantes incluent :
+
+    AF_INET : pour IPv4.
+    AF_INET6 : pour IPv6.
+    AF_UNIX : pour les communications inter-processus sur le même hôte.
+
+type : spécifie le type de socket. Les types communs incluent :
+
+    SOCK_STREAM : pour les connexions orientées sur un flux (TCP).
+    SOCK_DGRAM : pour les connexions orientées sur les datagrammes (UDP).
+    SOCK_RAW : pour des accès plus bas niveau aux protocoles.
+
+protocol : spécifie le protocole à utiliser avec le socket. Souvent, cette valeur peut être 0 pour sélectionner le protocole par défaut pour le type de socket choisi.
+
+
+accept:
+listen:
+send:
+recv:
+chdir bind:
+
+connect:
+getaddrinfo:
+freeaddrinfo:
+setsockopt:
+
+getsockname:
+getprotobyname:
+fcntl:
+
+Macro(n)
+
+----------------------------------------
+
+FD_SET:
+FD_CLR:
+FD_ISSET:
+FD_ZERO :
+
+Methodes
+
+----------------------------------------
+
+GET :
+POST :
+DELETE :
+
+Trucs qui ont l'air important
+
+----------------------------------------
+
+NGINX :
+RFC :
+telnet : 
+CGI : https://en.wikipedia.org/wiki/Common_Gateway_Interface.
+
+Old ones
+
+----------------------------------------
+
+execve: on connait.
+dup: on connait.
+dup2: on connait.
+pipe: on connait.
+strerror: on connait.
+gai_strerror:
+
+errno: on connait.
+dup: on connait.
+dup2: on connait.
+fork: on connait.
+close: on connait.
+read: on connait.
+
+write: on connait.
+waitpid: on connait.
+kill: on connait.
+signal: on connait.
+access: on connait.
+stat: on connait.
+open: on connait.
+
+opendir: on connait.
+readdir and closedir: on connait.
