@@ -10,7 +10,10 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS	=	main.cpp 
+SRCS	=	main.cpp \
+			loading.cpp \
+			
+			
 
 OBJS	= $(SRCS:.cpp=.o)
 
@@ -18,21 +21,18 @@ CXX	= @c++
 
 CXXFLAGS	+= -Wall -Wextra -Werror -std=c++98 -g3
 
-SAN	= -fsanitize=address
-
 RM	= @rm -rf
 
 CURRENT_DATE	:= $(shell date +"%Y-%m-%d %H:%M:%S")
 
+SRC_COUNT = $(shell echo $(SRCS) | wc -w)
+
 all	: $(NAME)
 
 $(NAME) : $(OBJS)
-	@printf "$(PRINT_PREFIX)\033[0;38;5;226m Compiling \033[0m["
-	@for i in $(shell seq 1 $(BAR_LENGTH)); do \
-		sleep 0.02; \
-		printf "\033[38;5;40m▲▼"; \
-	done
-	$(CXX) $(CXXFLAGS)  $(OBJS) -o $(NAME)
+	@./loadingtriangle $(SRC_COUNT) &
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	wait
 	@echo "$(MAGENTA)Make Done$(DEF_COLOR)"
 
 clean : 
@@ -58,3 +58,6 @@ git	:	fclean
 
 val : re clean
 	@valgrind -s --leak-check=full --show-leak-kinds=all ./webserv
+
+run : 
+	@./loadingtriangle $(SRC_COUNT) & wait
