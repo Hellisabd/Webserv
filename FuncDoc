@@ -84,45 +84,373 @@ type : spécifie le type de socket. Les types communs incluent :
 protocol : spécifie le protocole à utiliser avec le socket. Souvent, cette valeur peut être 0 pour sélectionner le protocole par défaut pour le type de socket choisi.
 
 
-accept:
-listen:
-send:
-recv:
-chdir bind:
+exemple : 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
 
-connect:
-getaddrinfo:
-freeaddrinfo:
-setsockopt:
+int main() {
+    int server_sock = socket(AF_INET, SOCK_STREAM, 0);  // Créer un socket TCP
+    if (server_sock < 0) {
+        perror("socket");
+        exit(EXIT_FAILURE);
+    }
 
-getsockname:
-getprotobyname:
-fcntl:
+    struct sockaddr_in server_address;
+    server_address.sin_family = AF_INET;  // Utiliser IPv4
+    server_address.sin_port = htons(8080); // Port 8080
+    server_address.sin_addr.s_addr = INADDR_ANY; // Écouter sur toutes les interfaces
+
+    // Associer le socket à l'adresse du serveur
+    if (bind(server_sock, (struct sockaddr *)&server_address, sizeof(server_address)) < 0) {
+        perror("bind");
+        close(server_sock);
+        exit(EXIT_FAILURE);
+    }
+
+    // Écouter les connexions entrantes
+    if (listen(server_sock, 5) < 0) {
+        perror("listen");
+        close(server_sock);
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Serveur en attente de connexions sur le port 8080...\n");
+
+    struct sockaddr_in client_address;
+    socklen_t client_len = sizeof(client_address);
+
+    // Acceptation d'une connexion
+    int client_sock = accept(server_sock, (struct sockaddr *)&client_address, &client_len);
+    if (client_sock < 0) {
+        perror("accept");
+        close(server_sock);
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Connexion acceptée.\n");
+    printf("Adresse IP du client : %s\n", inet_ntoa(client_address.sin_addr));
+
+    // Fermer les sockets
+    close(client_sock);
+    close(server_sock);
+    
+    return 0;
+}
+
+accept: accepter une connexion entrante sur un socket, permettant ainsi à un serveur de communiquer avec un client. Elle est généralement utilisée après que le serveur a appelé la fonction listen sur un socket pour écouter les connexions entrantes.
+
+listen:  indiquer qu'un socket est prêt à accepter des connexions entrantes. Elle est généralement appelée après que le socket a été créé avec socket et associé à une adresse avec bind.
+
+
+send:envoyer des données sur un socket. Elle est généralement utilisée après qu'une connexion a été établie avec accept ou connect.
+
+recv: recevoir des données sur un socket. Elle est généralement utilisée après qu'une connexion a été établie avec accept ou connect.
+
+bind: pour associer un socket à une adresse locale. C'est une étape essentielle pour les serveurs avant de commencer à écouter les connexions.
+
+connect:tablir une connexion à un socket, généralement dans un client réseau. Elle permet à un client de se connecter à un serveur en spécifiant l'adresse du serveur et le port sur lequel il écoute.
+
+getaddrinfo:obtenir des informations d'adresse en fonction d'un nom d'hôte et d'un service
+
+freeaddrinfo: libérer la mémoire allouée par getaddrinfo
+
+setsockopt: configurer les options d'un socket. Elle permet de modifier des paramètres tels que le comportement de la socket, la gestion des délais, la taille des buffers, et d'autres options spécifiques à l'implémentation.
+
+sockfd : Descripteur de socket dont les options doivent être définies.
+level : Niveau du protocole pour lequel l'option est définie. Par exemple :
+
+    SOL_SOCKET : pour les options de socket standard.
+    IPPROTO_TCP : pour les options spécifiques au protocole TCP.
+
+optname : Nom de l'option à définir. Cela dépend du niveau spécifié. Par exemple :
+
+    Pour SOL_SOCKET :
+        SO_REUSEADDR : Permet de réutiliser une adresse locale.
+        SO_SNDBUF : Taille du buffer d'envoi.
+        SO_RCVBUF : Taille du buffer de réception.
+
+optval : Pointeur vers la valeur à affecter à l'option.
+optlen : Taille de l'option optval.
+
+getsockname: obtenir le nom (adresse) associé à un socket. Elle est utile pour déterminer l'adresse locale à laquelle le socket est lié, après l'appel à bind ou après avoir établi une connexion.
+
+getprotobyname:obtenir des informations sur l'adresse locale d'un socket, notamment après qu'il ait été lié ou connecté. Cela peut être important pour le débogage ou pour afficher des informations sur le socket dans une application réseau
+
+
+fcntl:manipuler les descripteurs de fichiers. Elle permet de modifier le comportement d'un descripteur de fichier ou d'obtenir des informations à son sujet. Elle est souvent utilisée pour gérer les options de verrouillage, les modes non bloquants, et d'autres attributs associés aux fichiers et aux sockets.
 
 Macro(n)
 
 ----------------------------------------
 
-FD_SET:
-FD_CLR:
-FD_ISSET:
-FD_ZERO :
+FD_SET: manipuler les ensembles de descripteurs de fichiers dans le contexte de l'API de sélection des sockets. Elle permet d'ajouter un descripteur de fichier à un ensemble, ce qui est essentiel pour surveiller plusieurs descripteurs de fichiers pour des événements d'entrée/sortie.
+
+FD_CLR: pour supprimer un descripteur de fichier d'un ensemble de descripteurs. Elle est généralement utilisée en conjonction avec la fonction select() ou pselect() pour gérer la multiplexion des entrées/sorties
+
+FD_ISSET: tester si un descripteur de fichier est présent dans un ensemble de descripteurs de fichiers. Elle est couramment utilisée après avoir appelé la fonction select() pour déterminer quels descripteurs de fichiers ont des événements prêts à être traités.
+
+FD_ZERO : initialiser un ensemble de descripteurs de fichiers à vide. Elle est souvent utilisée en conjonction avec les macros FD_SET, FD_CLR et FD_ISSET, notamment dans le cadre de l'utilisation de la fonction select() pour gérer les entrées/sorties multiplexées.
 
 Methodes
 
 ----------------------------------------
 
-GET :
-POST :
-DELETE :
+GET : une des méthodes HTTP les plus couramment utilisées pour effectuer des requêtes vers un serveur web. Elle est principalement utilisée pour récupérer des ressources, telles que des pages HTML, des images ou d'autres fichiers.
+Description
+
+    Utilisation : La méthode GET est utilisée pour demander une ressource spécifique à un serveur. Par exemple, lorsqu'un utilisateur saisit une URL dans un navigateur, une requête GET est généralement envoyée au serveur pour obtenir le contenu de la page associée à cette URL.
+    Idempotence : Les requêtes GET sont considérées comme idempotentes, ce qui signifie qu'elles peuvent être effectuées plusieurs fois sans effet sur les données. Si une requête GET est répétée, le résultat sera toujours le même, à condition que la ressource n'ait pas été modifiée entre-temps.
+    Sémantique : La méthode GET est souvent utilisée pour obtenir des informations sans les modifier. Elle n'est pas censée avoir des effets secondaires sur le serveur.
+
+Exemple de requête GET
+
+Voici un exemple de ce à quoi pourrait ressembler une requête HTTP GET :
+
+bash
+
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+
+Composants de la requête
+
+    Ligne de requête : GET /index.html HTTP/1.1
+        GET : La méthode de requête.
+        /index.html : Le chemin de la ressource demandée sur le serveur.
+        HTTP/1.1 : La version du protocole HTTP utilisée.
+    En-têtes : Les lignes suivantes contiennent des informations supplémentaires, telles que l'hôte (le domaine), l'agent utilisateur (le navigateur), et les types de contenu acceptés.
+
+Réponse à une requête GET
+
+Une réponse à une requête GET peut ressembler à ceci :
+
+php
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Content-Length: 1234
+
+<html>
+<head><title>Page Title</title></head>
+<body><h1>Hello, World!</h1></body>
+</html>
+
+Composants de la réponse
+
+    Ligne de statut : HTTP/1.1 200 OK
+        Indique que la requête a réussi et que la ressource est disponible.
+    En-têtes de réponse : Informations sur le type de contenu et la longueur du corps de la réponse.
+    Corps de la réponse : Contient le contenu réel de la ressource demandée (par exemple, le code HTML).
+
+Conclusion
+
+La méthode GET est un élément fondamental du protocole HTTP, largement utilisée pour accéder aux ressources sur le web. Sa simplicité et son efficacité en font une méthode essentielle pour la navigation et l'interaction avec les services web.
+
+POST : une des méthodes HTTP utilisées pour envoyer des données à un serveur. Elle est principalement utilisée pour créer ou mettre à jour des ressources sur le serveur. Contrairement à la méthode GET, qui est principalement utilisée pour récupérer des données, POST est utilisée pour transmettre des informations au serveur.
+Description
+
+    Utilisation : La méthode POST est souvent utilisée pour soumettre des formulaires, télécharger des fichiers, ou envoyer des données structurées au serveur, comme des données JSON ou XML.
+    Non idempotente : Contrairement aux requêtes GET, les requêtes POST ne sont pas idempotentes. Cela signifie qu'exécuter plusieurs fois une requête POST peut avoir des effets différents sur le serveur, par exemple, créer plusieurs enregistrements dans une base de données.
+    Transmission de données : Les données envoyées dans une requête POST sont incluses dans le corps de la requête, contrairement aux paramètres d'URL qui sont utilisés avec GET.
+
+Exemple de requête POST
+
+Voici un exemple de ce à quoi pourrait ressembler une requête HTTP POST :
+
+makefile
+
+POST /submit-form HTTP/1.1
+Host: www.example.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+
+name=JohnDoe&age=30
+
+Composants de la requête
+
+    Ligne de requête : POST /submit-form HTTP/1.1
+        POST : La méthode de requête.
+        /submit-form : Le chemin de la ressource vers laquelle les données sont envoyées.
+        HTTP/1.1 : La version du protocole HTTP utilisée.
+    En-têtes :
+        Content-Type : Indique le type de données envoyées dans le corps de la requête (par exemple, application/x-www-form-urlencoded pour les formulaires HTML).
+        Content-Length : Indique la longueur du corps de la requête en octets.
+    Corps de la requête : Contient les données à envoyer au serveur. Dans cet exemple, les données sont sous la forme d'une chaîne de requête (paramètres de formulaire).
+
+Réponse à une requête POST
+
+Une réponse à une requête POST peut ressembler à ceci :
+
+css
+
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "message": "Utilisateur créé avec succès",
+  "id": 12345
+}
+
+Composants de la réponse
+
+    Ligne de statut : HTTP/1.1 201 Created
+        Indique que la requête a réussi et qu'une nouvelle ressource a été créée.
+    En-têtes de réponse : Informations sur le type de contenu de la réponse.
+    Corps de la réponse : Contient des données supplémentaires, comme un message de confirmation ou des détails sur la ressource créée.
+
+Conclusion
+
+La méthode POST est essentielle pour l'interaction avec les serveurs web, permettant l'envoi de données pour créer ou mettre à jour des ressources. Elle est largement utilisée dans le développement d'applications web et est souvent employée pour les formulaires et les API.
+
+
+DELETE : est une méthode HTTP utilisée pour demander la suppression d'une ressource spécifiée sur un serveur. Elle est souvent utilisée dans les API RESTful pour gérer les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer).
+Description
+
+    Utilisation : La méthode DELETE est utilisée pour supprimer une ressource, telle qu'un enregistrement dans une base de données ou un fichier sur un serveur. Par exemple, une requête DELETE peut être envoyée pour supprimer un utilisateur ou un article identifié par un identifiant unique.
+    Idempotente : Les requêtes DELETE sont considérées comme idempotentes, ce qui signifie que faire plusieurs fois la même requête aura le même effet que faire la requête une seule fois. Si la ressource a déjà été supprimée, une nouvelle requête DELETE ne changera rien.
+    Sémantique : Comme la méthode POST, la méthode DELETE peut avoir des effets permanents sur le serveur, donc son utilisation doit être effectuée avec précaution.
+
+Exemple de requête DELETE
+
+Voici un exemple de ce à quoi pourrait ressembler une requête HTTP DELETE :
+
+bash
+
+DELETE /api/users/12345 HTTP/1.1
+Host: www.example.com
+
+Composants de la requête
+
+    Ligne de requête : DELETE /api/users/12345 HTTP/1.1
+        DELETE : La méthode de requête.
+        /api/users/12345 : Le chemin de la ressource que l'on souhaite supprimer, dans cet exemple, un utilisateur avec l'identifiant 12345.
+        HTTP/1.1 : La version du protocole HTTP utilisée.
+    En-têtes : Bien que non obligatoires, des en-têtes supplémentaires peuvent être inclus, comme Authorization pour les contrôles d'accès ou Accept pour spécifier le type de réponse souhaité.
+
+Réponse à une requête DELETE
+
+Une réponse à une requête DELETE peut ressembler à ceci :
+
+css
+
+HTTP/1.1 204 No Content
+
+Composants de la réponse
+
+    Ligne de statut : HTTP/1.1 204 No Content
+        Indique que la requête a réussi et qu'aucun contenu n'est retourné dans la réponse.
+    En-têtes de réponse : Optionnellement, des en-têtes supplémentaires peuvent être inclus, mais généralement, la réponse à une requête DELETE n'a pas de corps.
+
+Conclusion
+
+La méthode DELETE est un élément clé des API RESTful, permettant de supprimer des ressources sur un serveur. Son utilisation doit être soigneusement considérée, en raison de son effet permanent sur les données. Elle est largement utilisée dans les opérations de gestion des données, tant dans les applications web que dans les systèmes de gestion de contenu.
 
 Trucs qui ont l'air important
 
 ----------------------------------------
 
-NGINX :
-RFC :
-telnet : 
+NGINX : NGINX (prononcé "engine-ex") est un serveur web open source et un reverse proxy, également capable de gérer des protocoles de transfert comme HTTP, HTTPS, SMTP, POP3 et IMAP. Il est particulièrement apprécié pour sa performance, sa flexibilité et sa capacité à gérer un grand nombre de connexions simultanées.
+Caractéristiques principales
+
+    Serveur Web : NGINX peut servir du contenu statique (comme des fichiers HTML, des images, des fichiers CSS et JavaScript) de manière très efficace.
+
+    Reverse Proxy : NGINX peut agir comme un reverse proxy, ce qui signifie qu'il reçoit les requêtes des clients et les transmet à un ou plusieurs serveurs en arrière-plan. Cela permet d'équilibrer la charge et de gérer les connexions.
+
+    Équilibrage de Charge : NGINX peut distribuer les requêtes entre plusieurs serveurs backend, améliorant ainsi la réactivité et la fiabilité des applications.
+
+    Support SSL/TLS : NGINX prend en charge le chiffrement SSL/TLS pour sécuriser les communications entre le serveur et les clients.
+
+    Configuration Flexible : NGINX utilise un format de configuration basé sur des blocs, permettant une configuration précise et détaillée des comportements du serveur.
+
+    Gestion des Connexions : NGINX est conçu pour gérer des milliers de connexions simultanées avec une faible consommation de ressources, grâce à son architecture asynchrone et événementielle.
+
+    Modules : NGINX prend en charge les modules qui peuvent être chargés dynamiquement, permettant d'étendre ses fonctionnalités.
+
+Utilisations courantes
+
+    Hébergement de Sites Web : NGINX est largement utilisé pour héberger des sites web, notamment des applications PHP via des systèmes comme PHP-FPM.
+    API et Microservices : Grâce à sa capacité à gérer des connexions simultanées, NGINX est souvent utilisé pour des architectures basées sur des microservices et des API RESTful.
+    Content Delivery Network (CDN) : NGINX est utilisé dans des configurations de CDN pour distribuer du contenu statique plus rapidement aux utilisateurs.
+    Sécurisation d'Applications : En tant que reverse proxy, NGINX peut ajouter une couche de sécurité supplémentaire pour les applications backend.
+
+Conclusion
+
+NGINX est un outil puissant et polyvalent, utilisé par de nombreuses entreprises et développeurs pour servir des applications web de manière efficace. Sa capacité à gérer des connexions simultanées, associée à des fonctionnalités de reverse proxy et d'équilibrage de charge, en fait un choix populaire pour les infrastructures modernes.
+
+RFC : RFC (Request for Comments) est une série de documents publiés par l'Internet Engineering Task Force (IETF) et d'autres organisations qui décrivent des normes, des protocoles, des meilleures pratiques et des concepts liés à l'Internet et aux systèmes informatiques.
+Caractéristiques des RFC
+
+    Documentation Technique : Les RFC fournissent des spécifications techniques et des descriptions de protocoles, de formats de données et d'autres aspects du fonctionnement de l'Internet.
+
+    Numérotation : Chaque RFC est attribué un numéro unique. Par exemple, le RFC 791 décrit le protocole Internet Protocol (IP), tandis que le RFC 2616 décrit le protocole HTTP/1.1.
+
+    Statut : Les RFC peuvent avoir différents statuts :
+        Standard : Normes acceptées et largement utilisées.
+        Proposé : Documents en phase de développement qui nécessitent encore des commentaires.
+        Informational : Informations qui ne sont pas nécessairement destinées à devenir des standards.
+        Experimental : Propositions de nouvelles idées ou technologies en phase d'expérimentation.
+
+    Accessibilité : Les RFC sont généralement disponibles au public et peuvent être consultés librement en ligne, ce qui favorise la transparence et la collaboration.
+
+    Évolution : Les RFC peuvent être mis à jour ou remplacés par de nouveaux documents au fur et à mesure que les technologies évoluent et que les besoins changent.
+
+Exemples de RFC importants
+
+    RFC 791 : Spécification du protocole Internet (IP).
+    RFC 2616 : Spécification du protocole HTTP/1.1.
+    RFC 5321 : Spécification du protocole Simple Mail Transfer Protocol (SMTP).
+    RFC 6750 : Spécification du protocole OAuth 2.0 Bearer Token Usage.
+
+Conclusion
+
+Les RFC jouent un rôle essentiel dans la définition et l'évolution des standards de l'Internet. Ils fournissent un cadre pour la communication entre les développeurs, les ingénieurs et les chercheurs qui travaillent sur des technologies liées à l'Internet, assurant ainsi l'interopérabilité et la cohérence des systèmes informatiques à l'échelle mondiale.
+
+telnet : Telnet est un protocole de communication de réseau qui permet à un utilisateur d'accéder à distance à un autre ordinateur ou à un appareil via une connexion TCP/IP. Telnet est souvent utilisé pour se connecter à des serveurs et des équipements réseau pour des tâches de gestion ou d'administration.
+Caractéristiques de Telnet
+
+    Accès à Distance : Telnet permet aux utilisateurs de se connecter à des systèmes distants et d'interagir avec eux comme s'ils étaient connectés localement.
+
+    Interface en Ligne de Commande : Une fois connecté, l'utilisateur peut exécuter des commandes sur le système distant via une interface en ligne de commande.
+
+    Protocole Basé sur TCP : Telnet utilise le protocole TCP pour établir une connexion fiable entre l'ordinateur client et le serveur.
+
+    Authentification : Telnet peut nécessiter un nom d'utilisateur et un mot de passe pour établir une connexion, bien que ces informations soient généralement transmises en texte clair, ce qui pose des problèmes de sécurité.
+
+    Utilisation de Ports Standards : Par défaut, Telnet utilise le port 23 pour établir des connexions.
+
+Limites de Telnet
+
+    Sécurité : Telnet n'inclut pas de mécanismes de sécurité intégrés, ce qui signifie que les données, y compris les identifiants, sont transmises en texte clair. Cela rend les connexions Telnet vulnérables aux interceptions et aux attaques de type "man-in-the-middle".
+
+    Remplacement par SSH : En raison de ses limitations en matière de sécurité, Telnet a été largement remplacé par SSH (Secure Shell), qui offre une communication sécurisée par le biais d'un chiffrement.
+
+Exemple d'utilisation de Telnet
+
+Pour se connecter à un serveur via Telnet, vous pouvez utiliser la commande suivante dans un terminal :
+
+bash
+
+telnet hostname port
+
+    hostname : L'adresse IP ou le nom de domaine du serveur.
+    port : Le port sur lequel le service Telnet est exécuté (généralement 23).
+
+Exemple de commande
+
+bash
+
+telnet example.com 23
+
+Conclusion
+
+Bien que Telnet ait été un outil essentiel pour l'administration des systèmes et l'accès à distance, ses faiblesses en matière de sécurité ont conduit à son remplacement par des alternatives plus sécurisées comme SSH. Cependant, Telnet est encore utilisé dans certaines situations, notamment pour le débogage ou la connexion à des appareils réseau qui ne prennent pas en charge des protocoles plus sécurisés.
+
+
 CGI : https://en.wikipedia.org/wiki/Common_Gateway_Interface.
 
 Old ones
@@ -152,4 +480,5 @@ stat: on connait.
 open: on connait.
 
 opendir: on connait.
+chdir: on connait.
 readdir and closedir: on connait.
