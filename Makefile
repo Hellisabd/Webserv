@@ -14,6 +14,7 @@ WHITE = \033[0;97m
 
 SRCS	=	main.cpp \
 			loading.cpp \
+			loading.cpp \
 			
 			
 
