@@ -25,27 +25,27 @@ int main(int argc, char **argv)
 		if (anim < 2)
 		{
 			std::cout << buffer2  << "\033[" << pos << "G" << "]";
-			usleep(30000);
+			usleep(10000);
 			std::cout.flush();
 			std::cout << "\r\033[K";
 			for (; anim < 2; anim++)
 			{
 				std::cout << buffer2 << RED + "|";
-				usleep(30000);
+				usleep(10000);
 				std::cout.flush();
 				std::cout << "\r\033[K";
 				std::cout << buffer2 << ORANGE + "/";
-				usleep(30000);
+				usleep(10000);
 				std::cout.flush();
 				std::cout << "\r\033[K";
 				if (anim % 2 == 0)
 				{
 					std::cout << buffer2 << BLUE + "―";
-					usleep(30000);
+					usleep(10000);
 					std::cout.flush();
 					std::cout << "\r\033[K";
 					std::cout << buffer2 << GREEN + '\\';
-					usleep(30000);
+					usleep(10000);
 					std::cout.flush();
 					std::cout << "\r\033[K";
 					buffer2 += "\\";
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 				else
 					buffer2 += "/";
 				std::cout << buffer2;
-				usleep(30000);
+				usleep(10000);
 				std::cout.flush();
 				std::cout << "\r\033[K";
 			}
@@ -64,21 +64,21 @@ int main(int argc, char **argv)
 			for (; anim < 4; anim++)
 			{
 				std::cout << buffer2 << RED + "|";
-				usleep(30000);
+				usleep(10000);
 				std::cout.flush();
 				std::cout << "\r\033[K";
 				std::cout << buffer2 << ORANGE + "/";
-				usleep(30000);
+				usleep(10000);
 				std::cout.flush();
 				std::cout << "\r\033[K";
 				if (anim % 2 == 1)
 				{
 					std::cout << buffer2 << BLUE + "―";
-					usleep(30000);
+					usleep(10000);
 					std::cout.flush();
 					std::cout << "\r\033[K";
 					std::cout << buffer2 << GREEN + '\\';
-					usleep(30000);
+					usleep(10000);
 					std::cout.flush();
 					std::cout << "\r\033[K";
 					buffer2 += "\\";
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 				else
 					buffer2 += "/";
 				std::cout << buffer2;
-				usleep(30000);
+				usleep(10000);
 				std::cout.flush();
 				std::cout << "\r\033[K";
 			}

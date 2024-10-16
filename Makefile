@@ -1,5 +1,7 @@
 NAME	= webserv
 
+MAKEFLAGS += -s
+
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
 RED = \033[0;91m
@@ -17,7 +19,7 @@ SRCS	=	main.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 
-CXX	= @c++
+CXX	= c++
 
 CXXFLAGS	+= -Wall -Wextra -Werror -std=c++98 -g3
 
@@ -27,12 +29,21 @@ CURRENT_DATE	:= $(shell date +"%Y-%m-%d %H:%M:%S")
 
 SRC_COUNT = $(shell echo $(SRCS) | wc -w)
 
+USER1 = bgrosjea
+USER2 = amirloup
+
+ifeq ($(USER), $(USER1))
+	EXECUTABLE = /loadings/loadingbasile
+else ifeq ($(USER), $(USER2))
+	EXECUTABLE = /loadings/loadingantoine
+else
+	$(error Unknown user, please set the correct executable)
+endif
+
 all	: $(NAME)
 
 $(NAME) : $(OBJS)
-	@./loadingtriangle $(SRC_COUNT) &
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-	wait
+	@{ ./$(EXECUTABLE) $(SRC_COUNT) & $(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) ; wait; }
 	@echo "$(MAGENTA)Make Done$(DEF_COLOR)"
 
 clean : 
