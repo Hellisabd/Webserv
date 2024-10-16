@@ -1,4 +1,4 @@
- NAME	= webserv
+NAME	= webserv
 
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
@@ -10,8 +10,7 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS	=	main.cpp \
-			RPN.cpp
+SRCS	=	main.cpp 
 
 OBJS	= $(SRCS:.cpp=.o)
 
@@ -28,6 +27,11 @@ CURRENT_DATE	:= $(shell date +"%Y-%m-%d %H:%M:%S")
 all	: $(NAME)
 
 $(NAME) : $(OBJS)
+	@printf "$(PRINT_PREFIX)\033[0;38;5;226m Compiling \033[0m["
+	@for i in $(shell seq 1 $(BAR_LENGTH)); do \
+		sleep 0.02; \
+		printf "\033[38;5;40m▲▼"; \
+	done
 	$(CXX) $(CXXFLAGS)  $(OBJS) -o $(NAME)
 	@echo "$(MAGENTA)Make Done$(DEF_COLOR)"
 
