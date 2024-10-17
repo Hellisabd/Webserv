@@ -156,7 +156,7 @@ connect:tablir une connexion à un socket, généralement dans un client réseau
 
 getaddrinfo:obtenir des informations d'adresse en fonction d'un nom d'hôte et d'un service
 
-freeaddrinfo: libérer la mémoire allouée par getaddrinfo
+freeaddrinfo: libérer la mémoire allouée par getaddrinfo(libérer la mémoire de la structure addrinfo)
 
 setsockopt: configurer les options d'un socket. Elle permet de modifier des paramètres tels que le comportement de la socket, la gestion des délais, la taille des buffers, et d'autres options spécifiques à l'implémentation.
 
@@ -172,6 +172,8 @@ optname : Nom de l'option à définir. Cela dépend du niveau spécifié. Par ex
         SO_REUSEADDR : Permet de réutiliser une adresse locale.
         SO_SNDBUF : Taille du buffer d'envoi.
         SO_RCVBUF : Taille du buffer de réception.
+
+gai_strerror: permet de traduire l’erreur de getaddrinfo() en chaîne de caractères.
 
 optval : Pointeur vers la valeur à affecter à l'option.
 optlen : Taille de l'option optval.
@@ -462,7 +464,6 @@ dup: on connait.
 dup2: on connait.
 pipe: on connait.
 strerror: on connait.
-gai_strerror:
 
 errno: on connait.
 dup: on connait.
