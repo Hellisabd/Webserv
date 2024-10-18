@@ -13,6 +13,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRCS	=	main.cpp \
+			Data.cpp
 			
 			
 

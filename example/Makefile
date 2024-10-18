@@ -1,9 +1,12 @@
 all : 
-	c++ example_client.cpp -o client
-	c++ example_server.cpp -o server
+	cc example_client.c -o client
+	cc example_server.c -o server
 
 serv : 
 	valgrind --leak-check=full --track-fds=yes ./server
 
-client :
-	valgrind --leak-check=full --track-fds=yes ./client
+cli :
+	valgrind --leak-check=full --track-fds=yes ./client prout
+
+re : 
+	rm -rf server
