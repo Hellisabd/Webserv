@@ -10,3 +10,5 @@ cli :
 
 re : 
 	rm -rf server
+	cc example_client.c -o client
+	cc example_server.c -o server

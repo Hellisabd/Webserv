@@ -48,7 +48,7 @@ private :
 template<typename T>
 void	debug(T content)
 {
-		std::cerr << RED << content << NC << std::endl;
+	std::cerr << RED << content << NC << std::endl;
 }
 
 template<typename T>
