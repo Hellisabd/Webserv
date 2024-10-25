@@ -2,6 +2,8 @@ NAME	= webserv
 
 MAKEFLAGS += -s
 
+INCLUDES = -I ./includes
+
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
 RED = \033[0;91m
@@ -12,16 +14,15 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS	=	main.cpp \
-			Data.cpp
-			
+SRCS	=	src/main.cpp \
+			src/class/Data.cpp \
 			
 
 OBJS	= $(SRCS:.cpp=.o)
 
 CXX	= c++
 
-CXXFLAGS	+= -Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS	+= $(INCLUDES) -Wall -Wextra -Werror -std=c++98 -g3
 
 RM	= @rm -rf
 
@@ -40,7 +41,7 @@ else
 	$(error Unknown user, please set the correct executable)
 endif
 
-all	: $(NAME)
+all	: $(NAME) clean
 
 $(NAME) : $(OBJS)
 	@{ ./$(EXECUTABLE) $(SRC_COUNT) & $(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) ; wait; }

@@ -1,4 +1,4 @@
 port 4343
 host host
 bodysize 48
-server_name bonjour basile
+server_name  bonjour lol

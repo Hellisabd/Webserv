@@ -1,6 +1,7 @@
 #pragma once
 
-#include "webserv.hpp"
+#include <webserv.hpp>
+#include <vector>
 
 class Data {
 
@@ -11,6 +12,11 @@ class Data {
 		Data(std::string const &str);
 		virtual ~Data();
 		Data& operator=(const Data& other);
+		void printer();
+		std::string const &getHost() const;
+		int const &getPort() const;
+		size_t const &getBodySize() const;
+		std::vector<std::string> const &getServerNames() const;
 
 
 	private:
@@ -20,6 +26,5 @@ class Data {
 		std::vector<std::string> _serverNames;
 
 		void fill_info(std::ifstream &infile);
-		void printer();
 		void SetServerNames(std::string const &servernames);
 };
