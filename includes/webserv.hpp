@@ -19,7 +19,7 @@
 #include <iomanip> 
 #include <cmath>
 #include <string>
-#include "Data.hpp"
+#include "../src/class/Data.hpp"
 #include <iostream>
 #include <vector>
 
