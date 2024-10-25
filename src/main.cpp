@@ -4,6 +4,7 @@ int main(int argc, char **argv)
 {
 	try
 	{
+		debug("lol");
 		if (argc != 2)
 			throw Error("Wrong number of arguments");
 		Data data(argv[1]);

@@ -45,33 +45,4 @@ private :
 	const std::string _message;
 };
 
-template<typename T>
-void	debug(T content)
-{
-	std::cerr << RED << content << NC << std::endl;
-}
-
-template<typename T>
-void	debug(std::string color, std::string msg, T content)
-{
-	if (msg.empty())
-		std::cerr << color << content << NC << std::endl;
-	else
-		std::cerr << color + msg << content << NC << std::endl;
-}
-
-template<typename T>
-void	debug_container(std::string color, std::string msg, T content, std::ostream &os)
-{
-	std::string spaces;
-	for (std::size_t i = 0; i < msg.length() + 1; i++)
-		spaces += ' ';
-	spaces += "- ";
-	if (!msg.empty())
-		os << color + msg << std::endl;
-	else
-		os << color;
-	for (typename T::iterator it = content.begin(); it != content.end(); ++it)
-		os << spaces + *it << std::endl;
-	os << NC;
-}
+#include "../tools/debug.tpp"
