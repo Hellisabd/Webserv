@@ -17,7 +17,7 @@ Data::Data(std::string const &str)
 	if (!inputfile.is_open())
 		throw Error("Can't open the file");
 	fill_info(inputfile);
-	printer();
+	std::cerr << *this;
 }
 
 Data	&Data::operator=(const Data& other)
@@ -51,13 +51,14 @@ void Data::fill_info(std::ifstream &infile)
 	infile.close();
 }
 
-void Data::printer()
+std::ostream &operator<<(std::ostream &os, Data const &data)
 {
-	std::cout << "this is the content of my Data class named data" << std::endl;
-	std::cout << "_port = " << _port << std::endl;
-	std::cout << "_host = " << _host << std::endl;
-	std::cout << "_bodySize = " << _bodySize << std::endl;
-	::debug_container(RED, "Servernames:", _serverNames);
+	os << "this is the content of my Data class named data" << std::endl;
+	os << "_port = " << data.getPort() << std::endl;
+	os << "_host = " << data.getHost() << std::endl;
+	os << "_bodySize = " << data.getBodySize() << std::endl;
+	::debug_container(RED, "Servernames:", data.getServerNames(), os);
+	return os;
 }
 
 std::string const &Data::getHost() const

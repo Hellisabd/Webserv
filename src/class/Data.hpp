@@ -12,7 +12,6 @@ class Data {
 		Data(std::string const &str);
 		virtual ~Data();
 		Data& operator=(const Data& other);
-		void printer();
 		std::string const &getHost() const;
 		int const &getPort() const;
 		size_t const &getBodySize() const;
@@ -28,3 +27,4 @@ class Data {
 		void fill_info(std::ifstream &infile);
 		void SetServerNames(std::string const &servernames);
 };
+std::ostream &operator<<(std::ostream &os, Data const &data);
