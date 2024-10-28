@@ -18,6 +18,7 @@ ServerSocket::ServerSocket(int domain, int service, int protocol, int port, unsi
 	if (_listening < 0)
 	{
 		perror("Listening");
+		close (_sock);
 		throw Error("error in listening");
 	}
 }

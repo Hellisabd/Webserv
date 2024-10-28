@@ -26,8 +26,8 @@ int main()
 			throw Error("Error during epoll ctl");
 		
 		struct epoll_event epollClient[MAX_EVENTS];
-		// while (1)
-		// {
+		while (1)
+		{
 			int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
 			if (n < 0)
 				throw Error("Error during epoll_wait");
@@ -63,7 +63,7 @@ int main()
 					}
 				}
 			}
-		// }
+		}
 		for (int i = 0; i < nbr_of_client; i++)
 		{
 			if (client_fd[i] != servSock.getSock())
