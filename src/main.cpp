@@ -80,7 +80,7 @@ int main()
 							}
 							tosend[bytes_read] = '\0';
 							debug(tosend);
-							if (0 > send(epollClient[i].data.fd, tosend, sizeof(tosend), 0))
+							if (0 > send(epollClient[i].data.fd, tosend, bytes_read + 1, 0))
 							{
 								close(infile);
 								throw Error("Error while sending file");
