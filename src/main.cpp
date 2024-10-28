@@ -11,10 +11,19 @@ void signal_handler(int sig)
 		g_stop = 0;
 }
 
+unsigned long getFileSize(std::string const &file_path)
+{
+	struct stat file_stat;
+	if (stat(file_path.c_str(), &file_stat) != 0)
+		throw Error("failed to get file size");
+	return file_stat.st_size;
+}
+
 int main()
 {
 	try
 	{
+		int infile = -1;
 		signal(SIGINT, signal_handler);
 		int nbr_of_client = 0;
 		int client_fd[MAX_EVENTS];
@@ -39,7 +48,7 @@ int main()
 			while (g_stop)
 			{
 				int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
-				if (n < 0)
+				if (n < 0 || !g_stop)
 					throw Error("Error during epoll_wait");
 				for (int i = 0; i < n; i++)
 				{
@@ -69,23 +78,31 @@ int main()
 						}
 						else
 						{
-							debug(PURPLE, buffer);
-							char tosend[20000];
-							int infile = open("./site/index.html", O_RDONLY);
-							size_t bytes_read = read(infile, tosend, sizeof(tosend));
-							if (bytes_read < 0)
+							debug(buffer);
+							std::string headerHTTP = "HTTP/1.1 200 OK\r\n";
+										headerHTTP += "Content-Type: text/html\r\n";
+										headerHTTP += "Connection: close\r\n";
+										headerHTTP += "Content-Length" + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
+							if (0 > send(epollClient[i].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0))
+								throw Error("Error while sending header http");
+
+							//buffer de 1024 pour ne pas depasser la taille du tampon et garder des perfs sur plusieurs clients simultanés
+							char tosend[1024];
+							infile = open("./site/index.html", O_RDONLY);
+							
+							size_t bytes_read = 1;
+							while ((bytes_read = read(infile, tosend, sizeof(tosend))))
 							{
-								close(infile);
-								throw Error("Error while opening file to send");
-							}
-							tosend[bytes_read] = '\0';
-							debug(tosend);
-							if (0 > send(epollClient[i].data.fd, tosend, bytes_read + 1, 0))
-							{
-								close(infile);
-								throw Error("Error while sending file");
+								if (bytes_read > 0)
+								{
+									if (bytes_read < 1024)
+										tosend[bytes_read] = '\0';
+									debug(tosend);
+									send(epollClient[i].data.fd, tosend, bytes_read, 0);
+								}
 							}
 							close(infile);
+							infile = -1;
 						}
 					}
 				}
@@ -100,6 +117,13 @@ int main()
 			}
 			std::cerr << e.what() << '\n';
 		}
+		for (int i = 0; i < nbr_of_client; i++)
+		{
+			if (client_fd[i] != servSock.getSock())
+				close (client_fd[i]);
+		}
+		if (infile != -1)
+			close(infile);
 		debug(GREEN, "SUCCESS");
 		close(epoll_fd);
 		

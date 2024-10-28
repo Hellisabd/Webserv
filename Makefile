@@ -24,7 +24,7 @@ OBJS	= $(SRCS:.cpp=.o)
 
 CXX	= c++
 
-CXXFLAGS	+= $(INCLUDES) -Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS	+= $(INCLUDES) -Wall -Wextra -Werror -g3 #-std=c++98 -g3
 
 RM	= @rm -rf
 

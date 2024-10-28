@@ -12,6 +12,7 @@ ServerSocket::ServerSocket(int domain, int service, int protocol, int port, unsi
 	if (_connection < 0)
 	{
 		close (_sock);
+		perror("Error");
 		throw Error("error in binding");
 	}
 	_listening = listen(_sock, _backlog);
