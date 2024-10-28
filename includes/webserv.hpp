@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/poll.h>
+#include <sys/epoll.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -19,9 +20,10 @@
 #include <iomanip> 
 #include <cmath>
 #include <string>
-#include "../src/class/Data.hpp"
-#include <iostream>
 #include <vector>
+#include "../src/class/Data.hpp"
+#include "../src/class/ServerSocket.hpp"
+#include "../src/class/ClientSocket.hpp"
 
 
 # define NC std::string("\e[0m")

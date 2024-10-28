@@ -5,6 +5,12 @@ void	debug(T content)
 }
 
 template<typename T>
+void	debug(std::string color, T content)
+{
+	std::cerr << color << content << NC << std::endl;
+}
+
+template<typename T>
 void	debug(std::string color, std::string msg, T content)
 {
 	if (msg.empty())
