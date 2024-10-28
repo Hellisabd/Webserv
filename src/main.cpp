@@ -3,11 +3,19 @@
 #define PORT 4343
 #define MAX_EVENTS 10
 
+int g_stop = 1;
+
+void signal_handler(int sig)
+{
+	if (sig == SIGINT)
+		g_stop = 0;
+}
 
 int main()
 {
 	try
 	{
+		signal(SIGINT, signal_handler);
 		int nbr_of_client = 0;
 		int client_fd[MAX_EVENTS];
 		for (int i = 0; i < MAX_EVENTS; i++)
@@ -26,48 +34,71 @@ int main()
 			throw Error("Error during epoll ctl");
 		
 		struct epoll_event epollClient[MAX_EVENTS];
-		while (1)
+		try
 		{
-			int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
-			if (n < 0)
-				throw Error("Error during epoll_wait");
-			for (int i = 0; i < n; i++)
+			while (g_stop)
 			{
-				if (epollClient[i].data.fd == servSock.getSock())
+				int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
+				if (n < 0)
+					throw Error("Error during epoll_wait");
+				for (int i = 0; i < n; i++)
 				{
-					client_fd[nbr_of_client] = accept(servSock.getSock(), NULL, NULL);
-					if (client_fd[nbr_of_client] == -1)
-						throw Error("Faile to accept client connexion");
-					struct epoll_event new_client;
-					new_client.events = EPOLLIN;
-					new_client.data.fd = client_fd[nbr_of_client];
-					if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd[nbr_of_client], &new_client) < 0)
+					if (epollClient[i].data.fd == servSock.getSock())
 					{
-						close (client_fd[nbr_of_client]);
-						throw Error("Error when adding new client to epoll");
-					}
-					debug(GREEN, "New client added");
-					nbr_of_client++;
-				}
-				else
-				{
-					char buffer[20000];
-					if (read(epollClient[i].data.fd, buffer, sizeof(buffer)) <= 0)
-					{
-						close(epollClient[i].data.fd);
-						debug(BLUE, "Client has disconnected");
+						client_fd[nbr_of_client] = accept(servSock.getSock(), NULL, NULL);
+						if (client_fd[nbr_of_client] == -1)
+							throw Error("Faile to accept client connexion");
+						struct epoll_event new_client;
+						new_client.events = EPOLLIN;
+						new_client.data.fd = client_fd[nbr_of_client];
+						if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd[nbr_of_client], &new_client) < 0)
+						{
+							close (client_fd[nbr_of_client]);
+							throw Error("Error when adding new client to epoll");
+						}
+						debug(GREEN, "New client added");
+						nbr_of_client++;
 					}
 					else
 					{
-						debug(PURPLE, buffer);
+						char buffer[20000];
+						if (read(epollClient[i].data.fd, buffer, sizeof(buffer)) <= 0)
+						{
+							close(epollClient[i].data.fd);
+							debug(BLUE, "Client has disconnected");
+						}
+						else
+						{
+							debug(PURPLE, buffer);
+							char tosend[20000];
+							int infile = open("./site/index.html", O_RDONLY);
+							size_t bytes_read = read(infile, tosend, sizeof(tosend));
+							if (bytes_read < 0)
+							{
+								close(infile);
+								throw Error("Error while opening file to send");
+							}
+							tosend[bytes_read] = '\0';
+							debug(tosend);
+							if (0 > send(epollClient[i].data.fd, tosend, sizeof(tosend), 0))
+							{
+								close(infile);
+								throw Error("Error while sending file");
+							}
+							close(infile);
+						}
 					}
 				}
 			}
 		}
-		for (int i = 0; i < nbr_of_client; i++)
+		catch(const std::exception& e)
 		{
-			if (client_fd[i] != servSock.getSock())
-				close (client_fd[i]);
+			for (int i = 0; i < nbr_of_client; i++)
+			{
+				if (client_fd[i] != servSock.getSock())
+					close (client_fd[i]);
+			}
+			std::cerr << e.what() << '\n';
 		}
 		debug(GREEN, "SUCCESS");
 		close(epoll_fd);

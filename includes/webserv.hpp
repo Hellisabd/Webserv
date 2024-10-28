@@ -24,6 +24,10 @@
 #include "../src/class/Data.hpp"
 #include "../src/class/ServerSocket.hpp"
 #include "../src/class/ClientSocket.hpp"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <csignal>
 
 
 # define NC std::string("\e[0m")
