@@ -7,8 +7,9 @@ int g_stop = 1;
 
 void signal_handler(int sig)
 {
-	if (sig == SIGINT)
+	if (sig == SIGINT) {
 		g_stop = 0;
+	}
 }
 
 unsigned long getFileSize(std::string const &file_path)
@@ -34,6 +35,9 @@ int main()
 		debug("Starting...");
 		debug("Server Socket...");
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, 4343, INADDR_ANY, 10);
+		int opt = 1;
+		if (setsockopt(servSock.getSock(), SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)
+			throw Error("setsockopt(SO_REUSEADDR) failed");
 		int epoll_fd = epoll_create(MAX_EVENTS);
 		if (epoll_fd < 0)
 			throw Error("Error during creation of epoll_fd");
@@ -50,15 +54,18 @@ int main()
 			while (g_stop)
 			{
 				int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
-				if (n < 0 || !g_stop)
+				if (n < 0 || !g_stop) {
+					close (servSock.getSock());
+					close (epoll_fd);
 					throw Error("Error during epoll_wait");
+				}
 				for (int i = 0; i < n; i++)
 				{
 					if (epollClient[i].data.fd == servSock.getSock())
 					{
 						client_fd[nbr_of_client] = accept(servSock.getSock(), NULL, NULL);
 						if (client_fd[nbr_of_client] == -1)
-							throw Error("Faile to accept client connexion");
+							throw Error("Failed to accept client connexion");
 						struct epoll_event new_client;
 						new_client.events = EPOLLIN;
 						new_client.data.fd = client_fd[nbr_of_client];
@@ -99,7 +106,7 @@ int main()
 								{
 									if (bytes_read < 1024)
 										tosend[bytes_read] = '\0';
-									debug(tosend);
+									// debug(tosend);
 									send(epollClient[i].data.fd, tosend, bytes_read, 0);
 								}
 							}
