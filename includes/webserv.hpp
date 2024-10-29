@@ -21,14 +21,15 @@
 #include <cmath>
 #include <string>
 #include <vector>
-#include "../src/class/Data.hpp"
-#include "../src/class/ServerSocket.hpp"
-#include "../src/class/ClientSocket.hpp"
+// #include "../src/class/Data.hpp"
+// #include "../src/class/ServerSocket.hpp"
+// #include "../src/class/ClientSocket.hpp"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <csignal>
 
+enum HttpMethod {GET, POST, DELETE, UNKNOWN};
 
 # define NC std::string("\e[0m")
 # define RED std::string("\e[1;31m")
