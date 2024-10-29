@@ -1,5 +1,9 @@
 #pragma once
 
+# define PORT 4343
+# define MAX_EVENTS 10
+# define NBR_PORT 2
+
 #include <errno.h>
 #include <netdb.h>
 #include <poll.h>

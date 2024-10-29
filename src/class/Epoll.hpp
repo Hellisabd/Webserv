@@ -4,10 +4,10 @@
 
 class Epoll {
 public:
-	Epoll(int sock);
+	Epoll(std::vector<int> sock);
 	~Epoll();
-	int wait();
-	int add();
+	int wait(int stop, std::vector<int> sock);
+	int add(std::vector<int> sock);
 private:
 	int	_epoll_fd;
 	struct epoll_event _epollServ;
