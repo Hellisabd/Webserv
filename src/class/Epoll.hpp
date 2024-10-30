@@ -1,16 +1,18 @@
 #pragma once
 #include "webserv.hpp"
-#define MAX_EVENTS 10
 
 class Epoll {
 public:
 	Epoll(std::vector<int> sock);
 	~Epoll();
 	void wait(int stop);
-	void add();
+	void add(std::vector<struct sockaddr_in> address);
 private:
 	int	_epoll_fd;
+	int _n;
+	int _nbr_client;
 	std::vector<int> _sock;
+	std::vector<int> _ClientSock;
 	struct epoll_event _epollServ;
 	std::vector<struct epoll_event> _epollClient;
 };

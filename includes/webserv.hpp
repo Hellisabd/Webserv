@@ -35,6 +35,8 @@
 #include <csignal>
 
 
+unsigned long getFileSize(std::string const &file_path);
+
 # define NC std::string("\e[0m")
 # define RED std::string("\e[1;31m")
 # define GREEN std::string("\e[1;32m")
