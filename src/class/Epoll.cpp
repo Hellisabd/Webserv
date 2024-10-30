@@ -34,7 +34,7 @@ void Epoll::wait(int stop) {
 }
 
 void Epoll::add(std::vector<struct sockaddr_in> address) {
-	 for (int i = 0; i < _n; i++) {
+	for (int i = 0; i < _n; i++) {
 		for (size_t j = 0; j < _sock.size(); j++) {
 			if (_epollClient[i].data.fd == _sock[j]) {
 				debug(_epollClient[i].data.fd);
@@ -56,7 +56,7 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 			else {
 				char buffer[20000];
 				ssize_t bytes_read = read(_epollClient[i].data.fd, buffer, sizeof(buffer));
-				if (bytes_read <= 0) {
+				if (bytes_read < 0) {
 					close(_epollClient[i].data.fd);
 					debug(BLUE, "Client disconnected");
 				} 

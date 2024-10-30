@@ -21,8 +21,7 @@ unsigned long getFileSize(std::string const &file_path)
 
 int main()
 {
-	try
-	{
+	try {
 		signal(SIGINT, signal_handler);
 		debug("Starting...");
 		debug("Server Socket...");
@@ -35,35 +34,11 @@ int main()
 				epoll.add(servSock.getAddr());
 			}
 		}
-		catch (std::exception const &e)
-		{
+		catch (std::exception const &e) {
 		std::cerr << e.what() << std::endl;
 		}
 	}
-		
-		// }
-		// catch(const std::exception& e)
-		// {
-		// 	for (int i = 0; i < nbr_of_client; i++)
-		// 	{
-		// 		if (client_fd[i] != servSock.getSock())
-		// 			close (client_fd[i]);
-		// 	}
-		// 	std::cerr << e.what() << '\n';
-		// }
-		// for (int i = 0; i < nbr_of_client; i++)
-		// {
-		// 	if (client_fd[i] != servSock.getSock())
-		// 		close (client_fd[i]);
-		// }
-		// if (infile != -1)
-		// 	close(infile);
-		// debug(GREEN, "SUCCESS");
-		// close(epoll_fd);
-		
-	// }
-	catch (std::exception const &e)
-	{
+	catch (std::exception const &e) {
 		std::cerr << e.what() << std::endl;
 	}
 }
