@@ -19,40 +19,9 @@ unsigned long getFileSize(std::string const &file_path)
 	return file_stat.st_size;
 }
 
-//Bonne chance pour capter qqch mec! 
-
-int main()
+void handling_client_request(int n, struct epoll_event *epollClient, ServerSocket servSock, int *client_fd, int nbr_of_client, int epoll_fd, int infile)
 {
-	try
-	{
-		int infile = -1;
-		signal(SIGINT, signal_handler);
-		int nbr_of_client = 0;
-		int client_fd[MAX_EVENTS];
-		for (int i = 0; i < MAX_EVENTS; i++)
-			client_fd[i] = -1;
-		debug("Starting...");
-		debug("Server Socket...");
-		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, 4343, INADDR_ANY, 10);
-		int epoll_fd = epoll_create(MAX_EVENTS);
-		if (epoll_fd < 0)
-			throw Error("Error during creation of epoll_fd");
-		
-		struct epoll_event epollServ;
-		epollServ.events = EPOLLIN;
-		epollServ.data.fd = servSock.getSock();
-		if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, servSock.getSock(), &epollServ) == -1)
-			throw Error("Error during epoll ctl");
-		
-		struct epoll_event epollClient[MAX_EVENTS];
-		try
-		{
-			while (g_stop)
-			{
-				int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
-				if (n < 0 || !g_stop)
-					throw Error("Error during epoll_wait");
-				for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 				{
 					if (epollClient[i].data.fd == servSock.getSock())
 					{
@@ -108,6 +77,41 @@ int main()
 						}
 					}
 				}
+}
+
+int main()
+{
+	try
+	{
+		int infile = -1;
+		signal(SIGINT, signal_handler);
+		int nbr_of_client = 0;
+		int client_fd[MAX_EVENTS];
+		for (int i = 0; i < MAX_EVENTS; i++)
+			client_fd[i] = -1;
+		debug("Starting...");
+		debug("Server Socket...");
+		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, 4343, INADDR_ANY, 10);
+		int epoll_fd = epoll_create(MAX_EVENTS);
+		if (epoll_fd < 0)
+			throw Error("Error during creation of epoll_fd");
+		
+		struct epoll_event epollServ;
+		epollServ.events = EPOLLIN;
+		epollServ.data.fd = servSock.getSock();
+		if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, servSock.getSock(), &epollServ) == -1)
+			throw Error("Error during epoll ctl");
+		
+		struct epoll_event epollClient[MAX_EVENTS];
+		try
+		{
+			while (g_stop)
+			{
+				int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
+				if (n < 0 || !g_stop)
+					throw Error("Error during epoll_wait");
+				
+				handling_client_request(n, epollClient, servSock, client_fd, nbr_of_client, epoll_fd, infile);
 			}
 		}
 		catch(const std::exception& e)
