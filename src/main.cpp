@@ -1,7 +1,6 @@
 #include "webserv.hpp"
 
 #define PORT 4343
-#define MAX_EVENTS 10
 
 int g_stop = 1;
 
@@ -19,32 +18,32 @@ unsigned long getFileSize(std::string const &file_path)
 	return file_stat.st_size;
 }
 
-void handling_client_request(int n, struct epoll_event *epollClient, ServerSocket servSock, int *client_fd, int nbr_of_client, int epoll_fd, int infile)
+void handling_client_request(int n, t_epoll *epoll, ServerSocket servSock, int infile)
 {
 	for (int i = 0; i < n; i++)
 				{
-					if (epollClient[i].data.fd == servSock.getSock())
+					if (epoll->Clients[i].data.fd == servSock.getSock())
 					{
-						client_fd[nbr_of_client] = accept(servSock.getSock(), NULL, NULL);
-						if (client_fd[nbr_of_client] == -1)
+						epoll->client_fds[epoll->nbr_of_client] = accept(servSock.getSock(), NULL, NULL);
+						if (epoll->client_fds[epoll->nbr_of_client] == -1)
 							throw Error("Faile to accept client connexion");
 						struct epoll_event new_client;
 						new_client.events = EPOLLIN;
-						new_client.data.fd = client_fd[nbr_of_client];
-						if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd[nbr_of_client], &new_client) < 0)
+						new_client.data.fd = epoll->client_fds[epoll->nbr_of_client];
+						if (epoll_ctl(epoll->epoll_fd, EPOLL_CTL_ADD, epoll->client_fds[epoll->nbr_of_client], &new_client) < 0)
 						{
-							close (client_fd[nbr_of_client]);
+							close (epoll->client_fds[epoll->nbr_of_client]);
 							throw Error("Error when adding new client to epoll");
 						}
 						debug(GREEN, "New client added");
-						nbr_of_client++;
+						epoll->nbr_of_client++;
 					}
 					else
 					{
 						char buffer[20000];
-						if (read(epollClient[i].data.fd, buffer, sizeof(buffer)) <= 0)
+						if (read(epoll->Clients[i].data.fd, buffer, sizeof(buffer)) <= 0)
 						{
-							close(epollClient[i].data.fd);
+							close(epoll->Clients[i].data.fd);
 							debug(BLUE, "Client has disconnected");
 						}
 						else
@@ -54,7 +53,7 @@ void handling_client_request(int n, struct epoll_event *epollClient, ServerSocke
 										headerHTTP += "Content-Type: text/html\r\n";
 										headerHTTP += "Connection: close\r\n";
 										headerHTTP += "Content-Length" + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
-							if (0 > send(epollClient[i].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0))
+							if (0 > send(epoll->Clients[i].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0))
 								throw Error("Error while sending header http");
 
 							//buffer de 1024 pour ne pas depasser la taille du tampon et garder des perfs sur plusieurs clients simultanés
@@ -69,7 +68,7 @@ void handling_client_request(int n, struct epoll_event *epollClient, ServerSocke
 									if (bytes_read < 1024)
 										tosend[bytes_read] = '\0';
 									debug(tosend);
-									send(epollClient[i].data.fd, tosend, bytes_read, 0);
+									send(epoll->Clients[i].data.fd, tosend, bytes_read, 0);
 								}
 							}
 							close(infile);
@@ -84,54 +83,53 @@ int main()
 	try
 	{
 		int infile = -1;
+		s_epoll epoll;
 		signal(SIGINT, signal_handler);
-		int nbr_of_client = 0;
-		int client_fd[MAX_EVENTS];
+		epoll.nbr_of_client = 0;
 		for (int i = 0; i < MAX_EVENTS; i++)
-			client_fd[i] = -1;
+			epoll.client_fds[i] = -1;
 		debug("Starting...");
 		debug("Server Socket...");
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, 4343, INADDR_ANY, 10);
-		int epoll_fd = epoll_create(MAX_EVENTS);
-		if (epoll_fd < 0)
+		epoll.epoll_fd = epoll_create(MAX_EVENTS);
+		if (epoll.epoll_fd < 0)
 			throw Error("Error during creation of epoll_fd");
 		
 		struct epoll_event epollServ;
 		epollServ.events = EPOLLIN;
 		epollServ.data.fd = servSock.getSock();
-		if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, servSock.getSock(), &epollServ) == -1)
+		if (epoll_ctl(epoll.epoll_fd, EPOLL_CTL_ADD, servSock.getSock(), &epollServ) == -1)
 			throw Error("Error during epoll ctl");
 		
-		struct epoll_event epollClient[MAX_EVENTS];
 		try
 		{
 			while (g_stop)
 			{
-				int n = epoll_wait(epoll_fd, epollClient, MAX_EVENTS, -1);
+				int n = epoll_wait(epoll.epoll_fd, epoll.Clients, MAX_EVENTS, -1);
 				if (n < 0 || !g_stop)
 					throw Error("Error during epoll_wait");
 				
-				handling_client_request(n, epollClient, servSock, client_fd, nbr_of_client, epoll_fd, infile);
+				handling_client_request(n, &epoll, servSock, infile);
 			}
 		}
 		catch(const std::exception& e)
 		{
-			for (int i = 0; i < nbr_of_client; i++)
+			for (int i = 0; i < epoll.nbr_of_client; i++)
 			{
-				if (client_fd[i] != servSock.getSock())
-					close (client_fd[i]);
+				if (epoll.client_fds[i] != servSock.getSock())
+					close (epoll.client_fds[i]);
 			}
 			std::cerr << e.what() << '\n';
 		}
-		for (int i = 0; i < nbr_of_client; i++)
+		for (int i = 0; i < epoll.nbr_of_client; i++)
 		{
-			if (client_fd[i] != servSock.getSock())
-				close (client_fd[i]);
+			if (epoll.client_fds[i] != servSock.getSock())
+				close (epoll.client_fds[i]);
 		}
 		if (infile != -1)
 			close(infile);
 		debug(GREEN, "SUCCESS");
-		close(epoll_fd);
+		close(epoll.epoll_fd);
 		
 	}
 	catch (std::exception const &e)
