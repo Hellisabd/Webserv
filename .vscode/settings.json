@@ -62,6 +62,7 @@
 		"thread": "cpp",
 		"semaphore": "cpp",
 		"*.tpp": "cpp",
-		"csignal": "cpp"
+		"csignal": "cpp",
+		"map": "cpp"
 	}
 }

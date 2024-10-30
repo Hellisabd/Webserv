@@ -25,7 +25,7 @@ int main()
 		signal(SIGINT, signal_handler);
 		debug("Starting...");
 		debug("Server Socket...");
-		int port[2] = {4343, 4444};
+		int port[3] = {4343, 4444, 4545};
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, port, INADDR_ANY, 10);
 		Epoll epoll(servSock.getSock());
 		try {

@@ -2,7 +2,7 @@
 
 # define PORT 4343
 # define MAX_EVENTS 10
-# define NBR_PORT 2
+# define NBR_PORT 3
 
 #include <errno.h>
 #include <netdb.h>
@@ -25,6 +25,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <map>
 #include "../src/class/Data.hpp"
 #include "../src/class/ServerSocket.hpp"
 #include "../src/class/Epoll.hpp"
