@@ -27,6 +27,7 @@
 #include <vector>
 #include "../src/class/Data.hpp"
 #include "../src/class/ServerSocket.hpp"
+#include "../src/class/Epoll.hpp"
 #include "../src/class/ClientSocket.hpp"
 #include <sys/types.h>
 #include <sys/stat.h>

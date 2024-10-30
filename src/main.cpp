@@ -36,6 +36,8 @@ int main()
 		std::vector<int> sock = servSock.getSock();
 		for (std::vector<int>::iterator i = sock.begin(); i != sock.end(); i++)
 			std::cout << *i << std::endl;
+		Epoll epoll(sock);
+		epoll.wait(g_stop);
 		// int opt = 1;
 		// if (setsockopt(servSock.getSock(), SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)
 		// 	throw Error("setsockopt(SO_REUSEADDR) failed");
