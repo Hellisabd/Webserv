@@ -1,5 +1,9 @@
 #pragma once
 
+# define PORT 4343
+# define MAX_EVENTS 10
+# define NBR_PORT 3
+
 #include <errno.h>
 #include <netdb.h>
 #include <poll.h>
@@ -21,8 +25,10 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <map>
 #include "../src/class/Data.hpp"
 #include "../src/class/ServerSocket.hpp"
+#include "../src/class/Epoll.hpp"
 #include "../src/class/ClientSocket.hpp"
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -31,6 +37,8 @@
 
 #define MAX_EVENTS 10
 
+
+unsigned long getFileSize(std::string const &file_path);
 
 # define NC std::string("\e[0m")
 # define RED std::string("\e[1;31m")
