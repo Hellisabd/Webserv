@@ -11,6 +11,7 @@ private:
 	int	_epoll_fd;
 	int _n;
 	int _nbr_client;
+	std::string _HTTPRequest[MAX_EVENTS];
 	std::vector<int> _sock;
 	std::vector<int> _ClientSock;
 	struct epoll_event _epollServ;
