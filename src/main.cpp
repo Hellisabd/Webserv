@@ -1,5 +1,5 @@
 #include "webserv.hpp"
-
+#define PORT 4343
 int g_stop = 1;
 
 void signal_handler(int sig)
@@ -16,7 +16,6 @@ unsigned long getFileSize(std::string const &file_path)
 		throw Error("failed to get file size");
 	return file_stat.st_size;
 }
-
 
 int main()
 {
@@ -36,6 +35,7 @@ int main()
 		catch (std::exception const &e) {
 		std::cerr << e.what() << std::endl;
 		}
+
 	}
 	catch (std::exception const &e) {
 		std::cerr << e.what() << std::endl;

@@ -35,6 +35,8 @@
 #include <fcntl.h>
 #include <csignal>
 
+#define MAX_EVENTS 10
+
 
 unsigned long getFileSize(std::string const &file_path);
 
@@ -60,3 +62,12 @@ private :
 };
 
 #include "../tools/debug.tpp"
+
+typedef struct t_epoll
+{
+	struct epoll_event Clients[MAX_EVENTS];
+	struct epoll_event Server;
+	int client_fds[MAX_EVENTS];
+	int nbr_of_client;
+	int epoll_fd;
+}s_epoll;
