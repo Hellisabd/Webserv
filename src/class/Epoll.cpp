@@ -73,19 +73,20 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 				debug("EXEC REQUEST\n");
 				debug(PURPLE, "cli: ", _epollClient[clientID].data.fd);
 				debug(PURPLE, "serv: ", _sock[port]);
-				// char buffer[1024];
-				// ssize_t bytes_read = 0;
-				// while ((bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer))) > 0) {
-				// 	if (bytes_read < 0) {
-				// 		debug(BLUE, "Client disconnected");
-				// 	}
-				// 	if (bytes_read < 1024)
-				// 		buffer[bytes_read] = '\0';
-				// 	debug(buffer);
-				// 	_HTTPRequest[clientID] += buffer;
-				// }
-				// if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("\r\n\r\n", 0))
-				// 	topars(_HTTPRequest[clientID]);
+				char buffer[1024];
+				ssize_t bytes_read = 0;
+				while ((bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer))) > 0) {
+					if (bytes_read < 0) {
+						debug(BLUE, "Client disconnected");
+						break;
+					}
+					if (bytes_read < 1024)
+						buffer[bytes_read] = '\0';
+					debug(buffer);
+					_HTTPRequest[clientID] += buffer;
+				}
+				if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("\r\n\r\n", 0))
+					topars(_HTTPRequest[clientID]);
 				std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
 				if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) <= 0)
 					throw Error("Error sending HTTP header");
