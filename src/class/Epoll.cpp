@@ -18,6 +18,8 @@ Epoll::Epoll(std::vector<int> sock) : _sock(sock) {
 }
 
 Epoll::~Epoll() {
+	for (int i = 0; i < _nbr_client; i++)
+		close(_ClientSock[i]);
 	if (_epoll_fd != -1)
 		close(_epoll_fd);
 }
@@ -36,7 +38,9 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 	std::map<int, int>::iterator it = _cliport.begin();
 	for (int i = 0; i < _n; i++) {
 		for (size_t port = 0; port < _sock.size(); port++) {
-			debug(ORANGE, std::to_string(ntohs(address[port].sin_port)));
+			// debug(ORANGE, std::to_string(ntohs(address[port].sin_port)));
+			debug(YELLOW, it->second);
+			debug(YELLOW, _sock[port]);
 			if (_epollClient[i].data.fd == _sock[port]) {
 				debug("ADDING CLIENT\n");
 				debug(GREEN, "cli: ", _epollClient[i].data.fd);
@@ -67,7 +71,7 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 				char buffer[20000];
 				ssize_t bytes_read = read(_epollClient[i].data.fd, buffer, sizeof(buffer));
 				if (bytes_read < 0) {
-					close(_epollClient[i].data.fd);
+					// close(_epollClient[i].data.fd);
 					debug(BLUE, "Client disconnected");
 				}
 				else {

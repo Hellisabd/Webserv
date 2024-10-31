@@ -17,7 +17,6 @@ unsigned long getFileSize(std::string const &file_path)
 	return file_stat.st_size;
 }
 
-//Bonne chance pour capter qqch mec! 
 
 int main()
 {
