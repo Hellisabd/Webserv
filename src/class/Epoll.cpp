@@ -44,8 +44,6 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 	_noclient = false;
 	for (int clientID = 0; clientID < _n; clientID++) {
 		for (size_t port = 0; port < _sock.size(); port++) {
-			// if (_sock[port] == 0)
-			// debug(ORANGE, std::to_string(ntohs(address[port].sin_port)));
 			if (it == _cliport.end() && (_cliport.size() != 0 || _noclient))
 			{
 				_noclient = false;
@@ -90,7 +88,6 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 					if (bytes_read < 1024)
 						buffer[bytes_read] = '\0';
 					debug("boucle?");
-					// debug(buffer);
 					_HTTPRequest[clientID] += buffer;
 					if (bytes_read < 1024)
 						break;
@@ -105,11 +102,9 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 							break;
 						}
 					}
-					// if (_cliport.size() == 1)
 					_noclient = true;
 					close(it->first);
 					it = _cliport.erase(it);
-					// it = _cliport.begin();
 					debug(BLUE, "Client disconnected");
 				}
 				else
