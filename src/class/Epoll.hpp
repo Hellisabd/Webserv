@@ -6,7 +6,11 @@ public:
 	Epoll(std::vector<int> sock);
 	~Epoll();
 	void wait(int stop);
-	void add(std::vector<struct sockaddr_in> address);
+	void handleRequest(std::vector<struct sockaddr_in> address);
+	void addClient(int port);
+	void sendToClient(int clientID);
+	void readFromClient(int clientID);
+	void deleteClient(std::map<int, int>::iterator it);
 private:
 	int	_epoll_fd;
 	int _n;

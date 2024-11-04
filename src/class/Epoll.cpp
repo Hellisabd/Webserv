@@ -39,7 +39,80 @@ void topars(std::string HTTPRequest)
 	(void)HTTPRequest;
 }
 
-void Epoll::add(std::vector<struct sockaddr_in> address) {
+void Epoll::addClient(int port)
+{
+	int client = accept(_sock[port], NULL, NULL);
+	if (client == -1){
+		perror("Accept: ");
+		throw Error("Failed to accept client connexion");
+	}
+	struct epoll_event new_client;
+	new_client.events = EPOLLIN;
+	new_client.data.fd = client;
+	if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, client, &new_client) < 0) {
+		close(client);
+		throw Error("Error adding new client to epoll");
+	}
+	_cliport[client] = _sock[port];
+	_ClientSock.push_back(client);
+}
+
+void Epoll::sendToClient(int clientID) {
+	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("\r\n\r\n", 0))
+		topars(_HTTPRequest[clientID]);
+	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
+	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+		throw Error("Error sending HTTP header");
+
+	int infile = open("./site/index.html", O_RDONLY);
+	char tosend[1024];
+	ssize_t file_read;
+	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
+		if (file_read < 1024)
+			tosend[file_read++] = '\0';
+		if (send(_epollClient[clientID].data.fd, tosend, file_read, MSG_NOSIGNAL) < 0)
+		{
+			close(infile);
+			perror("send body");
+			throw Error("");
+		}
+	}
+	_HTTPRequest[clientID].clear();
+	close(infile);
+}
+
+void Epoll::readFromClient(int clientID)
+{
+	char buffer[1024];
+	ssize_t bytes_read = 1;
+	while (bytes_read > 0) {
+		bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer));
+		if (bytes_read < 0)
+			break;
+		if (bytes_read < 1024)
+			buffer[bytes_read] = '\0';
+		_HTTPRequest[clientID] += buffer;
+		if (bytes_read < 1024)
+			break;
+	}
+}
+
+void Epoll::deleteClient(std::map<int, int>::iterator it) {
+	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, it->first, &_epollServ);
+	for (std::vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd)
+	{
+		if (*fd == it->first) {
+			_ClientSock.erase(fd);
+			debug(RED, "Client disconnected.");
+			break;
+		}
+	}
+	_noclient = true;
+	close(it->first);
+	it = _cliport.erase(it);
+}
+
+void Epoll::handleRequest(std::vector<struct sockaddr_in> address) {
 	std::map<int, int>::iterator it = _cliport.begin();
 	_noclient = false;
 	for (int clientID = 0; clientID < _n; clientID++) {
@@ -49,82 +122,18 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 				_noclient = false;
 				break;
 			}
-			debug(YELLOW, it->second);
-			debug_container(YELLOW, "_sock: ", _sock);
-			if (_epollClient[clientID].data.fd == _sock[port]) {
-				debug("ADDING CLIENT\n");
-				debug(GREEN, "cli: ", _epollClient[clientID].data.fd);
-				debug(GREEN, "serv: ", _sock[port]);
-				int client = accept(_sock[port], NULL, NULL);
-				if (client == -1){
-					perror("Accept: ");
-					throw Error("Failed to accept client connexion");
-				}
-
-				struct epoll_event new_client;
-				new_client.events = EPOLLIN;
-				new_client.data.fd = client;
-				debug(PURPLE, client);
-				if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, client, &new_client) < 0) {
-					close(client);
-					throw Error("Error adding new client to epoll");
-				}
+			if (_epollClient[clientID].data.fd == _sock[port])
+			{
+				addClient(port);
 				debug(GREEN, "New client added on port " + std::to_string(ntohs(address[port].sin_port)));
-				_cliport[client] = _sock[port];
-				_ClientSock.push_back(client);
-				debug(PURPLE, client);
 			}
 			else if (it->second == _sock[port]) {
-				debug("EXEC REQUEST\n");
-				debug(PURPLE, "cli: ", _epollClient[clientID].data.fd);
-				debug(PURPLE, "serv: ", _sock[port]);
-				char buffer[1024];
-				ssize_t bytes_read = 1;
-				while (bytes_read > 0) {
-					bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer));
-					debug("bytes:read ", bytes_read);
-					if (bytes_read < 0)
-						break;
-					if (bytes_read < 1024)
-						buffer[bytes_read] = '\0';
-					debug("boucle?");
-					_HTTPRequest[clientID] += buffer;
-					if (bytes_read < 1024)
-						break;
-				}
-				debug(_HTTPRequest[clientID]);
-				if (_HTTPRequest[clientID].length() == 0) {
-					epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, it->first, &_epollServ);
-					for (std::vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd)
-					{
-						if (*fd == it->first) {
-							_ClientSock.erase(fd);
-							break;
-						}
-					}
-					_noclient = true;
-					close(it->first);
-					it = _cliport.erase(it);
-					debug(BLUE, "Client disconnected");
-				}
+				
+				readFromClient(clientID);
+				if (_HTTPRequest[clientID].length() == 0)
+					deleteClient(it);
 				else
-				{
-					if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("\r\n\r\n", 0))
-						topars(_HTTPRequest[clientID]);
-					std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
-					if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-						throw Error("Error sending HTTP header");
-
-					int infile = open("./site/index.html", O_RDONLY);
-					char tosend[1024];
-					ssize_t file_read;
-					while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
-						debug("file_read: ", file_read);
-						send(_epollClient[clientID].data.fd, tosend, file_read, 0);
-					}
-					_HTTPRequest[clientID].clear();
-					close(infile);
-				}
+					sendToClient(clientID);
 			}
 			if (_noclient == true)
 			{
