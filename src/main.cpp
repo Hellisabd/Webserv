@@ -17,14 +17,17 @@ unsigned long getFileSize(std::string const &file_path)
 	return file_stat.st_size;
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	try {
+		if (argc != 2)
+			throw Error("Wrong number of arguments");
 		signal(SIGINT, signal_handler);
 		debug("Starting...");
 		debug("Server Socket...");
+		Data data(argv[1]);
 		int port[3] = {4343, 4444, 4545};
-		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, port, INADDR_ANY, 10);
+		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, port, data.getHost(), 10);
 		Epoll epoll(servSock.getSock());
 		try {
 			while (g_stop) {

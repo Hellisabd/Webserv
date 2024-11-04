@@ -39,7 +39,7 @@ void Data::fill_info(std::ifstream &infile)
 		if (line.find("port ", 0) != line.npos)
 			_port = atoi(line.c_str() + line.find("port ", 0) + 5);
 		else if (line.find("host ", 0) != line.npos)
-			_host = line.substr(line.find("host ", 0) + 5, line.size());
+			setHost(line.substr(line.find("host ", 0) + 5, line.size()));
 		else if (line.find("bodysize ", 0) != line.npos)
 			_bodySize = atoi(line.c_str() + line.find("bodysize ", 0) + 9);
 		else if (line.find("server_name ", 0) != line.npos)
@@ -61,7 +61,7 @@ std::ostream &operator<<(std::ostream &os, Data const &data)
 	return os;
 }
 
-std::string const &Data::getHost() const
+unsigned long const &Data::getHost() const
 {
 	return _host;
 }
@@ -79,6 +79,19 @@ size_t const &Data::getBodySize() const
 std::vector<std::string> const &Data::getServerNames() const
 {
 	return _serverNames;
+}
+
+void Data::setHost(std::string const &hostToShift)
+{
+	std::istringstream iss(hostToShift);
+	std::string segment;
+	int shift = 24;
+
+	while (std::getline(iss, segment, '.'))
+	{
+		_host |= (std::stoul(segment) << shift);
+		shift -=8;
+	}
 }
 
 void Data::SetServerNames(std::string const &servernames)
