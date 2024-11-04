@@ -97,7 +97,7 @@ void Epoll::readFromClient(int clientID)
 	}
 }
 
-void Epoll::deleteClient(std::map<int, int>::iterator it) {
+std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it) {
 	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, it->first, &_epollServ);
 	for (std::vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd)
 	{
@@ -109,7 +109,7 @@ void Epoll::deleteClient(std::map<int, int>::iterator it) {
 	}
 	_noclient = true;
 	close(it->first);
-	it = _cliport.erase(it);
+	return (_cliport.erase(it));
 }
 
 void Epoll::handleRequest(std::vector<struct sockaddr_in> address) {
@@ -131,7 +131,7 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address) {
 				
 				readFromClient(clientID);
 				if (_HTTPRequest[clientID].length() == 0)
-					deleteClient(it);
+					it = deleteClient(it);
 				else
 					sendToClient(clientID);
 			}

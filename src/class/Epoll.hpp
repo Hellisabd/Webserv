@@ -10,7 +10,7 @@ public:
 	void addClient(int port);
 	void sendToClient(int clientID);
 	void readFromClient(int clientID);
-	void deleteClient(std::map<int, int>::iterator it);
+	std::map<int, int>::iterator deleteClient(std::map<int, int>::iterator it);
 private:
 	int	_epoll_fd;
 	int _n;
