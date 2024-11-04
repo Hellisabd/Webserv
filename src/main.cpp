@@ -31,7 +31,7 @@ int main()
 		try {
 			while (g_stop) {
 				epoll.wait(g_stop);
-				epoll.add(servSock.getAddr());
+				epoll.handleRequest(servSock.getAddr());
 			}
 		}
 		catch (std::exception const &e) {

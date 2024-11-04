@@ -34,66 +34,114 @@ void Epoll::wait(int stop) {
 	}
 }
 
-void Epoll::add(std::vector<struct sockaddr_in> address) {
-	std::map<int, int>::iterator it = _cliport.begin();
-	for (int i = 0; i < _n; i++) {
-		for (size_t port = 0; port < _sock.size(); port++) {
-			// debug(ORANGE, std::to_string(ntohs(address[port].sin_port)));
-			debug(YELLOW, it->second);
-			debug(YELLOW, _sock[port]);
-			if (_epollClient[i].data.fd == _sock[port]) {
-				debug("ADDING CLIENT\n");
-				debug(GREEN, "cli: ", _epollClient[i].data.fd);
-				debug(GREEN, "serv: ", _sock[port]);
-				int client = accept(_sock[port], NULL, NULL);
-				if (client == -1){
-					perror("Accept: ");
-					throw Error("Failed to accept client connexion");
-				}
+void topars(std::string HTTPRequest)
+{
+	(void)HTTPRequest;
+}
 
-				struct epoll_event new_client;
-				new_client.events = EPOLLIN;
-				new_client.data.fd = client;
-				debug(YELLOW, client);
-				if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, client, &new_client) < 0) {
-					close(client);
-					throw Error("Error adding new client to epoll");
-				}
+void Epoll::addClient(int port)
+{
+	int client = accept(_sock[port], NULL, NULL);
+	if (client == -1){
+		perror("Accept: ");
+		throw Error("Failed to accept client connexion");
+	}
+	struct epoll_event new_client;
+	new_client.events = EPOLLIN;
+	new_client.data.fd = client;
+	if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, client, &new_client) < 0) {
+		close(client);
+		throw Error("Error adding new client to epoll");
+	}
+	_cliport[client] = _sock[port];
+	_ClientSock.push_back(client);
+}
+
+void Epoll::sendToClient(int clientID) {
+	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("\r\n\r\n", 0))
+		topars(_HTTPRequest[clientID]);
+	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
+	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+		throw Error("Error sending HTTP header");
+
+	int infile = open("./site/index.html", O_RDONLY);
+	char tosend[1024];
+	ssize_t file_read;
+	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
+		if (file_read < 1024)
+			tosend[file_read++] = '\0';
+		if (send(_epollClient[clientID].data.fd, tosend, file_read, MSG_NOSIGNAL) < 0)
+		{
+			close(infile);
+			perror("send body");
+			throw Error("");
+		}
+	}
+	_HTTPRequest[clientID].clear();
+	close(infile);
+}
+
+void Epoll::readFromClient(int clientID)
+{
+	char buffer[1024];
+	ssize_t bytes_read = 1;
+	while (bytes_read > 0) {
+		bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer));
+		if (bytes_read < 0)
+			break;
+		if (bytes_read < 1024)
+			buffer[bytes_read] = '\0';
+		_HTTPRequest[clientID] += buffer;
+		if (bytes_read < 1024)
+			break;
+	}
+}
+
+void Epoll::deleteClient(std::map<int, int>::iterator it) {
+	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, it->first, &_epollServ);
+	for (std::vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd)
+	{
+		if (*fd == it->first) {
+			_ClientSock.erase(fd);
+			debug(RED, "Client disconnected.");
+			break;
+		}
+	}
+	_noclient = true;
+	close(it->first);
+	it = _cliport.erase(it);
+}
+
+void Epoll::handleRequest(std::vector<struct sockaddr_in> address) {
+	std::map<int, int>::iterator it = _cliport.begin();
+	_noclient = false;
+	for (int clientID = 0; clientID < _n; clientID++) {
+		for (size_t port = 0; port < _sock.size(); port++) {
+			if (it == _cliport.end() && (_cliport.size() != 0 || _noclient))
+			{
+				_noclient = false;
+				break;
+			}
+			if (_epollClient[clientID].data.fd == _sock[port])
+			{
+				addClient(port);
 				debug(GREEN, "New client added on port " + std::to_string(ntohs(address[port].sin_port)));
-				_cliport[client] = _sock[port];
-				_ClientSock[_nbr_client++] = client;
-				debug(YELLOW, client);
 			}
 			else if (it->second == _sock[port]) {
-				debug("EXEC REQUEST\n");
-				debug(PURPLE, "cli: ", _epollClient[i].data.fd);
-				debug(PURPLE, "serv: ", _sock[port]);
-				char buffer[20000];
-				ssize_t bytes_read = read(_epollClient[i].data.fd, buffer, sizeof(buffer));
-				if (bytes_read < 0) {
-					// close(_epollClient[i].data.fd);
-					debug(BLUE, "Client disconnected");
-				}
-				else {
-					buffer[bytes_read] = '\0';
-					// debug(buffer);
-					std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
-					if (send(_epollClient[i].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) <= 0)
-						throw Error("Error sending HTTP header");
-
-					int infile = open("./site/index.html", O_RDONLY);
-					char tosend[1024];
-					ssize_t file_read;
-					while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
-						if (file_read < 1024)
-							tosend[file_read] = '\0';
-						if (send(_epollClient[i].data.fd, tosend, file_read, 0) <= 0)
-							throw Error("Error sending HTTP body");
-					}
-					close(infile);
-				}
+				readFromClient(clientID);
+				if (_HTTPRequest[clientID].length() == 0)
+					deleteClient(it);
+				else
+					sendToClient(clientID);
+			}
+			if (_noclient == true)
+			{
+				_noclient = false;
+				break;
 			}
 		}
-		it++;
+		if (it == _cliport.end())
+			break;
+		++it;
 	}
 }
