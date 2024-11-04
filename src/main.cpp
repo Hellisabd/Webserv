@@ -17,27 +17,30 @@ unsigned long getFileSize(std::string const &file_path)
 	return file_stat.st_size;
 }
 
-int main()
+int main(int argc, char **argv)
 {
-	try {
-		signal(SIGINT, signal_handler);
-		debug("Starting...");
-		debug("Server Socket...");
-		int port[3] = {4343, 4444, 4545};
-		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, port, INADDR_ANY, 10);
-		Epoll epoll(servSock.getSock());
+	if (argc == 2)
+	{
 		try {
-			while (g_stop) {
-				epoll.wait(g_stop);
-				epoll.handleRequest(servSock.getAddr());
+			signal(SIGINT, signal_handler);
+			debug("Starting...");
+			debug("Server Socket...");
+			Data data(argv[1]);
+			ServerSocket servSock(AF_INET, SOCK_STREAM, 0, data.getPort(), INADDR_ANY, 10, data.getNbrPort());
+			Epoll epoll(servSock.getSock(), data.getNbrPort());
+			try {
+				while (g_stop) {
+					epoll.wait(g_stop);
+					epoll.handleRequest(servSock.getAddr());
+				}
 			}
+			catch (std::exception const &e) {
+				std::cerr << e.what() << std::endl;
+			}
+
 		}
 		catch (std::exception const &e) {
 			std::cerr << e.what() << std::endl;
 		}
-
-	}
-	catch (std::exception const &e) {
-		std::cerr << e.what() << std::endl;
 	}
 }

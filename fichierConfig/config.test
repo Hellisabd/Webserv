@@ -1,4 +1,4 @@
-port 4343
+port 4343 4444 4545
 host host
 bodysize 48
 server_name  bonjour lol

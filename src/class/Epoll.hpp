@@ -3,7 +3,7 @@
 
 class Epoll {
 public:
-	Epoll(std::vector<int> sock);
+	Epoll(std::vector<int> sock, int nbr_port);
 	~Epoll();
 	void wait(int stop);
 	void handleRequest(std::vector<struct sockaddr_in> address);

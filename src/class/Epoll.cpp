@@ -1,11 +1,11 @@
 #include "Epoll.hpp"
 
-Epoll::Epoll(std::vector<int> sock) : _sock(sock) {
+Epoll::Epoll(std::vector<int> sock, int nbr_port) : _sock(sock) {
 	_nbr_client = 0;
 	_epoll_fd = epoll_create(MAX_EVENTS);
 	if (_epoll_fd < 0)
 			throw Error("Error during creation of epoll_fd");
-	for (int i = 0; i != NBR_PORT; i++) {
+	for (int i = 0; i != nbr_port; i++) {
 		_epollServ.events = EPOLLIN;
 		_epollServ.data.fd = _sock[i];
 		if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, _sock[i], &_epollServ) == -1)
