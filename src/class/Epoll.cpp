@@ -128,6 +128,7 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address) {
 				debug(GREEN, "New client added on port " + std::to_string(ntohs(address[port].sin_port)));
 			}
 			else if (it->second == _sock[port]) {
+				
 				readFromClient(clientID);
 				if (_HTTPRequest[clientID].length() == 0)
 					deleteClient(it);
