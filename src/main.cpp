@@ -20,6 +20,8 @@ unsigned long getFileSize(std::string const &file_path)
 int main()
 {
 	try {
+		close(0);
+		close(1);
 		signal(SIGINT, signal_handler);
 		debug("Starting...");
 		debug("Server Socket...");
