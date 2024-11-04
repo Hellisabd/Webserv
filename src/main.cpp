@@ -20,6 +20,8 @@ unsigned long getFileSize(std::string const &file_path)
 int main()
 {
 	try {
+		close(0);
+		close(1);
 		signal(SIGINT, signal_handler);
 		debug("Starting...");
 		debug("Server Socket...");
@@ -33,7 +35,7 @@ int main()
 			}
 		}
 		catch (std::exception const &e) {
-		std::cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 
 	}

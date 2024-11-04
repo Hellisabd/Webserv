@@ -85,7 +85,10 @@ void Epoll::add(std::vector<struct sockaddr_in> address) {
 					char tosend[1024];
 					ssize_t file_read;
 					while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
-						send(_epollClient[i].data.fd, tosend, file_read, 0);
+						if (file_read < 1024)
+							tosend[file_read] = '\0';
+						if (send(_epollClient[i].data.fd, tosend, file_read, 0) <= 0)
+							throw Error("Error sending HTTP body");
 					}
 					close(infile);
 				}
