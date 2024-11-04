@@ -47,6 +47,6 @@ void	debug_container(std::string color, std::string msg, T content)
 	else
 		std::cerr << color;
 	for (typename T::iterator it = content.begin(); it != content.end(); ++it)
-		std::cerr << spaces + *it << std::endl;
+		std::cerr << spaces << *it << std::endl;
 	std::cerr << NC;
 }

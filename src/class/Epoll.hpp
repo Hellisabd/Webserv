@@ -17,5 +17,5 @@ private:
 	struct epoll_event _epollServ;
 	std::vector<struct epoll_event> _epollClient;
 	std::map<int, int> _cliport;
-
+	bool _noclient;
 };
