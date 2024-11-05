@@ -12,7 +12,8 @@ class Data {
 		Data(std::string const &str);
 		virtual ~Data();
 		Data& operator=(const Data& other);
-		std::string const &getHost() const;
+		unsigned long const &getHostIP() const;
+		std::string const &getHostStr() const;
 		int* const &getPort() const;
 		int const &getNbrPort() const;
 		size_t const &getBodySize() const;
@@ -20,6 +21,8 @@ class Data {
 
 
 	private:
+		unsigned long _hostIP;
+		std::string _hostStr;
 		int *_ports;
 		int _nbrPorts;
 		std::string _host;
@@ -28,6 +31,7 @@ class Data {
 
 		void fill_info(std::ifstream &infile);
 		void SetServerNames(std::string const &servernames);
+		void setHost(std::string const &hostToShift);
 		void SetPorts(std::string const &ports);
 };
 std::ostream &operator<<(std::ostream &os, Data const &data);

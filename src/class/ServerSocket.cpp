@@ -7,7 +7,7 @@ ServerSocket::ServerSocket(int domain, int service, int protocol, int *port, uns
 	{
 		_address[i].sin_family = domain;
 		_address[i].sin_port = htons(port[i]);
-		_address[i].sin_addr.s_addr = htonl(interface);
+		_address[i].sin_addr.s_addr = htonl(interface); // host
 		int sock = socket(domain, service, protocol);
 		int opt = 1;
 		if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)

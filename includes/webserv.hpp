@@ -32,6 +32,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <csignal>
+#include <fstream>
 
 unsigned long getFileSize(std::string const &file_path);
 

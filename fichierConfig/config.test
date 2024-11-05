@@ -1,4 +1,4 @@
-port 4343 4444 4545
-host host
+port 4343
+host 127.0.0.1
 bodysize 48
 server_name  bonjour lol

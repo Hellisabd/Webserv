@@ -95,6 +95,7 @@ void Epoll::readFromClient(int clientID)
 		if (bytes_read < 1024)
 			break;
 	}
+	
 }
 
 std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it) {
