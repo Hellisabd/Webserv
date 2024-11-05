@@ -2,12 +2,12 @@
 
 Data::Data()
 {
-	LOG(GREEN + "Constructor by Default" + NC);
+	// LOG(GREEN + "Constructor by Default" + NC);
 }
 
 Data::Data(const Data& other)
 {
-	LOG(BLUE + "Constructor by copy" + NC);
+	// LOG(BLUE + "Constructor by copy" + NC);
 	*this = other;
 }
 
@@ -33,11 +33,15 @@ void Data::fill_info(std::ifstream &infile)
 {
 	std::string line;
 	std::string serverNames;
+	std::string ports;
 	while (!infile.eof())
 	{
 		std::getline(infile, line);
 		if (line.find("port ", 0) != line.npos)
-			_port = atoi(line.c_str() + line.find("port ", 0) + 5);
+		{
+			ports = line.substr(line.find("port ", 0) + 5, line.size());
+			SetPorts(ports);
+		}
 		else if (line.find("host ", 0) != line.npos)
 			setHost(line.substr(line.find("host ", 0) + 5, line.size()));
 		else if (line.find("bodysize ", 0) != line.npos)
@@ -77,9 +81,14 @@ std::string const &Data::getHostStr() const
 	return _hostStr;
 }
 
-int const &Data::getPort() const
+int* const &Data::getPort() const
 {
-	return _port;
+	return _ports;
+}
+
+int const &Data::getNbrPort() const
+{
+	return _nbrPorts;
 }
 
 size_t const &Data::getBodySize() const
@@ -108,6 +117,36 @@ void Data::setHost(std::string const &hostToShift)
 		debug(BLUE, _hostIP);
 		shift -=8;
 	}
+
+void Data::SetPorts(std::string const &ports)
+{
+	size_t oldpos = 0;
+	std::size_t pos = 0;
+	int start = 0;
+	int end = ports.length() - 1;
+	int i = 0;
+	while (isspace(ports[start]))
+		start++;
+	while (isspace(ports[end]))
+		end--;
+	std::string portsparsed = ports.substr(start, end - start + 1);
+	while (pos <= portsparsed.size() && pos != portsparsed.npos)
+	{
+		pos = portsparsed.find(' ', pos);
+		if (pos != portsparsed.npos)
+		{
+			_ports[i] = atoi(portsparsed.substr(oldpos, pos - oldpos).c_str());
+			pos += 1;
+			i++;
+		}
+		else
+		{
+			_ports[i] = atoi(portsparsed.substr(oldpos, pos - oldpos).c_str());
+			i++;
+		}
+		oldpos = pos;
+	}
+	_nbrPorts = i;
 }
 
 void Data::SetServerNames(std::string const &servernames)
@@ -123,7 +162,7 @@ void Data::SetServerNames(std::string const &servernames)
 	std::string servernamesparsed = servernames.substr(start, end - start + 1);
 	while (pos <= servernamesparsed.size() && pos != servernamesparsed.npos)
 	{
-		::debug(RED, "pos: ", "prout");
+		// ::debug(RED, "pos: ", "prout");
 		pos = servernamesparsed.find(' ', pos);
 		if (pos != servernamesparsed.npos)
 		{

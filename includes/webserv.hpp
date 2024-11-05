@@ -1,8 +1,6 @@
 #pragma once
 
-# define PORT 4343
 # define MAX_EVENTS 10
-# define NBR_PORT 3
 
 #include <errno.h>
 #include <netdb.h>
@@ -35,9 +33,6 @@
 #include <fcntl.h>
 #include <csignal>
 #include <fstream>
-
-#define MAX_EVENTS 10
-
 
 unsigned long getFileSize(std::string const &file_path);
 
