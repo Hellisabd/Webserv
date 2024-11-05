@@ -49,21 +49,32 @@ void Data::fill_info(std::ifstream &infile)
 		}
 	}
 	infile.close();
+	std::ofstream file("/etc/hosts", std::ios::app);
+	if (!file.is_open())
+		throw Error("Can't open host file");
+	for (std::vector<std::string>::iterator it = _serverNames.begin(); it != _serverNames.end(); ++it)
+		file << getHostStr() << " "  <<  *it << std::endl;
+	file.close();
 }
 
 std::ostream &operator<<(std::ostream &os, Data const &data)
 {
 	os << "this is the content of my Data class named data" << std::endl;
 	os << "_port = " << data.getPort() << std::endl;
-	os << "_host = " << data.getHost() << std::endl;
+	os << "_host = " << data.getHostIP() << std::endl;
 	os << "_bodySize = " << data.getBodySize() << std::endl;
 	::debug_container(RED, "Servernames:", data.getServerNames(), os);
 	return os;
 }
 
-unsigned long const &Data::getHost() const
+unsigned long const &Data::getHostIP() const
 {
-	return _host;
+	return _hostIP;
+}
+
+std::string const &Data::getHostStr() const
+{
+	return _hostStr;
 }
 
 int const &Data::getPort() const
@@ -83,13 +94,18 @@ std::vector<std::string> const &Data::getServerNames() const
 
 void Data::setHost(std::string const &hostToShift)
 {
+	_hostStr = hostToShift;
+	debug(GREEN, hostToShift);
 	std::istringstream iss(hostToShift);
 	std::string segment;
 	int shift = 24;
 
+	_hostIP = 0;
 	while (std::getline(iss, segment, '.'))
 	{
-		_host |= (std::stoul(segment) << shift);
+		debug(GREEN, segment);
+		_hostIP |= (std::stoul(segment) << shift);
+		debug(BLUE, _hostIP);
 		shift -=8;
 	}
 }

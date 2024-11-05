@@ -12,7 +12,8 @@ class Data {
 		Data(std::string const &str);
 		virtual ~Data();
 		Data& operator=(const Data& other);
-		unsigned long const &getHost() const;
+		unsigned long const &getHostIP() const;
+		std::string const &getHostStr() const;
 		int const &getPort() const;
 		size_t const &getBodySize() const;
 		std::vector<std::string> const &getServerNames() const;
@@ -20,7 +21,8 @@ class Data {
 
 	private:
 		int _port;
-		unsigned long _host;
+		unsigned long _hostIP;
+		std::string _hostStr;
 		size_t _bodySize;
 		std::vector<std::string> _serverNames;
 

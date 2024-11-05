@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 		debug("Server Socket...");
 		Data data(argv[1]);
 		int port[3] = {4343, 4444, 4545};
-		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, port, data.getHost(), 10);
+		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, port, data.getHostIP(), 10);
 		Epoll epoll(servSock.getSock());
 		try {
 			while (g_stop) {

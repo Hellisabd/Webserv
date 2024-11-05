@@ -34,6 +34,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <csignal>
+#include <fstream>
 
 #define MAX_EVENTS 10
 
