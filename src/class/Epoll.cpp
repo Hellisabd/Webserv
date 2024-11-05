@@ -36,7 +36,14 @@ void Epoll::wait(int stop) {
 
 void topars(std::string HTTPRequest)
 {
-	(void)HTTPRequest;
+	static int i = 0;
+	i++;
+	std::ofstream fd("./out", std::ios::app);
+	if (!fd.is_open())
+		throw Error("cant open outfile for debug request");
+	debug(PURPLE, "request", i);
+	debug_file(HTTPRequest, &fd);
+	fd.close();
 }
 
 void Epoll::addClient(int port)

@@ -63,6 +63,7 @@
 		"semaphore": "cpp",
 		"*.tpp": "cpp",
 		"csignal": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"test": "cpp"
 	}
 }

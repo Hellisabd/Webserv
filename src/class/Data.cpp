@@ -117,6 +117,7 @@ void Data::setHost(std::string const &hostToShift)
 		debug(BLUE, _hostIP);
 		shift -=8;
 	}
+}
 
 void Data::SetPorts(std::string const &ports)
 {
