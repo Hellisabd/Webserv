@@ -17,7 +17,7 @@ Data::Data(std::string const &str)
 	if (!inputfile.is_open())
 		throw Error("Can't open the file");
 	fill_info(inputfile);
-	std::cerr << *this;
+	// std::cerr << *this;
 }
 
 Data	&Data::operator=(const Data& other)
@@ -34,6 +34,8 @@ void Data::fill_info(std::ifstream &infile)
 	std::string line;
 	std::string serverNames;
 	std::string ports;
+	std::string loc;
+	std::string err;
 	while (!infile.eof())
 	{
 		std::getline(infile, line);
@@ -42,8 +44,8 @@ void Data::fill_info(std::ifstream &infile)
 			ports = line.substr(line.find("port ", 0) + 5, line.size());
 			SetPorts(ports);
 		}
-		else if (line.find("host ", 0) != line.npos)
-			setHost(line.substr(line.find("host ", 0) + 5, line.size()));
+		if (line.find("host ", 0) != line.npos)
+			SetHost(line.substr(line.find("host ", 0) + 5, line.size()));
 		else if (line.find("bodysize ", 0) != line.npos)
 			_bodySize = atoi(line.c_str() + line.find("bodysize ", 0) + 9);
 		else if (line.find("server_name ", 0) != line.npos)
@@ -51,6 +53,33 @@ void Data::fill_info(std::ifstream &infile)
 			serverNames = line.substr(line.find("server_name ", 0) + 12, line.size());
 			SetServerNames(serverNames);
 		}
+		else if (line.find("location ", 0) != line.npos)
+		{
+			loc = line.substr(line.find("location ", 0) + 9, line.size());
+			while (std::getline(infile, line))
+			{
+				loc += line;
+				if (line.find("}") != line.npos)
+					break;
+			}
+			SetLocations(loc);
+		}
+		else if (line.find("error_pages ", 0) != line.npos)
+		{
+			err = line.substr(line.find("error_pages ", 0) + 12, line.size());
+			while (std::getline(infile, line))
+			{
+				err += line + "\n";
+				if (line.find("}") != line.npos)
+					break;
+			}
+			SetErrors(err);
+		}
+	}
+	for (std::map<std::string, std::string>::iterator i = _loc.begin(); i != _loc.end(); i++)
+	{
+		debug(BLUE, "path: ", i->first);
+		debug(BLUE, "page: ", i->second);
 	}
 	infile.close();
 	std::ofstream file("/etc/hosts", std::ios::app);
@@ -101,10 +130,10 @@ std::vector<std::string> const &Data::getServerNames() const
 	return _serverNames;
 }
 
-void Data::setHost(std::string const &hostToShift)
+void Data::SetHost(std::string const &hostToShift)
 {
 	_hostStr = hostToShift;
-	debug(GREEN, hostToShift);
+	// debug(GREEN, hostToShift);
 	std::istringstream iss(hostToShift);
 	std::string segment;
 	int shift = 24;
@@ -112,9 +141,9 @@ void Data::setHost(std::string const &hostToShift)
 	_hostIP = 0;
 	while (std::getline(iss, segment, '.'))
 	{
-		debug(GREEN, segment);
+		// debug(GREEN, segment);
 		_hostIP |= (std::stoul(segment) << shift);
-		debug(BLUE, _hostIP);
+		// debug(BLUE, _hostIP);
 		shift -=8;
 	}
 }
@@ -131,6 +160,13 @@ void Data::SetPorts(std::string const &ports)
 	while (isspace(ports[end]))
 		end--;
 	std::string portsparsed = ports.substr(start, end - start + 1);
+    int count = 0;
+    size_t j = 0;
+    while ((j = portsparsed.find(" ", j)) != std::string::npos) {
+        ++count;
+        ++j;
+    }
+	_ports = new int[count];
 	while (pos <= portsparsed.size() && pos != portsparsed.npos)
 	{
 		pos = portsparsed.find(' ', pos);
@@ -176,7 +212,58 @@ void Data::SetServerNames(std::string const &servernames)
 	}
 }
 
+void Data::SetLocations(std::string const &location)
+{
+	std::string path;
+	std::string page;
+	std::size_t path_start;
+	std::size_t path_end;
+	std::size_t page_start;
+	std::size_t page_end;
+
+	path_start = location.find("/");
+	path_end = location.find(" ");
+	path = location.substr(path_start, path_end - path_start);
+	page_start = location.find("./");
+	page_end = location.find(".html");
+	page = location.substr(page_start, page_end - page_start + 5);
+
+	_loc[path] = page;
+}
+
+void Data::SetErrors(std::string const &errors)
+{
+	// debug(errors);
+	std::string err;
+	std::string page;
+	std::size_t err_start;
+	std::size_t page_start;
+	std::size_t page_end;
+	std::istringstream err_stream(errors);
+	std::string line;
+	while (err_stream)
+	{
+		std::getline(err_stream, line);
+		if (line.find("4", 0) != line.npos)
+			err_start = line.find("4", 0);
+		else if (line.find("5", 0) != line.npos)
+			err_start = line.find("5", 0);
+		if (line.find("./", 0) != line.npos)
+			page_start = line.find("./", 0);
+		if (line.find(".html", page_start) != line.npos)
+			page_end = line.find(".html", page_start);
+		err = errors.substr(err_start, 3);
+		page = errors.substr(page_start, page_end - page_start + 5);
+		_errors[err] = page;
+		debug(err);
+		debug(page);
+	}
+}
+
+
 Data::~Data()
 {
 	LOG(RED + "Destructor by default" + NC);
+	delete _ports;
 }
+

@@ -2,3 +2,38 @@ port 4343 4444
 host 127.0.0.1
 bodysize 48
 server_name  bonjour lol
+
+location / {
+	./site/index.html
+}
+
+location /test {
+	./site/test.html
+}
+
+error_pages {
+	400 ./site/400.html
+	401 ./site/401.html
+	402 ./site/402.html
+	403 ./site/403.html
+	404 ./site/404.html
+	405 ./site/405.html
+	406 ./site/406.html
+	407 ./site/407.html
+	408 ./site/408.html
+	409 ./site/409.html
+	410 ./site/410.html
+	411 ./site/411.html
+	412 ./site/412.html
+	413 ./site/413.html
+	414 ./site/414.html
+	415 ./site/415.html
+	416 ./site/416.html
+	417 ./site/417.html
+	500 ./site/500.html
+	501 ./site/501.html
+	502 ./site/502.html
+	503 ./site/503.html
+	504 ./site/504.html
+	505 ./site/505.html
+}
