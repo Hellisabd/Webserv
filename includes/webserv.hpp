@@ -36,13 +36,13 @@
 
 unsigned long getFileSize(std::string const &file_path);
 
-# define NC std::string("\e[0m")
-# define RED std::string("\e[1;31m")
-# define GREEN std::string("\e[1;32m")
+# define NC 	std::string("\e[0m")
+# define RED 	std::string("\e[1;31m")
+# define GREEN 	std::string("\e[1;32m")
 # define YELLOW std::string("\e[1;33m")
 # define ORANGE std::string("\e[1;34m")
 # define PURPLE std::string("\e[1;35m")
-# define BLUE std::string("\e[1;36m")
+# define BLUE 	std::string("\e[1;36m")
 #define FILE_NAME (std::string(__FILE__).substr(std::string(__FILE__).find_last_of("/\\") + 1))
 
 #define LOG(msg) std::cout << "Fichier: " << FILE_NAME << ", Fonction: " << __func__ << " -- " << msg << std::endl
@@ -58,12 +58,3 @@ private :
 };
 
 #include "../tools/debug.tpp"
-
-typedef struct t_epoll
-{
-	struct epoll_event Clients[MAX_EVENTS];
-	struct epoll_event Server;
-	int client_fds[MAX_EVENTS];
-	int nbr_of_client;
-	int epoll_fd;
-}s_epoll;
