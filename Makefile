@@ -17,7 +17,8 @@ WHITE = \033[0;97m
 SRCS	=	src/main.cpp \
 			src/class/Data.cpp \
 			src/class/ServerSocket.cpp \
-			src/class/Epoll.cpp 
+			src/class/Epoll.cpp \
+			src/class/HttpRequest.cpp
 			
 
 OBJS	= $(SRCS:.cpp=.o)

@@ -102,10 +102,22 @@ int validToSend(std::string const &str, clock_t time)
 
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
-	std::string path = quickgetpars(_HTTPRequest[clientID]);
-	int valid = validToSend(_HTTPRequest[clientID], _time_out);
+	HttpRequest rq(_HTTPRequest[clientID]);
+	// std::string path = quickgetpars(_HTTPRequest[clientID]);
+	int valid;// = validToSend(_HTTPRequest[clientID], _time_out);
+	valid = 1;
+	debug(_HTTPRequest[clientID]);
 	if (valid == 1)
-		topars(_HTTPRequest[clientID]);
+	{
+		if (!rq.isValid())
+			page = data.getErrors().find("400")->second;
+		rq.parseRequest();
+		if (!rq.parsingError)
+			page = data.getErrors().find("400")->second;
+		// std::map<string, string> path = rq.getHeaders();
+	}
+	std::string path = rq.getUrl();
+	debug(BLUE, path);
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
 		_HTTPRequest[clientID].clear();
 		return ;

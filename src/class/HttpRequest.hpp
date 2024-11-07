@@ -1,3 +1,5 @@
+#pragma once
+
 #include <map>
 #include <string>
 #include <utility>
@@ -5,6 +7,9 @@
 #include "../../includes/webserv.hpp"
 
 using namespace std;
+
+
+enum HttpMethod {GET, POST, DELETE, UNKNOWN};
 
 // Usage : request in the constructor,
 // .isValid() first,

@@ -28,14 +28,16 @@
 #include "../src/class/ServerSocket.hpp"
 #include "../src/class/Epoll.hpp"
 #include "../src/class/ClientSocket.hpp"
+#include "../src/class/HttpRequest.hpp"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <csignal>
 #include <fstream>
 
+using namespace std;
 unsigned long getFileSize(std::string const &file_path);
-enum HttpMethod {GET, POST, DELETE, UNKNOWN};
+// enum HttpMethod {GET, POST, DELETE, UNKNOWN};
 
 # define NC 	std::string("\e[0m")
 # define RED 	std::string("\e[1;31m")
