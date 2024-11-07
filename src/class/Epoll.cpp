@@ -77,10 +77,19 @@ void Epoll::addClient(int port)
 	_ClientSock.push_back(client);
 }
 
+bool validToSend(std::string const &str)
+{
+	std::istringstream iss(str);
+	for (iss)
+	{
+		std::getline()
+	}
+}
+
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	std::string path = quickgetpars(_HTTPRequest[clientID]);
-	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("\r\n\r\n", 0))
+	if (validToSend())
 		topars(_HTTPRequest[clientID]);
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
 		_HTTPRequest[clientID].clear();
