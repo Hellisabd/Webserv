@@ -26,6 +26,7 @@ Epoll::~Epoll() {
 
 void Epoll::wait(int stop) {
 	_n = epoll_wait(_epoll_fd, _epollClient.data(), MAX_EVENTS, -1);
+	_time_out = clock();
 	if (_n < 0 || stop == 0) {
 		close (_epoll_fd);
 		for (std::vector<int>::iterator i = _sock.begin(); i != _sock.end(); i++)
@@ -77,31 +78,47 @@ void Epoll::addClient(int port)
 	_ClientSock.push_back(client);
 }
 
-bool validToSend(std::string const &str)
+int validToSend(std::string const &str, clock_t time)
 {
+	if (clock() - time > 10000)
+		return 2;
 	std::istringstream iss(str);
-	for (iss)
+	std::string pars;
+	int n;
+	while (iss)
 	{
-		std::getline()
+		n = 0;
+		std::getline(iss, pars);
+		for (int i = 0; pars[i] != '\0' && n < 2; i++)
+		{
+			if (pars[i] == '\n')
+				n++;
+		}
+		if (n == 2)
+			return true;
 	}
+	return false;
 }
 
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	std::string path = quickgetpars(_HTTPRequest[clientID]);
-	if (validToSend())
+	int valid = validToSend(_HTTPRequest[clientID], _time_out);
+	if (valid == 1)
 		topars(_HTTPRequest[clientID]);
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
-	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end(); i++) {
+	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
 		{
 			page = i->second;
 			break ;
 		}
 	}
+	if (page.empty() && valid == 2)
+		page = data.getErrors().find("408")->second;
 	if (page.empty())
 		page = data.getErrors().find("404")->second;
 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize(page)) + "\r\n\r\n";

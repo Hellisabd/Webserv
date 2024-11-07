@@ -1,5 +1,6 @@
 #pragma once
 #include "webserv.hpp"
+#include <ctime>
 
 class Data;
 
@@ -23,5 +24,6 @@ private:
 	struct epoll_event _epollServ;
 	std::vector<struct epoll_event> _epollClient;
 	std::map<int, int> _cliport;
+	clock_t _time_out;
 	bool _noclient;
 };
