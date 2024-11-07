@@ -82,31 +82,16 @@ int validToSend(std::string const &str, clock_t time)
 {
 	if (clock() - time > 10000)
 		return 2;
-	std::istringstream iss(str);
-	std::string pars;
-	int n;
-	while (iss)
-	{
-		n = 0;
-		std::getline(iss, pars);
-		for (int i = 0; pars[i] != '\0' && n < 2; i++)
-		{
-			if (pars[i] == '\n')
-				n++;
-		}
-		if (n == 2)
-			return true;
-	}
-	return false;
+	if (str.find("\r\n\r\n") != str.npos)
+		return 1;
+	return 0;
 }
 
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	HttpRequest rq(_HTTPRequest[clientID]);
-	// std::string path = quickgetpars(_HTTPRequest[clientID]);
-	int valid;// = validToSend(_HTTPRequest[clientID], _time_out);
-	valid = 1;
-	debug(_HTTPRequest[clientID]);
+	int valid = validToSend(_HTTPRequest[clientID], _time_out);
+	debug(valid);
 	if (valid == 1)
 	{
 		if (!rq.isValid())
@@ -114,7 +99,8 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		rq.parseRequest();
 		if (!rq.parsingError)
 			page = data.getErrors().find("400")->second;
-		// std::map<string, string> path = rq.getHeaders();
+		std::map<string, string> path = rq.getHeaders();
+		debug_map(PURPLE, "map form HttpRequest type", path);
 	}
 	std::string path = rq.getUrl();
 	debug(BLUE, path);
@@ -138,6 +124,10 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		throw Error("Error sending HTTP header");
 
 	int infile = open(page.c_str(), O_RDONLY);
+	if (infile < 0)
+	{
+		page = data.getErrors().find("403")->second;
+	}
 	char tosend[1024];
 	ssize_t file_read;
 	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {

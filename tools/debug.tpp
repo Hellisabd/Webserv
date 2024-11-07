@@ -59,3 +59,19 @@ void	debug_container(std::string color, std::string msg, T content)
 		std::cerr << spaces << *it << std::endl;
 	std::cerr << NC;
 }
+
+template<typename T>
+void	debug_map(std::string color, std::string msg, T content)
+{
+	std::string spaces;
+	for (std::size_t i = 0; i < msg.length() + 1; i++)
+		spaces += ' ';
+	spaces += "- ";
+	if (!msg.empty())
+		std::cerr << color + msg << std::endl;
+	else
+		std::cerr << color;
+	for (typename T::iterator it = content.begin(); it != content.end(); ++it)
+		std::cerr << spaces << it->first << " : " << it->second << std::endl;
+	std::cerr << NC;
+}
