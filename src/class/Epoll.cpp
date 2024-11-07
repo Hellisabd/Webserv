@@ -91,14 +91,19 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	HttpRequest rq(_HTTPRequest[clientID]);
 	int valid = validToSend(_HTTPRequest[clientID], _time_out);
-	debug(valid);
+	// debug(valid);
 	if (valid == 1)
 	{
-		if (!rq.isValid())
+		if (!rq.isValid()) {
 			page = data.getErrors().find("400")->second;
+		}
+
 		rq.parseRequest();
-		if (!rq.parsingError)
+		if (rq.parsingError)
+		{
+			std::cout << "pourquoi" << endl;
 			page = data.getErrors().find("400")->second;
+		}
 		std::map<string, string> path = rq.getHeaders();
 		debug_map(PURPLE, "map form HttpRequest type", path);
 	}
@@ -117,8 +122,9 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	}
 	if (page.empty() && valid == 2)
 		page = data.getErrors().find("408")->second;
-	if (page.empty())
+	else if (page.empty())
 		page = data.getErrors().find("404")->second;
+	debug (page);
 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize(page)) + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
