@@ -269,6 +269,6 @@ void Data::SetErrors(std::string const &errors)
 Data::~Data()
 {
 	LOG(RED + "Destructor by default" + NC);
-	delete _ports;
+	delete[] _ports;
 }
 
