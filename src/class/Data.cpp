@@ -76,11 +76,6 @@ void Data::fill_info(std::ifstream &infile)
 			SetErrors(err);
 		}
 	}
-	for (std::map<std::string, std::string>::iterator i = _loc.begin(); i != _loc.end(); i++)
-	{
-		debug(BLUE, "path: ", i->first);
-		debug(BLUE, "page: ", i->second);
-	}
 	infile.close();
 	std::ofstream file("/etc/hosts", std::ios::app);
 	if (!file.is_open())
@@ -160,12 +155,12 @@ void Data::SetPorts(std::string const &ports)
 	while (isspace(ports[end]))
 		end--;
 	std::string portsparsed = ports.substr(start, end - start + 1);
-    int count = 0;
-    size_t j = 0;
-    while ((j = portsparsed.find(" ", j)) != std::string::npos) {
-        ++count;
-        ++j;
-    }
+	int count = 0;
+	size_t j = 0;
+	while ((j = portsparsed.find(" ", j)) != std::string::npos) {
+		++count;
+		++j;
+	}
 	_ports = new int[count];
 	while (pos <= portsparsed.size() && pos != portsparsed.npos)
 	{
@@ -199,7 +194,6 @@ void Data::SetServerNames(std::string const &servernames)
 	std::string servernamesparsed = servernames.substr(start, end - start + 1);
 	while (pos <= servernamesparsed.size() && pos != servernamesparsed.npos)
 	{
-		// ::debug(RED, "pos: ", "prout");
 		pos = servernamesparsed.find(' ', pos);
 		if (pos != servernamesparsed.npos)
 		{
@@ -222,7 +216,7 @@ void Data::SetLocations(std::string const &location)
 	std::size_t page_end;
 
 	path_start = location.find("/");
-	path_end = location.find(" ");
+	path_end = location.find(" ", path_start);
 	path = location.substr(path_start, path_end - path_start);
 	page_start = location.find("./");
 	page_end = location.find(".html");
@@ -244,19 +238,21 @@ void Data::SetErrors(std::string const &errors)
 	while (err_stream)
 	{
 		std::getline(err_stream, line);
-		if (line.find("4", 0) != line.npos)
+		if (line.find("504", 0) != line.npos)
+			err_start = line.find("504", 0);
+		else if (line.find("4", 0) != line.npos)
 			err_start = line.find("4", 0);
 		else if (line.find("5", 0) != line.npos)
 			err_start = line.find("5", 0);
+		else
+			continue;
 		if (line.find("./", 0) != line.npos)
 			page_start = line.find("./", 0);
 		if (line.find(".html", page_start) != line.npos)
 			page_end = line.find(".html", page_start);
-		err = errors.substr(err_start, 3);
-		page = errors.substr(page_start, page_end - page_start + 5);
+		err = line.substr(err_start, 3);
+		page = line.substr(page_start, page_end - page_start + 5);
 		_errors[err] = page;
-		debug(err);
-		debug(page);
 	}
 }
 
