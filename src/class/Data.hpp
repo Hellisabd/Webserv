@@ -17,6 +17,8 @@ class Data {
 		int* const &getPort() const;
 		int const &getNbrPort() const;
 		size_t const &getBodySize() const;
+		std::map<std::string, std::string> const &getLocations() const;
+		std::map<std::string, std::string> const &getErrors() const;
 		std::vector<std::string> const &getServerNames() const;
 
 

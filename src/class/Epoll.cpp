@@ -46,6 +46,19 @@ void topars(std::string HTTPRequest)
 	fd.close();
 }
 
+std::string quickgetpars(std::string HTTPRequest)
+{
+	std::string path;
+	std::size_t path_start;
+	std::size_t path_end;
+
+	path_start = HTTPRequest.find("/");
+	path_end = HTTPRequest.find(" ", path_start);
+	path = HTTPRequest.substr(path_start, path_end - path_start);
+
+	return path;
+}
+
 void Epoll::addClient(int port)
 {
 	int client = accept(_sock[port], NULL, NULL);
@@ -64,14 +77,32 @@ void Epoll::addClient(int port)
 	_ClientSock.push_back(client);
 }
 
-void Epoll::sendToClient(int clientID) {
+void Epoll::sendToClient(int clientID, Data &data) {
+	std::string page;
+	std::string path = quickgetpars(_HTTPRequest[clientID]);
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("\r\n\r\n", 0))
 		topars(_HTTPRequest[clientID]);
-	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize("./site/index.html")) + "\r\n\r\n";
+	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
+		_HTTPRequest[clientID].clear();
+		return ;
+	}
+	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end(); i++)
+	{
+		if (path == i->first)
+		{
+			page = i->second;
+			break ;
+		}
+	}
+	if (page.empty())
+	{
+		page = data.getErrors().find("404")->second;
+	}
+	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize(page)) + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
 
-	int infile = open("./site/index.html", O_RDONLY);
+	int infile = open(page.c_str(), O_RDONLY);
 	char tosend[1024];
 	ssize_t file_read;
 	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
@@ -102,7 +133,6 @@ void Epoll::readFromClient(int clientID)
 		if (bytes_read < 1024)
 			break;
 	}
-	
 }
 
 std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it) {
@@ -120,7 +150,7 @@ std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it
 	return (_cliport.erase(it));
 }
 
-void Epoll::handleRequest(std::vector<struct sockaddr_in> address) {
+void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
 	std::map<int, int>::iterator it = _cliport.begin();
 	_noclient = false;
 	for (int clientID = 0; clientID < _n; clientID++) {
@@ -141,7 +171,7 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address) {
 				if (_HTTPRequest[clientID].length() == 0)
 					it = deleteClient(it);
 				else
-					sendToClient(clientID);
+					sendToClient(clientID, data);
 			}
 			if (_noclient == true)
 			{

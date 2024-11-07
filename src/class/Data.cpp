@@ -125,6 +125,16 @@ std::vector<std::string> const &Data::getServerNames() const
 	return _serverNames;
 }
 
+std::map<std::string, std::string> const &Data::getLocations() const
+{
+	return _loc;
+}
+	
+std::map<std::string, std::string> const &Data::getErrors() const
+{
+	return _errors;
+}
+
 void Data::SetHost(std::string const &hostToShift)
 {
 	_hostStr = hostToShift;
@@ -161,7 +171,7 @@ void Data::SetPorts(std::string const &ports)
 		++count;
 		++j;
 	}
-	_ports = new int[count];
+	_ports = new int[count + 1];
 	while (pos <= portsparsed.size() && pos != portsparsed.npos)
 	{
 		pos = portsparsed.find(' ', pos);
@@ -227,7 +237,6 @@ void Data::SetLocations(std::string const &location)
 
 void Data::SetErrors(std::string const &errors)
 {
-	// debug(errors);
 	std::string err;
 	std::string page;
 	std::size_t err_start;
