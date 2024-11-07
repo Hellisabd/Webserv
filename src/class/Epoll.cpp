@@ -86,8 +86,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
-	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end(); i++)
-	{
+	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end(); i++) {
 		if (path == i->first)
 		{
 			page = i->second;
@@ -95,9 +94,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		}
 	}
 	if (page.empty())
-	{
 		page = data.getErrors().find("404")->second;
-	}
 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize(page)) + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
