@@ -12,19 +12,32 @@ class Data {
 		Data(std::string const &str);
 		virtual ~Data();
 		Data& operator=(const Data& other);
-		std::string const &getHost() const;
-		int const &getPort() const;
+		unsigned long const &getHostIP() const;
+		std::string const &getHostStr() const;
+		int* const &getPort() const;
+		int const &getNbrPort() const;
 		size_t const &getBodySize() const;
+		std::map<std::string, std::string> const &getLocations() const;
+		std::map<std::string, std::string> const &getErrors() const;
 		std::vector<std::string> const &getServerNames() const;
 
 
 	private:
-		int _port;
+		unsigned long _hostIP;
+		std::string _hostStr;
+		int *_ports;
+		int _nbrPorts;
 		std::string _host;
 		size_t _bodySize;
 		std::vector<std::string> _serverNames;
+		std::map<std::string, std::string> _loc;
+		std::map<std::string, std::string> _errors;
 
 		void fill_info(std::ifstream &infile);
 		void SetServerNames(std::string const &servernames);
+		void SetHost(std::string const &hostToShift);
+		void SetPorts(std::string const &ports);
+		void SetLocations(std::string const &location);
+		void SetErrors(std::string const &errors);
 };
 std::ostream &operator<<(std::ostream &os, Data const &data);

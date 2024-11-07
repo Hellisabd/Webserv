@@ -1,55 +1,57 @@
 #include "ServerSocket.hpp"
 
-ServerSocket::ServerSocket(int domain, int service, int protocol, int port, unsigned long interface, int backlog) : _backlog(backlog)
+ServerSocket::ServerSocket(int domain, int service, int protocol, int *port, unsigned long interface, int backlog, int nbr_port) : _backlog(backlog), _nbrPort(nbr_port)
 {
-	_address.sin_family = domain;
-	_address.sin_port = htons(port);
-	_address.sin_addr.s_addr = htonl(interface);
-	_sock = socket(domain, service, protocol);
-	if (_sock < 0)
-		throw Error("error in socket in ServerSocket");
-	_connection = bind(_sock, (struct sockaddr *) &_address, sizeof(_address));
-	if (_connection < 0)
+	_address.resize(_nbrPort);
+	for (int i = 0; i != _nbrPort; i++)
 	{
-		close (_sock);
-		perror("Error");
-		throw Error("error in binding");
-	}
-	_listening = listen(_sock, _backlog);
-	if (_listening < 0)
-	{
-		perror("Listening");
-		close (_sock);
-		throw Error("error in listening");
+		_address[i].sin_family = domain;
+		_address[i].sin_port = htons(port[i]);
+		_address[i].sin_addr.s_addr = htonl(interface); // host
+		int sock = socket(domain, service, protocol);
+		int opt = 1;
+		if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)
+			throw Error("Reuse adress");
+		_sock.push_back(sock);
+		if (_sock[i] < 0)
+			throw Error("error in socket in ServerSocket");
+		_connection.push_back(bind(_sock[i], (struct sockaddr *) &_address[i], sizeof(_address)));
+		if (_connection[i] < 0) {
+			close (_sock[i]);
+			perror("Error");
+			throw Error("error in binding");
+		}
+		_listening.push_back(listen(_sock[i], _backlog));
+		if (_listening[i] < 0) {
+			perror("Listening");
+			close (_sock[i]);
+			throw Error("error in listening");
+		}
 	}
 }
 
-ServerSocket::~ServerSocket()
-{
-	close(_sock);
+ServerSocket::~ServerSocket() {
+	for (int i = 0; i != _nbrPort; i++) {
+		close(_sock[i]);
+	}
 }
 
-sockaddr_in ServerSocket::getAddr()
-{
+std::vector<sockaddr_in> ServerSocket::getAddr() {
 	return _address;
 }
 
-int ServerSocket::getSock()
-{
+std::vector<int> ServerSocket::getSock() {
 	return _sock;
 }
 
-int ServerSocket::getConnection()
-{
+std::vector<int> ServerSocket::getConnection() {
 	return _connection;
 }
 
-int ServerSocket::getBacklog()
-{
+int ServerSocket::getBacklog() {
 	return _backlog;
 }
 
-int ServerSocket::getListening()
-{
+std::vector<int> ServerSocket::getListening() {
 	return _listening;
 }

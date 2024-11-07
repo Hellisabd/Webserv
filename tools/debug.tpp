@@ -11,6 +11,15 @@ void	debug(std::string color, T content)
 }
 
 template<typename T>
+void	debug_file(T content, std::ofstream *fd)
+{
+	*fd << "Start of the request" << std::endl;
+	*fd  << content << std::endl;
+	*fd << "End of the request";
+	*fd << std::endl << std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl;
+}
+
+template<typename T>
 void	debug(std::string color, std::string msg, T content)
 {
 	if (msg.empty())
@@ -47,6 +56,6 @@ void	debug_container(std::string color, std::string msg, T content)
 	else
 		std::cerr << color;
 	for (typename T::iterator it = content.begin(); it != content.end(); ++it)
-		std::cerr << spaces + *it << std::endl;
+		std::cerr << spaces << *it << std::endl;
 	std::cerr << NC;
 }

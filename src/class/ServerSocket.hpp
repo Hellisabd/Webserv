@@ -5,17 +5,18 @@
 class ServerSocket
 {
 private:
-	struct sockaddr_in _address;
-	int _sock;
-	int _connection;
+	std::vector<struct sockaddr_in> _address;
+	std::vector<int> _sock;
+	std::vector<int> _connection;
 	int _backlog;
-	int _listening;
+	std::vector<int> _listening;
+	int _nbrPort;
 public:
-	ServerSocket(int domain, int service, int protocol, int port, unsigned long interface, int backlog);
+	ServerSocket(int domain, int service, int protocol, int *port, unsigned long interface, int backlog, int nbr_port);
 	~ServerSocket();
-	struct sockaddr_in getAddr();
-	int getSock();
-	int getConnection();
+	std::vector<struct sockaddr_in> getAddr();
+	std::vector<int> getSock();
+	std::vector<int> getConnection();
 	int getBacklog();
-	int getListening();
+	std::vector<int> getListening();
 };
