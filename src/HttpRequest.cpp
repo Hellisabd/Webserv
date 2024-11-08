@@ -1,5 +1,5 @@
 #include "HttpRequest.hpp"
-#include "../../includes/webserv.hpp"
+#include "../includes/webserv.hpp"
 #include <algorithm>
 #include <cctype>
 #include <cstddef>
@@ -9,6 +9,7 @@
 #include <utility>
 
 HttpRequest::HttpRequest(string request): _request(request) {
+	parsingStrError = "No error in sight\n";
 	parsingError = false;
 	fillSize();
 }
@@ -16,10 +17,45 @@ HttpRequest::HttpRequest(string request): _request(request) {
 HttpRequest::~HttpRequest() {
 }
 
+// returns the header key and value + true if found
+// undefined + false if not found
+const pair<const pair<string, string>, bool> HttpRequest::getHeaderByKey(string key) {
+	pair< pair<string, string>, bool> ret;
+	for (map<string, string>::iterator it = _header.begin(); it != _header.end(); it++) {
+		if (!it->first.compare(key)) {
+			ret.first = *it;
+			ret.second = true;
+			return (ret);
+		}
+	}
+	ret.second = false;
+	// obvious undefined first in this case;
+	return (ret);
+}
+
+bool HttpRequest::parseRequest() {
+	fillMethod();
+	fillUrl();
+	fillHostAndPort();
+	fillHttpVersion();
+	if (!fillHeaders())
+		return (false);
+	if (_hasBody && _method == GET) {
+		parsingError = true;
+		parsingStrError = "Found a body in a GET request\n";
+		return (false);
+	}
+	if (_method == POST) {
+	}
+	return (true);
+}
+
 bool HttpRequest::isValidRequestLine() {
 	size_t cur = 0;
-	if (_requestSize < _minRequestSize)
+	if (_requestSize < _minRequestSize) {
+		parsingStrError = "Request size is below the minimum size for a valid request\n";
 		return (false);
+	}
 
 	const char *methods[3] = {"GET ", "POST ", "DELETE "};
 	bool found = false;
@@ -32,6 +68,7 @@ bool HttpRequest::isValidRequestLine() {
 		}
 	}
 	if (found == false) {
+		parsingStrError = "Couldnt find the method at the start of the request\n";
 		return (false);
 	}
 	string uri;
@@ -40,10 +77,12 @@ bool HttpRequest::isValidRequestLine() {
 		cur++;
 	}
 	if (_request[cur] != ' ') {
+		parsingStrError = "No whitespace right afte the uri\n";
 		return (false);
 	}
 	cur++;
 	if (_request.compare(cur, 8, "HTTP/1.1" )) {
+		parsingStrError = "The http version is not HTTP/1.1 exactly\n";
 		return (false);
 	}
 	cur += 8;
@@ -51,6 +90,7 @@ bool HttpRequest::isValidRequestLine() {
 		cur++;
 	}
 	if (_request.compare(cur, 2, "\r\n" )) {
+		parsingStrError = "The request line does not end with \\r\\n";
 		return (false);
 	}
 	cur += 2;
@@ -58,6 +98,7 @@ bool HttpRequest::isValidRequestLine() {
 
 	// URI validation
 	if (uri[0] != '/') {
+		parsingStrError = "The uri does not start with /\n";
 		return (false); // ???????? chars valides pour l'uri ou pas
 						// aucune idee de ce que l'uri peut contenir
 						// ou comment elle peut etre utilisee, a creuser
@@ -90,14 +131,18 @@ string trimWhitespaces(const string& str) {
 bool HttpRequest::isValidHost() {
 	size_t hostPos = findCaseIns(_request, "host");
 	if (hostPos == string::npos) {
+		parsingStrError = "Couldnt find the host header\n";
 		return (false);
 	}
 	if (_request.compare(hostPos - 2, 2, "\r\n")) {
+		// attention ! n'importe quel host dans la requete va trigger validHost();
+		parsingStrError = "The host header is not directly after a crlf\n";
 		return (false);
 	}
 	string hostValue = _request.substr(hostPos + 5, _request.find("\r\n", hostPos) - hostPos - 5);
 	hostValue = trimWhitespaces(hostValue);
 	if (hostValue.size() == 0) {
+		parsingStrError = "The host header does not have a value\n";
 		return (false);
 	}
 	return (true);
@@ -113,20 +158,6 @@ bool HttpRequest::isValid() {
 	return (true);
 }
 
-bool HttpRequest::parseRequest() {
-	fillMethod();
-	fillUrl();
-	fillHostAndPort();
-	fillHttpVersion();
-	if (!fillHeaders())
-		return (false);
-	if (_method == POST) {
-		if (!fillBody()) {
-			return (false);
-		}
-	}
-	return (true);
-}
 
 HttpMethod	HttpRequest::getMethod() {
 	return (_method);
@@ -228,6 +259,7 @@ bool	HttpRequest::validateHeaderKey(string &headerKey) {
 	size_t size = headerKey.size();
 	for (size_t i = 0; i < size; i++) {
 		if (headerKey[i] < 33 || headerKey[i] > 126) {
+			parsingStrError = "A char not between 33 and 126 has been found in a header key\n";
 			return (false);
 		}
 	}
@@ -261,6 +293,7 @@ bool HttpRequest::fillHeaders() {
 			it++;
 		}
 		if (*it != ':') {
+			parsingStrError = "A header key has been found that is not followed directly by a : \n";
 			parsingError = true;
 			return (false);
 		}
@@ -274,6 +307,7 @@ bool HttpRequest::fillHeaders() {
 			it++;
 		}
 		if (!isCrlf(&(*it))) {
+			parsingStrError = "A header is not directly followed by crlf\n";
 			parsingError = true;
 			return (false);
 		}
@@ -283,9 +317,13 @@ bool HttpRequest::fillHeaders() {
 		_header[key] = value;
 	}
 	if (!isDoubleCrlf(&(*it))) {
+		parsingStrError = "The header part of the request is not ended by \\r\\n\\r\\n \n";
 		parsingError = true;
 		return (false);
 	}
+	it += 4;
+	_headerEnd = it;
+	(strlen(&(*it)) > 0) ? _hasBody = true : _hasBody = false;
 	return (true);
 }
 

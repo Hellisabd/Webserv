@@ -4,7 +4,7 @@
 #include <string>
 #include <utility>
 #include <iostream>
-#include "../../includes/webserv.hpp"
+#include "../includes/webserv.hpp"
 
 using namespace std;
 
@@ -35,6 +35,7 @@ class HttpRequest {
 	string				getPort();
 
 	bool				parsingError;
+	string				parsingStrError;
  private:
 	static const size_t _minRequestSize = 18; // GET / HTTP/1.1\\n\r\n
 	// parsing methods to fill data
@@ -49,6 +50,7 @@ class HttpRequest {
 	//utils
 	string	extractHeaderKey(std::string &s);
 	bool	validateHeaderKey(std::string& headerKey);
+	const pair<const pair<string, string>, bool> getHeaderByKey(string key);
 
 	// request slices
 	string				_request;
@@ -60,4 +62,7 @@ class HttpRequest {
 	string				_httpVersion;
 	map<string, string> _header;
 	size_t				_requestSize;
+	string				_delimiter;
+	string::iterator	_headerEnd;
+	bool				_hasBody;
 };
