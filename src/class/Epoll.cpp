@@ -87,12 +87,34 @@ int validToSend(std::string const &str, clock_t time)
 	return 0;
 }
 
+void Epoll::exec(Data &data)
+{
+	int pid = fork();
+	if (pid == 0)
+	{
+		char **env = data.envToCharpp();
+		char **filename = new char*[2];
+		filename[0] = strdup("./script.php");
+		filename[1] = NULL;
+		execve("cgi-bin/script.php", filename, env);
+		for (int i = 0; env[i]; i++)
+			free(env[i]);
+		delete[] env;
+		free(filename[0]);
+		free(filename[1]);
+		delete[] filename;
+		exit(EXIT_FAILURE);
+	}
+	waitpid(pid, NULL, 0);
+}
+
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	HttpRequest rq(_HTTPRequest[clientID]);
 	int valid = validToSend(_HTTPRequest[clientID], _time_out);
 	if (valid == 1)
 	{
+		topars(_HTTPRequest[clientID]);
 		if (!rq.isValid()) {
 			page = data.getErrors().find("400")->second;
 		}
@@ -112,6 +134,9 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
+	debug(path);
+	if (path.find("cgi-bin/script.php") != path.npos)
+		exec(data);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
 		{
@@ -119,7 +144,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			break ;
 		}
 	}
-	if (page.empty() && valid == 2)
+	 if (page.empty() && valid == 2)
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())
 		page = data.getErrors().find("404")->second;

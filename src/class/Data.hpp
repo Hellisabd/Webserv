@@ -9,7 +9,7 @@ class Data {
 
 		Data();
 		Data(const Data& other);
-		Data(std::string const &str);
+		Data(std::string const &str, char **env);
 		virtual ~Data();
 		Data& operator=(const Data& other);
 		unsigned long const &getHostIP() const;
@@ -20,6 +20,9 @@ class Data {
 		std::map<std::string, std::string> const &getLocations() const;
 		std::map<std::string, std::string> const &getErrors() const;
 		std::vector<std::string> const &getServerNames() const;
+		void cpEnv(char **env);
+		char **envToCharpp();
+		std::map<std::string, std::string> _env;
 
 
 	private:

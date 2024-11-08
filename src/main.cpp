@@ -17,7 +17,7 @@ unsigned long getFileSize(std::string const &file_path)
 	return file_stat.st_size;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
 	try {
 		if (argc != 2)
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		signal(SIGINT, signal_handler);
 		debug("Starting...");
 		debug("Server Socket...");
-		Data data(argv[1]);
+		Data data(argv[1], env);
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, data.getPort(),  data.getHostIP(), 10, data.getNbrPort());
 		Epoll epoll(servSock.getSock(), data.getNbrPort());
 		try {
@@ -37,7 +37,6 @@ int main(int argc, char **argv)
 		catch (std::exception const &e) {
 			std::cerr << e.what() << std::endl;
 		}
-
 	}
 	catch (std::exception const &e) {
 		std::cerr << e.what() << std::endl;

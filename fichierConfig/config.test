@@ -11,9 +11,10 @@ location /test {
 	./site/test.html
 }
 
-location /pp {
-	tml
+location /test/cgi-bin/script.php {
+	./site/test.html
 }
+
 
 error_pages {
 	400 ./site/400.html

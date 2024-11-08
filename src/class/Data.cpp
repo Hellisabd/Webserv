@@ -11,8 +11,9 @@ Data::Data(const Data& other)
 	*this = other;
 }
 
-Data::Data(std::string const &str)
+Data::Data(std::string const &str, char **env)
 {
+	cpEnv(env);
 	std::ifstream inputfile(str.c_str());
 	if (!inputfile.is_open())
 		throw Error("Can't open the file");
@@ -267,6 +268,35 @@ void Data::SetErrors(std::string const &errors)
 	}
 }
 
+char **Data::envToCharpp()
+{
+	char **str = new char *[_env.size() + 1];
+	std::string tmp;
+	int i = 0;
+	for (std::map<string,string>::iterator it = _env.begin(); it != _env.end(); ++it)
+	{
+		tmp = it->first + "=" + it->second;
+		str[i++] = strdup(tmp.c_str());
+	}
+	str[i] = NULL;
+	return str;
+}
+
+void Data::cpEnv(char **env) {
+	std::string tmp;
+	std::string name;
+	std::string var;
+	std::size_t name_end;
+	std::size_t var_start;
+	for (int j = 0; env[j]; j++) {
+		tmp = env[j];
+		name_end = tmp.find("=", 0);
+		var_start = name_end + 1;
+		name = tmp.substr(0, name_end);
+		var = tmp.substr(var_start, tmp.size());
+		_env[name] = var;
+	}
+}
 
 Data::~Data()
 {

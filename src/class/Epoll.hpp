@@ -14,6 +14,7 @@ public:
 	void sendToClient(int clientID, Data &data);
 	void readFromClient(int clientID);
 	std::map<int, int>::iterator deleteClient(std::map<int, int>::iterator it);
+	void exec(Data &data);
 private:
 	int	_epoll_fd;
 	int _n;
