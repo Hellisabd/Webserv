@@ -91,7 +91,6 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	HttpRequest rq(_HTTPRequest[clientID]);
 	int valid = validToSend(_HTTPRequest[clientID], _time_out);
-	// debug(valid);
 	if (valid == 1)
 	{
 		if (!rq.isValid()) {
@@ -108,7 +107,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		debug_map(PURPLE, "map form HttpRequest type", path);
 	}
 	std::string path = rq.getUrl();
-	debug(BLUE, path);
+	// debug(BLUE, path);
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
 		_HTTPRequest[clientID].clear();
 		return ;
@@ -124,7 +123,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())
 		page = data.getErrors().find("404")->second;
-	debug (page);
+	// debug (page);
 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize(page)) + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
