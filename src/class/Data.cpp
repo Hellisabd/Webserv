@@ -227,10 +227,12 @@ void Data::SetLocations(std::string const &location)
 
 	path_start = location.find("/");
 	path_end = location.find(" ", path_start);
-	path = location.substr(path_start, path_end - path_start);
+	if (path_end != location.npos || path_start != location.npos)
+		path = location.substr(path_start, path_end - path_start);
 	page_start = location.find("./");
 	page_end = location.find(".html");
-	page = location.substr(page_start, page_end - page_start + 5);
+	if (page_end != location.npos || page_start != location.npos)
+		page = location.substr(page_start, page_end - page_start + 5);
 
 	_loc[path] = page;
 }

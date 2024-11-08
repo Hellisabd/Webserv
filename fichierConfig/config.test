@@ -11,6 +11,10 @@ location /test {
 	./site/test.html
 }
 
+location /pp {
+	tml
+}
+
 error_pages {
 	400 ./site/400.html
 	401 ./site/401.html
