@@ -31,5 +31,6 @@ if (preg_match('/h1\s*{[^}]*}/', $htmlContent)) {
     }
 }
 
-file_put_contents($htmlFile, $htmlContent);
+// file_put_contents($htmlFile, $htmlContent);
+print($htmlContent);
 ?>

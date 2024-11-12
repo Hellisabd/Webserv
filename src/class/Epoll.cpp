@@ -87,11 +87,26 @@ int validToSend(std::string const &str, clock_t time)
 	return 0;
 }
 
-void Epoll::exec(Data &data)
+void Epoll::exec(Data &data, int clientID)
 {
+	int fd[2];
+	if (pipe(fd) == -1)
+		return ;
 	int pid = fork();
+	if (pid == -1)
+	{
+		close (fd[0]);
+		close (fd[1]);
+		return ;
+	}
 	if (pid == 0)
 	{
+		if (-1 == dup2(fd[1], STDOUT_FILENO))
+		{
+			close (fd[0]);
+			close (fd[1]);
+			return ;
+		}
 		char **env = data.envToCharpp();
 		char **filename = new char*[2];
 		filename[0] = strdup("./script.php");
@@ -106,6 +121,23 @@ void Epoll::exec(Data &data)
 		exit(EXIT_FAILURE);
 	}
 	waitpid(pid, NULL, 0);
+	char buf[20000];
+	int byte_read = read(fd[0], buf, sizeof(buf));
+	if (byte_read < 0)
+	{
+		close (fd[0]);
+		close (fd[1]);
+		return ;
+	}
+	buf[byte_read] = '\0';
+	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(byte_read) + "\r\n\r\n";
+	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+		throw Error("Error sending HTTP header");
+	if (send(_epollClient[clientID].data.fd, buf, byte_read, MSG_NOSIGNAL) < 0)
+	{
+		perror("send body");
+		throw Error("");
+	}
 }
 
 void Epoll::sendToClient(int clientID, Data &data) {
@@ -129,14 +161,11 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		debug_map(PURPLE, "map form HttpRequest type", path);
 	}
 	std::string path = rq.getUrl();
-	// debug(BLUE, path);
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
 	debug(path);
-	if (path.find("cgi-bin/script.php") != path.npos)
-		exec(data);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
 		{
@@ -144,11 +173,12 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			break ;
 		}
 	}
-	 if (page.empty() && valid == 2)
+	if (path.find("cgi-bin/script.php") != path.npos)
+		return exec(data, clientID);
+	else if (page.empty() && valid == 2)
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())
 		page = data.getErrors().find("404")->second;
-	// debug (page);
 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize(page)) + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
