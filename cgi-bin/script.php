@@ -21,6 +21,8 @@ $htmlContent = file_get_contents($htmlFile);
 
 $styleTag = "h1 { font-family: $font; }";
 
+$metaRefresh = '<meta http-equiv="refresh" content="0; URL=http://localhost:4444/test" />';
+
 if (preg_match('/h1\s*{[^}]*}/', $htmlContent)) {
     $htmlContent = preg_replace('/h1\s*{[^}]*}/', $styleTag, $htmlContent);
 } else {

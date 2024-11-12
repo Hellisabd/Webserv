@@ -1,6 +1,7 @@
 #include "Epoll.hpp"
 
 Epoll::Epoll(std::vector<int> sock, int nbr_port) : _sock(sock) {
+	_HTTPRequest = new std::string[MAX_EVENTS];
 	_nbr_client = 0;
 	_epoll_fd = epoll_create(MAX_EVENTS);
 	if (_epoll_fd < 0)
@@ -15,13 +16,19 @@ Epoll::Epoll(std::vector<int> sock, int nbr_port) : _sock(sock) {
 	_ClientSock.resize(MAX_EVENTS);
 	for (std::vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++)
 		*i = -1;
+
 }
 
 Epoll::~Epoll() {
-	for (int i = 0; i < _nbr_client; i++)
-		close(_ClientSock[i]);
+	for (std::vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++)
+	{
+		if (*i != -1)
+			close(*i);
+	}
 	if (_epoll_fd != -1)
 		close(_epoll_fd);
+	delete[] _HTTPRequest;
+	debug("passe dans le destructeur de Epoll");
 }
 
 void Epoll::wait(int stop) {
@@ -47,19 +54,6 @@ void topars(std::string HTTPRequest)
 	fd.close();
 }
 
-std::string quickgetpars(std::string HTTPRequest)
-{
-	std::string path;
-	std::size_t path_start;
-	std::size_t path_end;
-
-	path_start = HTTPRequest.find("/");
-	path_end = HTTPRequest.find(" ", path_start);
-	path = HTTPRequest.substr(path_start, path_end - path_start);
-
-	return path;
-}
-
 void Epoll::addClient(int port)
 {
 	int client = accept(_sock[port], NULL, NULL);
@@ -74,8 +68,8 @@ void Epoll::addClient(int port)
 		close(client);
 		throw Error("Error adding new client to epoll");
 	}
-	_cliport[client] = _sock[port];
 	_ClientSock.push_back(client);
+	_cliport[client] = _sock[port];
 }
 
 int validToSend(std::string const &str, clock_t time)
@@ -87,7 +81,29 @@ int validToSend(std::string const &str, clock_t time)
 	return 0;
 }
 
-void Epoll::exec(Data &data, int clientID)
+std::string getScriptName(std::string url) {
+	std::size_t start;
+	std::size_t end;
+	start = url.find("cgi-bin/", 0);
+	if (start == url.npos)
+		return "";
+	end = url.find("/", start + 8);
+	if (end == url.npos)
+		return "./" + url.substr(start, url.length() - start);
+	else
+		return "./" + url.substr(start, end - start);
+}
+
+void Epoll::set_new_env(Data &data, HttpRequest rq) {
+	data._env["PATH_INFO"] = rq.getUrl();
+	data._env["SCRIPT_NAME"] = getScriptName(rq.getUrl());
+	data._env["REQUEST_METHOD"] = rq.getMethod();
+	// if (rq.getMethod() == POST)
+	// 	data._env["CONTENT_LENGTH"] = rq.getLength();
+
+}
+
+void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 {
 	int fd[2];
 	if (pipe(fd) == -1)
@@ -99,6 +115,7 @@ void Epoll::exec(Data &data, int clientID)
 		close (fd[1]);
 		return ;
 	}
+	set_new_env(data, rq);
 	if (pid == 0)
 	{
 		if (-1 == dup2(fd[1], STDOUT_FILENO))
@@ -107,11 +124,24 @@ void Epoll::exec(Data &data, int clientID)
 			close (fd[1]);
 			return ;
 		}
+		close(fd[0]);
+		close(fd[1]);
 		char **env = data.envToCharpp();
+		// for (int i = 0; env[i]; i++)
+		// 	fprintf(stderr, "%s\n", env[i]);
 		char **filename = new char*[2];
-		filename[0] = strdup("./script.php");
-		filename[1] = NULL;
-		execve("cgi-bin/script.php", filename, env);
+		// if (script1)
+			filename[0] = strdup("./script.php");
+			filename[1] = NULL;
+			execve("cgi-bin/script.php", filename, env);
+		// if (script2)
+			// filename[0] = strdup("./script.php");
+			// filename[1] = NULL;
+		// 	execve("cgi-bin/script2.php", filename, env);
+		// if (script3)
+			// filename[0] = strdup("./script.php");
+			// filename[1] = NULL;
+		// 	execve("cgi-bin/script2.php", filename, env);
 		for (int i = 0; env[i]; i++)
 			free(env[i]);
 		delete[] env;
@@ -129,6 +159,8 @@ void Epoll::exec(Data &data, int clientID)
 		close (fd[1]);
 		return ;
 	}
+	close(fd[0]);
+	close(fd[1]);
 	buf[byte_read] = '\0';
 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(byte_read) + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
@@ -165,7 +197,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
-	debug(path);
+	// debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
 		{
@@ -173,8 +205,8 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			break ;
 		}
 	}
-	if (path.find("cgi-bin/script.php") != path.npos)
-		return exec(data, clientID);
+	if (path.find("cgi-bin") != path.npos)
+		return exec(data, clientID, rq);
 	else if (page.empty() && valid == 2)
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())
@@ -206,13 +238,13 @@ void Epoll::sendToClient(int clientID, Data &data) {
 
 void Epoll::readFromClient(int clientID)
 {
-	char buffer[1024];
+	char buffer[1025];
 	ssize_t bytes_read = 1;
 	while (bytes_read > 0) {
-		bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer));
+		bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer) - 1);
 		if (bytes_read < 0)
 			break;
-		if (bytes_read < 1024)
+		if (bytes_read <= 1024)
 			buffer[bytes_read] = '\0';
 		_HTTPRequest[clientID] += buffer;
 		if (bytes_read < 1024)
