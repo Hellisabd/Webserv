@@ -88,6 +88,7 @@ std::string getScriptName(std::string url) {
 	if (start == url.npos)
 		return "";
 	end = url.find("/", start + 8);
+	debug(17);
 	if (end == url.npos)
 		return "./" + url.substr(start, url.length() - start);
 	else

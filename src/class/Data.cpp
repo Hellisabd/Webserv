@@ -42,20 +42,26 @@ void Data::fill_info(std::ifstream &infile)
 		std::getline(infile, line);
 		if (line.find("port ", 0) != line.npos)
 		{
+			debug(1);
 			ports = line.substr(line.find("port ", 0) + 5, line.size());
 			SetPorts(ports);
 		}
 		if (line.find("host ", 0) != line.npos)
+		{
+			debug(2);
 			SetHost(line.substr(line.find("host ", 0) + 5, line.size()));
+		}
 		else if (line.find("bodysize ", 0) != line.npos)
 			_bodySize = atoi(line.c_str() + line.find("bodysize ", 0) + 9);
 		else if (line.find("server_name ", 0) != line.npos)
 		{
+			debug(3);
 			serverNames = line.substr(line.find("server_name ", 0) + 12, line.size());
 			SetServerNames(serverNames);
 		}
 		else if (line.find("location ", 0) != line.npos)
 		{
+			debug(4);
 			loc = line.substr(line.find("location ", 0) + 9, line.size());
 			while (std::getline(infile, line))
 			{
@@ -67,6 +73,7 @@ void Data::fill_info(std::ifstream &infile)
 		}
 		else if (line.find("error_pages ", 0) != line.npos)
 		{
+			debug(5);
 			err = line.substr(line.find("error_pages ", 0) + 12, line.size());
 			while (std::getline(infile, line))
 			{
@@ -165,6 +172,7 @@ void Data::SetPorts(std::string const &ports)
 		start++;
 	while (isspace(ports[end]))
 		end--;
+	debug(6);
 	std::string portsparsed = ports.substr(start, end - start + 1);
 	int count = 0;
 	size_t j = 0;
@@ -178,14 +186,16 @@ void Data::SetPorts(std::string const &ports)
 		pos = portsparsed.find(' ', pos);
 		if (pos != portsparsed.npos)
 		{
+			debug(7);
 			_ports[i] = atoi(portsparsed.substr(oldpos, pos - oldpos).c_str());
 			pos += 1;
 			i++;
 		}
 		else
 		{
-			_ports[i] = atoi(portsparsed.substr(oldpos, pos - oldpos).c_str());
+			debug(8);
 			i++;
+			_ports[i] = atoi(portsparsed.substr(oldpos, pos - oldpos).c_str());
 		}
 		oldpos = pos;
 	}
@@ -202,17 +212,22 @@ void Data::SetServerNames(std::string const &servernames)
 		start++;
 	while (isspace(servernames[end]))
 		end--;
+	debug(9);
 	std::string servernamesparsed = servernames.substr(start, end - start + 1);
 	while (pos <= servernamesparsed.size() && pos != servernamesparsed.npos)
 	{
 		pos = servernamesparsed.find(' ', pos);
 		if (pos != servernamesparsed.npos)
 		{
+			debug(10);
 			_serverNames.push_back(servernamesparsed.substr(oldpos, pos - oldpos));
 			pos += 1;
 		}
 		else
+		{
+			debug(10);
 			_serverNames.push_back(servernamesparsed.substr(oldpos, servernamesparsed.length() - oldpos));
+		}
 		oldpos = pos;
 	}
 }
@@ -228,10 +243,12 @@ void Data::SetLocations(std::string const &location)
 
 	path_start = location.find("/");
 	path_end = location.find(" ", path_start);
+	debug(11);
 	if (path_end != location.npos || path_start != location.npos)
 		path = location.substr(path_start, path_end - path_start);
 	page_start = location.find("./");
 	page_end = location.find(".html");
+	debug(12);
 	if (page_end != location.npos || page_start != location.npos)
 		page = location.substr(page_start, page_end - page_start + 5);
 
@@ -262,7 +279,9 @@ void Data::SetErrors(std::string const &errors)
 			page_start = line.find("./", 0);
 		if (line.find(".html", page_start) != line.npos)
 			page_end = line.find(".html", page_start);
+		debug(13);
 		err = line.substr(err_start, 3);
+		debug(14);
 		page = line.substr(page_start, page_end - page_start + 5);
 		_errors[err] = page;
 	}
@@ -292,7 +311,9 @@ void Data::cpEnv(char **env) {
 		tmp = env[j];
 		name_end = tmp.find("=", 0);
 		var_start = name_end + 1;
+		debug(15);
 		name = tmp.substr(0, name_end);
+		debug(16);
 		var = tmp.substr(var_start, tmp.size());
 		_env[name] = var;
 	}
