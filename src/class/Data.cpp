@@ -267,7 +267,7 @@ void Data::SetLocations(std::string const &location)
 	std::size_t page_start;
 	std::size_t page_end;
 
-	debug(PURPLE, location);
+	// debug(PURPLE, location);
 	path_start = location.find("/");
 	path_end = location.find(" ", path_start);
 	//debug(11);
