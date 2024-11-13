@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Commentaire</title>
+</head>
+<body>
+    <h2>Laisser un commentaire</h2>
+    <form action="/submit_comment" method="POST">
+        <label for="pseudo">Pseudo :</label><br>
+        <input type="text" id="pseudo" name="pseudo" required><br><br>
+
+        <label for="commentaire">Commentaire :</label><br>
+        <textarea id="commentaire" name="commentaire" rows="4" cols="50" required></textarea><br><br>
+
+        <input type="submit" value="Envoyer">
+    </form>
+</body>
+</html>

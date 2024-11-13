@@ -7,14 +7,17 @@ location / {
 	./site/index.html
 }
 
-location /test {
-	./site/test.html
+location /cops {
+	./site/cops.html
 }
 
-location /test/cgi-bin/script.php {
-	./site/test.html
+location /cops/cgi-bin/script.php {
+	./site/cops.html
 }
 
+location /comments {
+	./site/comments.html
+}
 
 error_pages {
 	400 ./site/400.html
