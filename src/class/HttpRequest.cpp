@@ -84,6 +84,7 @@ string trimWhitespaces(const string& str) {
         return "";
     }
     size_t end = str.find_last_not_of(" \t\n\r\f\v");
+	//debug(18);
     return str.substr(start, end - start + 1);
 }
 
@@ -95,6 +96,7 @@ bool HttpRequest::isValidHost() {
 	if (_request.compare(hostPos - 2, 2, "\r\n")) {
 		return (false);
 	}
+	//debug(19);
 	string hostValue = _request.substr(hostPos + 5, _request.find("\r\n", hostPos) - hostPos - 5);
 	hostValue = trimWhitespaces(hostValue);
 	if (hostValue.size() == 0) {
@@ -177,8 +179,11 @@ string	HttpRequest::getPort() {
 void HttpRequest::fillHostAndPort() {
 	size_t start = findCaseIns(_request, "host");
 	size_t end = _request.find("\r\n", start);
+	//debug(20);
 	string hostPort = _request.substr(start + 5, end - start - 5);
+	//debug(21);
 	_host = hostPort.substr(0, hostPort.find(":"));
+	//debug(22);
 	_port = hostPort.substr(hostPort.find(":") + 1, hostPort.length());
 }
 
@@ -187,6 +192,7 @@ void HttpRequest::fillSize() {
 }
 
 void HttpRequest::fillMethod() {
+	//debug(23);
 	string met = _request.substr(0, _request.find(" "));
 	if (!met.compare("GET")) {
 		_method = GET;
@@ -202,13 +208,20 @@ void HttpRequest::fillMethod() {
 void HttpRequest::fillUrl() {
 	size_t start = _request.find("/");
 	size_t end = _request.find(" ", start);
+	//debug(24);
 	_url = _request.substr(start, end - start);
 }
 
 void HttpRequest::fillHttpVersion() {
-	size_t start = _request.find("HTTP");
-	size_t end = _request.find("\r\n");
+	size_t start = _request.find("HTTP", 0);
+	size_t end = _request.find("\r\n", start);
+	if (start == _request.npos)
+		start = 0;
+	if (end == _request.npos)
+		end = _request.length();
+	//debug(25);
 	_httpVersion = _request.substr(start, end - start);
+	//debug(GREEN, _httpVersion);
 }
 
 string HttpRequest::extractHeaderKey(string &s) {
@@ -220,6 +233,7 @@ string HttpRequest::extractHeaderKey(string &s) {
 		}
 		headerKey.second++;
 	}
+	//debug(26);
 	headerKey.first = s.substr(0, headerKey.second);
 	return (headerKey.first);
 }

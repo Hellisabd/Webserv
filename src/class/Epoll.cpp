@@ -28,7 +28,7 @@ Epoll::~Epoll() {
 	if (_epoll_fd != -1)
 		close(_epoll_fd);
 	delete[] _HTTPRequest;
-	debug("passe dans le destructeur de Epoll");
+	//debug("passe dans le destructeur de Epoll");
 }
 
 void Epoll::wait(int stop) {
@@ -49,7 +49,7 @@ void topars(std::string HTTPRequest)
 	std::ofstream fd("./out", std::ios::app);
 	if (!fd.is_open())
 		throw Error("cant open outfile for debug request");
-	debug(PURPLE, "request", i);
+	//debug(PURPLE, "request", i);
 	debug_file(HTTPRequest, &fd);
 	fd.close();
 }
@@ -88,7 +88,7 @@ std::string getScriptName(std::string url) {
 	if (start == url.npos)
 		return "";
 	end = url.find("/", start + 8);
-	debug(17);
+	//debug(17);
 	if (end == url.npos)
 		return "./" + url.substr(start, url.length() - start);
 	else
@@ -171,6 +171,24 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 		perror("send body");
 		throw Error("");
 	}
+	_HTTPRequest[clientID].clear();
+}
+
+bool Epoll::checkRequestIsValid(const std::string &url, Data &data, std::string const &method)
+{
+	std::map<std::string, std::vector<std::string>> tmp =  data.getMethods();
+	for (std::map<std::string, std::vector<std::string>>::iterator it = tmp.begin(); it != tmp.end(); ++it)
+	{
+		if (it->first == url)
+		{
+			for (std::vector<std::string>::iterator strit = it->second.begin(); strit != it->second.end(); ++strit)
+			{
+				if (method == *strit)
+					return true;
+			}
+		}
+	}
+	return false;
 }
 
 void Epoll::sendToClient(int clientID, Data &data) {
@@ -198,11 +216,17 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
-	// debug(path);
+	//debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
 		{
 			page = i->second;
+			if (!checkRequestIsValid(i->first, data, rq.getMethodToString()))
+			{
+				debug("passe dans requete forbiden");
+				page = data.getErrors().find("403")->second;
+				debug(page);
+			}
 			break ;
 		}
 	}

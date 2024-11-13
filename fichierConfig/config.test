@@ -4,19 +4,28 @@ bodysize 48
 server_name  bonjour lol
 
 location / {
+	Method GET
 	./site/index.html
 }
 
 location /cops {
+	Method GET
 	./site/cops.html
 }
 
 location /cops/cgi-bin/script.php {
+	Method GET
 	./site/cops.html
 }
 
 location /comments {
+	Method GET
 	./site/comments.html
+}
+
+location /submit_comment { 
+	Method GET
+	./site/submit_comment.html
 }
 
 error_pages {
