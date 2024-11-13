@@ -156,7 +156,8 @@ string HttpRequest::getHttpVersion() {
 }
 
 string HttpRequest::getBody() {
-	return (string){"haha"};
+	// return (string){"haha"};
+	return ("haha");
 }
 
 string HttpRequest::getSpecHeader(string& spec) {

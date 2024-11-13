@@ -19,7 +19,7 @@ class Data {
 		size_t const &getBodySize() const;
 		std::map<std::string, std::string> const &getLocations() const;
 		std::map<std::string, std::string> const &getErrors() const;
-		std::map<std::string, std::vector<std::string>> const &getMethods() const;
+		std::map<std::string, std::vector<std::string> > const &getMethods() const;
 		std::vector<std::string> const &getServerNames() const;
 		void cpEnv(char **env);
 		char **envToCharpp();
@@ -35,7 +35,7 @@ class Data {
 		size_t _bodySize;
 		std::vector<std::string> _serverNames;
 		std::map<std::string, std::string> _loc;
-		std::map<std::string, std::vector<std::string>> _method;
+		std::map<std::string, std::vector<std::string> > _method;
 		std::map<std::string, std::string> _errors;
 
 		void fill_info(std::ifstream &infile);

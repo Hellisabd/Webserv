@@ -143,7 +143,7 @@ std::map<std::string, std::string> const &Data::getErrors() const
 	return _errors;
 }
 
-std::map<std::string, std::vector<std::string>> const &Data::getMethods() const
+std::map<std::string, std::vector<std::string> > const &Data::getMethods() const
 {
 	return _method;
 }
@@ -152,7 +152,6 @@ std::map<std::string, std::vector<std::string>> const &Data::getMethods() const
 void Data::SetHost(std::string const &hostToShift)
 {
 	_hostStr = hostToShift;
-	//debug(GREEN, hostToShift);
 	std::istringstream iss(hostToShift);
 	std::string segment;
 	int shift = 24;
@@ -160,10 +159,8 @@ void Data::SetHost(std::string const &hostToShift)
 	_hostIP = 0;
 	while (std::getline(iss, segment, '.'))
 	{
-		//debug(GREEN, segment);
-		_hostIP |= (std::stoul(segment) << shift);
-		//debug(BLUE, _hostIP);
-		shift -=8;
+		_hostIP |= (std::strtoul(segment.c_str(), NULL, 10) << shift);
+		shift -= 8;
 	}
 }
 

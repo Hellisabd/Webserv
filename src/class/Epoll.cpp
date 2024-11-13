@@ -163,7 +163,9 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 	close(fd[0]);
 	close(fd[1]);
 	buf[byte_read] = '\0';
-	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(byte_read) + "\r\n\r\n";
+	std::ostringstream oss;
+	oss << byte_read;
+	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
 	if (send(_epollClient[clientID].data.fd, buf, byte_read, MSG_NOSIGNAL) < 0)
@@ -176,8 +178,8 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 
 bool Epoll::checkRequestIsValid(const std::string &url, Data &data, std::string const &method)
 {
-	std::map<std::string, std::vector<std::string>> tmp =  data.getMethods();
-	for (std::map<std::string, std::vector<std::string>>::iterator it = tmp.begin(); it != tmp.end(); ++it)
+	std::map<std::string, std::vector<std::string> > tmp =  data.getMethods();
+	for (std::map<std::string, std::vector<std::string> >::iterator it = tmp.begin(); it != tmp.end(); ++it)
 	{
 		if (it->first == url)
 		{
@@ -236,7 +238,9 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())
 		page = data.getErrors().find("404")->second;
-	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + std::to_string(getFileSize(page)) + "\r\n\r\n";
+	std::ostringstream oss;
+	oss << getFileSize(page);
+	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
 
@@ -289,7 +293,10 @@ std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it
 	}
 	_noclient = true;
 	close(it->first);
-	return (_cliport.erase(it));
+	std::map<int, int>::iterator next_it = it;
+	++next_it;
+	_cliport.erase(it);
+	return next_it;
 }
 
 void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
@@ -305,7 +312,9 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
 			if (_epollClient[clientID].data.fd == _sock[port])
 			{
 				addClient(port);
-				debug(GREEN, "New client added on port " + std::to_string(ntohs(address[port].sin_port)));
+				std::ostringstream oss;
+				oss << ntohs(address[port].sin_port);
+				debug(GREEN, "New client added on port " + oss.str());
 			}
 			else if (it->second == _sock[port]) {
 				
