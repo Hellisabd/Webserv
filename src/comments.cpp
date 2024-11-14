@@ -1,6 +1,18 @@
 #include <webserv.hpp>
 #include <dirent.h>
 
+void save_comment(std::string pseudo, std::string comment) {
+	std::ostringstream filename;
+	static int comment_nbr = 1;
+	filename << "./site/comments/" << comment_nbr;
+	comment_nbr++;
+	std::ofstream file(filename.str().c_str());
+	if (file.is_open()) {
+		file << pseudo << "\n\n" << comment;
+		file.close();
+	}
+}
+
 int nbr_of_comments(const std::string path) {
 	int fileCount = 0;
 	DIR* dir = opendir(path.c_str());
