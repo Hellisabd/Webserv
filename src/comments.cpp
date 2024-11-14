@@ -303,8 +303,8 @@ void save_comment(std::string rq) {
 	std::size_t c_end = rq.find("\n", c_start);
 	std::string pseudo = rq.substr(p_start, p_end - p_start);
 	std::string comment = rq.substr(c_start, c_end - c_start);
+	replace(pseudo);
 	replace(comment);
-	debug(ORANGE, comment);
 	std::ostringstream filename;
 	static int comment_nbr = nbr_of_comments("./site/comments/") + 1;
 	filename << "./site/comments/" << comment_nbr;
