@@ -18,7 +18,8 @@ SRCS	=	src/main.cpp \
 			src/class/Data.cpp \
 			src/class/ServerSocket.cpp \
 			src/class/Epoll.cpp \
-			src/class/HttpRequest.cpp
+			src/class/HttpRequest.cpp \
+			src/comments.cpp
 			
 
 OBJS	= $(SRCS:.cpp=.o)

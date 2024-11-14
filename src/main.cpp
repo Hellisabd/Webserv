@@ -28,6 +28,7 @@ int main(int argc, char **argv, char **env)
 		Data data(argv[1], env);
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, data.getPort(),  data.getHostIP(), 10, data.getNbrPort());
 		Epoll epoll(servSock.getSock(), data.getNbrPort());
+		generate_comment_page();
 		try {
 			while (g_stop) {
 				epoll.wait(g_stop);

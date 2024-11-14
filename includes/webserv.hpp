@@ -38,7 +38,7 @@
 
 using namespace std;
 unsigned long getFileSize(std::string const &file_path);
-// enum HttpMethod {GET, POST, DELETE, UNKNOWN};
+void generate_comment_page();
 
 # define NC 	std::string("\e[0m")
 # define RED 	std::string("\e[1;31m")
