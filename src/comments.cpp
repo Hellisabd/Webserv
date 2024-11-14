@@ -1,7 +1,13 @@
 #include <webserv.hpp>
 #include <dirent.h>
 
-void save_comment(std::string pseudo, std::string comment) {
+void save_comment(std::string rq) {
+	std::string pseudo;
+	std::string comment;
+
+
+
+
 	std::ostringstream filename;
 	static int comment_nbr = 1;
 	filename << "./site/comments/" << comment_nbr;
@@ -87,8 +93,8 @@ void generate_comment_page() {
 	oss << "	<form action=\"/submit_comment\" method=\"POST\">\n";
 	oss << "		<label for=\"pseudo\">Pseudo:</label><br>\n";
 	oss << "		<input type=\"text\" id=\"pseudo\" name=\"pseudo\" required><br><br>\n";
-	oss << "		<label for=\"commentaire\">Comment:</label><br>\n";
-	oss << "		<textarea id=\"commentaire\" name=\"commentaire\" rows=\"4\" cols=\"50\" required></textarea><br><br>\n";
+	oss << "		<label for=\"comment\">Comment:</label><br>\n";
+	oss << "		<textarea id=\"comment\" name=\"comment\" rows=\"4\" cols=\"50\" required></textarea><br><br>\n";
 	oss << "		<input type=\"submit\" value=\"Send\">\n";
 	oss << "	</form>\n";
 	oss << "</body>\n";

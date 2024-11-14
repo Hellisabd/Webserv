@@ -211,7 +211,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			page = data.getErrors().find("400")->second;
 		}
 		std::map<string, string> path = rq.getHeaders();
-		debug_map(PURPLE, "map form HttpRequest type", path);
+		// debug_map(PURPLE, "map form HttpRequest type", path);
 	}
 	std::string path = rq.getUrl();
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
@@ -249,6 +249,8 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	{
 		page = data.getErrors().find("403")->second;
 	}
+	// if (rq.getMethodToString() == "POST")
+	// 	debug(_HTTPRequest[clientID]);
 	char tosend[1024];
 	ssize_t file_read;
 	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
