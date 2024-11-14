@@ -260,6 +260,21 @@ void replace(std::string &com) {
 			com.erase(pos, 6);
 			com.insert(pos, "Ç");
 		}
+		if (pos == com.find("%C2%AB", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "«");
+		}
+		if (pos == com.find("%C2%BB", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "»");
+		}
+		if (pos == com.find("%E2%80%99", pos))
+		{
+			com.erase(pos, 9);
+			com.insert(pos, "’");
+		}
 		pos++;
 	}
 }

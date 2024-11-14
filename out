@@ -3435,3 +3435,317 @@ End of the request
 
 
 
+Start of the request
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 2637
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=Antoine&comment=%0D%0A%0D%0A++++%C2%AB+Pour+vous+faire+mieux+conna%C3%AEtre+d%E2%80%99o%C3%B9+vient+l%E2%80%99erreur+de+ceux+qui+bl%C3%A2ment+la+volupt%C3%A9%2C+et+qui+louent+en+quelque+sorte+la+douleur%2C+je+vais+entrer+dans+une+explication+plus+%C3%A9tendue%2C+et+vous+faire+voir+tout+ce+qui+a+%C3%A9t%C3%A9+dit+l%C3%A0-dessus+par+l%E2%80%99inventeur+de+la+v%C3%A9rit%C3%A9%2C+et%2C+pour+ainsi+dire%2C+par+l%E2%80%99architecte+de+la+vie+heureuse.%0D%0A%0D%0A++++Personne+%5Bdit+%C3%89picure%5D+ne+craint+ni+ne+fuit+la+volupt%C3%A9+en+tant+que+volupt%C3%A9%2C+mais+en+tant+qu%E2%80%99elle+attire+de+grandes+douleurs+%C3%A0+ceux+qui+ne+savent+pas+en+faire+un+usage+mod%C3%A9r%C3%A9+et+raisonnable+%3B+et+personne+n%E2%80%99aime+ni+ne+recherche+la+douleur+comme+douleur%2C+mais+parce+qu%E2%80%99il+arrive+quelquefois+que%2C+par+le+travail+et+par+la+peine%2C+on+parvienne+%C3%A0+jouir+d%E2%80%99une+grande+volupt%C3%A9.+En+effet%2C+pour+descendre+jusqu%E2%80%99aux+petites+choses%2C+qui+de+vous+ne+fait+point+quelque+exercice+p%C3%A9nible+pour+en+retirer+quelque+sorte+d%E2%80%99utilit%C3%A9+%3F+Et+qui+pourrait+justement+bl%C3%A2mer%2C+ou+celui+qui+rechercherait+une+volupt%C3%A9+qui+ne+pourrait+%C3%AAtre+suivie+de+rien+de+f%C3%A2cheux%2C+ou+celui+qui+%C3%A9viterait+une+douleur+dont+il+ne+pourrait+esp%C3%A9rer+aucun+plaisir.%0D%0A%0D%0A++++Au+contraire%2C+nous+bl%C3%A2mons+avec+raison+et+nous+croyons+dignes+de+m%C3%A9pris+et+de+haine+ceux+qui%2C+se+laissant+corrompre+par+les+attraits+d%E2%80%99une+volupt%C3%A9+pr%C3%A9sente%2C+ne+pr%C3%A9voient+pas+%C3%A0+combien+de+maux+et+de+chagrins+une+passion+aveugle+les+peut+exposer.%0D%0A%0D%0A++++J%E2%80%99en+dis+autant+de+ceux+qui%2C+par+mollesse+d%E2%80%99esprit%2C+c%E2%80%99est-%C3%A0-dire+par+la+crainte+de+la+peine+et+de+la+douleur%2C+manquent+aux+devoirs+de+la+vie.+Et+il+est+tr%C3%A8s+facile+de+rendre+raison+de+ce+que+j%E2%80%99avance.+Car%2C+lorsque+nous+sommes+tout+%C3%A0+fait+libres%2C+et+que+rien+ne+nous+emp%C3%AAche+de+faire+ce+qui+peut+nous+donner+le+plus+de+plaisir%2C+nous+pouvons+nous+livrer+enti%C3%A8rement+%C3%A0+la+volupt%C3%A9+et+chasser+toute+sorte+de+douleur+%3B+mais%2C+dans+les+temps+destin%C3%A9s+aux+devoirs+de+la+soci%C3%A9t%C3%A9+ou+%C3%A0+la+n%C3%A9cessit%C3%A9+des+affaires%2C+souvent+il+faut+faire+divorce+avec+la+volupt%C3%A9%2C+et+ne+se+point+refuser+%C3%A0+la+peine.%0D%0A%0D%0A++++La+r%C3%A8gle+que+suit+en+cela+un+homme+sage%2C+c%E2%80%99est+de+renoncer+%C3%A0+de+l%C3%A9g%C3%A8res+volupt%C3%A9s+pour+en+avoir+de+plus+grandes%2C+et+de+savoir+supporter+des+douleurs+l%C3%A9g%C3%A8res+pour+en+%C3%A9viter+de+plus+f%C3%A2cheuses.+%C2%BB%0D%0A
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 2634
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=%0D%0A%0D%0A++++%C2%AB+Pour+vous+faire+mieux+conna%C3%AEtre+d%E2%80%99o%C3%B9+vient+l%E2%80%99erreur+de+ceux+qui+bl%C3%A2ment+la+volupt%C3%A9%2C+et+qui+louent+en+quelque+sorte+la+douleur%2C+je+vais+entrer+dans+une+explication+plus+%C3%A9tendue%2C+et+vous+faire+voir+tout+ce+qui+a+%C3%A9t%C3%A9+dit+l%C3%A0-dessus+par+l%E2%80%99inventeur+de+la+v%C3%A9rit%C3%A9%2C+et%2C+pour+ainsi+dire%2C+par+l%E2%80%99architecte+de+la+vie+heureuse.%0D%0A%0D%0A++++Personne+%5Bdit+%C3%89picure%5D+ne+craint+ni+ne+fuit+la+volupt%C3%A9+en+tant+que+volupt%C3%A9%2C+mais+en+tant+qu%E2%80%99elle+attire+de+grandes+douleurs+%C3%A0+ceux+qui+ne+savent+pas+en+faire+un+usage+mod%C3%A9r%C3%A9+et+raisonnable+%3B+et+personne+n%E2%80%99aime+ni+ne+recherche+la+douleur+comme+douleur%2C+mais+parce+qu%E2%80%99il+arrive+quelquefois+que%2C+par+le+travail+et+par+la+peine%2C+on+parvienne+%C3%A0+jouir+d%E2%80%99une+grande+volupt%C3%A9.+En+effet%2C+pour+descendre+jusqu%E2%80%99aux+petites+choses%2C+qui+de+vous+ne+fait+point+quelque+exercice+p%C3%A9nible+pour+en+retirer+quelque+sorte+d%E2%80%99utilit%C3%A9+%3F+Et+qui+pourrait+justement+bl%C3%A2mer%2C+ou+celui+qui+rechercherait+une+volupt%C3%A9+qui+ne+pourrait+%C3%AAtre+suivie+de+rien+de+f%C3%A2cheux%2C+ou+celui+qui+%C3%A9viterait+une+douleur+dont+il+ne+pourrait+esp%C3%A9rer+aucun+plaisir.%0D%0A%0D%0A++++Au+contraire%2C+nous+bl%C3%A2mons+avec+raison+et+nous+croyons+dignes+de+m%C3%A9pris+et+de+haine+ceux+qui%2C+se+laissant+corrompre+par+les+attraits+d%E2%80%99une+volupt%C3%A9+pr%C3%A9sente%2C+ne+pr%C3%A9voient+pas+%C3%A0+combien+de+maux+et+de+chagrins+une+passion+aveugle+les+peut+exposer.%0D%0A%0D%0A++++J%E2%80%99en+dis+autant+de+ceux+qui%2C+par+mollesse+d%E2%80%99esprit%2C+c%E2%80%99est-%C3%A0-dire+par+la+crainte+de+la+peine+et+de+la+douleur%2C+manquent+aux+devoirs+de+la+vie.+Et+il+est+tr%C3%A8s+facile+de+rendre+raison+de+ce+que+j%E2%80%99avance.+Car%2C+lorsque+nous+sommes+tout+%C3%A0+fait+libres%2C+et+que+rien+ne+nous+emp%C3%AAche+de+faire+ce+qui+peut+nous+donner+le+plus+de+plaisir%2C+nous+pouvons+nous+livrer+enti%C3%A8rement+%C3%A0+la+volupt%C3%A9+et+chasser+toute+sorte+de+douleur+%3B+mais%2C+dans+les+temps+destin%C3%A9s+aux+devoirs+de+la+soci%C3%A9t%C3%A9+ou+%C3%A0+la+n%C3%A9cessit%C3%A9+des+affaires%2C+souvent+il+faut+faire+divorce+avec+la+volupt%C3%A9%2C+et+ne+se+point+refuser+%C3%A0+la+peine.%0D%0A%0D%0A++++La+r%C3%A8gle+que+suit+en+cela+un+homme+sage%2C+c%E2%80%99est+de+renoncer+%C3%A0+de+l%C3%A9g%C3%A8res+volupt%C3%A9s+pour+en+avoir+de+plus+grandes%2C+et+de+savoir+supporter+des+douleurs+l%C3%A9g%C3%A8res+pour+en+%C3%A9viter+de+plus+f%C3%A2cheuses.+%C2%BB%0D%0A
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 2633
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=asf&comment=%0D%0A%0D%0A++++%C2%AB+Pour+vous+faire+mieux+conna%C3%AEtre+d%E2%80%99o%C3%B9+vient+l%E2%80%99erreur+de+ceux+qui+bl%C3%A2ment+la+volupt%C3%A9%2C+et+qui+louent+en+quelque+sorte+la+douleur%2C+je+vais+entrer+dans+une+explication+plus+%C3%A9tendue%2C+et+vous+faire+voir+tout+ce+qui+a+%C3%A9t%C3%A9+dit+l%C3%A0-dessus+par+l%E2%80%99inventeur+de+la+v%C3%A9rit%C3%A9%2C+et%2C+pour+ainsi+dire%2C+par+l%E2%80%99architecte+de+la+vie+heureuse.%0D%0A%0D%0A++++Personne+%5Bdit+%C3%89picure%5D+ne+craint+ni+ne+fuit+la+volupt%C3%A9+en+tant+que+volupt%C3%A9%2C+mais+en+tant+qu%E2%80%99elle+attire+de+grandes+douleurs+%C3%A0+ceux+qui+ne+savent+pas+en+faire+un+usage+mod%C3%A9r%C3%A9+et+raisonnable+%3B+et+personne+n%E2%80%99aime+ni+ne+recherche+la+douleur+comme+douleur%2C+mais+parce+qu%E2%80%99il+arrive+quelquefois+que%2C+par+le+travail+et+par+la+peine%2C+on+parvienne+%C3%A0+jouir+d%E2%80%99une+grande+volupt%C3%A9.+En+effet%2C+pour+descendre+jusqu%E2%80%99aux+petites+choses%2C+qui+de+vous+ne+fait+point+quelque+exercice+p%C3%A9nible+pour+en+retirer+quelque+sorte+d%E2%80%99utilit%C3%A9+%3F+Et+qui+pourrait+justement+bl%C3%A2mer%2C+ou+celui+qui+rechercherait+une+volupt%C3%A9+qui+ne+pourrait+%C3%AAtre+suivie+de+rien+de+f%C3%A2cheux%2C+ou+celui+qui+%C3%A9viterait+une+douleur+dont+il+ne+pourrait+esp%C3%A9rer+aucun+plaisir.%0D%0A%0D%0A++++Au+contraire%2C+nous+bl%C3%A2mons+avec+raison+et+nous+croyons+dignes+de+m%C3%A9pris+et+de+haine+ceux+qui%2C+se+laissant+corrompre+par+les+attraits+d%E2%80%99une+volupt%C3%A9+pr%C3%A9sente%2C+ne+pr%C3%A9voient+pas+%C3%A0+combien+de+maux+et+de+chagrins+une+passion+aveugle+les+peut+exposer.%0D%0A%0D%0A++++J%E2%80%99en+dis+autant+de+ceux+qui%2C+par+mollesse+d%E2%80%99esprit%2C+c%E2%80%99est-%C3%A0-dire+par+la+crainte+de+la+peine+et+de+la+douleur%2C+manquent+aux+devoirs+de+la+vie.+Et+il+est+tr%C3%A8s+facile+de+rendre+raison+de+ce+que+j%E2%80%99avance.+Car%2C+lorsque+nous+sommes+tout+%C3%A0+fait+libres%2C+et+que+rien+ne+nous+emp%C3%AAche+de+faire+ce+qui+peut+nous+donner+le+plus+de+plaisir%2C+nous+pouvons+nous+livrer+enti%C3%A8rement+%C3%A0+la+volupt%C3%A9+et+chasser+toute+sorte+de+douleur+%3B+mais%2C+dans+les+temps+destin%C3%A9s+aux+devoirs+de+la+soci%C3%A9t%C3%A9+ou+%C3%A0+la+n%C3%A9cessit%C3%A9+des+affaires%2C+souvent+il+faut+faire+divorce+avec+la+volupt%C3%A9%2C+et+ne+se+point+refuser+%C3%A0+la+peine.%0D%0A%0D%0A++++La+r%C3%A8gle+que+suit+en+cela+un+homme+sage%2C+c%E2%80%99est+de+renoncer+%C3%A0+de+l%C3%A9g%C3%A8res+volupt%C3%A9s+pour+en+avoir+de+plus+grandes%2C+et+de+savoir+supporter+des+douleurs+l%C3%A9g%C3%A8res+pour+en+%C3%A9viter+de+plus+f%C3%A2cheuses.+%C2%BB%0D%0A
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
