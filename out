@@ -2099,3 +2099,1339 @@ End of the request
 
 
 
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 25
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=yo&comment=yo%09yo
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 25
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=yo&comment=yo%09yo
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 30
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=coucou&comment=yo%2Bdif
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=yo&comment=yo.%0D%0Aoui+oui.
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=par&comment=%28par%29
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1355
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%5C%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1352
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1352
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://localhost:4343/submit_comment
+Connection: keep-alive
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /submit_comment HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1352
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/comments
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&comment=Espace+%3A+%2520%0D%0ANouvelle+ligne+%28LF%29+%3A+%250A%0D%0ARetour+chariot+%28CR%29+%3A+%250D%0D%0ATabulation+%3A+%2509%0D%0AExclamation+%28%21%29+%3A+%2521%0D%0ACitation+double+%28%22%29+%3A+%2522%0D%0ADi%C3%A8se+%28%23%29+%3A+%2523%0D%0ADollar+%28%24%29+%3A+%2524%0D%0APourcentage+%28%25%29+%3A+%2525%0D%0AEsperluette+%28%26%29+%3A+%2526%0D%0AApostrophe+%28%27%29+%3A+%2527%0D%0AParenth%C3%A8se+ouvrante+%28%28%29+%3A+%2528%0D%0AParenth%C3%A8se+fermante+%28%29%29+%3A+%2529%0D%0A%C3%89toile+%28*%29+%3A+%252A%0D%0APlus+%28%2B%29+%3A+%252B%0D%0AVirgule+%28%2C%29+%3A+%252C%0D%0ATiret+%28-%29+%3A+%252D%0D%0APoint+%28.%29+%3A+%252E%0D%0ASlash+%28%2F%29+%3A+%252F%0D%0ADeux-points+%28%3A%29+%3A+%253A%0D%0APoint-virgule+%28%3B%29+%3A+%253B%0D%0AMoins+inf%C3%A9rieur+%28%3C%29+%3A+%253C%0D%0A%C3%89gal+%28%3D%29+%3A+%253D%0D%0APlus+grand+que+%28%3E%29+%3A+%253E%0D%0AInterrogation+%28%3F%29+%3A+%253F%0D%0AArrobase+%28%40%29+%3A+%2540%0D%0ACrochet+ouvrant+%28%5B%29+%3A+%255B%0D%0ABarre+oblique+invers%C3%A9e+%28%29+%3A+%255C%0D%0ACrochet+fermant+%28%5D%29+%3A+%255D%0D%0AAccent+circonflexe+%28%5E%29+%3A+%255E%0D%0AGrave+%28%29%29+%3A+%2560%0D%0AAccolade+ouvrante+%28%7B%29+%3A+%257B%0D%0ABarre+verticale+%28%7C%29+%3A+%257C%0D%0AAccolade+fermante+%28%7D%29+%3A+%257D%0D%0ATilde+%28%7E%29+%3A+%257E%0D%0APourcent+%28%25%29+%3A+%2525
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /comments HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/submit_comment
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+

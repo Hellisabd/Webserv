@@ -1,6 +1,269 @@
 #include <webserv.hpp>
 #include <dirent.h>
 
+void replace(std::string &com) {
+	std::size_t	pos = 0;
+	while (pos < com.length())
+	{
+		if (pos == com.find("+", pos))
+		{
+			com.erase(pos, 1);
+			com.insert(pos, " ");
+		}
+		if (pos == com.find("%0D%0A", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "\n");
+		}
+		if (pos == com.find("%09", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "\t");
+		}
+		if (pos == com.find("%3A", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, ":");
+		}
+		if (pos == com.find("%21", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "!");
+		}
+		if (pos == com.find("%22", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "\"");
+		}
+		if (pos == com.find("%23", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "#");
+		}
+		if (pos == com.find("%24", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "$");
+		}
+		if (pos == com.find("%25", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "%");
+		}
+		if (pos == com.find("%26", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "&");
+		}
+		if (pos == com.find("%27", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "'");
+		}
+		if (pos == com.find("%28", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "(");
+		}
+		if (pos == com.find("%29", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, ")");
+		}
+		if (pos == com.find("%2B", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "+");
+		}
+		if (pos == com.find("%2C", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, ",");
+		}
+		if (pos == com.find("%2F", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "/");
+		}
+		if (pos == com.find("%3B", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, ";");
+		}
+		if (pos == com.find("%3C", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "<");
+		}
+		if (pos == com.find("%3D", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "=");
+		}
+		if (pos == com.find("%3E", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, ">");
+		}
+		if (pos == com.find("%3F", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "?");
+		}
+		if (pos == com.find("%40", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "@");
+		}
+		if (pos == com.find("%5B", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "[");
+		}
+		if (pos == com.find("%5C", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "\\");
+		}
+		if (pos == com.find("%5D", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "]");
+		}
+		if (pos == com.find("%5E", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "^");
+		}
+		if (pos == com.find("%7B", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "{");
+		}
+		if (pos == com.find("%7C", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "|");
+		}
+		if (pos == com.find("%7D", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "}");
+		}
+		if (pos == com.find("%7E", pos))
+		{
+			com.erase(pos, 3);
+			com.insert(pos, "~");
+		}
+		if (pos == com.find("%C3%A9", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "é");
+		}
+		if (pos == com.find("%C3%A8", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "è");
+		}
+		if (pos == com.find("%C3%AA", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "ê");
+		}
+		if (pos == com.find("%C3%A0", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "à");
+		}
+		if (pos == com.find("%C3%A2", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "â");
+		}
+		if (pos == com.find("%C3%AE", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "î");
+		}
+		if (pos == com.find("%C3%AF", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "ï");
+		}
+		if (pos == com.find("%C3%B4", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "ô");
+		}
+		if (pos == com.find("%C3%B9", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "ù");
+		}
+		if (pos == com.find("%C3%BB", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "û");
+		}
+		if (pos == com.find("%C3%A7", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "ç");
+		}
+		if (pos == com.find("%C3%89", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "É");
+		}
+		if (pos == com.find("%C3%88", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "È");
+		}
+		if (pos == com.find("%C3%8A", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "Ê");
+		}
+		if (pos == com.find("%C3%80", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "À");
+		}
+		if (pos == com.find("%C3%8E", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "Î");
+		}
+		if (pos == com.find("%C3%8F", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "Ï");
+		}
+		if (pos == com.find("%C3%94", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "Ô");
+		}
+		if (pos == com.find("%C3%99", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "Ù");
+		}
+		if (pos == com.find("%C3%9B", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "Û");
+		}
+		if (pos == com.find("%C3%87", pos))
+		{
+			com.erase(pos, 6);
+			com.insert(pos, "Ç");
+		}
+		pos++;
+	}
+}
+
 int nbr_of_comments(const std::string path) {
 	int fileCount = 0;
 	DIR* dir = opendir(path.c_str());
@@ -25,24 +288,8 @@ void save_comment(std::string rq) {
 	std::size_t c_end = rq.find("\n", c_start);
 	std::string pseudo = rq.substr(p_start, p_end - p_start);
 	std::string comment = rq.substr(c_start, c_end - c_start);
-
-	std::size_t	pos = 0;
-	while (pos < comment.length())
-	{
-		if (pos == comment.find("+", pos))
-		{
-			comment.erase(pos, 1);
-			comment.insert(pos, " ");
-			pos++;
-		}
-		if (pos == comment.find("%0D%0A", pos))
-		{
-			comment.erase(pos, 6);
-			comment.insert(pos, "\n");
-			pos++;
-		}
-		pos++;
-	}
+	replace(comment);
+	debug(ORANGE, comment);
 	std::ostringstream filename;
 	static int comment_nbr = nbr_of_comments("./site/comments/") + 1;
 	filename << "./site/comments/" << comment_nbr;

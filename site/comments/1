@@ -1,0 +1,38 @@
+test
+
+Espace : %20
+Nouvelle ligne (LF) : %0A
+Retour chariot (CR) : %0D
+Tabulation : %09
+Exclamation (!) : %21
+Citation double (") : %22
+Dièse (#) : %23
+Dollar ($) : %24
+Pourcentage (%) : %25
+Esperluette (&) : &
+Apostrophe (') : '
+Parenthèse ouvrante (() : (
+Parenthèse fermante ()) : )
+Étoile (*) : %2A
+Plus (+) : +
+Virgule (,) : ,
+Tiret (-) : %2D
+Point (.) : %2E
+Slash (/) : /
+Deux-points (:) : %3A
+Point-virgule (;) : ;
+Moins inférieur (<) : <
+Égal (=) : =
+Plus grand que (>) : >
+Interrogation (?) : ?
+Arrobase (@) : @
+Crochet ouvrant ([) : [
+Barre oblique inversée () : \
+Crochet fermant (]) : ]
+Accent circonflexe (^) : ^
+Grave ()) : %60
+Accolade ouvrante ({) : {
+Barre verticale (|) : |
+Accolade fermante (}) : }
+Tilde (~) : ~
+Pourcent (%) : %25
