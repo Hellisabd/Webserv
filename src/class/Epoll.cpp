@@ -250,7 +250,6 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		page = data.getErrors().find("403")->second;
 	}
 	if (page == "./site/submit_comment.html") {
-		debug(_HTTPRequest[clientID]);
 		save_comment(_HTTPRequest[clientID]);
 		generate_comment_page();
 	}
