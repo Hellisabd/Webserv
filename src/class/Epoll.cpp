@@ -249,8 +249,11 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	{
 		page = data.getErrors().find("403")->second;
 	}
-	// if (rq.getMethodToString() == "POST")
-	// 	debug(_HTTPRequest[clientID]);
+	if (page == "./site/submit_comment.html") {
+		debug(_HTTPRequest[clientID]);
+		save_comment(_HTTPRequest[clientID]);
+		generate_comment_page();
+	}
 	char tosend[1024];
 	ssize_t file_read;
 	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {

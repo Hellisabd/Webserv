@@ -39,6 +39,7 @@
 using namespace std;
 unsigned long getFileSize(std::string const &file_path);
 void generate_comment_page();
+void save_comment(std::string rq);
 
 # define NC 	std::string("\e[0m")
 # define RED 	std::string("\e[1;31m")

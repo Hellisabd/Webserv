@@ -1,24 +1,6 @@
 #include <webserv.hpp>
 #include <dirent.h>
 
-void save_comment(std::string rq) {
-	std::string pseudo;
-	std::string comment;
-
-
-
-
-	std::ostringstream filename;
-	static int comment_nbr = 1;
-	filename << "./site/comments/" << comment_nbr;
-	comment_nbr++;
-	std::ofstream file(filename.str().c_str());
-	if (file.is_open()) {
-		file << pseudo << "\n\n" << comment;
-		file.close();
-	}
-}
-
 int nbr_of_comments(const std::string path) {
 	int fileCount = 0;
 	DIR* dir = opendir(path.c_str());
@@ -34,6 +16,42 @@ int nbr_of_comments(const std::string path) {
 	}
 	closedir(dir);
 	return fileCount;
+}
+
+void save_comment(std::string rq) {
+	std::size_t p_start = rq.find("pseudo=", 0) + 7;
+	std::size_t p_end = rq.find("&", p_start);
+	std::size_t c_start = rq.find("comment=", p_end) + 8;
+	std::size_t c_end = rq.find("\n", c_start);
+	std::string pseudo = rq.substr(p_start, p_end - p_start);
+	std::string comment = rq.substr(c_start, c_end - c_start);
+
+	std::size_t	pos = 0;
+	while (pos < comment.length())
+	{
+		if (pos == comment.find("+", pos))
+		{
+			comment.erase(pos, 1);
+			comment.insert(pos, " ");
+			pos++;
+		}
+		if (pos == comment.find("%0D%0A", pos))
+		{
+			comment.erase(pos, 6);
+			comment.insert(pos, "\n");
+			pos++;
+		}
+		pos++;
+	}
+	std::ostringstream filename;
+	static int comment_nbr = nbr_of_comments("./site/comments/") + 1;
+	filename << "./site/comments/" << comment_nbr;
+	comment_nbr++;
+	std::ofstream file(filename.str().c_str());
+	if (file.is_open()) {
+		file << pseudo << "\n\n" << comment;
+		file.close();
+	}
 }
 
 std::string intToString(int number) {
