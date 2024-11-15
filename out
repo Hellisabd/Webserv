@@ -340,3 +340,128 @@ End of the request
 
 
 
+Start of the request
+POST /upload HTTP/1.1
+Host: localhost:4444
+User-Agent: curl/7.81.0
+Accept: */*
+Content-Length: 193
+Content-Type: multipart/form-data; boundary=------------------------dfcd8c53b8ecb549
+
+--------------------------dfcd8c53b8ecb549
+Content-Disposition: form-data; name="file"; filename="prout.txt"
+Content-Type: text/plain
+
+prout
+
+--------------------------dfcd8c53b8ecb549--
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /downloads/prout.txt HTTP/1.1
+Host: localhost:4444
+User-Agent: curl/7.81.0
+Accept: */*
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /downloads/test HTTP/1.1
+Host: localhost:4444
+User-Agent: curl/7.81.0
+Accept: */*
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /upload HTTP/1.1
+Host: localhost:4444
+User-Agent: curl/7.81.0
+Accept: */*
+Content-Length: 193
+Content-Type: multipart/form-data; boundary=------------------------57a085f4db133a1a
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+POST /upload HTTP/1.1
+Host: localhost:4444
+User-Agent: curl/7.81.0
+Accept: */*
+Content-Length: 193
+Content-Type: multipart/form-data; boundary=------------------------d81ecefd26ce5c90
+
+--------------------------d81ecefd26ce5c90
+Content-Disposition: form-data; name="file"; filename="prout.txt"
+Content-Type: text/plain
+
+prout
+
+--------------------------d81ecefd26ce5c90--
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /downloads/test HTTP/1.1
+Host: localhost:4444
+User-Agent: curl/7.81.0
+Accept: */*
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request
+GET /downloads/prout.txt HTTP/1.1
+Host: localhost:4444
+User-Agent: curl/7.81.0
+Accept: */*
+
+
+End of the request
+
+
+
+
+
+
+

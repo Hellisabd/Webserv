@@ -44,6 +44,7 @@ std::string uploadFile(std::string request)
 		type = body.substr(body_start, body_end - body_start - 1);
 		if (type != "application/octet-stream" && type != "text/plain")
 			throw Error("Wrong type of file for upload.");
+			// mettre en place page 415 plutot que throw une erreur
 	}
 	if (body.find(boundaryKey, body_end) != body.npos)
 	{
@@ -51,7 +52,6 @@ std::string uploadFile(std::string request)
 		body_end = body.find(boundaryKey, body_start);
 		body = body.substr(body_start, body_end - body_start - 1);
 	}
-	debug(PURPLE, body);
 	filename = "./site/downloads/" + filename;
 	std::ofstream file(filename.c_str());
 	if (file.is_open())
