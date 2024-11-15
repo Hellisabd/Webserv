@@ -28,6 +28,11 @@ location /submit_comment {
 	./site/submit_comment.html
 }
 
+location /upload {
+	Method GET POST
+	./site/upload.html
+}
+
 error_pages {
 	400 ./site/400.html
 	401 ./site/401.html

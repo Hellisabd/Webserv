@@ -205,6 +205,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		}
 
 		rq.parseRequest();
+		debug(BLUE, "error", rq.parsingError);
 		if (rq.parsingError)
 		{
 			std::cout << "pourquoi" << endl;
@@ -266,6 +267,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			throw Error("");
 		}
 	}
+	debug(YELLOW, "passe dans le clear");
 	_HTTPRequest[clientID].clear();
 	close(infile);
 }
