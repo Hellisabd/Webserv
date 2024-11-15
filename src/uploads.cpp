@@ -80,10 +80,14 @@ void generate_uploads_url(std::vector<string> filenames)
 	oss << "		<button type=\"submit\">Upload</button>\n";
 	oss << "	</form>\n";
 	oss << "<h2>Downloads</h2>\n";
-	for(std::vector<std::string>::iterator it = filenames.begin(); it != filenames.end(); it++)	{	
-		oss << "<a href=\" ./downloads/" + *it + "\" download=\"" + *it + "\">Download " + *it + "</a>\n";
-		oss << "<br>\n";
+	oss << "<table>\n";
+	for (std::vector<std::string>::iterator it = filenames.begin(); it != filenames.end(); it++) {	
+    oss << "<tr>";
+    oss << "<td>📁 " + *it + "</td>";
+    oss << "<td><a href=\"./downloads/" + *it + "\" download=\"" + *it + "\">Download</a></td>";
+    oss << "</tr>\n";
 	}
+	oss << "</table>\n";
 	oss << "</body>\n";
 	oss << "</html>\n";
 	std::ofstream page("./site/upload.html");

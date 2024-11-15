@@ -365,6 +365,7 @@ void Data::fill_uploads() {
 		method.push_back("GET");
 		_method["/downloads/" + filename] = method;
 	}
+	closedir(dir);
 }
 
 Data::~Data()

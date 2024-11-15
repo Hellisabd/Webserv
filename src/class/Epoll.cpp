@@ -225,12 +225,10 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		method.push_back("GET");
 		std::map<std::string, std::vector<string> > &tmp = data.getMethods();
 		tmp["/downloads/" + tmp_name] = method;
-		debug_container(ORANGE, "vector uploads", data._uploads);
 		std::map<std::string, std::string> &tmploc = data.getLocations();
 		if (filename.find("/downloads") != filename.npos)
 			tmploc["/downloads/" + tmp_name] = filename;
 		generate_uploads_url(data._uploads);
-		debug_map(GREEN, "loc: ", data.getLocations());
 	}
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
 		_HTTPRequest[clientID].clear();
