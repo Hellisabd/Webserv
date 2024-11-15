@@ -1,4 +1,5 @@
 #include "Data.hpp"
+#include <dirent.h>
 
 Data::Data()
 {
@@ -18,6 +19,7 @@ Data::Data(std::string const &str, char **env)
 	if (!inputfile.is_open())
 		throw Error("Can't open the file");
 	fill_info(inputfile);
+	fill_uploads();
 	// std::cerr << *this;
 }
 
@@ -133,7 +135,7 @@ std::vector<std::string> const &Data::getServerNames() const
 	return _serverNames;
 }
 
-std::map<std::string, std::string> const &Data::getLocations() const
+std::map<std::string, std::string> &Data::getLocations()
 {
 	return _loc;
 }
@@ -143,7 +145,7 @@ std::map<std::string, std::string> const &Data::getErrors() const
 	return _errors;
 }
 
-std::map<std::string, std::vector<std::string> > const &Data::getMethods() const
+std::map<std::string, std::vector<std::string> > &Data::getMethods()
 {
 	return _method;
 }
@@ -343,6 +345,25 @@ void Data::cpEnv(char **env) {
 		//debug(16);
 		var = tmp.substr(var_start, tmp.size());
 		_env[name] = var;
+	}
+}
+
+void Data::fill_uploads() {
+	DIR* dir = opendir("./site/downloads/");
+	if (!dir)
+		throw Error("Can't open downloads directory.");
+	
+	struct dirent* entry;
+	while ((entry = readdir(dir)) != NULL) {
+		std::string filename = entry->d_name;
+		if (filename == "." || filename == "..") {
+            continue;
+        }
+		_uploads.push_back(filename);
+		_loc["/downloads/" + filename] = "./site/downloads/" + filename;
+		std::vector<std::string> method;
+		method.push_back("GET");
+		_method["/downloads/" + filename] = method;
 	}
 }
 

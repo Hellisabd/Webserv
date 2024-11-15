@@ -120,6 +120,8 @@ void replace(std::string &com) {
 int nbr_of_comments(const std::string path) {
 	int fileCount = 0;
 	DIR* dir = opendir(path.c_str());
+	if (!dir)
+		throw Error("Can't open comments directory.");
 
 	if (dir == NULL)
 		return -1;

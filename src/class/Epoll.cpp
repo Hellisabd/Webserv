@@ -205,7 +205,6 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		}
 
 		rq.parseRequest();
-		debug(BLUE, "error", rq.parsingError);
 		if (rq.parsingError)
 		{
 			std::cout << "pourquoi" << endl;
@@ -215,11 +214,29 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		// debug_map(PURPLE, "map form HttpRequest type", path);
 	}
 	std::string path = rq.getUrl();
+	if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST")
+	{
+		std::string filename = uploadFile(_HTTPRequest[clientID]);
+		std::string tmp_name;
+		if (filename.find("/downloads") != filename.npos)
+			tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
+		data._uploads.push_back(tmp_name);
+		std::vector<std::string> method;
+		method.push_back("GET");
+		std::map<std::string, std::vector<string> > &tmp = data.getMethods();
+		tmp["/downloads/" + tmp_name] = method;
+		debug_container(ORANGE, "vector uploads", data._uploads);
+		std::map<std::string, std::string> &tmploc = data.getLocations();
+		if (filename.find("/downloads") != filename.npos)
+			tmploc["/downloads/" + tmp_name] = filename;
+		generate_uploads_url(data._uploads);
+		debug_map(GREEN, "loc: ", data.getLocations());
+	}
 	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
-	debug(_HTTPRequest[clientID]);
+	// debug(_HTTPRequest[clientID]);
 	//debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
@@ -267,7 +284,6 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			throw Error("");
 		}
 	}
-	debug(YELLOW, "passe dans le clear");
 	_HTTPRequest[clientID].clear();
 	close(infile);
 }

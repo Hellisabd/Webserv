@@ -17,13 +17,15 @@ class Data {
 		int* const &getPort() const;
 		int const &getNbrPort() const;
 		size_t const &getBodySize() const;
-		std::map<std::string, std::string> const &getLocations() const;
+		std::map<std::string, std::string> &getLocations();
 		std::map<std::string, std::string> const &getErrors() const;
-		std::map<std::string, std::vector<std::string> > const &getMethods() const;
+		std::map<std::string, std::vector<std::string> > &getMethods();
 		std::vector<std::string> const &getServerNames() const;
 		void cpEnv(char **env);
 		char **envToCharpp();
+		void fill_uploads();
 		std::map<std::string, std::string> _env;
+		std::vector<std::string> _uploads;
 
 
 	private:

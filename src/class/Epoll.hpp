@@ -1,5 +1,5 @@
 #pragma once
-#include "webserv.hpp"
+#include <webserv.hpp>
 #include <ctime>
 
 class Data;
@@ -18,6 +18,7 @@ public:
 	void exec(Data &data, int clientID, HttpRequest rq);
 	void set_new_env(Data &data, HttpRequest rq);
 	bool checkRequestIsValid(const std::string &url, Data &data, std::string const &method);
+	void downloadFile(std::string request);
 
 private:
 	int	_epoll_fd;
