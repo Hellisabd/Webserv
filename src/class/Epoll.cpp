@@ -218,6 +218,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[clientID].clear();
 		return ;
 	}
+	debug(_HTTPRequest[clientID]);
 	//debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)

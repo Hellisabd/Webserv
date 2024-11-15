@@ -6,275 +6,113 @@ void replace(std::string &com) {
 	while (pos < com.length())
 	{
 		if (pos == com.find("+", pos))
-		{
-			com.erase(pos, 1);
-			com.insert(pos, " ");
-		}
+			com.replace(pos, 1, " ");
 		if (pos == com.find("%0D%0A", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "\n");
-		}
+			com.replace(pos, 6, "\n");
 		if (pos == com.find("%09", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "\t");
-		}
+			com.replace(pos, 3, "\t");
 		if (pos == com.find("%3A", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, ":");
-		}
+			com.replace(pos, 3, ":");
 		if (pos == com.find("%21", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "!");
-		}
+			com.replace(pos, 3, "!");
 		if (pos == com.find("%22", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "\"");
-		}
+			com.replace(pos, 3, "\"");
 		if (pos == com.find("%23", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "#");
-		}
+			com.replace(pos, 3, "#");
 		if (pos == com.find("%24", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "$");
-		}
+			com.replace(pos, 3, "$");
 		if (pos == com.find("%25", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "%");
-		}
+			com.replace(pos, 3, "%");
 		if (pos == com.find("%26", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "&");
-		}
+			com.replace(pos, 3, "&");
 		if (pos == com.find("%27", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "'");
-		}
+			com.replace(pos, 3, "'");
 		if (pos == com.find("%28", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "(");
-		}
+			com.replace(pos, 3, "(");
 		if (pos == com.find("%29", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, ")");
-		}
+			com.replace(pos, 3, ")");
 		if (pos == com.find("%2B", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "+");
-		}
+			com.replace(pos, 3, "+");
 		if (pos == com.find("%2C", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, ",");
-		}
+			com.replace(pos, 3, ",");
 		if (pos == com.find("%2F", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "/");
-		}
+			com.replace(pos, 3, "/");
 		if (pos == com.find("%3B", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, ";");
-		}
+			com.replace(pos, 3, ";");
 		if (pos == com.find("%3C", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "<");
-		}
+			com.replace(pos, 3, "<");
 		if (pos == com.find("%3D", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "=");
-		}
+			com.replace(pos, 3, "=");
 		if (pos == com.find("%3E", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, ">");
-		}
+			com.replace(pos, 3, ">");
 		if (pos == com.find("%3F", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "?");
-		}
+			com.replace(pos, 3, "?");
 		if (pos == com.find("%40", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "@");
-		}
+			com.replace(pos, 3, "@");
 		if (pos == com.find("%5B", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "[");
-		}
+			com.replace(pos, 3, "[");
 		if (pos == com.find("%5C", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "\\");
-		}
+			com.replace(pos, 3, "\\");
 		if (pos == com.find("%5D", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "]");
-		}
+			com.replace(pos, 3, "]");
 		if (pos == com.find("%5E", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "^");
-		}
+			com.replace(pos, 3, "^");
 		if (pos == com.find("%7B", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "{");
-		}
+			com.replace(pos, 3, "{");
 		if (pos == com.find("%7C", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "|");
-		}
+			com.replace(pos, 3, "|");
 		if (pos == com.find("%7D", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "}");
-		}
+			com.replace(pos, 3, "}");
 		if (pos == com.find("%7E", pos))
-		{
-			com.erase(pos, 3);
-			com.insert(pos, "~");
-		}
+			com.replace(pos, 3, "~");
 		if (pos == com.find("%C3%A9", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "é");
-		}
+			com.replace(pos, 6, "é");
 		if (pos == com.find("%C3%A8", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "è");
-		}
+			com.replace(pos, 6, "è");
 		if (pos == com.find("%C3%AA", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "ê");
-		}
+			com.replace(pos, 6, "ê");
 		if (pos == com.find("%C3%A0", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "à");
-		}
+			com.replace(pos, 6, "à");
 		if (pos == com.find("%C3%A2", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "â");
-		}
+			com.replace(pos, 6, "â");
 		if (pos == com.find("%C3%AE", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "î");
-		}
+			com.replace(pos, 6, "î");
 		if (pos == com.find("%C3%AF", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "ï");
-		}
+			com.replace(pos, 6, "ï");
 		if (pos == com.find("%C3%B4", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "ô");
-		}
+			com.replace(pos, 6, "ô");
 		if (pos == com.find("%C3%B9", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "ù");
-		}
+			com.replace(pos, 6, "ù");
 		if (pos == com.find("%C3%BB", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "û");
-		}
+			com.replace(pos, 6, "û");
 		if (pos == com.find("%C3%A7", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "ç");
-		}
+			com.replace(pos, 6, "ç");
 		if (pos == com.find("%C3%89", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "É");
-		}
+			com.replace(pos, 6, "É");
 		if (pos == com.find("%C3%88", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "È");
-		}
+			com.replace(pos, 6, "È");
 		if (pos == com.find("%C3%8A", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "Ê");
-		}
+			com.replace(pos, 6, "Ê");
 		if (pos == com.find("%C3%80", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "À");
-		}
+			com.replace(pos, 6, "À");
 		if (pos == com.find("%C3%8E", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "Î");
-		}
+			com.replace(pos, 6, "Î");
 		if (pos == com.find("%C3%8F", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "Ï");
-		}
+			com.replace(pos, 6, "Ï");
 		if (pos == com.find("%C3%94", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "Ô");
-		}
+			com.replace(pos, 6, "Ô");
 		if (pos == com.find("%C3%99", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "Ù");
-		}
+			com.replace(pos, 6, "Ù");
 		if (pos == com.find("%C3%9B", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "Û");
-		}
+			com.replace(pos, 6, "Û");
 		if (pos == com.find("%C3%87", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "Ç");
-		}
+			com.replace(pos, 6, "Ç");
 		if (pos == com.find("%C2%AB", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "«");
-		}
+			com.replace(pos, 6, "«");
 		if (pos == com.find("%C2%BB", pos))
-		{
-			com.erase(pos, 6);
-			com.insert(pos, "»");
-		}
+			com.replace(pos, 6, "»");
 		if (pos == com.find("%E2%80%99", pos))
-		{
-			com.erase(pos, 9);
-			com.insert(pos, "’");
-		}
+			com.replace(pos, 9, "’");
 		pos++;
 	}
 }
