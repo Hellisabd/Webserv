@@ -3,27 +3,38 @@
 #include <algorithm>
 #include <cctype>
 #include <cstddef>
+#include <cstdlib>
 #include <cstring>
 #include <iterator>
 #include <map>
 #include <utility>
 
 HttpRequest::HttpRequest(string request): _request(request) {
+	_bodySize = -1;
+	_hasContentLength = false;
 	parsingStrError = "No error in sight\n";
 	parsingError = false;
+	errno = 0;
 	fillSize();
 }
 
 HttpRequest::~HttpRequest() {
 }
 
+void	HttpRequest::setErr(int n, const string& s) {
+	parsingError = true;
+	parsingStrError = s;
+	errNo = n;
+}
+
 // returns the header key and value + true if found
 // undefined + false if not found
-const pair<const pair<string, string>, bool> HttpRequest::getHeaderByKey(string key) {
-	pair< pair<string, string>, bool> ret;
-	for (map<string, string>::iterator it = _header.begin(); it != _header.end(); it++) {
+const pair< const pair<string, t_headerValue> ,bool>	HttpRequest::getHeaderByKey(const string& key) {
+	pair<pair<string, t_headerValue> ,bool> ret;
+	for (headermap_t::iterator it = _header.begin(); it != _header.end(); it++) {
 		if (!it->first.compare(key)) {
-			ret.first = *it;
+			ret.first.first = it->first;
+			ret.first.second = it->second;
 			ret.second = true;
 			return (ret);
 		}
@@ -33,19 +44,71 @@ const pair<const pair<string, string>, bool> HttpRequest::getHeaderByKey(string 
 	return (ret);
 }
 
+bool HttpRequest::isChunkedBasedRequest() {
+	const pair<const pair<string, t_headerValue>, bool> chonk = getHeaderByKey("Transfer-Encoding");
+	if (chonk.second) {
+		if (!chonk.first.second.rawValue.compare("chunked")) {
+			setErr(501, "chunked requests not implemented, only content-length based requests.\n");
+			return (true);
+		}
+	}
+	return (false);
+}
+
 bool HttpRequest::parseRequest() {
-	fillMethod();
+	if (!fillMethod()) {
+		return (false);
+	}
 	fillUrl();
 	fillHostAndPort();
 	fillHttpVersion();
 	if (!fillHeaders())
 		return (false);
-	if (_hasBody && _method == GET) {
-		parsingError = true;
-		parsingStrError = "Found a body in a GET request\n";
+	if (isChunkedBasedRequest()) {
 		return (false);
 	}
-	if (_method == POST) {
+	// throws away request where:
+	// - body is found but not content-length
+	// - body is found but content-length is less that body size
+	if (_hasBody) {
+		const pair<const pair<string, t_headerValue>, bool> cLenHeader = getHeaderByKey("Content-Length");
+		if (cLenHeader.second) {
+			_hasContentLength = true;
+			_contentLength = atoi(cLenHeader.first.second.rawValue.c_str());
+		} else {
+			setErr(501, "Body without content-length is not supported by our wonderful webserver");
+			return (false);
+		}
+		// No longer a case of 400 bad request if the content-length is not equal. However a CL above would mean a chunked request, so i throw that one out.
+		calcBodySize();
+		if (_contentLength > _bodySize) {
+			setErr(400, "Content-Length size is superior to the body size\n");
+		}
+		switch (_method) {
+			case GET:
+				// Ignore body with GET methods
+				break ;
+			case POST:
+				// is multipart ?
+				// 	- choper le type
+				// 	- choper le delimiter
+				// 	- verifier la presence des 2 prochains
+				// 	  delimiters
+				// 	- chopper entre eux
+				// 		- recuperer les entetes de partie
+				// 		- verifier le rnrn
+				//		- si delimiter de fin, ggwp
+				//		- sinon repeter
+				// 	- ggwp
+				// sinon
+				// 	-je sais pas
+				// 	- les trucs genre ?cle1=value&cle2=value
+				break ;
+			case DELETE:
+				break ;
+			default:
+				break ;
+		}
 	}
 	return (true);
 }
@@ -53,14 +116,14 @@ bool HttpRequest::parseRequest() {
 bool HttpRequest::isValidRequestLine() {
 	size_t cur = 0;
 	if (_requestSize < _minRequestSize) {
-		parsingStrError = "Request size is below the minimum size for a valid request\n";
+		setErr(400, "Request size is below the minimum size for a valid request\n");
 		return (false);
 	}
 
-	const char *methods[3] = {"GET ", "POST ", "DELETE "};
+	const char *methods[9] = {"GET ", "POST ", "DELETE ", "POST ", "HEAD ", "OPTION", "TRACE", "PATCH", "CONNECT"};
 	bool found = false;
 	string met;
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 9; i++) {
 		if (!strncmp(_request.c_str(), methods[i], strlen(methods[i]))) {
 			found = true;
 			cur += strlen(methods[i]);
@@ -68,7 +131,7 @@ bool HttpRequest::isValidRequestLine() {
 		}
 	}
 	if (found == false) {
-		parsingStrError = "Couldnt find the method at the start of the request\n";
+		setErr(400, "Couldnt find the method at the start of the request\n");
 		return (false);
 	}
 	string uri;
@@ -77,12 +140,12 @@ bool HttpRequest::isValidRequestLine() {
 		cur++;
 	}
 	if (_request[cur] != ' ') {
-		parsingStrError = "No whitespace right afte the uri\n";
+		setErr(400, "No whitespace right afte the uri\n");
 		return (false);
 	}
 	cur++;
 	if (_request.compare(cur, 8, "HTTP/1.1" )) {
-		parsingStrError = "The http version is not HTTP/1.1 exactly\n";
+		setErr(400, "The http version is not HTTP/1.1 exactly\n");
 		return (false);
 	}
 	cur += 8;
@@ -90,7 +153,7 @@ bool HttpRequest::isValidRequestLine() {
 		cur++;
 	}
 	if (_request.compare(cur, 2, "\r\n" )) {
-		parsingStrError = "The request line does not end with \\r\\n";
+		setErr(400, "The request line does not end with \\r\\n");
 		return (false);
 	}
 	cur += 2;
@@ -98,7 +161,7 @@ bool HttpRequest::isValidRequestLine() {
 
 	// URI validation
 	if (uri[0] != '/') {
-		parsingStrError = "The uri does not start with /\n";
+		setErr(400, "The uri does not start with /\n");
 		return (false); // ???????? chars valides pour l'uri ou pas
 						// aucune idee de ce que l'uri peut contenir
 						// ou comment elle peut etre utilisee, a creuser
@@ -108,6 +171,22 @@ bool HttpRequest::isValidRequestLine() {
 
 bool caseInsCmp(char a, char b) {
 	return tolower(a) == tolower(b);
+}
+
+bool caseInsStrCmp(string a, string b) {
+	if (a.size() != b.size()) {
+		return (false);
+	}
+	string::iterator ait, bit;
+	ait = a.begin();
+	bit = b.begin();
+	while (ait != a.end() && bit != b.end()) {
+		if (!caseInsCmp(*ait, *bit)) {
+			return (false);
+		}
+		ait++, bit++;
+	}
+	return (true);
 }
 
 size_t findCaseIns(const string& str, const string& substr) {
@@ -131,18 +210,18 @@ string trimWhitespaces(const string& str) {
 bool HttpRequest::isValidHost() {
 	size_t hostPos = findCaseIns(_request, "host");
 	if (hostPos == string::npos) {
-		parsingStrError = "Couldnt find the host header\n";
+		setErr(400, "Couldnt find the host header\n");
 		return (false);
 	}
 	if (_request.compare(hostPos - 2, 2, "\r\n")) {
 		// attention ! n'importe quel host dans la requete va trigger validHost();
-		parsingStrError = "The host header is not directly after a crlf\n";
+		setErr(400, "The host header is not directly after a crlf\n");
 		return (false);
 	}
 	string hostValue = _request.substr(hostPos + 5, _request.find("\r\n", hostPos) - hostPos - 5);
 	hostValue = trimWhitespaces(hostValue);
 	if (hostValue.size() == 0) {
-		parsingStrError = "The host header does not have a value\n";
+		setErr(400, "The host header does not have a value\n");
 		return (false);
 	}
 	return (true);
@@ -157,7 +236,6 @@ bool HttpRequest::isValid() {
 	}
 	return (true);
 }
-
 
 HttpMethod	HttpRequest::getMethod() {
 	return (_method);
@@ -193,7 +271,7 @@ string HttpRequest::getSpecHeader(string& spec) {
 	return ("lol");
 }
 
-map<string, string> HttpRequest::getHeaders() {
+headermap_t	HttpRequest::getHeaders() {
 	return (_header);
 }
 
@@ -203,6 +281,22 @@ string	HttpRequest::getHost() {
 
 string	HttpRequest::getPort() {
 	return (_port);
+}
+
+bool	HttpRequest::hasBody() {
+	return (_hasBody);
+}
+
+size_t	HttpRequest::getBodySize() {
+	return (_bodySize);
+}
+
+bool	HttpRequest::hasContentLength() {
+	return (_hasContentLength);
+}
+
+size_t	HttpRequest::getContentLength() {
+	return (_contentLength);
 }
 
 void HttpRequest::fillHostAndPort() {
@@ -217,7 +311,8 @@ void HttpRequest::fillSize() {
 	_requestSize = _request.length();
 }
 
-void HttpRequest::fillMethod() {
+bool HttpRequest::fillMethod() {
+	const string rejectedMethods[7] = {"HEAD", "PUT", "CONNECT", "OPTION", "TRACE", "PATCH"};
 	string met = _request.substr(0, _request.find(" "));
 	if (!met.compare("GET")) {
 		_method = GET;
@@ -226,8 +321,16 @@ void HttpRequest::fillMethod() {
 	} else if (!met.compare("DELETE")) {
 		_method = DELETE;
 	} else {
+		for (int i = 0; i < 6; i++) {
+			if (!met.compare(rejectedMethods[i])) {
+				setErr(405, rejectedMethods[i] + " is not allowed\n");
+				return (false);
+			}
+		}
 		_method = UNKNOWN;
+		setErr(400, "Unknown method\n");
 	}
+	return (true);
 }
 
 void HttpRequest::fillUrl() {
@@ -240,6 +343,20 @@ void HttpRequest::fillHttpVersion() {
 	size_t start = _request.find("HTTP");
 	size_t end = _request.find("\r\n");
 	_httpVersion = _request.substr(start, end - start);
+}
+
+static bool	isCrlf(const string &s) {
+	if (!s.compare(0, 2, "\r\n")) {
+		return (true);
+	}
+	return (false);
+}
+
+static bool	isDoubleCrlf(const string &s) {
+	if (!s.compare(0, 4, "\r\n\r\n")) {
+		return (true);
+	}
+	return (false);
 }
 
 string HttpRequest::extractHeaderKey(string &s) {
@@ -259,42 +376,78 @@ bool	HttpRequest::validateHeaderKey(string &headerKey) {
 	size_t size = headerKey.size();
 	for (size_t i = 0; i < size; i++) {
 		if (headerKey[i] < 33 || headerKey[i] > 126) {
-			parsingStrError = "A char not between 33 and 126 has been found in a header key\n";
+			setErr(400, "A char not between 33 and 126 has been found in a header key\n");
+			return (false);
+		}
+	}
+	for (headermap_t::iterator it = _header.begin(); it != _header.end(); it++) {
+		if (caseInsStrCmp(headerKey, it->first)) {
+			setErr(400, "A duplicate header has been found\n");
 			return (false);
 		}
 	}
 	return (true);
 }
 
-static bool	isCrlf(const string &s) {
-	if (!s.compare(0, 2, "\r\n")) {
-		return (true);
-	}
-	return (false);
+bool	HttpRequest::isEnd(const string::iterator& it) {
+	return (it == _request.end() || isCrlf(&(*it)));
 }
 
-static bool	isDoubleCrlf(const string &s) {
-	if (!s.compare(0, 4, "\r\n\r\n")) {
-		return (true);
+// Content-Type: multipart/form-data; boundary=------123123123 ; lol=oui
+//   KEY            RAWVALUE		  PARAMKEY     PARAMVALUE    PARAM2 etc...
+t_headerValue HttpRequest::extractHeaderValue(string::iterator& it) {
+	string					rawValue;
+	string					paramKey;
+	string					paramValue;
+	strmap_t				parameters;
+	string					tmp;
+	size_t					i = 0;
+
+	// extracting the rawValue
+	while (!isEnd(it) && *it != ';') {
+		rawValue += *it;
+		it++, i++;
 	}
-	return (false);
+	// extracting the remaining parameters
+	while (!isEnd(it)) {
+		if (!parsingError && *it == ';') {
+			it++;
+			paramKey.clear();
+			while (*it != '=' && !isEnd(it)) {
+				paramKey += *it;
+				it++;
+			}
+			if (!parsingError && *it == '=') {
+				it++;
+				paramValue.clear();
+				while (!isEnd(it) && *it != ';') {
+					paramValue += *it;
+					it++, i++;
+				}
+			} else {
+				setErr(400, "Found parameter without a clear value delimited by a =\n");
+			}
+			// since map Keys are const by default I have to trim here
+			paramKey = trimWhitespaces(paramKey);
+			parameters[paramKey] = paramValue;
+		}
+	}
+	return ((t_headerValue){rawValue, parameters});
 }
 
 bool HttpRequest::fillHeaders() {
-	string::iterator it = _request.begin();
-	string key;
-	string value;
+	string::iterator	it = _request.begin();
+	string				key;
+
 	it += _requestLineSize;
 	while (it != _request.end() && !isDoubleCrlf(&(*it))) {
 		key.clear();
-		value.clear();
 		while (it != _request.end() && !isCrlf(&(*it)) &&  *it != ':') {
 			key += *it;
 			it++;
 		}
 		if (*it != ':') {
-			parsingStrError = "A header key has been found that is not followed directly by a : \n";
-			parsingError = true;
+			setErr(400, "A header key has been found that is not followed directly by a : \n");
 			return (false);
 		}
 		if (!validateHeaderKey(key)) {
@@ -302,29 +455,34 @@ bool HttpRequest::fillHeaders() {
 			return (false);
 		}
 		it++;
-		while (it != _request.end() && !isCrlf(&(*it)) && *it != '\r') {
-			value += *it;
-			it++;
-		}
+		_header[key] = extractHeaderValue(it);
 		if (!isCrlf(&(*it))) {
-			parsingStrError = "A header is not directly followed by crlf\n";
-			parsingError = true;
+			setErr(400, "A header is not directly followed by crlf\n");
 			return (false);
 		}
 		if (!isDoubleCrlf(&(*it)))
 			it += 2;
-		value = trimWhitespaces(value);
-		_header[key] = value;
+		_header[key].rawValue = trimWhitespaces(_header[key].rawValue);
+		for (strmap_t::iterator it = _header[key].parameters.begin(); it != _header[key].parameters.end(); it++) {
+			it->second = trimWhitespaces(it->second);
+		}
 	}
 	if (!isDoubleCrlf(&(*it))) {
-		parsingStrError = "The header part of the request is not ended by \\r\\n\\r\\n \n";
-		parsingError = true;
+		setErr(400, "The header part of the request is not ended by \\r\\n\\r\\n \n");
 		return (false);
 	}
 	it += 4;
 	_headerEnd = it;
 	(strlen(&(*it)) > 0) ? _hasBody = true : _hasBody = false;
 	return (true);
+}
+
+void	HttpRequest::calcBodySize() {
+	size_t	size = 0;
+	for (string::iterator start = _headerEnd; start != _request.end() && !isDoubleCrlf(&(*start)); start++) {
+		size++;
+	}
+	_bodySize = size;
 }
 
 bool HttpRequest::fillBody() {

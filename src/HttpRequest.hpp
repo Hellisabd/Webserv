@@ -7,9 +7,24 @@
 #include "../includes/webserv.hpp"
 
 using namespace std;
-
-
 enum HttpMethod {GET, POST, DELETE, UNKNOWN};
+typedef map<string, string> strmap_t;
+
+typedef struct s_headerValue {
+	string				rawValue;
+	strmap_t			parameters;
+}	t_headerValue;
+
+typedef struct s_multipart {
+	string					type;
+	string					boundary;
+	size_t					partNb;
+	vector<string>			partsContents;
+	vector<t_headerValue>	headers;
+	vector<string>			partsFiles;
+}	t_multipart;
+
+typedef map<string, t_headerValue> headermap_t;
 
 // Usage : request in the constructor,
 // .isValid() first,
@@ -19,50 +34,63 @@ class HttpRequest {
  public:
 	HttpRequest(string request);
 	~HttpRequest();
-	bool				isValid();
-	bool				isValidRequestLine();
-	bool				isValidHost();
-	bool				parseRequest();
-	string				getMethodToString();
-	HttpMethod			getMethod();
-	string				getUrl();
-	string				getHttpVersion();
-	string				getBody();
-	map<string, string>	getHeaders();
-	string				getSpecHeader(string& spec);
-	size_t				getSize();
-	string				getHost();
-	string				getPort();
+	bool						isValid();
+	bool						isValidRequestLine();
+	bool						isValidHost();
+	bool						parseRequest();
+	string						getMethodToString();
+	HttpMethod					getMethod();
+	string						getUrl();
+	string						getHttpVersion();
+	string						getBody();
+	headermap_t					getHeaders();
+	string						getSpecHeader(string& spec);
+	size_t						getSize();
+	string						getHost();
+	string						getPort();
+	bool						hasBody();
+	bool						hasContentLength();
+	size_t						getBodySize();
+	size_t						getContentLength();
 
-	bool				parsingError;
-	string				parsingStrError;
+	bool						parsingError;
+	string						parsingStrError;
+	int							errNo;
  private:
-	static const size_t _minRequestSize = 18; // GET / HTTP/1.1\\n\r\n
-	// parsing methods to fill data
-	void	fillMethod();
-	void	fillUrl();
-	void	fillHttpVersion();
-	bool	fillHeaders();
-	bool	fillBody();
-	void	fillSize();
-	void	fillHostAndPort();
+	static const size_t _minRequestSize = 18; // GET / HTTP/1.1\r\n\r\n
+	void						setErr(int n, const string& s);
+	bool						fillMethod();
+	void						fillUrl();
+	void						fillHttpVersion();
+	bool						fillHeaders();
+	bool						fillBody();
+	void						fillSize();
+	void						fillHostAndPort();
+	bool						isEnd(const string::iterator& it);
+	bool						isChunkedBasedRequest();
 
 	//utils
-	string	extractHeaderKey(std::string &s);
+	string			extractHeaderKey(std::string &s);
+	t_headerValue	extractHeaderValue(string::iterator& it);
 	bool	validateHeaderKey(std::string& headerKey);
-	const pair<const pair<string, string>, bool> getHeaderByKey(string key);
+	const pair< const pair<string, t_headerValue> ,bool> getHeaderByKey(const string& key);
+	void			calcBodySize();
 
 	// request slices
-	string				_request;
-	size_t				_requestLineSize;
-	HttpMethod			_method; // get post delete unknown
-	string				_host;
-	string				_port;
-	string				_url;
-	string				_httpVersion;
-	map<string, string> _header;
-	size_t				_requestSize;
-	string				_delimiter;
-	string::iterator	_headerEnd;
-	bool				_hasBody;
+	string						_request;
+	size_t						_requestLineSize;
+	HttpMethod					_method; // get post delete unknown
+	string						_host;
+	string						_port;
+	string						_url;
+	string						_httpVersion;
+	headermap_t					_header;
+	size_t						_requestSize;
+	string						_delimiter;
+	string::iterator			_headerEnd;
+	bool						_hasBody;
+	size_t						_bodySize;
+	bool						_hasContentLength;
+	size_t						_contentLength;
+	t_multipart					_multipart;
 };
