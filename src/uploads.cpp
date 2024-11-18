@@ -83,6 +83,16 @@ void generate_uploads_url(std::vector<string> filenames)
 	oss << "				border-radius: 4px;\n";
 	oss << "				font-size: 1em;\n";
 	oss << "			}\n";
+	oss << "			a1 {\n";
+	oss << "				display: inline-block;\n";
+	oss << "				margin-top: 1em;\n";
+	oss << "				padding: 0.5em 1em;\n";
+	oss << "				background-color: #16b84e;\n";
+	oss << "				color: white;\n";
+	oss << "				text-decoration: none;\n";
+	oss << "				border-radius: 4px;\n";
+	oss << "				font-size: 1em;\n";
+	oss << "			}\n";
 	oss << "		}\n";
 	oss << "</style>\n";
 	oss << "</head>\n";
@@ -98,7 +108,7 @@ void generate_uploads_url(std::vector<string> filenames)
 	for (std::vector<std::string>::iterator it = filenames.begin(); it != filenames.end(); it++) {	
 	oss << "<tr>";
 	oss << "<td>📁 " + *it + "</td>";
-	oss << "<td><a href=\"./downloads/" + *it + "\" download=\"" + *it + "\">Download</a></td>";
+	oss << "<td><a1 href=\"./downloads/" + *it + "\" download=\"" + *it + "\">Download</a1></td>";
 	oss << "</tr>\n";
 	}
 	oss << "</table>\n";
