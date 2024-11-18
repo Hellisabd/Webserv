@@ -288,17 +288,35 @@ void Epoll::sendToClient(int clientID, Data &data) {
 
 void Epoll::readFromClient(int clientID)
 {
+	// char buffer[1025];
+	// ssize_t bytes_read = 1;
+	// while (bytes_read > 0) {
+	// 	bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer) - 1);
+	// 	if (bytes_read < 0)
+	// 		break;
+	// 	if (bytes_read <= 1024)
+	// 		buffer[bytes_read] = '\0';
+	// 	_HTTPRequest[clientID] += buffer;
+	// 	if (bytes_read < 1024)
+	// 		break;
+	// }
 	char buffer[1025];
-	ssize_t bytes_read = 1;
-	while (bytes_read > 0) {
+	ssize_t bytes_read = 0;
+
+	while (true) {
 		bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer) - 1);
-		if (bytes_read < 0)
-			break;
-		if (bytes_read <= 1024)
+
+		if (bytes_read > 0) {
 			buffer[bytes_read] = '\0';
-		_HTTPRequest[clientID] += buffer;
-		if (bytes_read < 1024)
-			break;
+			_HTTPRequest[clientID] += buffer;
+
+			if (_HTTPRequest[clientID].find("\r\n\r\n") != std::string::npos)
+				break;
+		}
+		if (bytes_read == 0) {
+			close(_epollClient[clientID].data.fd);
+			return;
+		}
 	}
 }
 

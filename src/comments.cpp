@@ -198,6 +198,20 @@ void generate_comment_page() {
 	oss << "	<meta charset=\"UTF-8\">\n";
 	oss << "	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
 	oss << "	<title>Comments about Webserv</title>\n";
+	oss << "	<style>\n";
+	oss << "		body {\n";
+	oss << "			a {\n";
+	oss << "				display: inline-block;\n";
+	oss << "				margin-top: 1em;\n";
+	oss << "				padding: 0.5em 1em;\n";
+	oss << "				background-color: #3498db;\n";
+	oss << "				color: white;\n";
+	oss << "				text-decoration: none;\n";
+	oss << "				border-radius: 4px;\n";
+	oss << "				font-size: 1em;\n";
+	oss << "			}\n";
+	oss << "		}\n";
+	oss << "</style>\n";
 	oss << "</head>\n";
 	oss << "<body>\n";
 	oss << "<h1>Comments</h1>\n";
@@ -217,6 +231,7 @@ void generate_comment_page() {
 	oss << "		<textarea id=\"comment\" name=\"comment\" rows=\"4\" cols=\"50\" required></textarea><br><br>\n";
 	oss << "		<input type=\"submit\" value=\"Send\">\n";
 	oss << "	</form>\n";
+	oss << "<a href=\"/\">HOME</a>\n";
 	oss << "</body>\n";
 	oss << "</html>\n";
 	std::ofstream page("./site/comments.html");

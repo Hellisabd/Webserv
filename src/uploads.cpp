@@ -71,6 +71,20 @@ void generate_uploads_url(std::vector<string> filenames)
 	oss << "	<meta charset=\"UTF-8\">\n";
 	oss << "	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
 	oss << "	<title>Comments about Webserv</title>\n";
+	oss << "	<style>\n";
+	oss << "		body {\n";
+	oss << "			a {\n";
+	oss << "				display: inline-block;\n";
+	oss << "				margin-top: 1em;\n";
+	oss << "				padding: 0.5em 1em;\n";
+	oss << "				background-color: #3498db;\n";
+	oss << "				color: white;\n";
+	oss << "				text-decoration: none;\n";
+	oss << "				border-radius: 4px;\n";
+	oss << "				font-size: 1em;\n";
+	oss << "			}\n";
+	oss << "		}\n";
+	oss << "</style>\n";
 	oss << "</head>\n";
 	oss << "<body>\n";
 	oss << "<h1>Upload</h1>\n";
@@ -82,12 +96,13 @@ void generate_uploads_url(std::vector<string> filenames)
 	oss << "<h2>Downloads</h2>\n";
 	oss << "<table>\n";
 	for (std::vector<std::string>::iterator it = filenames.begin(); it != filenames.end(); it++) {	
-    oss << "<tr>";
-    oss << "<td>📁 " + *it + "</td>";
-    oss << "<td><a href=\"./downloads/" + *it + "\" download=\"" + *it + "\">Download</a></td>";
-    oss << "</tr>\n";
+	oss << "<tr>";
+	oss << "<td>📁 " + *it + "</td>";
+	oss << "<td><a href=\"./downloads/" + *it + "\" download=\"" + *it + "\">Download</a></td>";
+	oss << "</tr>\n";
 	}
 	oss << "</table>\n";
+	oss << "<a href=\"/\">HOME</a>\n";
 	oss << "</body>\n";
 	oss << "</html>\n";
 	std::ofstream page("./site/upload.html");

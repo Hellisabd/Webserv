@@ -4,24 +4,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
 </head>
 <body>
 <h1>Comments</h1>
 	<div class="comment">
-		<strong>Alexis:</strong><br>
-		<p>coucou ca va<br></p>
-	</div>
-	<div class="comment">
-		<strong>Antoine:</strong><br>
-		<p>coucou<br></p>
-	</div>
-	<div class="comment">
-		<strong>Basile:</strong><br>
-		<p>coucou<br></p>
-	</div>
-	<div class="comment">
-		<strong>aoscg:</strong><br>
-		<p>qouufgwlf<br></p>
+		<strong>ton_pseudo:</strong><br>
+		<p>ton_commentaire<br></p>
 	</div>
 	<h2>Leave a comment</h2>
 	<form action="/submit_comment" method="POST">
@@ -31,5 +33,6 @@
 		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
 		<input type="submit" value="Send">
 	</form>
+<a href="/">HOME</a>
 </body>
 </html>
