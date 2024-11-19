@@ -60,6 +60,9 @@ fclean :
 	$(RM) $(NAME) $(OBJS)
 	@echo "$(MAGENTA)¯|_(ツ)_/¯ I'M SO PROUD OF U!$(DEF_COLOR)"
 
+dir_clean :
+	@rm ./site/comments/* && rm ./site/downloads/* || rm ./site/downloads/*
+
 re :	fclean all
 
 ex :	re clean

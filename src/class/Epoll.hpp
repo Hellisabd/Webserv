@@ -5,6 +5,17 @@
 class Data;
 class HttpRequest;
 
+typedef struct s_requestclient
+{
+	std::string req;
+	std::string body;
+	int nbr_of_read;
+	bool recvEnd;
+	bool sendEnd;
+	bool disconnect;
+	std::size_t bodysize;
+} t_requestClient;
+
 class Epoll {
 public:
 	Epoll(std::vector<int> sock, int nbr_port);
@@ -24,7 +35,7 @@ private:
 	int	_epoll_fd;
 	int _n;
 	int _nbr_client;
-	std::string *_HTTPRequest;
+	t_requestClient *_HTTPRequest;
 	std::vector<int> _sock;
 	std::vector<int> _ClientSock;
 	struct epoll_event _epollServ;

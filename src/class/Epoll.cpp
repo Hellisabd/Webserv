@@ -1,7 +1,7 @@
 #include "Epoll.hpp"
 
 Epoll::Epoll(std::vector<int> sock, int nbr_port) : _sock(sock) {
-	_HTTPRequest = new std::string[MAX_EVENTS];
+	_HTTPRequest = new t_requestClient[MAX_EVENTS];
 	_nbr_client = 0;
 	_epoll_fd = epoll_create(MAX_EVENTS);
 	if (_epoll_fd < 0)
@@ -16,7 +16,13 @@ Epoll::Epoll(std::vector<int> sock, int nbr_port) : _sock(sock) {
 	_ClientSock.resize(MAX_EVENTS);
 	for (std::vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++)
 		*i = -1;
-
+	for (int j = 0; j != MAX_EVENTS; j++) {
+		_HTTPRequest[j].recvEnd = false;
+		_HTTPRequest[j].sendEnd = false;
+		_HTTPRequest[j].disconnect = false;
+		_HTTPRequest[j].nbr_of_read = 0;
+		_HTTPRequest[j].bodysize = 0;
+	}
 }
 
 Epoll::~Epoll() {
@@ -46,7 +52,7 @@ void topars(std::string HTTPRequest)
 {
 	static int i = 0;
 	i++;
-	std::ofstream fd("./out", std::ios::app);
+	std::ofstream fd("./request", std::ios::app);
 	if (!fd.is_open())
 		throw Error("cant open outfile for debug request");
 	//debug(PURPLE, "request", i);
@@ -170,10 +176,12 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 		throw Error("Error sending HTTP header");
 	if (send(_epollClient[clientID].data.fd, buf, byte_read, MSG_NOSIGNAL) < 0)
 	{
-		perror("send body");
+		perror("exec send body");
 		throw Error("");
 	}
-	_HTTPRequest[clientID].clear();
+	_HTTPRequest[clientID].req.clear();
+	_HTTPRequest[clientID].recvEnd = false;
+	_HTTPRequest[clientID].nbr_of_read = 0;
 }
 
 bool Epoll::checkRequestIsValid(const std::string &url, Data &data, std::string const &method)
@@ -193,13 +201,25 @@ bool Epoll::checkRequestIsValid(const std::string &url, Data &data, std::string 
 	return false;
 }
 
+void	print_in_response(std::string headerHTTP, std::string tosend)
+{
+	std::string response = headerHTTP + tosend;
+	std::ofstream fd("./response", std::ios::app);
+	if (!fd.is_open())
+		throw Error("cant open outfile for debug response");
+	//debug(PURPLE, "request", i);
+	debug_file(response, &fd);
+	fd.close();
+}
+
+
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
-	HttpRequest rq(_HTTPRequest[clientID]);
-	int valid = validToSend(_HTTPRequest[clientID], _time_out);
+	HttpRequest rq(_HTTPRequest[clientID].req);
+	int valid = validToSend(_HTTPRequest[clientID].req, _time_out);
 	if (valid == 1)
 	{
-		topars(_HTTPRequest[clientID]);
+		topars(_HTTPRequest[clientID].req);
 		if (!rq.isValid()) {
 			page = data.getErrors().find("400")->second;
 		}
@@ -216,7 +236,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	std::string path = rq.getUrl();
 	if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST")
 	{
-		std::string filename = uploadFile(_HTTPRequest[clientID]);
+		std::string filename = uploadFile(_HTTPRequest[clientID].req);
 		std::string tmp_name;
 		if (filename.find("/downloads") != filename.npos)
 			tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
@@ -230,8 +250,10 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			tmploc["/downloads/" + tmp_name] = filename;
 		generate_uploads_url(data._uploads);
 	}
-	if (_HTTPRequest[clientID].npos != _HTTPRequest[clientID].find("favicon", 0)){
-		_HTTPRequest[clientID].clear();
+	if (_HTTPRequest[clientID].req.npos != _HTTPRequest[clientID].req.find("favicon", 0)){
+		_HTTPRequest[clientID].req.clear();
+		_HTTPRequest[clientID].recvEnd = false;
+		_HTTPRequest[clientID].nbr_of_read = 0;
 		return ;
 	}
 	// debug(_HTTPRequest[clientID]);
@@ -260,14 +282,13 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
-
 	int infile = open(page.c_str(), O_RDONLY);
 	if (infile < 0)
 	{
 		page = data.getErrors().find("403")->second;
 	}
 	if (page == "./site/submit_comment.html") {
-		save_comment(_HTTPRequest[clientID]);
+		save_comment(_HTTPRequest[clientID].req);
 		generate_comment_page();
 	}
 	char tosend[1024];
@@ -278,12 +299,21 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		if (send(_epollClient[clientID].data.fd, tosend, file_read, MSG_NOSIGNAL) < 0)
 		{
 			close(infile);
-			perror("send body");
+			perror("client send body");
 			throw Error("");
 		}
 	}
-	_HTTPRequest[clientID].clear();
+	print_in_response(headerHTTP, tosend);
+	_HTTPRequest[clientID].req.clear();
+	_HTTPRequest[clientID].nbr_of_read = 0;
+	// debug("passe bool to false");
+	_HTTPRequest[clientID].recvEnd = false;
 	close(infile);
+}
+
+std::size_t getbodysize(std::string str)
+{
+	return std::atoi(str.c_str() + (str.find("Content-Length") + 16));
 }
 
 void Epoll::readFromClient(int clientID)
@@ -302,22 +332,59 @@ void Epoll::readFromClient(int clientID)
 	// }
 	char buffer[1025];
 	ssize_t bytes_read = 0;
+	// while (true) {
+	// debug("reading");
+	bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer) - 1);
 
-	while (true) {
-		bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer) - 1);
-
-		if (bytes_read > 0) {
-			buffer[bytes_read] = '\0';
-			_HTTPRequest[clientID] += buffer;
-
-			if (_HTTPRequest[clientID].find("\r\n\r\n") != std::string::npos)
-				break;
+		buffer[bytes_read] = '\0';
+		if (bytes_read > 0 && !_HTTPRequest[clientID].bodysize) {
+			_HTTPRequest[clientID].req += buffer;
+			_HTTPRequest[clientID].nbr_of_read++;
+			// debug("add to request");
 		}
-		if (bytes_read == 0) {
+		if (_HTTPRequest[clientID].req.find("\r\n\r\n") != std::string::npos && _HTTPRequest[clientID].req.find("Content-Length") != std::string::npos && _HTTPRequest[clientID].body.length() == 0)
+		{
+			_HTTPRequest[clientID].bodysize = getbodysize(_HTTPRequest[clientID].req);
+			debug("set body size at : ", _HTTPRequest[clientID].bodysize);
+			_HTTPRequest[clientID].body = _HTTPRequest[clientID].req.substr(_HTTPRequest[clientID].req.find("\r\n\r\n"), _HTTPRequest[clientID].req.length() -  _HTTPRequest[clientID].req.find("\r\n\r\n"));
+			_HTTPRequest[clientID].req = _HTTPRequest[clientID].req.substr(0, _HTTPRequest[clientID].req.find("\r\n\r\n"));
+			// _HTTPRequest[clientID].nbr_of_read++;
+			// debug(_HTTPRequest[clientID].body);
+		}
+		else if (_HTTPRequest[clientID].body.length() < _HTTPRequest[clientID].bodysize)
+		{
+			// debug("add to buffer");
+			_HTTPRequest[clientID].body += buffer;
+			_HTTPRequest[clientID].nbr_of_read++;
+		}
+		else if (_HTTPRequest[clientID].req.find("\r\n\r\n") != std::string::npos && !_HTTPRequest[clientID].bodysize)
+		{
+			_HTTPRequest[clientID].nbr_of_read = 0;
+			_HTTPRequest[clientID].recvEnd = true;
+		}
+		if (_HTTPRequest[clientID].bodysize && _HTTPRequest[clientID].body.length() >= _HTTPRequest[clientID].bodysize)
+		{
+			_HTTPRequest[clientID].nbr_of_read = 0;
+			_HTTPRequest[clientID].recvEnd = true;
+			_HTTPRequest[clientID].req += _HTTPRequest[clientID].body;
+			debug("passe dans end of request");
+			debug(_HTTPRequest[clientID].body);
+			debug("body size : ", _HTTPRequest[clientID].bodysize);
+			debug("body length : ", _HTTPRequest[clientID].body.length());
+		}
+		// debug(_HTTPRequest[clientID].body);
+		// debug(buffer);
+		debug(BLUE, "nbr of read: ", _HTTPRequest[clientID].nbr_of_read);
+		// if (_HTTPRequest[clientID].req.find("\r\n\r\n") )
+		// 	break;
+		if (bytes_read == 0 && _HTTPRequest[clientID].nbr_of_read == 0) {
+			debug(YELLOW, "disconnect");
 			close(_epollClient[clientID].data.fd);
+			_HTTPRequest[clientID].disconnect = true;
 			return;
 		}
-	}
+		// _HTTPRequest[clientID].nbr_of_read++;
+	// }
 }
 
 std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it) {
@@ -356,11 +423,17 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
 				debug(GREEN, "New client added on port " + oss.str());
 			}
 			else if (it->second == _sock[port]) {
-				readFromClient(clientID);
-				if (_HTTPRequest[clientID].length() == 0)
+				// debug(PURPLE, _HTTPRequest[clientID].disconnect);
+
+				if (_HTTPRequest[clientID].recvEnd == false)
+					readFromClient(clientID);
+				if (_HTTPRequest[clientID].disconnect == true) {
+					_HTTPRequest[clientID].disconnect = false;
 					it = deleteClient(it);
-				else
+				}
+				else if (_HTTPRequest[clientID].recvEnd == true)
 					sendToClient(clientID, data);
+				// debug("end of request: ", _HTTPRequest[clientID].recvEnd);
 			}
 			if (_noclient == true)
 			{
