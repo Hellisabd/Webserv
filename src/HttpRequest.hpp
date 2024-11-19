@@ -15,16 +15,17 @@ typedef struct s_headerValue {
 	strmap_t			parameters;
 }	t_headerValue;
 
+typedef map<string, t_headerValue> headermap_t;
+typedef pair<string, t_headerValue> headerpair_t;
+
 typedef struct s_multipart {
 	string					type;
 	string					boundary;
 	size_t					partNb;
 	vector<string>			partsContents;
-	vector<t_headerValue>	headers;
+	headermap_t				headers;
 	vector<string>			partsFiles;
 }	t_multipart;
-
-typedef map<string, t_headerValue> headermap_t;
 
 // Usage : request in the constructor,
 // .isValid() first,
@@ -52,6 +53,9 @@ class HttpRequest {
 	bool						hasContentLength();
 	size_t						getBodySize();
 	size_t						getContentLength();
+	const pair< const pair<string, t_headerValue> ,bool> getHeaderByKey(const string& key);
+	bool	hasParameterKey(const string& paramKey, const strmap_t params);
+	const string getParameterValue(const string& paramKey, const strmap_t params);
 
 	bool						parsingError;
 	string						parsingStrError;
@@ -73,7 +77,6 @@ class HttpRequest {
 	string			extractHeaderKey(std::string &s);
 	t_headerValue	extractHeaderValue(string::iterator& it);
 	bool	validateHeaderKey(std::string& headerKey);
-	const pair< const pair<string, t_headerValue> ,bool> getHeaderByKey(const string& key);
 	void			calcBodySize();
 
 	// request slices
@@ -92,5 +95,6 @@ class HttpRequest {
 	size_t						_bodySize;
 	bool						_hasContentLength;
 	size_t						_contentLength;
+	bool						_isMultipart;
 	t_multipart					_multipart;
 };

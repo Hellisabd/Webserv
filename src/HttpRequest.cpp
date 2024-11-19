@@ -14,11 +14,71 @@ HttpRequest::HttpRequest(string request): _request(request) {
 	_hasContentLength = false;
 	parsingStrError = "No error in sight\n";
 	parsingError = false;
+	_isMultipart = false;
 	errno = 0;
 	fillSize();
 }
 
 HttpRequest::~HttpRequest() {
+}
+
+bool caseInsCmp(char a, char b) {
+	return tolower(a) == tolower(b);
+}
+
+// case insensitive strcmp, returns true if they are the same
+bool caseInsStrCmp(string a, string b) {
+	if (a.size() != b.size()) {
+		return (false);
+	}
+	string::iterator ait, bit;
+	ait = a.begin();
+	bit = b.begin();
+	while (ait != a.end() && bit != b.end()) {
+		if (!caseInsCmp(*ait, *bit)) {
+			return (false);
+		}
+		ait++, bit++;
+	}
+	return (true);
+}
+
+// case insensitive strncmp, returns true if they are the same
+bool caseInsStrNCmp(string a, string b, size_t n) {
+	string suba = a.substr(0, n);
+	string subb = b.substr(0, n);
+	string::iterator ait, bit;
+	ait = suba.begin();
+	bit = subb.begin();
+	size_t i = 0;
+	while (ait != suba.end() && bit != subb.end() && i < n) {
+		if (!caseInsCmp(*ait, *bit)) {
+			return (false);
+		}
+		ait++, bit++, i++;
+	}
+	if (i != n) {
+		return (false);
+	}
+	return (true);
+}
+
+size_t findCaseIns(const string& str, const string& substr) {
+    for (size_t i = 0; i <= str.length() - substr.length(); ++i) {
+        if (equal(substr.begin(), substr.end(), str.begin() + i, caseInsCmp)) {
+            return i;
+        }
+    }
+    return string::npos;
+}
+
+string trimWhitespaces(const string& str) {
+    size_t start = str.find_first_not_of(" \t\n\r\f\v");
+    if (start == string::npos) {
+        return "";
+    }
+    size_t end = str.find_last_not_of(" \t\n\r\f\v");
+    return str.substr(start, end - start + 1);
 }
 
 void	HttpRequest::setErr(int n, const string& s) {
@@ -29,10 +89,11 @@ void	HttpRequest::setErr(int n, const string& s) {
 
 // returns the header key and value + true if found
 // undefined + false if not found
+// the search is case insensitive
 const pair< const pair<string, t_headerValue> ,bool>	HttpRequest::getHeaderByKey(const string& key) {
 	pair<pair<string, t_headerValue> ,bool> ret;
 	for (headermap_t::iterator it = _header.begin(); it != _header.end(); it++) {
-		if (!it->first.compare(key)) {
+		if (caseInsStrCmp(it->first, key)) {
 			ret.first.first = it->first;
 			ret.first.second = it->second;
 			ret.second = true;
@@ -44,10 +105,28 @@ const pair< const pair<string, t_headerValue> ,bool>	HttpRequest::getHeaderByKey
 	return (ret);
 }
 
+bool	HttpRequest::hasParameterKey(const string& paramKey, const strmap_t params) {
+	for (strmap_t::const_iterator it = params.begin(); it != params.end(); it++) {
+		if (caseInsStrCmp(it->first, paramKey)) {
+			return (true);
+		}
+	}
+	return (false);
+}
+
+const string HttpRequest::getParameterValue(const string& paramKey, const strmap_t params) {
+	for (strmap_t::const_iterator it = params.begin(); it != params.end(); it++) {
+		if (caseInsStrCmp(it->first, paramKey)) {
+			return (it->second);
+		}
+	}
+	return ("");
+}
+
 bool HttpRequest::isChunkedBasedRequest() {
 	const pair<const pair<string, t_headerValue>, bool> chonk = getHeaderByKey("Transfer-Encoding");
 	if (chonk.second) {
-		if (!chonk.first.second.rawValue.compare("chunked")) {
+		if (caseInsStrCmp(chonk.first.second.rawValue, "chunked")) {
 			setErr(501, "chunked requests not implemented, only content-length based requests.\n");
 			return (true);
 		}
@@ -88,12 +167,47 @@ bool HttpRequest::parseRequest() {
 			case GET:
 				// Ignore body with GET methods
 				break ;
-			case POST:
-				// is multipart ?
-				// 	- choper le type
-				// 	- choper le delimiter
-				// 	- verifier la presence des 2 prochains
-				// 	  delimiters
+			case POST: {
+				// has content-type ?
+				const pair<headerpair_t, bool> hp = getHeaderByKey("content-type");
+				if (hp.second) {
+					const string& rawVal = hp.first.second.rawValue;
+
+					// est multipart
+					if (caseInsStrNCmp(rawVal, "multipart/", 10)) {
+						_isMultipart = true;
+						// 	- choper le type
+						_multipart.type = rawVal.substr(10, rawVal.find(";"));
+						_multipart.type = trimWhitespaces(_multipart.type);
+						//	- valider le type
+							// TODO
+						// 	- choper le delimiter
+						if (!hasParameterKey("boundary", hp.first.second.parameters)) {
+							setErr(400, "Multipart type with no delimiter parameter\n");
+							return (false);
+						}
+						_multipart.boundary = getParameterValue("boundary", hp.first.second.parameters);
+						// valider le boundary
+							// TODO
+						// 	- verifier la presence des 2 prochains
+						// 	  delimiters
+						string body(_headerEnd, _request.end());
+						// premier boundary
+						cout << "--" + body.substr(0, _multipart.boundary.size()) << endl;
+						if (caseInsStrNCmp("--" + body, _multipart.boundary, _multipart.boundary.size() + 2)) {
+							cout << "found first boundary\n";
+						} else {
+							cout << "no los boundarios\n";
+						}
+
+					// n'est pas multipart
+					} else {
+
+					}
+				// has no content type
+				} else {
+
+				}
 				// 	- chopper entre eux
 				// 		- recuperer les entetes de partie
 				// 		- verifier le rnrn
@@ -104,6 +218,7 @@ bool HttpRequest::parseRequest() {
 				// 	-je sais pas
 				// 	- les trucs genre ?cle1=value&cle2=value
 				break ;
+			}
 			case DELETE:
 				break ;
 			default:
@@ -120,10 +235,10 @@ bool HttpRequest::isValidRequestLine() {
 		return (false);
 	}
 
-	const char *methods[9] = {"GET ", "POST ", "DELETE ", "POST ", "HEAD ", "OPTION", "TRACE", "PATCH", "CONNECT"};
+	const char *methods[10] = {"GET ", "POST ", "DELETE ", "POST ", "HEAD ", "OPTION ", "TRACE ", "PATCH ", "CONNECT ", "PUT "};
 	bool found = false;
 	string met;
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < 10; i++) {
 		if (!strncmp(_request.c_str(), methods[i], strlen(methods[i]))) {
 			found = true;
 			cur += strlen(methods[i]);
@@ -169,43 +284,6 @@ bool HttpRequest::isValidRequestLine() {
 	return (true);
 }
 
-bool caseInsCmp(char a, char b) {
-	return tolower(a) == tolower(b);
-}
-
-bool caseInsStrCmp(string a, string b) {
-	if (a.size() != b.size()) {
-		return (false);
-	}
-	string::iterator ait, bit;
-	ait = a.begin();
-	bit = b.begin();
-	while (ait != a.end() && bit != b.end()) {
-		if (!caseInsCmp(*ait, *bit)) {
-			return (false);
-		}
-		ait++, bit++;
-	}
-	return (true);
-}
-
-size_t findCaseIns(const string& str, const string& substr) {
-    for (size_t i = 0; i <= str.length() - substr.length(); ++i) {
-        if (equal(substr.begin(), substr.end(), str.begin() + i, caseInsCmp)) {
-            return i;
-        }
-    }
-    return string::npos;
-}
-
-string trimWhitespaces(const string& str) {
-    size_t start = str.find_first_not_of(" \t\n\r\f\v");
-    if (start == string::npos) {
-        return "";
-    }
-    size_t end = str.find_last_not_of(" \t\n\r\f\v");
-    return str.substr(start, end - start + 1);
-}
 
 bool HttpRequest::isValidHost() {
 	size_t hostPos = findCaseIns(_request, "host");
@@ -321,7 +399,7 @@ bool HttpRequest::fillMethod() {
 	} else if (!met.compare("DELETE")) {
 		_method = DELETE;
 	} else {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 7; i++) {
 			if (!met.compare(rejectedMethods[i])) {
 				setErr(405, rejectedMethods[i] + " is not allowed\n");
 				return (false);
@@ -479,7 +557,7 @@ bool HttpRequest::fillHeaders() {
 
 void	HttpRequest::calcBodySize() {
 	size_t	size = 0;
-	for (string::iterator start = _headerEnd; start != _request.end() && !isDoubleCrlf(&(*start)); start++) {
+	for (string::iterator start = _headerEnd; start != _request.end(); start++) {
 		size++;
 	}
 	_bodySize = size;
