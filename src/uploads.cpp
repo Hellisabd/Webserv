@@ -43,8 +43,10 @@ std::string uploadFile(std::string request)
 			throw Error("Didn't find new line char");
 		type = body.substr(body_start, body_end - body_start - 1);
 		if (type != "application/octet-stream" && type != "text/plain")
-			throw Error("Wrong type of file for upload.");
+			return ("415");
+			// throw Error("Wrong type of file for upload.");
 			// mettre en place page 415 plutot que throw une erreur
+			// segfault qund on load un PNG par ex, requete fragmenteee
 	}
 	if (body.find(boundaryKey, body_end) != body.npos)
 	{
