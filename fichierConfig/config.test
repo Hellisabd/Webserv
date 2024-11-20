@@ -8,14 +8,19 @@ location / {
 	./site/index.html
 }
 
-location /cops {
+location /cgi {
 	Method GET
-	./site/cops.html
+	./site/cgi.html
 }
 
-location /cops/cgi-bin/script.php {
+location /cgi-bin/script.php {
 	Method GET
-	./site/cops.html
+	./site/cgi.html
+}
+
+location /cgi-bin/word_count.py {
+	Method GET POST
+	./site/cgi.html
 }
 
 location /comments {

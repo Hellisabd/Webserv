@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COPS</title>
+    <title>CGI</title>
     <style>
         body {
             a {
@@ -23,7 +23,13 @@
     <header>
         <h1>🚨Random Police Switcher🚨</h1>
     </header>
+    <a href="/cgi-bin/script.php">Police Switcher</a><br><br>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Entrez un texte :</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+    </form>
+    <br><br>
     <a href="/">HOME</a>
-    <a href="/cops/cgi-bin/script.php">Script</a>
 </body>
 </html>

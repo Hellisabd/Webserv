@@ -110,7 +110,7 @@ void Epoll::set_new_env(Data &data, HttpRequest rq) {
 
 }
 
-void Epoll::exec(Data &data, int clientID, HttpRequest rq)
+void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 {
 	int fd[2];
 	if (pipe(fd) == -1)
@@ -134,17 +134,24 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 		close(fd[0]);
 		close(fd[1]);
 		char **env = data.envToCharpp();
-		// for (int i = 0; env[i]; i++)
-		// 	fprintf(stderr, "%s\n", env[i]);
 		char **filename = new char*[2];
-		// if (script1)
+		if (rq.getUrl().find("script.php") != rq.getUrl().npos) {
 			filename[0] = strdup("./script.php");
 			filename[1] = NULL;
 			execve("cgi-bin/script.php", filename, env);
-		// if (script2)
-			// filename[0] = strdup("./script.php");
-			// filename[1] = NULL;
-		// 	execve("cgi-bin/script2.php", filename, env);
+		}
+		else if (rq.getUrl().find("word_count.py") != rq.getUrl().npos) {
+			std::size_t start = req_str.find("text=") + 5;
+			std::string text;
+			if (start != req_str.npos)
+				text = req_str.substr(start, req_str.length() - start);
+			replace(text);
+			data._env["text"] = text;
+			env = data.envToCharpp();
+			filename[0] = strdup("./word_count.py");
+			filename[1] = NULL;
+			execve("cgi-bin/word_count.py", filename, env);
+		}
 		// if (script3)
 			// filename[0] = strdup("./script.php");
 			// filename[1] = NULL;
@@ -256,7 +263,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[clientID].nbr_of_read = 0;
 		return ;
 	}
-	// debug(_HTTPRequest[clientID]);
+	// debug(_HTTPRequest[clientID].req);
 	//debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
@@ -272,7 +279,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		}
 	}
 	if (path.find("cgi-bin") != path.npos)
-		return exec(data, clientID, rq);
+		return exec(data, clientID, rq, _HTTPRequest[clientID].req);
 	else if (page.empty() && valid == 2)
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())
@@ -345,7 +352,7 @@ void Epoll::readFromClient(int clientID)
 		if (_HTTPRequest[clientID].req.find("\r\n\r\n") != std::string::npos && _HTTPRequest[clientID].req.find("Content-Length") != std::string::npos && _HTTPRequest[clientID].body.length() == 0)
 		{
 			_HTTPRequest[clientID].bodysize = getbodysize(_HTTPRequest[clientID].req);
-			debug("set body size at : ", _HTTPRequest[clientID].bodysize);
+			// debug("set body size at : ", _HTTPRequest[clientID].bodysize);
 			_HTTPRequest[clientID].body = _HTTPRequest[clientID].req.substr(_HTTPRequest[clientID].req.find("\r\n\r\n"), _HTTPRequest[clientID].req.length() -  _HTTPRequest[clientID].req.find("\r\n\r\n"));
 			_HTTPRequest[clientID].req = _HTTPRequest[clientID].req.substr(0, _HTTPRequest[clientID].req.find("\r\n\r\n"));
 			// _HTTPRequest[clientID].nbr_of_read++;
@@ -367,18 +374,18 @@ void Epoll::readFromClient(int clientID)
 			_HTTPRequest[clientID].nbr_of_read = 0;
 			_HTTPRequest[clientID].recvEnd = true;
 			_HTTPRequest[clientID].req += _HTTPRequest[clientID].body;
-			debug("passe dans end of request");
-			debug(_HTTPRequest[clientID].body);
-			debug("body size : ", _HTTPRequest[clientID].bodysize);
-			debug("body length : ", _HTTPRequest[clientID].body.length());
+			// debug("passe dans end of request");
+			// debug(_HTTPRequest[clientID].body);
+			// debug("body size : ", _HTTPRequest[clientID].bodysize);
+			// debug("body length : ", _HTTPRequest[clientID].body.length());
 		}
 		// debug(_HTTPRequest[clientID].body);
 		// debug(buffer);
-		debug(BLUE, "nbr of read: ", _HTTPRequest[clientID].nbr_of_read);
+		// debug(BLUE, "nbr of read: ", _HTTPRequest[clientID].nbr_of_read);
 		// if (_HTTPRequest[clientID].req.find("\r\n\r\n") )
 		// 	break;
 		if (bytes_read == 0 && _HTTPRequest[clientID].nbr_of_read == 0) {
-			debug(YELLOW, "disconnect");
+			// debug(YELLOW, "disconnect");
 			close(_epollClient[clientID].data.fd);
 			_HTTPRequest[clientID].disconnect = true;
 			return;
@@ -423,7 +430,7 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
 				debug(GREEN, "New client added on port " + oss.str());
 			}
 			else if (it->second == _sock[port]) {
-				// debug(PURPLE, _HTTPRequest[clientID].disconnect);
+				// debug(PURPLE, clientID);
 
 				if (_HTTPRequest[clientID].recvEnd == false)
 					readFromClient(clientID);
