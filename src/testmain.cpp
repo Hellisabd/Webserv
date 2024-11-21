@@ -129,6 +129,39 @@ int main(void) {
 		}
 		cout << endl;
 	}
+	if (rq.isMultipart()) {
+		cout << "------ multipart -------\n\n";
+		vector<headermap_t> hm = rq.getMultiPartsHeaders();
+		vector<string> hf = rq.getMultiPartsFiles();
+		cout << "------- headers -------- \n\n";
+		size_t mpnb = 0;
+		for (vector<headermap_t>::iterator it = hm.begin(); it != hm.end(); it++) {
+			cout << "Multipart " << mpnb << endl;
+			for (map<string, t_headerValue>::iterator it2 = it->begin(); it2 != it->end(); it2++) {
+				cout << "key: " << it2->first << endl;
+				cout << "rawVal: " << it2->second.rawValue << endl;
+				size_t paramnb = 0;
+				strmap_t params = it2->second.parameters;
+				for (strmap_t::iterator it3 = params.begin(); it3 != params.end(); it3++) {
+					cout << "param " << paramnb << " :" << endl;
+					cout << "key: " << it3->first << endl;
+					cout << "val: " << it3->second << endl;
+					paramnb++;
+				}
+				cout << endl;
+			}
+			cout << endl;
+			mpnb++;
+		}
+		cout << "------- multifiles -------- \n\n";
+		size_t filenb(0);
+		for (vector<string>::iterator it = hf.begin(); it != hf.end(); it++) {
+			cout << "||||||| file " << filenb << " ||||||||" << endl;
+			cout << endl;
+			cout << *it << endl;
+			filenb++;
+		}
+	}
 	// const pair<headerpair_t, bool> hp = rq.getHeaderByKey("content-type");
 	// if (hp.second) {
 	// 	cout << "content type found\n";

@@ -19,12 +19,13 @@ typedef map<string, t_headerValue> headermap_t;
 typedef pair<string, t_headerValue> headerpair_t;
 
 typedef struct s_multipart {
-	string					type;
-	string					boundary;
-	size_t					partNb;
-	vector<string>			partsContents;
-	headermap_t				headers;
-	vector<string>			partsFiles;
+	string							type;
+	string							boundary;
+	size_t							partNb;
+	vector<string>					partsContents;
+	vector<headermap_t>				headers;
+	vector<size_t>					headerLens;
+	vector<string>					partsFiles;
 }	t_multipart;
 
 // Usage : request in the constructor,
@@ -39,20 +40,27 @@ class HttpRequest {
 	bool						isValidRequestLine();
 	bool						isValidHost();
 	bool						parseRequest();
-	string						getMethodToString();
-	HttpMethod					getMethod();
-	string						getUrl();
-	string						getHttpVersion();
-	string						getBody();
-	headermap_t					getHeaders();
-	string						getSpecHeader(string& spec);
-	size_t						getSize();
-	string						getHost();
-	string						getPort();
-	bool						hasBody();
+	string						getMethodToString() const;
+	HttpMethod					getMethod() const;
+	string						getUrl() const;
+	string						getHttpVersion() const;
+	string						getBody() const;
+	headermap_t					getHeaders() const;
+	string						getSpecHeader(string& spec) const;
+	size_t						getSize() const;
+	string						getHost() const;
+	string						getPort() const;
+	bool						hasBody() const;
 	bool						hasContentLength();
-	size_t						getBodySize();
-	size_t						getContentLength();
+	size_t						getBodySize() const;
+	size_t						getContentLength() const;
+	bool						isMultipart() const;
+	string						getMultiType() const;
+	string						getMultiBoundary() const;
+	size_t						getMultiPartsNb() const;
+	vector<string>				getMultiPartsContents() const;
+	vector<headermap_t>			getMultiPartsHeaders() const;
+	vector<string>				getMultiPartsFiles() const;
 	const pair< const pair<string, t_headerValue> ,bool> getHeaderByKey(const string& key);
 	bool	hasParameterKey(const string& paramKey, const strmap_t params);
 	const string getParameterValue(const string& paramKey, const strmap_t params);
@@ -72,14 +80,21 @@ class HttpRequest {
 	void						fillHostAndPort();
 	bool						isEnd(const string::iterator& it);
 	bool						isChunkedBasedRequest();
+	bool						isValidBoundary();
+	bool	allBoundaryAreValid();
+	bool isMultipartHeaderRightfullyFormatted(const string& s);
 
 	//utils
 	string			extractHeaderKey(std::string &s);
 	t_headerValue	extractHeaderValue(string::iterator& it);
-	bool	validateHeaderKey(std::string& headerKey);
+	bool			validateHeaderKey(std::string& headerKey);
 	void			calcBodySize();
+	bool 			extractMultiparts();
+	bool			extractMultipartHeaders();
+	bool			validateMultipartHeaderKey(string &headerKey, headermap_t hm);
+	bool 			extractMultipartFiles();
+	bool			validContentType();
 
-	// request slices
 	string						_request;
 	size_t						_requestLineSize;
 	HttpMethod					_method; // get post delete unknown
