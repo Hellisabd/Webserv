@@ -30,12 +30,13 @@ public:
 	void set_new_env(Data &data, HttpRequest rq);
 	bool checkRequestIsValid(const std::string &url, Data &data, std::string const &method);
 	void downloadFile(std::string request);
+	bool isSockPort(int fd);
 
 private:
 	int	_epoll_fd;
 	int _n;
 	int _nbr_client;
-	t_requestClient *_HTTPRequest;
+	std::map<int, t_requestClient> _HTTPRequest;
 	std::vector<int> _sock;
 	std::vector<int> _ClientSock;
 	struct epoll_event _epollServ;
