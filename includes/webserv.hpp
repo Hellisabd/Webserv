@@ -19,16 +19,16 @@
 #include <cctype>
 #include <sstream>
 #include <cstring>
-#include <iomanip> 
+#include <iomanip>
 #include <cmath>
 #include <string>
 #include <vector>
 #include <map>
-// #include "../src/class/Data.hpp"
-// #include "../src/class/ServerSocket.hpp"
-// #include "../src/class/Epoll.hpp"
-// #include "../src/class/ClientSocket.hpp"
-#include "../src/HttpRequest.hpp"
+#include "../src/class/Data.hpp"
+#include "../src/class/ServerSocket.hpp"
+#include "../src/class/Epoll.hpp"
+#include "../src/class/ClientSocket.hpp"
+#include "../src/class/HttpRequest.hpp"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

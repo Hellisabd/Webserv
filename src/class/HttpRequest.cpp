@@ -15,6 +15,7 @@ HttpRequest::HttpRequest(string request): _request(request) {
 	parsingStrError = "No error in sight\n";
 	parsingError = false;
 	_isMultipart = false;
+	_isUrlEncoded = false;
 	errno = 0;
 	fillSize();
 }
@@ -105,7 +106,20 @@ void	HttpRequest::setErr(int n, const string& s) {
 	errNo = n;
 }
 
-bool HttpRequest::parseRequest() {
+bool HttpRequest::parseAll() {
+	if (!parseHeader()) {
+		return (false);
+	}
+	if (!parseBody()) {
+		return (false);
+	}
+	return (true);
+}
+
+bool HttpRequest::parseHeader() {
+	if (!isValid()) {
+		return (false);
+	}
 	if (!fillMethod()) {
 		return (false);
 	}
@@ -117,6 +131,10 @@ bool HttpRequest::parseRequest() {
 	if (isChunkedBasedRequest()) {
 		return (false);
 	}
+	return (true);
+}
+
+bool HttpRequest::parseBody() {
 	// throws away request where:
 	// - body is found but not content-length
 	// - body is found but content-length is less that body size
@@ -187,17 +205,21 @@ bool HttpRequest::parseRequest() {
 						if (!extractMultipartFiles()) {
 							return (false);
 						}
-					// n'est pas multipart
+					// est urlencoded
+					} else if (caseInsStrNCmp(rawVal, "application/x-www-urlencoded", 27)){
+						_isUrlEncoded = true;
+						_urlEncodedBody = &(*_headerEnd);
 					} else {
-
+						// TODO ????
 					}
 				// has no content type
 				} else {
-
+					// TODO ????
 				}
 				break ;
 			}
 			case DELETE:
+				// ignore body with delete methods
 				break ;
 			default:
 				break ;
@@ -285,6 +307,7 @@ bool	HttpRequest::isValidBoundary() {
 
 bool	HttpRequest::allBoundaryAreValid() {
 	string				b = _multipart.boundary;
+	string				lastB;
 	string::iterator	bit = _headerEnd;
 	size_t				bsize = b.size();
 	size_t				bpos;
@@ -293,7 +316,6 @@ bool	HttpRequest::allBoundaryAreValid() {
 	while ((bpos = static_cast<string>(&(*bit)).find(b)) != string::npos) {
 		if (bpos != string::npos) {
 			// TODO check premier boudary et son inclusion au \r\b de fin de header (enfin je sais pas a check)
-			// cout << &(*(bit + bpos));
 			if (static_cast<string>(&(*(bit + bpos - 2))).compare(0, 2, "--")) {
 				setErr(400, "Foud a boundary delimiter not prefixed with --");
 				return (false);
@@ -301,14 +323,24 @@ bool	HttpRequest::allBoundaryAreValid() {
 				// TODO, check ca
 				setErr(400, "Found a boundary delimiter not immediately followed by \\r\\n. (maybe the RFC states that there can be whitespaces at the end, but im not trusting a random stack overflow comment and im too lazy to check right now.)\n");
 				return (false);
-			} else {
-				bpos -= 2;
+			} else if (!static_cast<string>(&(*(bit + bpos - 2))).compare(0, bsize + 4, "--" + b + "--")) {
+				lastB = &(*(bit + bpos - 2));
+				break ;
 			}
+			lastB = &(*bit);
+			bpos -= 2;
 			bnb++;
 			bit += bpos + bsize;
 		}
 	}
-	_multipart.partNb = bnb - 1;
+	if (bnb == 0) {
+		setErr(400, "No delimiter found inside the request body\n");
+		return (false);
+	} else if (lastB.compare(0 , bsize + 4,"--" + b + "--")) {
+		setErr(400, "The last boundary delimiter is not suffixed with --");
+		return (false);
+	}
+	_multipart.partNb = bnb;
 	return (true);
 }
 
@@ -767,6 +799,10 @@ bool	HttpRequest::isMultipart() const {
 	return (_isMultipart);
 }
 
+bool	HttpRequest::isUrlEncoded() const {
+	return (_isUrlEncoded);
+}
+
 string	HttpRequest::getMultiType() const {
 	return (_multipart.type);
 }
@@ -786,6 +822,11 @@ vector<string>	HttpRequest::getMultiPartsContents() const {
 vector<headermap_t>	HttpRequest::getMultiPartsHeaders() const {
 	return (_multipart.headers);
 }
+
 vector<string>				HttpRequest::getMultiPartsFiles() const {
 	return (_multipart.partsFiles);
+}
+
+string	HttpRequest::getUrlEncodedBody() {
+	return (_urlEncodedBody);
 }

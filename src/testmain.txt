@@ -18,16 +18,58 @@ int main(void) {
 	// 	"Priority: u=0, i\r\n"
 	// 	"\r\n";
 	#define endlou endl
-	// std::string dummyRq =
-	// 	"POST / HTTP/1.1\r\nHa: lol \r\n"
-	// 	"HoSt: 127.0.0.1:4444\r\n\r\n";
 
-	std::string dummyRq =
+	// std::string dummyRq =
+	// 	"POST / HTTP/1.1\r\n"
+	// 	"host: 1\r\n"
+	// 	"content-type: application/x-www-urlencoded\r\n"
+	// 	"content-length: 4\r\n"
+	// 	"\r\n"
+	// 	"haha=oui&lol=haha\r\n"
+	// 	"\r\n";
+
+	// std::string dummyRq =
+	// 	"POST / HTTP/1.1\r\n"
+	// 	"HoSt: 127.0.0.1:4444\r\n"
+	// 	"looui: haha\r\n"
+	// 	"content-length: 6\r\n"
+	// 	"Content-Type: multipart/form-data; boundary=lol\r\n"
+	// 	"\r\n"
+	// 	"--lol\r\n"
+	// 	"haha: oui\r\n"
+	// 	"bonjour: bonsoir\r\n"
+	// 	"content-type: application/octet-stream\r\n"
+	// 	"\r\n"
+	// 	"hahahhahahhh"
+	// 	"--lol--"
+	// 	"\r\n";
+
+	std::string dummyHeader =
     "POST / HTTP/1.1\r\n"
     "Host: lol:4444\r\n"
     "User-Agent: curl/7.81.0\r\n"
     "Accept: */*\r\n"
-    "Content-Length: 2208\r\n"
+    "Content-Length: 2207\r\n"
+    "Content-Type: multipart/form-data; boundary=------------------------db7a91874317ec7e\r\n"
+    "\r\n"
+    "--------------------------db7a91874317ec7e\r\n"
+    "Content-Disposition: form-data; name=\"file1\"; filename=\"main.c\"\r\n"
+    "Content-Type: application/octet-stream\r\n"
+    "\r\n"
+    "#include <stdio.h>\n"
+    "#include <fcntl.h>\n"
+    "int main()\n"
+    "{\n"
+    "    int fd = open(\"test\", O_CREAT);\n"
+    "    while (1)\n"
+    "        dprintf(fd, \"24\");\n";
+
+	std::string dummyBody =
+    "POST / HTTP/1.1\r\n"
+    "Host: lol:4444\r\n"
+    "User-Agent: curl/7.81.0\r\n"
+    "Accept: */*\r\n"
+    "Content-Length: 2207\r\n"
     "Content-Type: multipart/form-data; boundary=------------------------db7a91874317ec7e\r\n"
     "\r\n"
     "--------------------------db7a91874317ec7e\r\n"
@@ -105,13 +147,15 @@ int main(void) {
     "    @./loadingtriangle $(SRC_COUNT) & wait\n"
     "--------------------------db7a91874317ec7e--\r\n";
 
-	HttpRequest rq(dummyRq);
-	if (!rq.isValid()) {
-		cout << "parsingStrError: " << rq.parsingStrError << endlou;
-		cout << "err " << rq.errNo << endl;
+	HttpRequest rqh(dummyHeader);
+	rqh.parseHeader();
+	if (rqh.parsingError) {
+		cout << "parsingStrError: " << rqh.parsingStrError << endlou;
+		cout << "err " << rqh.errNo << endl;
 		exit(1);
 	}
-	rq.parseRequest();
+	HttpRequest rq(dummyBody);
+	rq.parseAll();
 	if (rq.parsingError) {
 		cout << "parsingStrError: " << rq.parsingStrError << endlou;
 		cout << "err " << rq.errNo << endl;
@@ -161,21 +205,8 @@ int main(void) {
 			cout << *it << endl;
 			filenb++;
 		}
+	} else if (rq.isUrlEncoded()) {
+		cout << "Is urlencoded\n";
+		cout << "vars: " << rq.getUrlEncodedBody() << endl;
 	}
-	// const pair<headerpair_t, bool> hp = rq.getHeaderByKey("content-type");
-	// if (hp.second) {
-	// 	cout << "content type found\n";
-	// 	if (rq.hasParameterKey("boundary", hp.first.second.parameters)) {
-	// 		cout << "has boundary !!!!\n\n";
-	// 	} else {
-	// 		cout << "no boundary :(((\n\n";
-	// 	}
-	// } else {
-	// 	cout << "No content type :(\n\n";
-	// }
-	// cout << "host: |" << rq.getHost() << "|" <<  endlou
-	// 	 << "port: |" << rq.getPort() << "|" << endlou
-	// 	 << "method: |" << rq.getMethodToString() << "|" << endlou
-	// 	 << "url: |" << rq.getUrl() << "|" << endlou
-	//      << "httpversion: |" << rq.getHttpVersion() << "|" << endlou;
 }

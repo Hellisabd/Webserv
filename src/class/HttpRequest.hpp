@@ -4,7 +4,7 @@
 #include <string>
 #include <utility>
 #include <iostream>
-#include "../includes/webserv.hpp"
+#include "../../includes/webserv.hpp"
 
 using namespace std;
 enum HttpMethod {GET, POST, DELETE, UNKNOWN};
@@ -64,6 +64,11 @@ class HttpRequest {
 	const pair< const pair<string, t_headerValue> ,bool> getHeaderByKey(const string& key);
 	bool	hasParameterKey(const string& paramKey, const strmap_t params);
 	const string getParameterValue(const string& paramKey, const strmap_t params);
+	bool						isUrlEncoded() const;
+	string						getUrlEncodedBody();
+	bool						parseHeader();
+	bool						parseBody();
+	bool						parseAll();
 
 	bool						parsingError;
 	string						parsingStrError;
@@ -112,4 +117,6 @@ class HttpRequest {
 	size_t						_contentLength;
 	bool						_isMultipart;
 	t_multipart					_multipart;
+	bool						_isUrlEncoded;
+	string						_urlEncodedBody;
 };
