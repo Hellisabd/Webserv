@@ -36,8 +36,8 @@
 #include <csignal>
 #include <fstream>
 
-
 using namespace std;
+
 unsigned long getFileSize(std::string const &file_path);
 void generate_uploads_url(std::vector<string> filenames);
 void generate_comment_page();

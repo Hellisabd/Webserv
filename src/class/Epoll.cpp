@@ -243,17 +243,18 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	if (valid == 1)
 	{
 		topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
-		if (!rq.isValid()) {
-			page = data.getErrors().find("400")->second;
-		}
+		
 
-		rq.parseRequest();
+		debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
+		rq.parseAll();
+		debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
 		if (rq.parsingError)
 		{
 			std::cout << "pourquoi" << endl;
+			cout << rq.parsingStrError << std::endl;
 			page = data.getErrors().find("400")->second;
 		}
-		std::map<string, string> path = rq.getHeaders();
+		// headermap_t path = rq.getHeaders();
 		// debug_map(PURPLE, "map form HttpRequest type", path);
 	}
 	std::string path = rq.getUrl();
@@ -273,7 +274,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			tmploc["/downloads/" + tmp_name] = filename;
 		generate_uploads_url(data._uploads);
 	}
-	if (_HTTPRequest[_epollClient[clientID].data.fd].req.npos != _HTTPRequest[_epollClient[clientID].data.fd].req.find("favicon", 0)){
+	if (rq.getUrl() == "/favicon.ico"){
 		_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 		_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
 		_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
@@ -288,7 +289,6 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		return ;
 	}
 	// debug(ORANGE, "req: ", _HTTPRequest[clientID].req);
-	//debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
 		{
@@ -324,6 +324,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	}
 	char tosend[1024];
 	ssize_t file_read;
+	debug ("passe devant le read de infile");
 	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
 		if (file_read < 1024)
 			tosend[file_read++] = '\0';
@@ -334,6 +335,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			throw Error("");
 		}
 	}
+	debug ("passe apres le read de infile");
 	print_in_response(headerHTTP, tosend, _epollClient[clientID].data.fd);
 	_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 	_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
@@ -368,7 +370,7 @@ void Epoll::readFromClient(int clientID)
 		if (bytes_read > 0) {
 			_HTTPRequest[_epollClient[clientID].data.fd].req.append(buffer, bytes_read);
 			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read++;
-			// debug(bytes_read);
+			debug(bytes_read);
 			// debug(_HTTPRequest[clientID].req);
 		}
 		size_t header_end = _HTTPRequest[_epollClient[clientID].data.fd].req.find("\r\n\r\n");

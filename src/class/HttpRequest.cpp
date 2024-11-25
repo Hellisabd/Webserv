@@ -110,27 +110,38 @@ bool HttpRequest::parseAll() {
 	if (!parseHeader()) {
 		return (false);
 	}
+	debug("apres header");
 	if (!parseBody()) {
 		return (false);
 	}
+	debug("apres body");
 	return (true);
 }
 
 bool HttpRequest::parseHeader() {
+	debug("passe dans parse header");
 	if (!isValid()) {
 		return (false);
 	}
+	debug("passe apres isValid");
 	if (!fillMethod()) {
 		return (false);
 	}
+	debug("1");
 	fillUrl();
+	debug(2);
+
 	fillHostAndPort();
+	debug(3);
 	fillHttpVersion();
+	debug(4);
 	if (!fillHeaders())
 		return (false);
+	debug(5);
 	if (isChunkedBasedRequest()) {
 		return (false);
 	}
+	debug(6);
 	return (true);
 }
 
@@ -665,6 +676,8 @@ t_headerValue HttpRequest::extractHeaderValue(string::iterator& it) {
 		rawValue += *it;
 		it++, i++;
 	}
+	cout << "testest\n";
+	debug(rawValue);
 	// extracting the remaining parameters
 	while (!isEnd(it)) {
 		if (!parsingError && *it == ';') {
@@ -687,7 +700,11 @@ t_headerValue HttpRequest::extractHeaderValue(string::iterator& it) {
 			// since map Keys are const by default I have to trim here
 			paramKey = trimWhitespaces(paramKey);
 			parameters[paramKey] = paramValue;
+
 		}
+		else
+			break;
+		debug ("lol29");
 	}
 	return ((t_headerValue){rawValue, parameters});
 }
@@ -714,6 +731,9 @@ bool HttpRequest::fillHeaders() {
 		it++;
 		_header[key] = extractHeaderValue(it);
 		if (!isCrlf(&(*it))) {
+			cout << "hahhahahah\n";
+			cout << &(*it);
+			cout << "hahahhaha\n";
 			setErr(400, "A header is not directly followed by crlf\n");
 			return (false);
 		}
@@ -772,7 +792,7 @@ string HttpRequest::getHttpVersion() const {
 }
 
 string HttpRequest::getBody() const {
-	return (string){"haha"};
+	return  static_cast<string>("haha");
 }
 
 string HttpRequest::getSpecHeader(string& spec) const {

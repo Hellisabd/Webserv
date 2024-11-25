@@ -8,6 +8,7 @@
 
 using namespace std;
 enum HttpMethod {GET, POST, DELETE, UNKNOWN};
+
 typedef map<string, string> strmap_t;
 
 typedef struct s_headerValue {
@@ -17,6 +18,7 @@ typedef struct s_headerValue {
 
 typedef map<string, t_headerValue> headermap_t;
 typedef pair<string, t_headerValue> headerpair_t;
+
 
 typedef struct s_multipart {
 	string							type;
