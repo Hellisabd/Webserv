@@ -40,7 +40,7 @@ void Epoll::wait(int stop) {
 	}
 }
 
-void topars(std::string HTTPRequest)
+void Epoll::topars(std::string HTTPRequest, int ClientFD)
 {
 	static int i = 0;
 	i++;
@@ -48,7 +48,7 @@ void topars(std::string HTTPRequest)
 	if (!fd.is_open())
 		throw Error("cant open outfile for debug request");
 	//debug(PURPLE, "request", i);
-	debug_file(HTTPRequest, &fd);
+	debug_file(HTTPRequest, &fd, ClientFD);
 	fd.close();
 }
 
@@ -224,14 +224,14 @@ bool Epoll::checkRequestIsValid(const std::string &url, Data &data, std::string 
 	return false;
 }
 
-void	print_in_response(std::string headerHTTP, std::string tosend)
+void	print_in_response(std::string headerHTTP, std::string tosend, int clientFD)
 {
 	std::string response = headerHTTP + tosend;
 	std::ofstream fd("./response", std::ios::app);
 	if (!fd.is_open())
 		throw Error("cant open outfile for debug response");
 	//debug(PURPLE, "request", i);
-	debug_file(response, &fd);
+	debug_file(response, &fd, clientFD);
 	fd.close();
 }
 
@@ -242,7 +242,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req, _time_out);
 	if (valid == 1)
 	{
-		topars(_HTTPRequest[_epollClient[clientID].data.fd].req);
+		topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
 		if (!rq.isValid()) {
 			page = data.getErrors().find("400")->second;
 		}
@@ -334,7 +334,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			throw Error("");
 		}
 	}
-	print_in_response(headerHTTP, tosend);
+	print_in_response(headerHTTP, tosend, _epollClient[clientID].data.fd);
 	_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 	_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 	// debug("passe bool to false");

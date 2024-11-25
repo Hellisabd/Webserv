@@ -11,9 +11,9 @@ void	debug(std::string color, T content)
 }
 
 template<typename T>
-void	debug_file(T content, std::ofstream *fd)
+void	debug_file(T content, std::ofstream *fd, int fd_to_print)
 {
-	*fd << "Start of the request" << std::endl;
+	*fd << "Start of the request for fd: " << fd_to_print << std::endl;
 	*fd  << content << std::endl;
 	*fd << "End of the request";
 	*fd << std::endl << std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl;

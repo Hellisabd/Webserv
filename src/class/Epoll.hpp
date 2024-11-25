@@ -31,6 +31,7 @@ public:
 	bool checkRequestIsValid(const std::string &url, Data &data, std::string const &method);
 	void downloadFile(std::string request);
 	bool isSockPort(int fd);
+	void topars(std::string HTTPRequest, int clientFD);
 
 private:
 	int	_epoll_fd;
