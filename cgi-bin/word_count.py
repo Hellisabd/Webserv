@@ -4,4 +4,41 @@ import os
 
 text = os.environ.get('text')
 word_count = len(text.split())
-print(word_count)
+print(f"""<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {{
+            a {{
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }}
+        }}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p> {text} </p>
+        <p>Result: {word_count} </p>
+    </form>
+    <br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+""")

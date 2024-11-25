@@ -12,6 +12,7 @@ void signal_handler(int sig)
 unsigned long getFileSize(std::string const &file_path)
 {
 	struct stat file_stat;
+	// debug(file_path);
 	if (stat(file_path.c_str(), &file_stat) != 0)
 		throw Error("failed to get file size");
 	return file_stat.st_size;

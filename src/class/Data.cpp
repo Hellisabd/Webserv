@@ -230,7 +230,7 @@ void Data::SetServerNames(std::string const &servernames)
 		}
 		else
 		{
-			//debug(10);
+			//debug(11);
 			_serverNames.push_back(servernamesparsed.substr(oldpos, servernamesparsed.length() - oldpos));
 		}
 		oldpos = pos;
@@ -269,12 +269,12 @@ void Data::SetLocations(std::string const &location)
 	// debug(PURPLE, location);
 	path_start = location.find("/");
 	path_end = location.find(" ", path_start);
-	//debug(11);
+	//debug(12);
 	if (path_end != location.npos || path_start != location.npos)
 		path = location.substr(path_start, path_end - path_start);
 	page_start = location.find("./");
 	page_end = location.find(".html");
-	//debug(12);
+	//debug(13);
 	if (page_end != location.npos || page_start != location.npos)
 		page = location.substr(page_start, page_end - page_start + 5);
 
@@ -308,9 +308,9 @@ void Data::SetErrors(std::string const &errors)
 			page_start = line.find("./", 0);
 		if (line.find(".html", page_start) != line.npos)
 			page_end = line.find(".html", page_start);
-		//debug(13);
-		err = line.substr(err_start, 3);
 		//debug(14);
+		err = line.substr(err_start, 3);
+		//debug(15);
 		page = line.substr(page_start, page_end - page_start + 5);
 		_errors[err] = page;
 	}
@@ -340,9 +340,9 @@ void Data::cpEnv(char **env) {
 		tmp = env[j];
 		name_end = tmp.find("=", 0);
 		var_start = name_end + 1;
-		//debug(15);
-		name = tmp.substr(0, name_end);
 		//debug(16);
+		name = tmp.substr(0, name_end);
+		//debug(17);
 		var = tmp.substr(var_start, tmp.size());
 		_env[name] = var;
 	}

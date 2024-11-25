@@ -94,7 +94,7 @@ std::string getScriptName(std::string url) {
 	if (start == url.npos)
 		return "";
 	end = url.find("/", start + 8);
-	//debug(17);
+	//debug(18);
 	if (end == url.npos)
 		return "./" + url.substr(start, url.length() - start);
 	else
@@ -115,6 +115,14 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 	int fd[2];
 	if (pipe(fd) == -1)
 		return ;
+	std::string text;
+	if (req_str.find("text=") != req_str.npos) {
+		std::size_t start = req_str.find("text=") + 5;
+		if (start != req_str.npos)
+			text = req_str.substr(start, req_str.length() - start);
+		replace(text);
+		data._env["text"] = text;
+	}
 	int pid = fork();
 	if (pid == -1)
 	{
@@ -125,6 +133,8 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 	set_new_env(data, rq);
 	if (pid == 0)
 	{
+		char **env;
+		env = data.envToCharpp();
 		if (-1 == dup2(fd[1], STDOUT_FILENO))
 		{
 			close (fd[0]);
@@ -133,29 +143,18 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 		}
 		close(fd[0]);
 		close(fd[1]);
-		char **env = data.envToCharpp();
 		char **filename = new char*[2];
 		if (rq.getUrl().find("script.php") != rq.getUrl().npos) {
+			debug_map(ORANGE, "env", data._env);
 			filename[0] = strdup("./script.php");
 			filename[1] = NULL;
 			execve("cgi-bin/script.php", filename, env);
 		}
 		else if (rq.getUrl().find("word_count.py") != rq.getUrl().npos) {
-			std::size_t start = req_str.find("text=") + 5;
-			std::string text;
-			if (start != req_str.npos)
-				text = req_str.substr(start, req_str.length() - start);
-			replace(text);
-			data._env["text"] = text;
-			env = data.envToCharpp();
 			filename[0] = strdup("./word_count.py");
 			filename[1] = NULL;
 			execve("cgi-bin/word_count.py", filename, env);
 		}
-		// if (script3)
-			// filename[0] = strdup("./script.php");
-			// filename[1] = NULL;
-		// 	execve("cgi-bin/script2.php", filename, env);
 		for (int i = 0; env[i]; i++)
 			free(env[i]);
 		delete[] env;
@@ -187,6 +186,7 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 		throw Error("");
 	}
 	_HTTPRequest[clientID].req.clear();
+	_HTTPRequest[clientID].body.clear();
 	_HTTPRequest[clientID].recvEnd = false;
 	_HTTPRequest[clientID].nbr_of_read = 0;
 }
@@ -263,7 +263,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[clientID].nbr_of_read = 0;
 		return ;
 	}
-	// debug(_HTTPRequest[clientID].req);
+	// debug(ORANGE, "req: ", _HTTPRequest[clientID].req);
 	//debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
@@ -325,73 +325,58 @@ std::size_t getbodysize(std::string str)
 
 void Epoll::readFromClient(int clientID)
 {
-	// char buffer[1025];
-	// ssize_t bytes_read = 1;
-	// while (bytes_read > 0) {
-	// 	bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer) - 1);
-	// 	if (bytes_read < 0)
-	// 		break;
-	// 	if (bytes_read <= 1024)
-	// 		buffer[bytes_read] = '\0';
-	// 	_HTTPRequest[clientID] += buffer;
-	// 	if (bytes_read < 1024)
-	// 		break;
-	// }
 	char buffer[1025];
 	ssize_t bytes_read = 0;
-	// while (true) {
-	// debug("reading");
 	bytes_read = read(_epollClient[clientID].data.fd, buffer, sizeof(buffer) - 1);
-
-		buffer[bytes_read] = '\0';
-		if (bytes_read > 0 && !_HTTPRequest[clientID].bodysize) {
-			_HTTPRequest[clientID].req += buffer;
-			_HTTPRequest[clientID].nbr_of_read++;
-			// debug("add to request");
-		}
-		if (_HTTPRequest[clientID].req.find("\r\n\r\n") != std::string::npos && _HTTPRequest[clientID].req.find("Content-Length") != std::string::npos && _HTTPRequest[clientID].body.length() == 0)
-		{
-			_HTTPRequest[clientID].bodysize = getbodysize(_HTTPRequest[clientID].req);
-			// debug("set body size at : ", _HTTPRequest[clientID].bodysize);
-			_HTTPRequest[clientID].body = _HTTPRequest[clientID].req.substr(_HTTPRequest[clientID].req.find("\r\n\r\n"), _HTTPRequest[clientID].req.length() -  _HTTPRequest[clientID].req.find("\r\n\r\n"));
-			_HTTPRequest[clientID].req = _HTTPRequest[clientID].req.substr(0, _HTTPRequest[clientID].req.find("\r\n\r\n"));
-			// _HTTPRequest[clientID].nbr_of_read++;
-			// debug(_HTTPRequest[clientID].body);
-		}
-		else if (_HTTPRequest[clientID].body.length() < _HTTPRequest[clientID].bodysize)
-		{
-			// debug("add to buffer");
-			_HTTPRequest[clientID].body += buffer;
-			_HTTPRequest[clientID].nbr_of_read++;
-		}
-		else if (_HTTPRequest[clientID].req.find("\r\n\r\n") != std::string::npos && !_HTTPRequest[clientID].bodysize)
-		{
-			_HTTPRequest[clientID].nbr_of_read = 0;
-			_HTTPRequest[clientID].recvEnd = true;
-		}
-		if (_HTTPRequest[clientID].bodysize && _HTTPRequest[clientID].body.length() >= _HTTPRequest[clientID].bodysize)
-		{
-			_HTTPRequest[clientID].nbr_of_read = 0;
-			_HTTPRequest[clientID].recvEnd = true;
-			_HTTPRequest[clientID].req += _HTTPRequest[clientID].body;
-			// debug("passe dans end of request");
-			// debug(_HTTPRequest[clientID].body);
-			// debug("body size : ", _HTTPRequest[clientID].bodysize);
-			// debug("body length : ", _HTTPRequest[clientID].body.length());
-		}
-		// debug(_HTTPRequest[clientID].body);
-		// debug(buffer);
-		// debug(BLUE, "nbr of read: ", _HTTPRequest[clientID].nbr_of_read);
-		// if (_HTTPRequest[clientID].req.find("\r\n\r\n") )
-		// 	break;
-		if (bytes_read == 0 && _HTTPRequest[clientID].nbr_of_read == 0) {
-			// debug(YELLOW, "disconnect");
-			close(_epollClient[clientID].data.fd);
-			_HTTPRequest[clientID].disconnect = true;
-			return;
-		}
+	buffer[bytes_read] = '\0';
+	if (bytes_read > 0 && !_HTTPRequest[clientID].bodysize) {
+		_HTTPRequest[clientID].req += buffer;
+		_HTTPRequest[clientID].nbr_of_read++;
+		// debug("add to request");
+	}
+	if (_HTTPRequest[clientID].req.find("\r\n\r\n") != std::string::npos && _HTTPRequest[clientID].req.find("Content-Length") != std::string::npos && _HTTPRequest[clientID].body.length() == 0)
+	{
+		_HTTPRequest[clientID].bodysize = getbodysize(_HTTPRequest[clientID].req);
+		// debug("set body size at : ", _HTTPRequest[clientID].bodysize);
+		_HTTPRequest[clientID].body = _HTTPRequest[clientID].req.substr(_HTTPRequest[clientID].req.find("\r\n\r\n"), _HTTPRequest[clientID].req.length() -  _HTTPRequest[clientID].req.find("\r\n\r\n"));
+		_HTTPRequest[clientID].req = _HTTPRequest[clientID].req.substr(0, _HTTPRequest[clientID].req.find("\r\n\r\n"));
 		// _HTTPRequest[clientID].nbr_of_read++;
-	// }
+		// debug(_HTTPRequest[clientID].body);
+	}
+	else if (_HTTPRequest[clientID].body.length() < _HTTPRequest[clientID].bodysize)
+	{
+		// debug("add to buffer");
+		_HTTPRequest[clientID].body += buffer;
+		_HTTPRequest[clientID].nbr_of_read++;
+	}
+	else if (_HTTPRequest[clientID].req.find("\r\n\r\n") != std::string::npos && !_HTTPRequest[clientID].bodysize)
+	{
+		_HTTPRequest[clientID].nbr_of_read = 0;
+		_HTTPRequest[clientID].recvEnd = true;
+	}
+	if (_HTTPRequest[clientID].bodysize && _HTTPRequest[clientID].body.length() >= _HTTPRequest[clientID].bodysize)
+	{
+		_HTTPRequest[clientID].nbr_of_read = 0;
+		_HTTPRequest[clientID].recvEnd = true;
+		_HTTPRequest[clientID].req += _HTTPRequest[clientID].body;
+		// debug("passe dans end of request");
+		// debug(_HTTPRequest[clientID].body);
+		// debug("body size : ", _HTTPRequest[clientID].bodysize);
+		// debug("body length : ", _HTTPRequest[clientID].body.length());
+	}
+	// debug(_HTTPRequest[clientID].body);
+	// debug(buffer);
+	// debug(BLUE, "nbr of read: ", _HTTPRequest[clientID].nbr_of_read);
+	// if (_HTTPRequest[clientID].req.find("\r\n\r\n") )
+	// 	break;
+	if (bytes_read == 0 && _HTTPRequest[clientID].nbr_of_read == 0) {
+		// debug(YELLOW, "disconnect");
+		close(_epollClient[clientID].data.fd);
+		_HTTPRequest[clientID].disconnect = true;
+		return;
+	}
+	// _HTTPRequest[clientID].nbr_of_read++;
+// }
 }
 
 std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it) {

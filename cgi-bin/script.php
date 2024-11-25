@@ -2,6 +2,8 @@
 <?php
 header("Content-Type: text/html");
 
+$text = getenv('text');
+
 $fonts = [
     "Arial, sans-serif",
     "'Times New Roman', Times, serif",
@@ -15,7 +17,8 @@ $fonts = [
 
 $font = $fonts[array_rand($fonts)];
 $htmlContent = file_get_contents('./site/cgi.html');
-$styleTag = "h1 { font-family: $font; }";
+$styleTag = "p { font-family: $font; }";
 $htmlContent = preg_replace('/(<\/head>)/', "<style>$styleTag</style>\n$1", $htmlContent);
+$htmlContent = preg_replace('/Result:/', "$1\n<p>$text</p>\n", $htmlContent);
 print($htmlContent);
 ?>
