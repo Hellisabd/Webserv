@@ -94,6 +94,7 @@ class HttpRequest {
 	//utils
 	string			extractHeaderKey(std::string &s);
 	t_headerValue	extractHeaderValue(string::iterator& it);
+	t_headerValue	extractUserAgent(string::iterator& it);
 	bool			validateHeaderKey(std::string& headerKey);
 	void			calcBodySize();
 	bool 			extractMultiparts();

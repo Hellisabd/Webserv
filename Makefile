@@ -37,10 +37,13 @@ SRC_COUNT = $(shell echo $(SRCS) | wc -w)
 
 USER1 = bgrosjea
 USER2 = amirloup
+USER3 = achatzit
 
 ifeq ($(USER), $(USER1))
 	EXECUTABLE = /loadings/loadingbasile
 else ifeq ($(USER), $(USER2))
+	EXECUTABLE = /loadings/loadingantoine
+else ifeq ($(USER), $(USER3))
 	EXECUTABLE = /loadings/loadingantoine
 else
 	$(error Unknown user, please set the correct executable)

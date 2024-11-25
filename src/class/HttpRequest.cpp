@@ -110,38 +110,27 @@ bool HttpRequest::parseAll() {
 	if (!parseHeader()) {
 		return (false);
 	}
-	debug("apres header");
 	if (!parseBody()) {
 		return (false);
 	}
-	debug("apres body");
 	return (true);
 }
 
 bool HttpRequest::parseHeader() {
-	debug("passe dans parse header");
 	if (!isValid()) {
 		return (false);
 	}
-	debug("passe apres isValid");
 	if (!fillMethod()) {
 		return (false);
 	}
-	debug("1");
 	fillUrl();
-	debug(2);
-
 	fillHostAndPort();
-	debug(3);
 	fillHttpVersion();
-	debug(4);
 	if (!fillHeaders())
 		return (false);
-	debug(5);
 	if (isChunkedBasedRequest()) {
 		return (false);
 	}
-	debug(6);
 	return (true);
 }
 
@@ -549,7 +538,6 @@ bool HttpRequest::isValidHost() {
 		setErr(400, "The host header is not directly after a crlf\n");
 		return (false);
 	}
-	//debug(20);
 	string hostValue = _request.substr(hostPos + 5, _request.find("\r\n", hostPos) - hostPos - 5);
 	hostValue = trimWhitespaces(hostValue);
 	if (hostValue.size() == 0) {
@@ -572,11 +560,8 @@ bool HttpRequest::isValid() {
 void HttpRequest::fillHostAndPort() {
 	size_t start = findCaseIns(_request, "host");
 	size_t end = _request.find("\r\n", start);
-	//debug(21);
 	string hostPort = _request.substr(start + 5, end - start - 5);
-	//debug(22);
 	_host = hostPort.substr(0, hostPort.find(":"));
-	//debug(23);
 	_port = hostPort.substr(hostPort.find(":") + 1, hostPort.length());
 }
 
@@ -609,7 +594,6 @@ bool HttpRequest::fillMethod() {
 void HttpRequest::fillUrl() {
 	size_t start = _request.find("/");
 	size_t end = _request.find(" ", start);
-	//debug(25);
 	if (start != _request.npos && end != _request.npos)
 		_url = _request.substr(start, end - start);
 }
@@ -621,9 +605,7 @@ void HttpRequest::fillHttpVersion() {
 		start = 0;
 	if (end == _request.npos)
 		end = _request.length();
-	//debug(26);
 	_httpVersion = _request.substr(start, end - start);
-	//debug(GREEN, _httpVersion);
 }
 
 string HttpRequest::extractHeaderKey(string &s) {
@@ -635,7 +617,6 @@ string HttpRequest::extractHeaderKey(string &s) {
 		}
 		headerKey.second++;
 	}
-	//debug(27);
 	headerKey.first = s.substr(0, headerKey.second);
 	return (headerKey.first);
 }
@@ -676,8 +657,6 @@ t_headerValue HttpRequest::extractHeaderValue(string::iterator& it) {
 		rawValue += *it;
 		it++, i++;
 	}
-	cout << "testest\n";
-	debug(rawValue);
 	// extracting the remaining parameters
 	while (!isEnd(it)) {
 		if (!parsingError && *it == ';') {
@@ -704,7 +683,22 @@ t_headerValue HttpRequest::extractHeaderValue(string::iterator& it) {
 		}
 		else
 			break;
-		debug ("lol29");
+	}
+	return ((t_headerValue){rawValue, parameters});
+}
+
+t_headerValue HttpRequest::extractUserAgent(string::iterator& it) {
+	string					rawValue;
+	string					paramKey;
+	string					paramValue;
+	strmap_t				parameters;
+	string					tmp;
+	size_t					i = 0;
+
+	// extracting the rawValue
+	while (!isEnd(it)) {
+		rawValue += *it;
+		it++, i++;
 	}
 	return ((t_headerValue){rawValue, parameters});
 }
@@ -729,11 +723,12 @@ bool HttpRequest::fillHeaders() {
 			return (false);
 		}
 		it++;
-		_header[key] = extractHeaderValue(it);
+		if (caseInsStrCmp(key, "user-agent")) {
+			_header[key] = extractUserAgent(it);
+		} else {
+			_header[key] = extractHeaderValue(it);
+		}
 		if (!isCrlf(&(*it))) {
-			cout << "hahhahahah\n";
-			cout << &(*it);
-			cout << "hahahhaha\n";
 			setErr(400, "A header is not directly followed by crlf\n");
 			return (false);
 		}
