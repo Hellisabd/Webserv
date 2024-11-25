@@ -124,6 +124,7 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 		return ;
 	std::string text;
 	if (req_str.find("text=") != req_str.npos) {
+		debug(ORANGE, "find text");
 		std::size_t start = req_str.find("text=") + 5;
 		if (start != req_str.npos)
 			text = req_str.substr(start, req_str.length() - start);
@@ -302,7 +303,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		}
 	}
 	if (path.find("cgi-bin") != path.npos)
-		return exec(data, clientID, rq, _HTTPRequest[clientID].req);
+		return exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
 	else if (page.empty() && valid == 2)
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())
