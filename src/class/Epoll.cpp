@@ -101,7 +101,7 @@ std::string getScriptName(std::string url) {
 	if (start == url.npos)
 		return "";
 	end = url.find("/", start + 8);
-	//debug(17);
+	//debug(18);
 	if (end == url.npos)
 		return "./" + url.substr(start, url.length() - start);
 	else
@@ -117,11 +117,19 @@ void Epoll::set_new_env(Data &data, HttpRequest rq) {
 
 }
 
-void Epoll::exec(Data &data, int clientID, HttpRequest rq)
+void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 {
 	int fd[2];
 	if (pipe(fd) == -1)
 		return ;
+	std::string text;
+	if (req_str.find("text=") != req_str.npos) {
+		std::size_t start = req_str.find("text=") + 5;
+		if (start != req_str.npos)
+			text = req_str.substr(start, req_str.length() - start);
+		replace(text);
+		data._env["text"] = text;
+	}
 	int pid = fork();
 	if (pid == -1)
 	{
@@ -132,6 +140,8 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 	set_new_env(data, rq);
 	if (pid == 0)
 	{
+		char **env;
+		env = data.envToCharpp();
 		if (-1 == dup2(fd[1], STDOUT_FILENO))
 		{
 			close (fd[0]);
@@ -140,22 +150,18 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq)
 		}
 		close(fd[0]);
 		close(fd[1]);
-		char **env = data.envToCharpp();
-		// for (int i = 0; env[i]; i++)
-		// 	fprintf(stderr, "%s\n", env[i]);
 		char **filename = new char*[2];
-		// if (script1)
+		if (rq.getUrl().find("script.php") != rq.getUrl().npos) {
+			debug_map(ORANGE, "env", data._env);
 			filename[0] = strdup("./script.php");
 			filename[1] = NULL;
 			execve("cgi-bin/script.php", filename, env);
-		// if (script2)
-			// filename[0] = strdup("./script.php");
-			// filename[1] = NULL;
-		// 	execve("cgi-bin/script2.php", filename, env);
-		// if (script3)
-			// filename[0] = strdup("./script.php");
-			// filename[1] = NULL;
-		// 	execve("cgi-bin/script2.php", filename, env);
+		}
+		else if (rq.getUrl().find("word_count.py") != rq.getUrl().npos) {
+			filename[0] = strdup("./word_count.py");
+			filename[1] = NULL;
+			execve("cgi-bin/word_count.py", filename, env);
+		}
 		for (int i = 0; env[i]; i++)
 			free(env[i]);
 		delete[] env;
@@ -280,7 +286,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		debug(_epollClient[clientID].events);
 		return ;
 	}
-	// debug(_HTTPRequest[clientID]);
+	// debug(ORANGE, "req: ", _HTTPRequest[clientID].req);
 	//debug(path);
 	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 		if (path == i->first)
@@ -296,7 +302,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		}
 	}
 	if (path.find("cgi-bin") != path.npos)
-		return exec(data, clientID, rq);
+		return exec(data, clientID, rq, _HTTPRequest[clientID].req);
 	else if (page.empty() && valid == 2)
 		page = data.getErrors().find("408")->second;
 	else if (page.empty())

@@ -2,7 +2,7 @@
 <?php
 header("Content-Type: text/html");
 
-$htmlFile = './site/cops.html';
+$text = getenv('text');
 
 $fonts = [
     "Arial, sans-serif",
@@ -16,17 +16,9 @@ $fonts = [
 ];
 
 $font = $fonts[array_rand($fonts)];
-
-$htmlContent = file_get_contents($htmlFile);
-
-$styleTag = "h1 { font-family: $font; }";
-
-
-if (strpos($htmlContent, '<style>') !== false) {
-    $htmlContent = preg_replace('/(<\/style>)/', "$styleTag\n$1", $htmlContent);
-} else {
-    $htmlContent = preg_replace('/(<\/head>)/', "<style>$styleTag</style>\n$1", $htmlContent);
-}
-
+$htmlContent = file_get_contents('./site/cgi.html');
+$styleTag = "p { font-family: $font; }";
+$htmlContent = preg_replace('/(<\/head>)/', "<style>$styleTag</style>\n$1", $htmlContent);
+$htmlContent = preg_replace('/Result:/', "$1\n<p>$text</p>\n", $htmlContent);
 print($htmlContent);
 ?>

@@ -26,7 +26,7 @@ public:
 	void sendToClient(int clientID, Data &data);
 	void readFromClient(int clientID);
 	std::map<int, int>::iterator deleteClient(std::map<int, int>::iterator it);
-	void exec(Data &data, int clientID, HttpRequest rq);
+	void exec(Data &data, int clientID, HttpRequest rq, std::string req_str);
 	void set_new_env(Data &data, HttpRequest rq);
 	bool checkRequestIsValid(const std::string &url, Data &data, std::string const &method);
 	void downloadFile(std::string request);
