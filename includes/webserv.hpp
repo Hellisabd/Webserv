@@ -21,7 +21,7 @@
 #include <cctype>
 #include <sstream>
 #include <cstring>
-#include <iomanip> 
+#include <iomanip>
 #include <cmath>
 #include <string>
 #include <vector>
