@@ -14,6 +14,7 @@ typedef struct s_requestclient
 	bool sendEnd;
 	bool disconnect;
 	std::size_t bodysize;
+	std::size_t size_to_reach;
 } t_requestClient;
 
 class Epoll {

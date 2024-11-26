@@ -56,6 +56,7 @@ t_requestClient newRequestClient()
 	_HTTPRequest.sendEnd = false;
 	_HTTPRequest.disconnect = false;
 	_HTTPRequest.nbr_of_read = 0;
+	_HTTPRequest.size_to_reach = 0;
 	_HTTPRequest.bodysize = 0;
 	return _HTTPRequest;
 }
@@ -193,6 +194,7 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 	_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 	_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
 	_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+	_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 	_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
 	modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 	debug(_epollClient[clientID].events);
@@ -241,7 +243,6 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
 		if (rq.parsingError)
 		{
-			std::cout << "pourquoi" << endl;
 			cout << rq.parsingStrError << std::endl;
 			page = data.getErrors().find("400")->second;
 		}
@@ -269,6 +270,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 		_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
 		_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+		_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 		_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
 		modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 		return ;
@@ -357,23 +359,31 @@ void Epoll::readFromClient(int clientID)
 	buffer[bytes_read] = '\0';
 		if (bytes_read > 0) {
 			_HTTPRequest[_epollClient[clientID].data.fd].req.append(buffer, bytes_read);
-			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read++;
+			// debug("fdp: ", _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read);
+			if (_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read != 0)
+				_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read++;
+			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach += bytes_read;
 			// debug(bytes_read);
 			// debug(_HTTPRequest[clientID].req);
 		}
 		if (_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read == 0) {
 			size_t header_end = _HTTPRequest[_epollClient[clientID].data.fd].req.find("\r\n\r\n");
+			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read++;
 			if (header_end != std::string::npos)
 			{
+				_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach -= header_end;
 				size_t content_length_pos = _HTTPRequest[_epollClient[clientID].data.fd].req.find("Content-Length:");
 				if (content_length_pos != std::string::npos)
 				{
 					size_t start = content_length_pos + 15;
 					_HTTPRequest[_epollClient[clientID].data.fd].bodysize = getbodysize(_HTTPRequest[_epollClient[clientID].data.fd].req, start);
+					debug("body_size", _HTTPRequest[_epollClient[clientID].data.fd].bodysize);
 					if (bytes_read < 1024)
 					{
 						// debug("cense passer sur une requet POST");
 						// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = true;
+						_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+						_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 						modifEvents(_epollClient[clientID].data.fd, EPOLLOUT, _epoll_fd);
 						return ;
 					}
@@ -382,13 +392,20 @@ void Epoll::readFromClient(int clientID)
 				{
 					// debug("cense passer sur une requet GET");
 					// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = true;
+						_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+						_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					modifEvents(_epollClient[clientID].data.fd, EPOLLOUT, _epoll_fd);
 					return ;
 				}
 			}
 		}
-		if (bytes_read < 1024)
+		debug("size_to_reach: ", _HTTPRequest[_epollClient[clientID].data.fd].size_to_reach);
+		debug("body_size: ", _HTTPRequest[_epollClient[clientID].data.fd].bodysize);
+		if (_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach >= _HTTPRequest[_epollClient[clientID].data.fd].bodysize)
 		{
+			debug ("sort");
+			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 			modifEvents(_epollClient[clientID].data.fd, EPOLLOUT, _epoll_fd);
 		}
 }
@@ -452,9 +469,10 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
 				}
 				else if (/* _HTTPRequest[_epollClient[clientID].data.fd].recvEnd == false &&  */_epollClient[clientID].events & EPOLLIN)
 				{
-					static int i =0;
-					debug(i);
-					i++;
+					// static int i =0;
+					// debug(i);
+					// i++;
+					// usleep(200);
 					// debug(PURPLE, "EPOLLIN");
 					readFromClient(clientID);
 					break;

@@ -107,6 +107,11 @@ void	HttpRequest::setErr(int n, const string& s) {
 }
 
 bool HttpRequest::parseAll() {
+	ofstream f("requestdebug", ios::app);
+	if (!f.is_open()) {
+		;
+	}
+	debug_file(_request, &f, 0);
 	if (!parseHeader()) {
 		return (false);
 	}
@@ -150,6 +155,8 @@ bool HttpRequest::parseBody() {
 		// No longer a case of 400 bad request if the content-length is not equal. However a CL above would mean a chunked request, so i throw that one out.
 		calcBodySize();
 		if (_contentLength > _bodySize) {
+			debug(_contentLength);
+			debug(_bodySize);
 			setErr(400, "Content-Length size is superior to the body size\n");
 			return (false);
 		}
@@ -313,11 +320,17 @@ bool	HttpRequest::allBoundaryAreValid() {
 	size_t				bpos;
 	size_t				bnb = 0;
 
+	string::iterator lol = _request.end();
+	for (int i = 0; i < 50; i++)
+	{
+		lol--;
+	}
+	cout << endl;
 	while ((bpos = static_cast<string>(&(*bit)).find(b)) != string::npos) {
 		if (bpos != string::npos) {
 			// TODO check premier boudary et son inclusion au \r\b de fin de header (enfin je sais pas a check)
 			if (static_cast<string>(&(*(bit + bpos - 2))).compare(0, 2, "--")) {
-				setErr(400, "Foud a boundary delimiter not prefixed with --");
+				setErr(400, "Found a boundary delimiter not prefixed with --");
 				return (false);
 			} else if (static_cast<string>(&(*(bit + bpos))).compare(bsize, 2, "\r\n") && static_cast<string>(&(*(bit + bpos))).compare(bsize, 4, "--\r\n")) {
 				// TODO, check ca
@@ -325,6 +338,7 @@ bool	HttpRequest::allBoundaryAreValid() {
 				return (false);
 			} else if (!static_cast<string>(&(*(bit + bpos - 2))).compare(0, bsize + 4, "--" + b + "--")) {
 				lastB = &(*(bit + bpos - 2));
+				cout << "alsdjflasdf" << endl;
 				break ;
 			}
 			lastB = &(*bit);
@@ -337,6 +351,7 @@ bool	HttpRequest::allBoundaryAreValid() {
 		setErr(400, "No delimiter found inside the request body\n");
 		return (false);
 	} else if (lastB.compare(0 , bsize + 4,"--" + b + "--")) {
+		//cout << "test: " << lastB << endl;
 		setErr(400, "The last boundary delimiter is not suffixed with --");
 		return (false);
 	}
