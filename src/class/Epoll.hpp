@@ -32,6 +32,8 @@ public:
 	void downloadFile(std::string request);
 	bool isSockPort(int fd);
 	void topars(std::string HTTPRequest, int clientFD);
+	void modifEvents(int fd, int event, int epoll_fd);
+
 
 private:
 	int	_epoll_fd;
