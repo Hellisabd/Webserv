@@ -55,6 +55,7 @@ t_requestClient newRequestClient()
 	_HTTPRequest.recvEnd = false;
 	_HTTPRequest.sendEnd = false;
 	_HTTPRequest.disconnect = false;
+	_HTTPRequest.sending = false;
 	_HTTPRequest.nbr_of_read = 0;
 	_HTTPRequest.size_to_reach = 0;
 	_HTTPRequest.bodysize = 0;
@@ -232,106 +233,146 @@ void	print_in_response(std::string headerHTTP, std::string tosend, int clientFD)
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	HttpRequest rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
-	int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req, _time_out);
-	if (valid == 1)
+	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false)
 	{
-		topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
-		
+		debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].sending);
+		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req, _time_out);
+		if (valid == 1)
+		{
+			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
+			
 
-		// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
-		rq.parseAll();
-		// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
-		if (rq.parsingError)
-		{
-			cout << rq.parsingStrError << std::endl;
-			page = data.getErrors().find("400")->second;
-		}
-		// headermap_t path = rq.getHeaders();
-		// debug_map(PURPLE, "map form HttpRequest type", path);
-	}
-	std::string path = rq.getUrl();
-	if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST")
-	{
-		std::string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req);
-		std::string tmp_name;
-		if (filename.find("/downloads") != filename.npos)
-			tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
-		data._uploads.push_back(tmp_name);
-		std::vector<std::string> method;
-		method.push_back("GET");
-		std::map<std::string, std::vector<string> > &tmp = data.getMethods();
-		tmp["/downloads/" + tmp_name] = method;
-		std::map<std::string, std::string> &tmploc = data.getLocations();
-		if (filename.find("/downloads") != filename.npos)
-			tmploc["/downloads/" + tmp_name] = filename;
-		generate_uploads_url(data._uploads);
-	}
-	if (rq.getUrl() == "/favicon.ico"){
-		_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-		_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-		_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-		_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-		_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-		modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
-		return ;
-	}
-	// debug(ORANGE, "req: ", _HTTPRequest[clientID].req);
-	for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
-		if (path == i->first)
-		{
-			page = i->second;
-			if (!checkRequestIsValid(i->first, data, rq.getMethodToString()))
+			// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
+			rq.parseAll();
+			// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
+			if (rq.parsingError)
 			{
-				// debug("passe dans requete forbiden");
-				page = data.getErrors().find("403")->second;
-				debug(page);
+				cout << rq.parsingStrError << std::endl;
+				page = data.getErrors().find("400")->second;
 			}
-			break ;
+			// headermap_t path = rq.getHeaders();
+			// debug_map(PURPLE, "map form HttpRequest type", path);
 		}
-	}
-	if (path.find("cgi-bin") != path.npos)
-		return exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
-	else if (page.empty() && valid == 2)
-		page = data.getErrors().find("408")->second;
-	else if (page.empty())
-		page = data.getErrors().find("404")->second;
-	std::ostringstream oss;
-	oss << getFileSize(page);
-	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-		throw Error("Error sending HTTP header");
-	int infile = open(page.c_str(), O_RDONLY);
-	if (infile < 0)
-	{
-		page = data.getErrors().find("403")->second;
-	}
-	if (page == "./site/submit_comment.html") {
-		save_comment(_HTTPRequest[_epollClient[clientID].data.fd].req);
-		generate_comment_page();
+		std::string path = rq.getUrl();
+		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST")
+		{
+			std::string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			std::string tmp_name;
+			if (filename.find("/downloads") != filename.npos)
+				tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
+			data._uploads.push_back(tmp_name);
+			std::vector<std::string> method;
+			method.push_back("GET");
+			std::map<std::string, std::vector<string> > &tmp = data.getMethods();
+			tmp["/downloads/" + tmp_name] = method;
+			std::map<std::string, std::string> &tmploc = data.getLocations();
+			if (filename.find("/downloads") != filename.npos)
+				tmploc["/downloads/" + tmp_name] = filename;
+			generate_uploads_url(data._uploads);
+		}
+		if (rq.getUrl() == "/favicon.ico"){
+			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			return ;
+		}
+		// debug(ORANGE, "req: ", _HTTPRequest[clientID].req);
+		for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
+			if (path == i->first)
+			{
+				page = i->second;
+				if (!checkRequestIsValid(i->first, data, rq.getMethodToString()))
+				{
+					// debug("passe dans requete forbiden");
+					page = data.getErrors().find("403")->second;
+					debug(page);
+				}
+				break ;
+			}
+		}
+		if (path.find("cgi-bin") != path.npos)
+			return exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
+		else if (page.empty() && valid == 2)
+			page = data.getErrors().find("408")->second;
+		else if (page.empty())
+			page = data.getErrors().find("404")->second;
+		std::ostringstream oss;
+		oss << getFileSize(page);
+		_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+		std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+		_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
+		if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+			throw Error("Error sending HTTP header");
+		int infile = open(page.c_str(), O_RDONLY);
+		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
+		if (infile < 0)
+		{
+			page = data.getErrors().find("403")->second;
+		}
+		if (page == "./site/submit_comment.html") {
+			save_comment(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			generate_comment_page();
+		}
 	}
 	// je vais tout peter au dessus c est bon
+	sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send);
+	// char tosend[1024];
+	// ssize_t file_read;
+	// while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
+	// 	if (file_read < 1024)
+	// 		tosend[file_read++] = '\0';
+	// 	if (send(_epollClient[clientID].data.fd, tosend, file_read, MSG_NOSIGNAL) < 0)
+	// 	{
+	// 		close(infile);
+	// 		perror("client send body");
+	// 		throw Error("");
+	// 	}
+	// }
+	// // debug ("passe apres le read de infile");
+	// print_in_response(headerHTTP, tosend, _epollClient[clientID].data.fd);
+	// _HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+	// _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+	// // debug("passe bool to false");
+	// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+	// _HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+	// modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+	// close(infile);
+}
+
+void	Epoll::sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send)
+{
 	char tosend[1024];
 	ssize_t file_read;
-	// debug ("passe devant le read de infile");
-	while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
-		if (file_read < 1024)
-			tosend[file_read++] = '\0';
-		if (send(_epollClient[clientID].data.fd, tosend, file_read, MSG_NOSIGNAL) < 0)
-		{
-			close(infile);
-			perror("client send body");
-			throw Error("");
-		}
+	_HTTPRequest[fd].sending = true;
+	debug("passe avant read");
+	file_read = read(infile, tosend, sizeof(tosend));
+	debug("passe apres read");
+	_HTTPRequest[fd].size_to_reach += file_read;
+	if (file_read < 1024)
+		tosend[file_read] = '\0';
+	if (send(fd, tosend, file_read, MSG_NOSIGNAL) < 0)
+	{
+		close(infile);
+		perror("client send body");
+		throw Error("");
 	}
 	// debug ("passe apres le read de infile");
-	print_in_response(headerHTTP, tosend, _epollClient[clientID].data.fd);
-	_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-	_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-	// debug("passe bool to false");
-	_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-	_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-	modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
-	close(infile);
+	if (_HTTPRequest[fd].size_to_reach >= size_to_send)
+	{
+		print_in_response(headerHTTP, tosend, fd);
+		_HTTPRequest[fd].req.clear();
+		_HTTPRequest[fd].nbr_of_read = 0;
+		// debug("passe bool to false");
+		_HTTPRequest[fd].recvEnd = false;
+		_HTTPRequest[fd].bodysize = 0;
+		_HTTPRequest[fd].size_to_reach = 0;
+		_HTTPRequest[fd].sending = false;
+		modifEvents(fd, EPOLLIN, _epoll_fd);
+		close(infile);
+	}
 }
 
 std::size_t getbodysize(std::string str, size_t start)

@@ -15,6 +15,10 @@ typedef struct s_requestclient
 	bool disconnect;
 	std::size_t bodysize;
 	std::size_t size_to_reach;
+	std::size_t size_of_file_to_send;
+	bool sending;
+	std::string headerresponse;
+	int infile;
 } t_requestClient;
 
 class Epoll {
@@ -34,6 +38,7 @@ public:
 	bool isSockPort(int fd);
 	void topars(std::string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, int epoll_fd);
+	void sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send);
 
 
 private:
