@@ -107,11 +107,6 @@ void	HttpRequest::setErr(int n, const string& s) {
 }
 
 bool HttpRequest::parseAll() {
-	ofstream f("requestdebug", ios::app);
-	if (!f.is_open()) {
-		;
-	}
-	debug_file(_request, &f, 0);
 	if (!parseHeader()) {
 		return (false);
 	}

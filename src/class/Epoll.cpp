@@ -124,10 +124,11 @@ void Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str)
 		return ;
 	std::string text;
 	if (req_str.find("text=") != req_str.npos) {
-		debug(ORANGE, "find text");
 		std::size_t start = req_str.find("text=") + 5;
 		if (start != req_str.npos)
 			text = req_str.substr(start, req_str.length() - start);
+		if (text.length() > 18000)
+			text = "Text too long.";
 		replace(text);
 		data._env["text"] = text;
 	}
