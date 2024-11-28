@@ -81,14 +81,13 @@ void Epoll::addClient(int port)
 	_ClientSock.push_back(client);
 	_cliport[client] = _sock[port];
 	_HTTPRequest[client] = newRequestClient();
-	debug("fd when added :" , client);
+	// debug("fd when added :" , client);
 }
 
 int validToSend(std::string const &str, clock_t time)
 {
-	(void)time;
-	// if (clock() - time > 10000)
-	// 	return 2;
+	if (clock() - time > 10000)
+		return 2;
 	if (str.find("\r\n\r\n") != str.npos)
 		return 1;
 	return 0;
@@ -236,23 +235,17 @@ void Epoll::sendToClient(int clientID, Data &data) {
 	HttpRequest rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false)
 	{
-		debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].sending);
+		// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].sending);
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req, _time_out);
 		if (valid == 1)
 		{
 			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
-			
-
-			// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
 			rq.parseAll();
-			// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].req);
 			if (rq.parsingError)
 			{
 				cout << rq.parsingStrError << std::endl;
 				page = data.getErrors().find("400")->second;
 			}
-			// headermap_t path = rq.getHeaders();
-			// debug_map(PURPLE, "map form HttpRequest type", path);
 		}
 		std::string path = rq.getUrl();
 		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST")
@@ -280,7 +273,6 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return ;
 		}
-		// debug(ORANGE, "req: ", _HTTPRequest[clientID].req);
 		for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 			if (path == i->first)
 			{
@@ -289,7 +281,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 				{
 					// debug("passe dans requete forbiden");
 					page = data.getErrors().find("403")->second;
-					debug(page);
+					// debug(page);
 				}
 				break ;
 			}
@@ -300,17 +292,36 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			else
 				exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
 		}
+		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE") {
+			delete_file(path);
+		}
 		else if (page.empty() && valid == 2)
 			page = data.getErrors().find("408")->second;
 		else if (page.empty())
 			page = data.getErrors().find("404")->second;
 		std::ostringstream oss;
-		oss << getFileSize(page);
-		_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-		std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-		_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
-		if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-			throw Error("Error sending HTTP header");
+		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
+			oss << getFileSize(page);
+			_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+			std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
+			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+				throw Error("Error sending HTTP header");
+		}
+		else if (rq.getMethodToString() == "DELETE") {
+			std::string headerHTTP = "HTTP/1.1 200 OK\r\n\r\n";
+			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
+			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+				throw Error("Error sending HTTP header");
+			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].sending = false;
+			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			return ;
+		}
 		int infile = open(page.c_str(), O_RDONLY);
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
 		if (infile < 0)
@@ -322,29 +333,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			generate_comment_page();
 		}
 	}
-	// je vais tout peter au dessus c est bon
 	sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send);
-	// char tosend[1024];
-	// ssize_t file_read;
-	// while ((file_read = read(infile, tosend, sizeof(tosend))) > 0) {
-	// 	if (file_read < 1024)
-	// 		tosend[file_read++] = '\0';
-	// 	if (send(_epollClient[clientID].data.fd, tosend, file_read, MSG_NOSIGNAL) < 0)
-	// 	{
-	// 		close(infile);
-	// 		perror("client send body");
-	// 		throw Error("");
-	// 	}
-	// }
-	// // debug ("passe apres le read de infile");
-	// print_in_response(headerHTTP, tosend, _epollClient[clientID].data.fd);
-	// _HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-	// _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-	// // debug("passe bool to false");
-	// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-	// _HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-	// modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
-	// close(infile);
 }
 
 void	Epoll::sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send)
@@ -352,9 +341,7 @@ void	Epoll::sendingFile(int fd, int infile, std::string headerHTTP, std::size_t 
 	char tosend[1024];
 	ssize_t file_read;
 	_HTTPRequest[fd].sending = true;
-	debug("passe avant read");
 	file_read = read(infile, tosend, sizeof(tosend));
-	debug("passe apres read");
 	_HTTPRequest[fd].size_to_reach += file_read;
 	if (file_read < 1024)
 		tosend[file_read] = '\0';
@@ -364,13 +351,11 @@ void	Epoll::sendingFile(int fd, int infile, std::string headerHTTP, std::size_t 
 		perror("client send body");
 		throw Error("");
 	}
-	// debug ("passe apres le read de infile");
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send)
 	{
 		print_in_response(headerHTTP, tosend, fd);
 		_HTTPRequest[fd].req.clear();
 		_HTTPRequest[fd].nbr_of_read = 0;
-		// debug("passe bool to false");
 		_HTTPRequest[fd].recvEnd = false;
 		_HTTPRequest[fd].bodysize = 0;
 		_HTTPRequest[fd].size_to_reach = 0;

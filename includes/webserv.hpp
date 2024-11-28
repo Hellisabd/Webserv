@@ -44,6 +44,7 @@ void generate_comment_page();
 void save_comment(std::string rq);
 std::string uploadFile(std::string request);
 void replace(std::string &com);
+void delete_file(std::string path);
 
 # define NC 	std::string("\e[0m")
 # define RED 	std::string("\e[1;31m")

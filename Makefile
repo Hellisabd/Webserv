@@ -20,7 +20,8 @@ SRCS	=	src/main.cpp \
 			src/class/Epoll.cpp \
 			src/class/HttpRequest.cpp \
 			src/comments.cpp \
-			src/uploads.cpp
+			src/uploads.cpp \
+			src/delete.cpp
 			
 
 OBJS	= $(SRCS:.cpp=.o)
