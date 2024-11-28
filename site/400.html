@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>400 - खराब अनुरोध</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        a:hover {
+            background-color: #2980b9;
+        }
+
+		/* Styles du bouton drapeau de l'Inde */
+		.india-flag-button {
+            display: inline-block;
+            width: 120px;
+            height: 60px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            background-color: transparent;
+            margin-top: 2em;
+        }
+        .india-flag-button::before,
+        .india-flag-button::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 33.33%;
+            position: absolute;
+        }
+        .india-flag-button::before {
+            top: 0;
+            background-color: #FF9933;
+        }
+        .india-flag-button::after {
+            bottom: 0;
+            background-color: #138808;
+        }
+        .india-flag-button .white-band {
+            background-color: white;
+            height: 33.33%;
+            width: 100%;
+            position: absolute;
+            top: 33.33%;
+        }
+        .india-flag-button .chakra-wheel {
+            width: 20%;
+            height: 20%;
+            background-color: #000080;
+            border-radius: 50%;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+    </style>
+</head>
+<body>
+    <h1>400</h1>
+    <p>विकृत सिंटैक्स के कारण सर्वर द्वारा अनुरोध को समझा नहीं जा सका।</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%A4%B5%E0%A4%BF%E0%A4%95%E0%A5%83%E0%A4%A4%20%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%9F%E0%A5%88%E0%A4%95%E0%A5%8D%E0%A4%B8%20%E0%A4%95%E0%A5%87%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A4%A3%20%E0%A4%B8%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%B0%20%E0%A4%A6%E0%A5%8D%E0%A4%B5%E0%A4%BE%E0%A4%B0%E0%A4%BE%20%E0%A4%85%E0%A4%A8%E0%A5%81%E0%A4%B0%E0%A5%8B%E0%A4%A7%20%E0%A4%95%E0%A5%8B%20%E0%A4%B8%E0%A4%AE%E0%A4%9D%E0%A4%BE%20%E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82%20%E0%A4%9C%E0%A4%BE%20%E0%A4%B8%E0%A4%95%E0%A4%BE%E0%A5%A4&op=translate">अनुवाद</a>
+
+	<!-- Bouton représentant le drapeau de l'Inde -->
+    <button class="india-flag-button" onclick="window.location.href='/'">
+        <div class="white-band"></div>
+        <div class="chakra-wheel"></div>
+    </button>
+</body>
+</html>

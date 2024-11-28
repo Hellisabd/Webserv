@@ -294,8 +294,12 @@ void Epoll::sendToClient(int clientID, Data &data) {
 				break ;
 			}
 		}
-		if (path.find("cgi-bin") != path.npos)
-			return exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
+		if (path.find("cgi-bin") != path.npos) {
+			if (page != "./site/cgi.html")
+				page = data.getErrors().find("404")->second;
+			else
+				exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
+		}
 		else if (page.empty() && valid == 2)
 			page = data.getErrors().find("408")->second;
 		else if (page.empty())
