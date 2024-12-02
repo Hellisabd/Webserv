@@ -40,7 +40,6 @@ public:
 	void modifEvents(int fd, int event, int epoll_fd);
 	void sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send);
 
-
 private:
 	int	_epoll_fd;
 	int _n;

@@ -229,13 +229,11 @@ void	print_in_response(std::string headerHTTP, std::string tosend, int clientFD)
 	fd.close();
 }
 
-
 void Epoll::sendToClient(int clientID, Data &data) {
 	std::string page;
 	HttpRequest rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false)
 	{
-		// debug(GREEN, _HTTPRequest[_epollClient[clientID].data.fd].sending);
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req, _time_out);
 		if (valid == 1)
 		{
@@ -250,11 +248,10 @@ void Epoll::sendToClient(int clientID, Data &data) {
 		std::string path = rq.getUrl();
 		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST")
 		{
-			std::string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			std::string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data);
 			std::string tmp_name;
 			if (filename.find("/downloads") != filename.npos)
 				tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
-			data._uploads.push_back(tmp_name);
 			std::vector<std::string> method;
 			method.push_back("GET");
 			std::map<std::string, std::vector<string> > &tmp = data.getMethods();
@@ -293,7 +290,8 @@ void Epoll::sendToClient(int clientID, Data &data) {
 				exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
 		}
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE") {
-			delete_file(path);
+			delete_file(path, data);
+			generate_uploads_url(data._uploads);
 		}
 		else if (page.empty() && valid == 2)
 			page = data.getErrors().find("408")->second;
@@ -301,6 +299,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			page = data.getErrors().find("404")->second;
 		std::ostringstream oss;
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
+			debug(ORANGE, page);
 			oss << getFileSize(page);
 			_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
 			std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
@@ -309,7 +308,7 @@ void Epoll::sendToClient(int clientID, Data &data) {
 				throw Error("Error sending HTTP header");
 		}
 		else if (rq.getMethodToString() == "DELETE") {
-			std::string headerHTTP = "HTTP/1.1 200 OK\r\n\r\n";
+			std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Length: 0\r\nConnection: close\r\n\r\n";
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 				throw Error("Error sending HTTP header");

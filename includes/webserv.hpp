@@ -42,9 +42,9 @@ unsigned long getFileSize(std::string const &file_path);
 void generate_uploads_url(std::vector<string> filenames);
 void generate_comment_page();
 void save_comment(std::string rq);
-std::string uploadFile(std::string request);
+std::string uploadFile(std::string request, Data &data);
 void replace(std::string &com);
-void delete_file(std::string path);
+void delete_file(std::string path, Data &data);
 
 # define NC 	std::string("\e[0m")
 # define RED 	std::string("\e[1;31m")
