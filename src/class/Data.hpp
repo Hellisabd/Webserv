@@ -42,9 +42,9 @@ class Data {
 
 		void fill_info(std::ifstream &infile);
 		void SetServerNames(std::string const &servernames);
+		void SetLocations(std::string const &location);
 		void SetHost(std::string const &hostToShift);
 		void SetPorts(std::string const &ports);
-		void SetLocations(std::string const &location);
 		void SetErrors(std::string const &errors);
 		std::vector<std::string> setMethods(const std::string &loc);
 };

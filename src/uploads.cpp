@@ -1,6 +1,6 @@
 #include <webserv.hpp>
 
-std::string uploadFile(std::string request)
+std::string uploadFile(std::string request, Data &data)
 {
 	std::string body;
 	std::string filename;
@@ -53,6 +53,14 @@ std::string uploadFile(std::string request)
 		body_start = body_end + 3;
 		body_end = body.find(boundaryKey, body_start);
 		body = body.substr(body_start, body_end - body_start - 1);
+	}
+	std::vector<std::string>::iterator it;
+	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
+		if (filename == *it)
+			break ;
+	}
+	if (it == data._uploads.end()) {
+		data._uploads.push_back(filename);	
 	}
 	filename = "./site/downloads/" + filename;
 	std::ofstream file(filename.c_str());
@@ -115,4 +123,21 @@ void generate_uploads_url(std::vector<string> filenames)
 		page << oss.str();
 		page.close();
 	}
+}
+
+bool check_file_availability(std::string rq, Data &data) {
+	std::size_t start = rq.find("downloads/") + 10;
+	std::size_t end = rq.find(" ", start);
+	std::string filename;
+	if (start != rq.npos && end != rq.npos)
+		filename = rq.substr(start, end - start);
+	std::vector<std::string>::iterator it;
+	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
+		if (filename == *it)
+			break ;
+	}
+	if (it == data._uploads.end()) {
+		return false;	
+	}
+	return true;
 }
