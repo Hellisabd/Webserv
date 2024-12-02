@@ -19,6 +19,7 @@ typedef struct s_requestclient
 	bool sending;
 	std::string headerresponse;
 	int infile;
+	std::string connectionType;
 } t_requestClient;
 
 class Epoll {
@@ -28,17 +29,17 @@ public:
 	void wait(int stop);
 	void handleRequest(std::vector<struct sockaddr_in> address, Data &data);
 	void addClient(int port);
-	void sendToClient(int clientID, Data &data);
+	std::map<int, int>::iterator sendToClient(int clientID, Data &data, std::map<int, int>::iterator it);
 	void readFromClient(int clientID);
 	std::map<int, int>::iterator deleteClient(std::map<int, int>::iterator it);
-	void exec(Data &data, int clientID, HttpRequest rq, std::string req_str);
+	std::map<int, int>::iterator exec(Data &data, int clientID, HttpRequest rq, std::string req_str, std::map<int, int>::iterator it);
 	void set_new_env(Data &data, HttpRequest rq);
 	bool checkRequestIsValid(const std::string &url, Data &data, std::string const &method);
 	void downloadFile(std::string request);
 	bool isSockPort(int fd);
 	void topars(std::string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, int epoll_fd);
-	void sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send);
+	std::map<int, int>::iterator sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send, std::map<int, int>::iterator);
 
 
 private:
