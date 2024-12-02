@@ -125,6 +125,19 @@ void generate_uploads_url(std::vector<string> filenames)
 	}
 }
 
-// bool check_file_availability(std::string rq, Data &data) {
-// 	std::size_t start = rq.find("download/")
-// }
+bool check_file_availability(std::string rq, Data &data) {
+	std::size_t start = rq.find("downloads/") + 10;
+	std::size_t end = rq.find(" ", start);
+	std::string filename;
+	if (start != rq.npos && end != rq.npos)
+		filename = rq.substr(start, end - start);
+	std::vector<std::string>::iterator it;
+	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
+		if (filename == *it)
+			break ;
+	}
+	if (it == data._uploads.end()) {
+		return false;	
+	}
+	return true;
+}

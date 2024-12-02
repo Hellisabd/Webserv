@@ -45,6 +45,7 @@ void save_comment(std::string rq);
 std::string uploadFile(std::string request, Data &data);
 void replace(std::string &com);
 void delete_file(std::string path, Data &data);
+bool check_file_availability(std::string rq, Data &data);
 
 # define NC 	std::string("\e[0m")
 # define RED 	std::string("\e[1;31m")

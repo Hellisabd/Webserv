@@ -37524,3 +37524,3527 @@ End of the request
 
 
 
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 838
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 980
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 838
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 9
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 10
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 11
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 12
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 13
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 9
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 10
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 11
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 12
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 13
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 14
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 838
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 7
+
+test1
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 769
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 7
+HTTP/1.1 404 Not Found
+
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+

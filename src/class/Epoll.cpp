@@ -299,13 +299,42 @@ void Epoll::sendToClient(int clientID, Data &data) {
 			page = data.getErrors().find("404")->second;
 		std::ostringstream oss;
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
-			debug(ORANGE, page);
-			oss << getFileSize(page);
-			_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-			std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+			std::string headerHTTP;
+			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
+				page = data.getErrors().find("404")->second;
+				oss << getFileSize(page);
+				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+				headerHTTP = "HTTP/1.1 404 Not Found\r\n\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+			}
+			else {
+				oss << getFileSize(page);
+				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+				headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 				throw Error("Error sending HTTP header");
+
+
+
+			// if (rq.getUrl().find("downloads/") == rq.getUrl().npos || (rq.getUrl().find("downloads/") && check_file_availability(rq.getUrl(), data) == true)) {
+			// 	oss << getFileSize(page);
+			// 	_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+			// 	std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+			// 	_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
+			// 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+			// 		throw Error("Error sending HTTP header");
+			// }
+			// else {
+			// 	debug(YELLOW, "file available?", check_file_availability(rq.getUrl(), data));
+			// 	page = data.getErrors().find("404")->second;
+			// 	oss << getFileSize(page);
+			// 	_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+			// 	std::string headerHTTP = "HTTP/1.1 404 Not Found\r\n\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+			// 	_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
+			// 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+			// 		throw Error("Error sending HTTP header");
+			// }
 		}
 		else if (rq.getMethodToString() == "DELETE") {
 			std::string headerHTTP = "HTTP/1.1 200 OK\r\nContent-Length: 0\r\nConnection: close\r\n\r\n";
