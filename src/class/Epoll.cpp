@@ -334,7 +334,7 @@ std::map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, std::
 			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 			_HTTPRequest[_epollClient[clientID].data.fd].sending = false;
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
-			return ;
+			return it;
 		}
 		int infile = open(page.c_str(), O_RDONLY);
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
