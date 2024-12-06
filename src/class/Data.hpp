@@ -2,6 +2,8 @@
 
 #include <webserv.hpp>
 #include <vector>
+#include <string>
+#include <map>
 
 class Data {
 

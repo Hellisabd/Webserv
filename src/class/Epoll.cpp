@@ -76,7 +76,7 @@ void Epoll::addClient(int port)
 	new_client.data.fd = client;
 	if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, client, &new_client) < 0) {
 		close(client);
-		throw Error("Error adding new client to epoll");
+		throw Error("Error adding new client to epoll")
 	}
 	_ClientSock.push_back(client);
 	_cliport[client] = _sock[port];
