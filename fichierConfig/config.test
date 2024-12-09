@@ -28,6 +28,16 @@ location /comments {
 	./site/comments.html
 }
 
+location /login {
+	Method GET
+	./site/login.html
+}
+
+location /try_login {
+	Method GET
+	./site/try_login.html
+}
+
 location /submit_comment { 
 	Method GET POST
 	./site/submit_comment.html

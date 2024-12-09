@@ -27,7 +27,7 @@ public:
 	Epoll(std::vector<int> sock, int nbr_port);
 	~Epoll();
 	void wait(int stop);
-	void handleRequest(std::vector<struct sockaddr_in> address, Data &data);
+	void handleRequest(/* std::vector<struct sockaddr_in> address,  */Data &data);
 	void addClient(int port);
 	std::map<int, int>::iterator sendToClient(int clientID, Data &data, std::map<int, int>::iterator it);
 	void readFromClient(int clientID);
@@ -55,4 +55,5 @@ private:
 	std::map<int, int> _cliport;
 	clock_t _time_out;
 	bool _noclient;
+	std::map<std::string, std::pair<std::string, std::string> > _accounts;
 };

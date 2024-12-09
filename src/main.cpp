@@ -32,7 +32,7 @@ int main(int argc, char **argv, char **env)
 		try {
 			while (g_stop) {
 				epoll.wait(g_stop);
-				epoll.handleRequest(servSock.getAddr(), data);
+				epoll.handleRequest(/* servSock.getAddr(),  */data);
 			}
 		}
 		catch (std::exception const &e) {

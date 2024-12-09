@@ -223,6 +223,9 @@ std::map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, std::
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
 		std::string path = rq.getUrl();
+		if (path.find("/login") != path.npos || path.find("/try_login") != path.npos) {
+			login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
+		}
 		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
 			std::string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data);
 			std::string tmp_name;
@@ -401,7 +404,7 @@ std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it
 	for (std::vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd) {
 		if (*fd == it->first) {
 			_ClientSock.erase(fd);
-			debug(RED, "Client disconnected.");
+			// debug(RED, "Client disconnected.");
 			break;
 		}
 	}
@@ -421,7 +424,7 @@ bool Epoll::isSockPort(int fd) {
 	return false;
 }
 
-void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
+void Epoll::handleRequest(/* std::vector<struct sockaddr_in> address,  */Data &data) {
 	std::map<int, int>::iterator it = _cliport.begin();
 	_noclient = false;
 	for (int clientID = 0; clientID < _n; clientID++) {
@@ -432,12 +435,11 @@ void Epoll::handleRequest(std::vector<struct sockaddr_in> address, Data &data) {
 			}
 			if (_epollClient[clientID].data.fd == _sock[port]) {
 				addClient(port);
-				std::ostringstream oss;
-				oss << ntohs(address[port].sin_port);
-				debug(GREEN, "New client added on port " + oss.str());
+				// std::ostringstream oss;
+				// oss << ntohs(address[port].sin_port);
+				// debug(GREEN, "New client added on port " + oss.str());
 			}
 			else if (it->second == _sock[port] && !isSockPort(_epollClient[clientID].data.fd)) {
-				debug(YELLOW, _epollClient[clientID].events);
 				if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP)) {
 					it = deleteClient(it);
 					break;

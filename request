@@ -1,737 +1,15 @@
-Start of the request for fd: 9
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/comments
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 9
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 10
-GET /comments HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 10
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/comments
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
 Start of the request for fd: 6
-DELETE /delete?filename=1.txt HTTP/1.1
-Host: localhost:4343
-User-Agent: curl/7.81.0
-Accept: */*
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
+POST / HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: cross-site
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: cross-site
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /upload HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 8
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 8
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: cross-site
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /comments HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/comments
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-DELETE /delete?filename=1.txt HTTP/1.1
-Host: localhost:4343
-User-Agent: curl/7.81.0
-Accept: */*
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/comments
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /upload HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /upload HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 8
-POST /upload HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Content-Type: multipart/form-data; boundary=---------------------------8221867217351680431543744717
-Content-Length: 219
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 30
 Origin: http://localhost:4343
 Connection: keep-alive
-Referer: http://localhost:4343/upload
+Referer: http://localhost:4343/login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
@@ -740,13 +18,7 @@ Sec-Fetch-Site: same-origin
 Sec-Fetch-User: ?1
 Priority: u=0, i
 
------------------------------8221867217351680431543744717
-Content-Disposition: form-data; name="file"; filename="1.txt"
-Content-Type: text/plain
-
-test1
------------------------------8221867217351680431543744717--
-
+pseudo=Antoine&password=dfksjv
 End of the request
 
 
@@ -755,7 +27,7 @@ End of the request
 
 
 
-Start of the request for fd: 8
+Start of the request for fd: 6
 GET /favicon.ico HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
@@ -763,7 +35,7 @@ Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/upload
+Referer: http://localhost:4343/
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -827,8 +99,8 @@ End of the request
 
 
 
-Start of the request for fd: 7
-GET /upload HTTP/1.1
+Start of the request for fd: 6
+GET /login HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -836,56 +108,6 @@ Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
 Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 7
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
@@ -911,7 +133,7 @@ Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/
+Referer: http://localhost:4343/login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -927,15 +149,18 @@ End of the request
 
 
 
-Start of the request for fd: 7
-GET /cgi HTTP/1.1
+Start of the request for fd: 6
+POST / HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 26
+Origin: http://localhost:4343
 Connection: keep-alive
-Referer: http://localhost:4343/
+Referer: http://localhost:4343/login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
@@ -944,7 +169,7 @@ Sec-Fetch-Site: same-origin
 Sec-Fetch-User: ?1
 Priority: u=0, i
 
-
+new_user=zdvv&password=wfw
 End of the request
 
 
@@ -953,7 +178,7 @@ End of the request
 
 
 
-Start of the request for fd: 7
+Start of the request for fd: 6
 GET /favicon.ico HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
@@ -961,7 +186,7 @@ Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/cgi
+Referer: http://localhost:4343/
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -990,6 +215,106 @@ Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
 Sec-Fetch-Mode: navigate
 Sec-Fetch-Site: cross-site
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
 Priority: u=0, i
 
 
@@ -1210,6 +535,209 @@ Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
 Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /upload HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/upload
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/upload
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=coucou&password=ASFJA
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -1275,7 +803,7 @@ End of the request
 
 
 Start of the request for fd: 6
-GET /upload HTTP/1.1
+GET /login HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -1308,7 +836,60 @@ Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/upload
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 26
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=dad&password=dsad
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -1332,105 +913,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: cross-site
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /upload HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Priority: u=0, i
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET /favicon.ico HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
-Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
-Sec-Fetch-Dest: image
-Sec-Fetch-Mode: no-cors
-Sec-Fetch-Site: same-origin
-Priority: u=6
-
-
-End of the request
-
-
-
-
-
-
-
-Start of the request for fd: 6
-GET / HTTP/1.1
-Host: localhost:4343
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br, zstd
-Connection: keep-alive
-Referer: http://localhost:4343/upload
+Referer: http://localhost:4343/try_login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
@@ -1473,7 +956,7 @@ End of the request
 
 
 Start of the request for fd: 6
-GET /comments HTTP/1.1
+GET /login HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -1506,7 +989,7 @@ Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/comments
+Referer: http://localhost:4343/login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -1523,14 +1006,17 @@ End of the request
 
 
 Start of the request for fd: 6
-GET / HTTP/1.1
+POST /try_login HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 24
+Origin: http://localhost:4343
 Connection: keep-alive
-Referer: http://localhost:4343/comments
+Referer: http://localhost:4343/login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
@@ -1539,7 +1025,7 @@ Sec-Fetch-Site: same-origin
 Sec-Fetch-User: ?1
 Priority: u=0, i
 
-
+pseudo=dsd&password=wqqf
 End of the request
 
 
@@ -1556,7 +1042,7 @@ Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/
+Referer: http://localhost:4343/try_login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -1573,14 +1059,41 @@ End of the request
 
 
 Start of the request for fd: 6
-GET /comments HTTP/1.1
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
 Host: localhost:4343
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 31
+Origin: http://localhost:4343
 Connection: keep-alive
-Referer: http://localhost:4343/
+Referer: http://localhost:4343/login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
@@ -1589,7 +1102,7 @@ Sec-Fetch-Site: same-origin
 Sec-Fetch-User: ?1
 Priority: u=0, i
 
-
+new_user=qfwfwg&password=wsdsdv
 End of the request
 
 
@@ -1606,7 +1119,7 @@ Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/comments
+Referer: http://localhost:4343/try_login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors
@@ -1630,7 +1143,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
-Referer: http://localhost:4343/comments
+Referer: http://localhost:4343/try_login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
@@ -1657,6 +1170,2478 @@ Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br, zstd
 Connection: keep-alive
 Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 31
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=Antoine&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 26
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=JL&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 31
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=Antoine&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 31
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=Antoine&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 26
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=JL&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 24
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=afda&password=sdf
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 25
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=asd&password=asdad
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=Antoine&password=apdf
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 29
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=Antoine&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=John&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=John&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 29
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=Antoine&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=test&password=qwdqwd
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 24
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=Yo&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET / HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 29
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=Antoine&password=prout
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 26
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+pseudo=Antoine&password=gj
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 33
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=Antoine&password=spddifh
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Priority: u=6
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+POST /try_login HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 30
+Origin: http://localhost:4343
+Connection: keep-alive
+Referer: http://localhost:4343/login
+Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+new_user=Martine&password=wesh
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+GET /favicon.ico HTTP/1.1
+Host: localhost:4343
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0
+Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Referer: http://localhost:4343/try_login
 Cookie: wp-settings-time-2=1728914229; wp-settings-time-1=1728991121; session_id=abc123
 Sec-Fetch-Dest: image
 Sec-Fetch-Mode: no-cors

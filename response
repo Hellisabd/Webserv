@@ -9122,3 +9122,2663 @@ End of the request
 
 
 
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 838
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 838
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 901
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <footer>
+        <p>&copy; 2025 - webservtm</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/logen">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1064
+
+m>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1070
+
+
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1070
+
+
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 838
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - webservteam</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=abc123; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2926
+
+            background-color: white;
+            width: 25%;
+            height: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 25%;
+            left: 37.5%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message d'erreur 403 -->
+    <h1>403</h1>
+    <p>ໝົດເວລາ!</p>
+    <p>ກະລຸນາໄວຂຶ້ນ!</p>
+    <a href="https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=%E0%BB%9D%E0%BA%BB%E0%BA%94%E0%BB%80%E0%BA%A7%E0%BA%A5%E0%BA%B2!%0A%E0%BA%81%E0%BA%B0%E0%BA%A5%E0%BA%B8%E0%BA%99%E0%BA%B2%E0%BB%84%E0%BA%A7%E0%BA%82%E0%BA%B6%E0%BB%89%E0%BA%99!&op=translate">ການແປ</a>
+
+    <!-- Bouton représentant le drapeau du Laos -->
+    <button class="laos-flag-button" onclick="window.location.href='/'">
+        <div class="blue-band"></div>
+        <div class="circle"></div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
