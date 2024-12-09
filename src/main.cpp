@@ -24,8 +24,6 @@ int main(int argc, char **argv, char **env)
 		if (argc != 2)
 				throw Error("Wrong number of arguments");
 		signal(SIGINT, signal_handler);
-		//debug("Starting...");
-		//debug("Server Socket...");
 		Data data(argv[1], env);
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, data.getPort(),  data.getHostIP(), 10, data.getNbrPort());
 		Epoll epoll(servSock.getSock(), data.getNbrPort());

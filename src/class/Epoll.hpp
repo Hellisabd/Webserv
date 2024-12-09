@@ -40,6 +40,7 @@ public:
 	void topars(std::string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, int epoll_fd);
 	std::map<int, int>::iterator sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send, std::map<int, int>::iterator);
+	bool check_ID(int id);
 
 private:
 	int	_epoll_fd;
@@ -48,6 +49,7 @@ private:
 	std::map<int, t_requestClient> _HTTPRequest;
 	std::vector<int> _sock;
 	std::vector<int> _ClientSock;
+	std::map<int, std::string> _cookies;
 	struct epoll_event _epollServ;
 	std::vector<struct epoll_event> _epollClient;
 	std::map<int, int> _cliport;
