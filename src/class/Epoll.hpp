@@ -44,8 +44,9 @@ public:
 	bool isSockPort(int fd);
 	void topars(string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, int epoll_fd);
-	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator);
+	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, std::string page);
 	bool check_ID(int id);
+	string findRightUser(string id);
 
 private:
 	int	_epoll_fd;
