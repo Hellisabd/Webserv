@@ -150,8 +150,8 @@ bool HttpRequest::parseBody() {
 		// No longer a case of 400 bad request if the content-length is not equal. However a CL above would mean a chunked request, so i throw that one out.
 		calcBodySize();
 		if (_contentLength > _bodySize) {
-			debug(_contentLength);
-			debug(_bodySize);
+			// debug(_contentLength);
+			// debug(_bodySize);
 			setErr(400, "Content-Length size is superior to the body size\n");
 			return (false);
 		}

@@ -92,10 +92,10 @@ class HttpRequest {
 	bool isMultipartHeaderRightfullyFormatted(const string& s);
 
 	//utils
-	string			extractHeaderKey(std::string &s);
+	string			extractHeaderKey(string &s);
 	t_headerValue	extractHeaderValue(string::iterator& it);
 	t_headerValue	extractUserAgent(string::iterator& it);
-	bool			validateHeaderKey(std::string& headerKey);
+	bool			validateHeaderKey(string& headerKey);
 	void			calcBodySize();
 	bool 			extractMultiparts();
 	bool			extractMultipartHeaders();

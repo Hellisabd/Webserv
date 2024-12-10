@@ -1,7 +1,7 @@
 #include "webserv.hpp"
 
 void generate_login_result_page(int n) {
-	std::ostringstream oss;
+	ostringstream oss;
 	oss << "<!DOCTYPE html>\n";
 	oss << "<html lang=\"fr\">\n";
 	oss << "<head>\n";
@@ -39,57 +39,66 @@ void generate_login_result_page(int n) {
 	oss << "<a href=\"/login\">back</a>\n";
 	oss << "</body>\n";
 	oss << "</html>\n";
-	std::ofstream page("./site/try_login.html");
+	ofstream page("./site/try_login.html");
 	if (page.is_open()) {
 		page << oss.str();
 		page.close();
 	}
 }
 
-bool pseudo_available(std::string pseudo) {
-	std::string line;
-	std::ifstream file;
+string generateSessionID() {
+    srand(time(0));
+	ostringstream oss;
+	int r = rand();
+	oss << r;
+    string sessionID = oss.str();
+    return sessionID;
+}
+
+bool pseudo_available(string pseudo) {
+	string line;
+	ifstream file;
 	file.open("./site/users/users");
-	while(std::getline(file, line)) {
-		std::size_t lim = line.find(":");
-		std::string user = line.substr(0, lim);
+	while(getline(file, line)) {
+		size_t lim = line.find(":");
+		string user = line.substr(0, lim);
 		if (pseudo == user)
 			return false;
 	}
 	return true;
 }
 
-bool check_login(std::string pseudo, std::string password) {
-	std::string line;
-	std::ifstream file;
+bool check_login(string pseudo, string password) {
+	string line;
+	ifstream file;
 	file.open("./site/users/users");
-	while(std::getline(file, line)) {
-		std::size_t lim = line.find(":");
-		std::string user = line.substr(0, lim);
-		std::string pw = line.substr(lim + 1, line.length() - lim + 1);
+	while(getline(file, line)) {
+		size_t lim = line.find(":");
+		string user = line.substr(0, lim);
+		string pw = line.substr(lim + 1, line.length() - lim + 1);
 		if (pseudo == user && password == pw)
 			return true;
 	}
 	return false;
 }
 
-void add_user(std::string pseudo, std::string password) {
-	std::ostringstream filename;
+void add_user(string pseudo, string password) {
+	ostringstream filename;
 	filename << "./site/users/users";
-	std::ofstream file(filename.str().c_str(), std::ios::app);
+	ofstream file(filename.str().c_str(), ios::app);
 	if (file.is_open()) {
-		file << pseudo << ":" << password << std::endl;
+		file << pseudo << ":" << password << endl;
 		file.close();
 	}
 }
 
-void pars_login(std::string rq) {
-	std::size_t p_start;
-	std::size_t p_end;
-	std::size_t pw_start;
-	std::size_t pw_end;
-	std::string pseudo;
-	std::string password;
+vector<string> pars_login(string rq) {
+	size_t p_start;
+	size_t p_end;
+	size_t pw_start;
+	size_t pw_end;
+	string pseudo;
+	string password;
 	if (rq.find("pseudo") != rq.npos) {
 		p_start = rq.find("pseudo=", 0) + 7;
 		p_end = rq.find("&", p_start);
@@ -100,9 +109,14 @@ void pars_login(std::string rq) {
 		replace(pseudo);
 		replace(password);
 		if (check_login(pseudo, password) == true)
+		{
 			generate_login_result_page(1);
+		}
 		else
+		{
+			pseudo.clear();
 			generate_login_result_page(2);
+		}
 	}
 	if (rq.find("new_user") != rq.npos) {
 		p_start = rq.find("new_user=", 0) + 9;
@@ -118,11 +132,21 @@ void pars_login(std::string rq) {
 			generate_login_result_page(3);
 		}
 		else
+		{
 			generate_login_result_page(4);
+			pseudo.clear();
+		}
 	}
+	vector<string> vec;
+	vec.push_back(pseudo);
+	vec.push_back(password);
+	vec.push_back(generateSessionID());
+	return vec;
 }
 
-void login(std::string rq, std::string url) {
+Client login(string rq, string url) {
+	vector<string> login_id;
 	if (url.find("/try_login") != url.npos)
-		pars_login(rq);
+		login_id = pars_login(rq);
+	return(Client(login_id));
 }

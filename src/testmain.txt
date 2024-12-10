@@ -2,7 +2,7 @@
 #include "HttpRequest.hpp"
 
 int main(void) {
-	// std::string dummyRq =
+	// string dummyRq =
 	// 	"POST / HTTP/1.1\r\n"
 	// 	"Host: 127.0.0.1:4444\r\n"
 	// 	"User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0\r\n"
@@ -19,7 +19,7 @@ int main(void) {
 	// 	"\r\n";
 	#define endlou endl
 
-	// std::string dummyRq =
+	// string dummyRq =
 	// 	"POST / HTTP/1.1\r\n"
 	// 	"host: 1\r\n"
 	// 	"content-type: application/x-www-urlencoded\r\n"
@@ -28,7 +28,7 @@ int main(void) {
 	// 	"haha=oui&lol=haha\r\n"
 	// 	"\r\n";
 
-	// std::string dummyRq =
+	// string dummyRq =
 	// 	"POST / HTTP/1.1\r\n"
 	// 	"HoSt: 127.0.0.1:4444\r\n"
 	// 	"looui: haha\r\n"
@@ -44,7 +44,7 @@ int main(void) {
 	// 	"--lol--"
 	// 	"\r\n";
 
-	std::string dummyHeader =
+	string dummyHeader =
     "POST / HTTP/1.1\r\n"
     "Host: lol:4444\r\n"
     "User-Agent: curl/7.81.0\r\n"
@@ -64,7 +64,7 @@ int main(void) {
     "    while (1)\n"
     "        dprintf(fd, \"24\");\n";
 
-	std::string dummyBody =
+	string dummyBody =
     "POST / HTTP/1.1\r\n"
     "Host: lol:4444\r\n"
     "User-Agent: curl/7.81.0\r\n"

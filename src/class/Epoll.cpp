@@ -1,6 +1,6 @@
 #include "Epoll.hpp"
 
-Epoll::Epoll(std::vector<int> sock, int nbr_port) : _sock(sock) {
+Epoll::Epoll(vector<int> sock, int nbr_port) : _sock(sock) {
 	_nbr_client = 0;
 	_epoll_fd = epoll_create(MAX_EVENTS);
 	if (_epoll_fd < 0)
@@ -13,12 +13,12 @@ Epoll::Epoll(std::vector<int> sock, int nbr_port) : _sock(sock) {
 	}
 	_epollClient.resize(MAX_EVENTS);
 	_ClientSock.resize(MAX_EVENTS);
-	for (std::vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++)
+	for (vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++)
 		*i = -1;
 }
 
 Epoll::~Epoll() {
-	for (std::vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++) {
+	for (vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++) {
 		if (*i != -1)
 			close(*i);
 	}
@@ -31,14 +31,14 @@ void Epoll::wait(int stop) {
 	_time_out = clock();
 	if (_n < 0 || stop == 0) {
 		close (_epoll_fd);
-		for (std::vector<int>::iterator i = _sock.begin(); i != _sock.end(); i++)
+		for (vector<int>::iterator i = _sock.begin(); i != _sock.end(); i++)
 			close (*i);
 		throw Error("Error during epoll_wait");
 	}
 }
 
-void Epoll::topars(std::string HTTPRequest, int ClientFD) {
-	std::ofstream fd("./request", std::ios::app);
+void Epoll::topars(string HTTPRequest, int ClientFD) {
+	ofstream fd("./request", ios::app);
 	if (!fd.is_open())
 		throw Error("cant open outfile for debug request");
 	debug_file(HTTPRequest, &fd, ClientFD);
@@ -77,7 +77,7 @@ void Epoll::addClient(int port) {
 	_HTTPRequest[client] = newRequestClient();
 }
 
-int validToSend(std::string const &str, clock_t time) {
+int validToSend(string const &str, clock_t time) {
 	if (clock() - time > 10000)
 		return 2;
 	if (str.find("\r\n\r\n") != str.npos)
@@ -85,9 +85,9 @@ int validToSend(std::string const &str, clock_t time) {
 	return 0;
 }
 
-std::string getScriptName(std::string url) {
-	std::size_t start;
-	std::size_t end;
+string getScriptName(string url) {
+	size_t start;
+	size_t end;
 	start = url.find("cgi-bin/", 0);
 	if (start == url.npos)
 		return "";
@@ -104,13 +104,13 @@ void Epoll::set_new_env(Data &data, HttpRequest rq) {
 	data._env["REQUEST_METHOD"] = rq.getMethod();
 }
 
-std::map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, std::string req_str, std::map<int, int>::iterator it) {
+map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it) {
 	int fd[2];
 	if (pipe(fd) == -1)
 		return it;
-	std::string text;
+	string text;
 	if (req_str.find("text=") != req_str.npos) {
-		std::size_t start = req_str.find("text=") + 5;
+		size_t start = req_str.find("text=") + 5;
 		if (start != req_str.npos)
 			text = req_str.substr(start, req_str.length() - start);
 		if (text.length() > 18000)
@@ -165,9 +165,9 @@ std::map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest r
 	close(fd[0]);
 	close(fd[1]);
 	buf[byte_read] = '\0';
-	std::ostringstream oss;
+	ostringstream oss;
 	oss << byte_read;
-	std::string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=abc123; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + _HTTPRequest[_epollClient[clientID].data.fd].id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
 	if (send(_epollClient[clientID].data.fd, buf, byte_read, MSG_NOSIGNAL) < 0) {
@@ -180,17 +180,17 @@ std::map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest r
 	_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 	_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
 	modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
-	debug(_epollClient[clientID].events);
+	// debug(_epollClient[clientID].events);
 	if (_HTTPRequest[_epollClient[clientID].data.fd].connectionType != "keep-alive")
 		it = deleteClient(it);
 	return it;
 }
 
-bool Epoll::checkRequestIsValid(const std::string &url, Data &data, std::string const &method) {
-	std::map<std::string, std::vector<std::string> > tmp =  data.getMethods();
-	for (std::map<std::string, std::vector<std::string> >::iterator it = tmp.begin(); it != tmp.end(); ++it) {
+bool Epoll::checkRequestIsValid(const string &url, Data &data, string const &method) {
+	map<string, vector<string> > tmp =  data.getMethods();
+	for (map<string, vector<string> >::iterator it = tmp.begin(); it != tmp.end(); ++it) {
 		if (it->first == url) {
-			for (std::vector<std::string>::iterator strit = it->second.begin(); strit != it->second.end(); ++strit) {
+			for (vector<string>::iterator strit = it->second.begin(); strit != it->second.end(); ++strit) {
 				if (method == *strit)
 					return true;
 			}
@@ -199,17 +199,36 @@ bool Epoll::checkRequestIsValid(const std::string &url, Data &data, std::string 
 	return false;
 }
 
-void	print_in_response(std::string headerHTTP, std::string tosend, int clientFD) {
-	std::string response = headerHTTP + tosend;
-	std::ofstream fd("./response", std::ios::app);
+void	print_in_response(string headerHTTP, string tosend, int clientFD) {
+	string response = headerHTTP + tosend;
+	ofstream fd("./response", ios::app);
 	if (!fd.is_open())
 		throw Error("cant open outfile for debug response");
 	debug_file(response, &fd, clientFD);
 	fd.close();
 }
 
-std::map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, std::map<int, int>::iterator it) {
-	std::string page;
+string findSessionID(string request)
+{
+	string null = "\r\n";
+	size_t i = request.find("session_id=");
+	if (i != string::npos)
+	{
+		i += 11;
+		if(request[i] != '\r' || request[i] != '\n')
+		{
+			size_t end = request.find('\n', i);
+			null = request.substr(i, end - i + 1);
+			debug(RED, "substr: ",null);
+			return null;
+		}
+	}
+	return null;
+}
+
+map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, int>::iterator it) {
+	string page;
+	string id;
 	HttpRequest rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false) {
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req, _time_out);
@@ -217,25 +236,31 @@ std::map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, std::
 			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
 			rq.parseAll();
 			if (rq.parsingError) {
-				cout << rq.parsingStrError << std::endl;
+				cout << rq.parsingStrError << endl;
 				page = data.getErrors().find("400")->second;
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
-		std::string path = rq.getUrl();
-		if (path.find("/login") != path.npos || path.find("/try_login") != path.npos) {
-			login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
+		string path = rq.getUrl();
+		if (path.find("/try_login") != path.npos) {
+			Client tmp = login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
+			if (!tmp.getUser().empty())
+			{
+				debug(tmp.getUser());
+				_ClientsData.push_back(tmp);
+				id = tmp.getID();
+			}
 		}
 		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
-			std::string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data);
-			std::string tmp_name;
+			string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data);
+			string tmp_name;
 			if (filename.find("/downloads") != filename.npos)
 				tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
-			std::vector<std::string> method;
+			vector<string> method;
 			method.push_back("GET");
-			std::map<std::string, std::vector<string> > &tmp = data.getMethods();
+			map<string, vector<string> > &tmp = data.getMethods();
 			tmp["/downloads/" + tmp_name] = method;
-			std::map<std::string, std::string> &tmploc = data.getLocations();
+			map<string, string> &tmploc = data.getLocations();
 			if (filename.find("/downloads") != filename.npos)
 				tmploc["/downloads/" + tmp_name] = filename;
 			generate_uploads_url(data._uploads);
@@ -249,10 +274,10 @@ std::map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, std::
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
-		for(std::map<std::string, std::string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
+		for(map<string, string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
 			if (path == i->first) {
 				page = i->second;
-				if (!checkRequestIsValid(i->first, data, rq.getMethodToString()))
+				if (!checkRequestIsValid(i->first, data, rq.getMethodToString())) 
 					page = data.getErrors().find("403")->second;
 				break ;
 			}
@@ -271,26 +296,30 @@ std::map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, std::
 			page = data.getErrors().find("408")->second;
 		else if (page.empty())
 			page = data.getErrors().find("404")->second;
-		std::ostringstream oss;
+		if (_ClientsData.empty())
+			id = "\r\n";
+		else if (id.empty())
+			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+		ostringstream oss;
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
-			std::string headerHTTP;
+			string headerHTTP;
 			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
 				page = data.getErrors().find("404")->second;
 				oss << getFileSize(page);
 				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=abc123; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
 			else {
 				oss << getFileSize(page);
 				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-				headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=abc123; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+				headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 				throw Error("Error sending HTTP header");
 		}
 		else if (rq.getMethodToString() == "DELETE") {
-			std::string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=abc123; Path=/; HttpOnly\r\nContent-Length: 0\r\nConnection: close\r\n\r\n";
+			string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 				throw Error("Error sending HTTP header");
@@ -315,7 +344,7 @@ std::map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, std::
 	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it));
 }
 
-std::map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send, std::map<int, int>::iterator it) {
+map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it) {
 	char tosend[1024];
 	ssize_t file_read;
 	_HTTPRequest[fd].sending = true;
@@ -344,8 +373,8 @@ std::map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, std::string 
 	return it;
 }
 
-std::size_t getbodysize(std::string str, size_t start) {
-	return std::atoi(str.c_str() + start);
+size_t getbodysize(string str, size_t start) {
+	return atoi(str.c_str() + start);
 }
 
 void Epoll::modifEvents(int fd, int event, int epoll_fd) {
@@ -371,10 +400,10 @@ void Epoll::readFromClient(int clientID) {
 		if (_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read == 0) {
 			size_t header_end = _HTTPRequest[_epollClient[clientID].data.fd].req.find("\r\n\r\n");
 			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read++;
-			if (header_end != std::string::npos) {
+			if (header_end != string::npos) {
 				_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach -= header_end;
 				size_t content_length_pos = _HTTPRequest[_epollClient[clientID].data.fd].req.find("Content-Length:");
-				if (content_length_pos != std::string::npos) {
+				if (content_length_pos != string::npos) {
 					size_t start = content_length_pos + 15;
 					_HTTPRequest[_epollClient[clientID].data.fd].bodysize = getbodysize(_HTTPRequest[_epollClient[clientID].data.fd].req, start);
 					if (bytes_read < 1024) {
@@ -399,9 +428,9 @@ void Epoll::readFromClient(int clientID) {
 		}
 }
 
-std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it) {
+map<int, int>::iterator Epoll::deleteClient(map<int, int>::iterator it) {
 	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, it->first, &_epollServ);
-	for (std::vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd) {
+	for (vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd) {
 		if (*fd == it->first) {
 			_ClientSock.erase(fd);
 			// debug(RED, "Client disconnected.");
@@ -410,22 +439,22 @@ std::map<int, int>::iterator Epoll::deleteClient(std::map<int, int>::iterator it
 	}
 	_noclient = true;
 	close(it->first);
-	std::map<int, int>::iterator next_it = it;
+	map<int, int>::iterator next_it = it;
 	++next_it;
 	_cliport.erase(it);
 	return next_it;
 }
 
 bool Epoll::isSockPort(int fd) {
-	for (std::vector<int>::iterator it = _sock.begin(); it != _sock.end(); ++it) {
+	for (vector<int>::iterator it = _sock.begin(); it != _sock.end(); ++it) {
 		if (fd == *it)
 			return true;
 	}
 	return false;
 }
 
-void Epoll::handleRequest(/* std::vector<struct sockaddr_in> address,  */Data &data) {
-	std::map<int, int>::iterator it = _cliport.begin();
+void Epoll::handleRequest(/* vector<struct sockaddr_in> address,  */Data &data) {
+	map<int, int>::iterator it = _cliport.begin();
 	_noclient = false;
 	for (int clientID = 0; clientID < _n; clientID++) {
 		for (size_t port = 0; port < _sock.size(); port++) {
@@ -435,7 +464,7 @@ void Epoll::handleRequest(/* std::vector<struct sockaddr_in> address,  */Data &d
 			}
 			if (_epollClient[clientID].data.fd == _sock[port]) {
 				addClient(port);
-				// std::ostringstream oss;
+				// ostringstream oss;
 				// oss << ntohs(address[port].sin_port);
 				// debug(GREEN, "New client added on port " + oss.str());
 			}

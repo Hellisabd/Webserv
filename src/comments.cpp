@@ -1,8 +1,8 @@
 #include <webserv.hpp>
 #include <dirent.h>
 
-void replace(std::string &com) {
-	std::size_t	pos = 0;
+void replace(string &com) {
+	size_t	pos = 0;
 	while (pos < com.length())
 	{
 		if (pos == com.find("+", pos))
@@ -117,7 +117,7 @@ void replace(std::string &com) {
 	}
 }
 
-int nbr_of_comments(const std::string path) {
+int nbr_of_comments(const string path) {
 	int fileCount = 0;
 	DIR* dir = opendir(path.c_str());
 	if (!dir)
@@ -136,53 +136,53 @@ int nbr_of_comments(const std::string path) {
 	return fileCount;
 }
 
-void save_comment(std::string rq) {
-	std::size_t p_start = rq.find("pseudo=", 0) + 7;
-	std::size_t p_end = rq.find("&", p_start);
-	std::size_t c_start = rq.find("comment=", p_end) + 8;
-	std::size_t c_end = rq.find("\n", c_start);
-	std::string pseudo = rq.substr(p_start, p_end - p_start);
-	std::string comment = rq.substr(c_start, c_end - c_start);
+void save_comment(string rq) {
+	size_t p_start = rq.find("pseudo=", 0) + 7;
+	size_t p_end = rq.find("&", p_start);
+	size_t c_start = rq.find("comment=", p_end) + 8;
+	size_t c_end = rq.find("\n", c_start);
+	string pseudo = rq.substr(p_start, p_end - p_start);
+	string comment = rq.substr(c_start, c_end - c_start);
 	replace(pseudo);
 	replace(comment);
-	std::ostringstream filename;
+	ostringstream filename;
 	static int comment_nbr = nbr_of_comments("./site/comments/") + 1;
 	filename << "./site/comments/" << comment_nbr;
 	comment_nbr++;
-	std::ofstream file(filename.str().c_str());
+	ofstream file(filename.str().c_str());
 	if (file.is_open()) {
 		file << pseudo << "\n\n" << comment;
 		file.close();
 	}
 }
 
-std::string intToString(int number) {
-	std::stringstream ss;
+string intToString(int number) {
+	stringstream ss;
 	ss << number;
 	return ss.str();
 }
 
-std::vector<std::pair<std::string, std::string> > getcomments()
+vector<pair<string, string> > getcomments()
 {
 	int n = nbr_of_comments("./site/comments/");
 	int i = 1;
-	std::vector<std::pair<std::string, std::string> > comments_tab;
+	vector<pair<string, string> > comments_tab;
 	while(i <= n)
 	{
-		std::string path = "./site/comments/" + intToString(i);
-		std::ifstream file;
+		string path = "./site/comments/" + intToString(i);
+		ifstream file;
 		file.open(path.c_str());
-		std::string pseudo;
-		std::string comment;
-		std::string line;
+		string pseudo;
+		string comment;
+		string line;
 
-		std::getline(file, pseudo);
-		std::getline(file, line);
+		getline(file, pseudo);
+		getline(file, line);
 		line.clear();
-		while(std::getline(file, line)) {
+		while(getline(file, line)) {
 			comment += line + "<br>";
 		}
-		std::pair<std::string, std::string> pair = make_pair(pseudo, comment);
+		pair<string, string> pair = make_pair(pseudo, comment);
 		comments_tab.push_back(pair);
 		i++;
 	}
@@ -190,8 +190,8 @@ std::vector<std::pair<std::string, std::string> > getcomments()
 }
 
 void generate_comment_page() {
-	std::vector<std::pair<std::string, std::string> > comments_tab = getcomments();
-	std::ostringstream oss;
+	vector<pair<string, string> > comments_tab = getcomments();
+	ostringstream oss;
 	oss << "<!DOCTYPE html>\n";
 	oss << "<html lang=\"fr\">\n";
 	oss << "<head>\n";
@@ -215,9 +215,9 @@ void generate_comment_page() {
 	oss << "</head>\n";
 	oss << "<body>\n";
 	oss << "<h1>Comments</h1>\n";
-	for(std::vector<std::pair<std::string, std::string> >::iterator i = comments_tab.begin(); i != comments_tab.end(); i++) {
-		std::string pseudo = i->first;
-		std::string comment = i->second;
+	for(vector<pair<string, string> >::iterator i = comments_tab.begin(); i != comments_tab.end(); i++) {
+		string pseudo = i->first;
+		string comment = i->second;
 		oss << "	<div class=\"comment\">\n";
 		oss << "		<strong>" << pseudo << ":</strong><br>\n";
 		oss << "		<p>" << comment << "</p>\n";
@@ -234,7 +234,7 @@ void generate_comment_page() {
 	oss << "<a href=\"/\">HOME</a>\n";
 	oss << "</body>\n";
 	oss << "</html>\n";
-	std::ofstream page("./site/comments.html");
+	ofstream page("./site/comments.html");
 	if (page.is_open()) {
 		page << oss.str();
 		page.close();

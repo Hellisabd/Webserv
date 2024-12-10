@@ -9,7 +9,7 @@ void signal_handler(int sig)
 	}
 }
 
-unsigned long getFileSize(std::string const &file_path)
+unsigned long getFileSize(string const &file_path)
 {
 	struct stat file_stat;
 	// debug(YELLOW, "file_path: ", file_path);
@@ -35,11 +35,11 @@ int main(int argc, char **argv, char **env)
 				epoll.handleRequest(/* servSock.getAddr(),  */data);
 			}
 		}
-		catch (std::exception const &e) {
-			std::cerr << e.what() << std::endl;
+		catch (exception const &e) {
+			cerr << e.what() << endl;
 		}
 	}
-	catch (std::exception const &e) {
-		std::cerr << e.what() << std::endl;
+	catch (exception const &e) {
+		cerr << e.what() << endl;
 	}
 }

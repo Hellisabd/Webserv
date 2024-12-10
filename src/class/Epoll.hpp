@@ -1,59 +1,63 @@
 #pragma once
 #include <webserv.hpp>
+// #include "Client.hpp"
 #include <ctime>
+using namespace std;
+
 
 class Data;
 class HttpRequest;
+class Client;
 
 typedef struct s_requestclient
 {
-	std::string req;
-	std::string body;
+	string req;
+	string body;
 	int nbr_of_read;
 	bool recvEnd;
 	bool sendEnd;
 	bool disconnect;
-	std::size_t bodysize;
-	std::size_t size_to_reach;
-	std::size_t size_of_file_to_send;
+	size_t bodysize;
+	size_t size_to_reach;
+	size_t size_of_file_to_send;
 	bool sending;
-	std::string headerresponse;
+	string headerresponse;
 	int infile;
-	std::string connectionType;
+	string connectionType;
+	string id;
 } t_requestClient;
 
 class Epoll {
 public:
-	Epoll(std::vector<int> sock, int nbr_port);
+	Epoll(vector<int> sock, int nbr_port);
 	~Epoll();
 	void wait(int stop);
-	void handleRequest(/* std::vector<struct sockaddr_in> address,  */Data &data);
+	void handleRequest(/* vector<struct sockaddr_in> address,  */Data &data);
 	void addClient(int port);
-	std::map<int, int>::iterator sendToClient(int clientID, Data &data, std::map<int, int>::iterator it);
+	map<int, int>::iterator sendToClient(int clientID, Data &data, map<int, int>::iterator it);
 	void readFromClient(int clientID);
-	std::map<int, int>::iterator deleteClient(std::map<int, int>::iterator it);
-	std::map<int, int>::iterator exec(Data &data, int clientID, HttpRequest rq, std::string req_str, std::map<int, int>::iterator it);
+	map<int, int>::iterator deleteClient(map<int, int>::iterator it);
+	map<int, int>::iterator exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it);
 	void set_new_env(Data &data, HttpRequest rq);
-	bool checkRequestIsValid(const std::string &url, Data &data, std::string const &method);
-	void downloadFile(std::string request);
+	bool checkRequestIsValid(const string &url, Data &data, string const &method);
+	void downloadFile(string request);
 	bool isSockPort(int fd);
-	void topars(std::string HTTPRequest, int clientFD);
+	void topars(string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, int epoll_fd);
-	std::map<int, int>::iterator sendingFile(int fd, int infile, std::string headerHTTP, std::size_t size_to_send, std::map<int, int>::iterator);
+	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator);
 	bool check_ID(int id);
 
 private:
 	int	_epoll_fd;
 	int _n;
 	int _nbr_client;
-	std::map<int, t_requestClient> _HTTPRequest;
-	std::vector<int> _sock;
-	std::vector<int> _ClientSock;
-	std::map<int, std::string> _cookies;
+	map<int, t_requestClient> _HTTPRequest;
+	vector<int> _sock;
+	vector<int> _ClientSock;
 	struct epoll_event _epollServ;
-	std::vector<struct epoll_event> _epollClient;
-	std::map<int, int> _cliport;
+	vector<struct epoll_event> _epollClient;
+	map<int, int> _cliport;
+	vector<Client> _ClientsData;
 	clock_t _time_out;
 	bool _noclient;
-	std::map<std::string, std::pair<std::string, std::string> > _accounts;
 };

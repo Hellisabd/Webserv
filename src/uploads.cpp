@@ -1,14 +1,14 @@
 #include <webserv.hpp>
 
-std::string uploadFile(std::string request, Data &data)
+string uploadFile(string request, Data &data)
 {
-	std::string body;
-	std::string filename;
-	std::string type;
-	std::size_t body_start;
-	std::size_t body_end;
-	std::string content;
-	std::string boundaryKey;
+	string body;
+	string filename;
+	string type;
+	size_t body_start;
+	size_t body_end;
+	string content;
+	string boundaryKey;
 
 	body_start = request.find("\r\n\r\n");
 	if (body_start == request.npos)
@@ -54,7 +54,7 @@ std::string uploadFile(std::string request, Data &data)
 		body_end = body.find(boundaryKey, body_start);
 		body = body.substr(body_start, body_end - body_start - 1);
 	}
-	std::vector<std::string>::iterator it;
+	vector<string>::iterator it;
 	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
 		if (filename == *it)
 			break ;
@@ -63,7 +63,7 @@ std::string uploadFile(std::string request, Data &data)
 		data._uploads.push_back(filename);	
 	}
 	filename = "./site/downloads/" + filename;
-	std::ofstream file(filename.c_str());
+	ofstream file(filename.c_str());
 	if (file.is_open())
 	{
 		file << body;
@@ -72,9 +72,9 @@ std::string uploadFile(std::string request, Data &data)
 	return filename;
 }
 
-void generate_uploads_url(std::vector<string> filenames)
+void generate_uploads_url(vector<string> filenames)
 {
-	std::ostringstream oss;
+	ostringstream oss;
 	oss << "<!DOCTYPE html>\n";
 	oss << "<html lang=\"fr\">\n";
 	oss << "<head>\n";
@@ -108,7 +108,7 @@ void generate_uploads_url(std::vector<string> filenames)
 	oss << "	</form>\n";
 	oss << "<h2>Downloads</h2>\n";
 	oss << "<table>\n";
-	for (std::vector<std::string>::iterator it = filenames.begin(); it != filenames.end(); it++) {	
+	for (vector<string>::iterator it = filenames.begin(); it != filenames.end(); it++) {	
 	oss << "<tr>\n";
 	oss << "	<td>📁 " + *it + "</td>\n";
 	oss << "	<td><a href=\"./downloads/" + *it + "\" class=download download=\"" + *it + "\">Download</a></td>";
@@ -118,20 +118,20 @@ void generate_uploads_url(std::vector<string> filenames)
 	oss << "<a href=\"/\">HOME</a>\n";
 	oss << "</body>\n";
 	oss << "</html>\n";
-	std::ofstream page("./site/upload.html");
+	ofstream page("./site/upload.html");
 	if (page.is_open()) {
 		page << oss.str();
 		page.close();
 	}
 }
 
-bool check_file_availability(std::string rq, Data &data) {
-	std::size_t start = rq.find("downloads/") + 10;
-	std::size_t end = rq.find(" ", start);
-	std::string filename;
+bool check_file_availability(string rq, Data &data) {
+	size_t start = rq.find("downloads/") + 10;
+	size_t end = rq.find(" ", start);
+	string filename;
 	if (start != rq.npos && end != rq.npos)
 		filename = rq.substr(start, end - start);
-	std::vector<std::string>::iterator it;
+	vector<string>::iterator it;
 	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
 		if (filename == *it)
 			break ;

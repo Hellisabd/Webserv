@@ -36,15 +36,15 @@ ServerSocket::~ServerSocket() {
 	}
 }
 
-std::vector<sockaddr_in> ServerSocket::getAddr() {
+vector<sockaddr_in> ServerSocket::getAddr() {
 	return _address;
 }
 
-std::vector<int> ServerSocket::getSock() {
+vector<int> ServerSocket::getSock() {
 	return _sock;
 }
 
-std::vector<int> ServerSocket::getConnection() {
+vector<int> ServerSocket::getConnection() {
 	return _connection;
 }
 
@@ -52,6 +52,6 @@ int ServerSocket::getBacklog() {
 	return _backlog;
 }
 
-std::vector<int> ServerSocket::getListening() {
+vector<int> ServerSocket::getListening() {
 	return _listening;
 }

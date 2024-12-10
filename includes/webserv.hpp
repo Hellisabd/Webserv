@@ -35,38 +35,39 @@
 #include <fcntl.h>
 #include <csignal>
 #include <fstream>
+#include "../src/class/Client.hpp"
 
 using namespace std;
 
-unsigned long getFileSize(std::string const &file_path);
-void generate_uploads_url(std::vector<string> filenames);
+unsigned long getFileSize(string const &file_path);
+void generate_uploads_url(vector<string> filenames);
 void generate_comment_page();
-void save_comment(std::string rq);
-std::string uploadFile(std::string request, Data &data);
-void replace(std::string &com);
-void delete_file(std::string path, Data &data);
-bool check_file_availability(std::string rq, Data &data);
-void login(std::string rq, std::string url);
+void save_comment(string rq);
+string uploadFile(string request, Data &data);
+void replace(string &com);
+void delete_file(string path, Data &data);
+bool check_file_availability(string rq, Data &data);
+Client login(string rq, string url);
 
-# define NC 	std::string("\e[0m")
-# define RED 	std::string("\e[1;31m")
-# define GREEN 	std::string("\e[1;32m")
-# define YELLOW std::string("\e[1;33m")
-# define ORANGE std::string("\e[1;34m")
-# define PURPLE std::string("\e[1;35m")
-# define BLUE 	std::string("\e[1;36m")
-#define FILE_NAME (std::string(__FILE__).substr(std::string(__FILE__).find_last_of("/\\") + 1))
+# define NC 	string("\e[0m")
+# define RED 	string("\e[1;31m")
+# define GREEN 	string("\e[1;32m")
+# define YELLOW string("\e[1;33m")
+# define ORANGE string("\e[1;34m")
+# define PURPLE string("\e[1;35m")
+# define BLUE 	string("\e[1;36m")
+#define FILE_NAME (string(__FILE__).substr(string(__FILE__).find_last_of("/\\") + 1))
 
-#define LOG(msg) std::cout << "Fichier: " << FILE_NAME << ", Fonction: " << __func__ << " -- " << msg << std::endl
+#define LOG(msg) cout << "Fichier: " << FILE_NAME << ", Fonction: " << __func__ << " -- " << msg << endl
 
-class Error : public std::exception {
+class Error : public exception {
 
 public :
 virtual ~Error()  _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {};
-Error(const std::string &msg) : _message(msg) {}
+Error(const string &msg) : _message(msg) {}
 virtual const char *what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {return _message.c_str();}
 private :
-	const std::string _message;
+	const string _message;
 };
 
 #include "../tools/debug.tpp"

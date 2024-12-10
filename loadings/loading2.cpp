@@ -1,21 +1,21 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstdlib>
-#define NC		std::string("\e[0m")
-#define RED		std::string("\e[1;31m")
-#define GREEN	std::string("\e[1;32m")
-#define YELLOW	std::string("\e[1;33m")
-#define ORANGE	std::string("\e[1;34m")
-#define PURPLE	std::string("\e[1;35m")
-#define BLUE	std::string("\e[1;36m")
+#define NC		string("\e[0m")
+#define RED		string("\e[1;31m")
+#define GREEN	string("\e[1;32m")
+#define YELLOW	string("\e[1;33m")
+#define ORANGE	string("\e[1;34m")
+#define PURPLE	string("\e[1;35m")
+#define BLUE	string("\e[1;36m")
 
-std::string create_string(int i, int size, bool rev, int nbr_of_triangle)
+string create_string(int i, int size, bool rev, int nbr_of_triangle)
 {
-	std::string t1 = RED + "▷";
-	std::string t2 = BLUE + "◀";
-	std::string t3 = GREEN + "▼";
-	std::string t4 = GREEN + "▲";
-	std::string buffer =  GREEN + "Loading..." + YELLOW + "[";
+	string t1 = RED + "▷";
+	string t2 = BLUE + "◀";
+	string t3 = GREEN + "▼";
+	string t4 = GREEN + "▲";
+	string buffer =  GREEN + "Loading..." + YELLOW + "[";
 	for (int j = 0; j < size; j++)
 	{
 		if (j < nbr_of_triangle)
@@ -56,12 +56,12 @@ int main(int argc, char **argv)
 	{
 		while (1)
 		{
-			std::cout.flush();
-			std::cout << "\r";
+			cout.flush();
+			cout << "\r";
 			if (r >= size)
-				std::cout << create_string(r, size, reverse, nbr_of_triangle);
+				cout << create_string(r, size, reverse, nbr_of_triangle);
 			else
-				std::cout << create_string(r, size, reverse, nbr_of_triangle);
+				cout << create_string(r, size, reverse, nbr_of_triangle);
 			if (size <= 10)
 				usleep(20000);
 			else if (size > 10 && size < 20)
@@ -82,9 +82,9 @@ int main(int argc, char **argv)
 		nbr_of_triangle++;
 		i++;
 	}
-	std::cout.flush();
-	std::cout << "\r";
-	std::cout << create_string(r, size, reverse, nbr_of_triangle);
-	std::cout << std::endl;
+	cout.flush();
+	cout << "\r";
+	cout << create_string(r, size, reverse, nbr_of_triangle);
+	cout << endl;
 }
 

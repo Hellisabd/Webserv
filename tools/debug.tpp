@@ -1,77 +1,77 @@
 template<typename T>
 void	debug(T content)
 {
-	std::cerr << RED << content << NC << std::endl;
+	cerr << RED << content << NC << endl;
 }
 
 template<typename T>
-void	debug(std::string color, T content)
+void	debug(string color, T content)
 {
-	std::cerr << color << content << NC << std::endl;
+	cerr << color << content << NC << endl;
 }
 
 template<typename T>
-void	debug_file(T content, std::ofstream *fd, int fd_to_print)
+void	debug_file(T content, ofstream *fd, int fd_to_print)
 {
-	*fd << "Start of the request for fd: " << fd_to_print << std::endl;
-	*fd  << content << std::endl;
+	*fd << "Start of the request for fd: " << fd_to_print << endl;
+	*fd  << content << endl;
 	*fd << "End of the request";
-	*fd << std::endl << std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl;
+	*fd << endl << endl<< endl<< endl<< endl<< endl<< endl<< endl;
 }
 
 template<typename T>
-void	debug(std::string color, std::string msg, T content)
+void	debug(string color, string msg, T content)
 {
 	if (msg.empty())
-		std::cerr << color << content << NC << std::endl;
+		cerr << color << content << NC << endl;
 	else
-		std::cerr << color + msg << content << NC << std::endl;
+		cerr << color + msg << content << NC << endl;
 }
 
 template<typename T>
-void	debug_container(std::string color, std::string msg, T content, std::ostream &os)
+void	debug_container(string color, string msg, T content, ostream &os)
 {
-	std::string spaces;
-	for (std::size_t i = 0; i < msg.length() + 1; i++)
+	string spaces;
+	for (size_t i = 0; i < msg.length() + 1; i++)
 		spaces += ' ';
 	spaces += "- ";
 	if (!msg.empty())
-		os << color + msg << std::endl;
+		os << color + msg << endl;
 	else
 		os << color;
 	for (typename T::iterator it = content.begin(); it != content.end(); ++it)
-		os << spaces + *it << std::endl;
+		os << spaces + *it << endl;
 	os << NC;
 }
 
 template<typename T>
-void	debug_container(std::string color, std::string msg, T content)
+void	debug_container(string color, string msg, T content)
 {
-	std::string spaces;
-	for (std::size_t i = 0; i < msg.length() + 1; i++)
+	string spaces;
+	for (size_t i = 0; i < msg.length() + 1; i++)
 		spaces += ' ';
 	spaces += "- ";
 	if (!msg.empty())
-		std::cerr << color + msg << std::endl;
+		cerr << color + msg << endl;
 	else
-		std::cerr << color;
+		cerr << color;
 	for (typename T::iterator it = content.begin(); it != content.end(); ++it)
-		std::cerr << spaces << *it << std::endl;
-	std::cerr << NC;
+		cerr << spaces << *it << endl;
+	cerr << NC;
 }
 
 template<typename T>
-void	debug_map(std::string color, std::string msg, T content)
+void	debug_map(string color, string msg, T content)
 {
-	std::string spaces;
-	for (std::size_t i = 0; i < msg.length() + 1; i++)
+	string spaces;
+	for (size_t i = 0; i < msg.length() + 1; i++)
 		spaces += ' ';
 	spaces += "- ";
 	if (!msg.empty())
-		std::cerr << color + msg << std::endl;
+		cerr << color + msg << endl;
 	else
-		std::cerr << color;
+		cerr << color;
 	for (typename T::iterator it = content.begin(); it != content.end(); ++it)
-		std::cerr << spaces << it->first << " : " << it->second << std::endl;
-	std::cerr << NC;
+		cerr << spaces << it->first << " : " << it->second << endl;
+	cerr << NC;
 }

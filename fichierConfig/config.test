@@ -34,7 +34,7 @@ location /login {
 }
 
 location /try_login {
-	Method GET
+	Method GET POST
 	./site/try_login.html
 }
 

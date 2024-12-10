@@ -2,6 +2,7 @@
 
 #include <webserv.hpp>
 #include <vector>
+using namespace std;
 
 class Data {
 
@@ -9,43 +10,43 @@ class Data {
 
 		Data();
 		Data(const Data& other);
-		Data(std::string const &str, char **env);
+		Data(string const &str, char **env);
 		virtual ~Data();
 		Data& operator=(const Data& other);
 		unsigned long const &getHostIP() const;
-		std::string const &getHostStr() const;
+		string const &getHostStr() const;
 		int* const &getPort() const;
 		int const &getNbrPort() const;
 		size_t const &getBodySize() const;
-		std::map<std::string, std::string> &getLocations();
-		std::map<std::string, std::string> const &getErrors() const;
-		std::map<std::string, std::vector<std::string> > &getMethods();
-		std::vector<std::string> const &getServerNames() const;
+		map<string, string> &getLocations();
+		map<string, string> const &getErrors() const;
+		map<string, vector<string> > &getMethods();
+		vector<string> const &getServerNames() const;
 		void cpEnv(char **env);
 		char **envToCharpp();
 		void fill_uploads();
-		std::map<std::string, std::string> _env;
-		std::vector<std::string> _uploads;
+		map<string, string> _env;
+		vector<string> _uploads;
 
 
 	private:
 		unsigned long _hostIP;
-		std::string _hostStr;
+		string _hostStr;
 		int *_ports;
 		int _nbrPorts;
-		std::string _host;
+		string _host;
 		size_t _bodySize;
-		std::vector<std::string> _serverNames;
-		std::map<std::string, std::string> _loc;
-		std::map<std::string, std::vector<std::string> > _method;
-		std::map<std::string, std::string> _errors;
+		vector<string> _serverNames;
+		map<string, string> _loc;
+		map<string, vector<string> > _method;
+		map<string, string> _errors;
 
-		void fill_info(std::ifstream &infile);
-		void SetServerNames(std::string const &servernames);
-		void SetLocations(std::string const &location);
-		void SetHost(std::string const &hostToShift);
-		void SetPorts(std::string const &ports);
-		void SetErrors(std::string const &errors);
-		std::vector<std::string> setMethods(const std::string &loc);
+		void fill_info(ifstream &infile);
+		void SetServerNames(string const &servernames);
+		void SetLocations(string const &location);
+		void SetHost(string const &hostToShift);
+		void SetPorts(string const &ports);
+		void SetErrors(string const &errors);
+		vector<string> setMethods(const string &loc);
 };
-std::ostream &operator<<(std::ostream &os, Data const &data);
+ostream &operator<<(ostream &os, Data const &data);

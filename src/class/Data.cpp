@@ -12,15 +12,15 @@ Data::Data(const Data& other)
 	*this = other;
 }
 
-Data::Data(std::string const &str, char **env)
+Data::Data(string const &str, char **env)
 {
 	cpEnv(env);
-	std::ifstream inputfile(str.c_str());
+	ifstream inputfile(str.c_str());
 	if (!inputfile.is_open())
 		throw Error("Can't open the file");
 	fill_info(inputfile);
 	fill_uploads();
-	// std::cerr << *this;
+	// cerr << *this;
 }
 
 Data	&Data::operator=(const Data& other)
@@ -32,16 +32,16 @@ Data	&Data::operator=(const Data& other)
 	return *this;
 }
 
-void Data::fill_info(std::ifstream &infile)
+void Data::fill_info(ifstream &infile)
 {
-	std::string line;
-	std::string serverNames;
-	std::string ports;
-	std::string loc;
-	std::string err;
+	string line;
+	string serverNames;
+	string ports;
+	string loc;
+	string err;
 	while (!infile.eof())
 	{
-		std::getline(infile, line);
+		getline(infile, line);
 		if (line.find("port ", 0) != line.npos)
 		{
 			//debug(1);
@@ -65,7 +65,7 @@ void Data::fill_info(std::ifstream &infile)
 		{
 			//debug(4);
 			loc = line.substr(line.find("location ", 0) + 9, line.size());
-			while (std::getline(infile, line))
+			while (getline(infile, line))
 			{
 				loc += line;
 				if (line.find("}") != line.npos)
@@ -77,7 +77,7 @@ void Data::fill_info(std::ifstream &infile)
 		{
 			//debug(5);
 			err = line.substr(line.find("error_pages ", 0) + 12, line.size());
-			while (std::getline(infile, line))
+			while (getline(infile, line))
 			{
 				err += line + "\n";
 				if (line.find("}") != line.npos)
@@ -87,20 +87,20 @@ void Data::fill_info(std::ifstream &infile)
 		}
 	}
 	infile.close();
-	std::ofstream file("/etc/hosts", std::ios::app);
+	ofstream file("/etc/hosts", ios::app);
 	if (!file.is_open())
 		throw Error("Can't open host file");
-	for (std::vector<std::string>::iterator it = _serverNames.begin(); it != _serverNames.end(); ++it)
-		file << getHostStr() << " "  <<  *it << std::endl;
+	for (vector<string>::iterator it = _serverNames.begin(); it != _serverNames.end(); ++it)
+		file << getHostStr() << " "  <<  *it << endl;
 	file.close();
 }
 
-std::ostream &operator<<(std::ostream &os, Data const &data)
+ostream &operator<<(ostream &os, Data const &data)
 {
-	os << "this is the content of my Data class named data" << std::endl;
-	os << "_port = " << data.getPort() << std::endl;
-	os << "_host = " << data.getHostIP() << std::endl;
-	os << "_bodySize = " << data.getBodySize() << std::endl;
+	os << "this is the content of my Data class named data" << endl;
+	os << "_port = " << data.getPort() << endl;
+	os << "_host = " << data.getHostIP() << endl;
+	os << "_bodySize = " << data.getBodySize() << endl;
 	::debug_container(RED, "Servernames:", data.getServerNames(), os);
 	return os;
 }
@@ -110,7 +110,7 @@ unsigned long const &Data::getHostIP() const
 	return _hostIP;
 }
 
-std::string const &Data::getHostStr() const
+string const &Data::getHostStr() const
 {
 	return _hostStr;
 }
@@ -130,46 +130,46 @@ size_t const &Data::getBodySize() const
 	return _bodySize;
 }
 
-std::vector<std::string> const &Data::getServerNames() const
+vector<string> const &Data::getServerNames() const
 {
 	return _serverNames;
 }
 
-std::map<std::string, std::string> &Data::getLocations()
+map<string, string> &Data::getLocations()
 {
 	return _loc;
 }
 	
-std::map<std::string, std::string> const &Data::getErrors() const
+map<string, string> const &Data::getErrors() const
 {
 	return _errors;
 }
 
-std::map<std::string, std::vector<std::string> > &Data::getMethods()
+map<string, vector<string> > &Data::getMethods()
 {
 	return _method;
 }
 
 
-void Data::SetHost(std::string const &hostToShift)
+void Data::SetHost(string const &hostToShift)
 {
 	_hostStr = hostToShift;
-	std::istringstream iss(hostToShift);
-	std::string segment;
+	istringstream iss(hostToShift);
+	string segment;
 	int shift = 24;
 
 	_hostIP = 0;
-	while (std::getline(iss, segment, '.'))
+	while (getline(iss, segment, '.'))
 	{
-		_hostIP |= (std::strtoul(segment.c_str(), NULL, 10) << shift);
+		_hostIP |= (strtoul(segment.c_str(), NULL, 10) << shift);
 		shift -= 8;
 	}
 }
 
-void Data::SetPorts(std::string const &ports)
+void Data::SetPorts(string const &ports)
 {
 	size_t oldpos = 0;
-	std::size_t pos = 0;
+	size_t pos = 0;
 	int start = 0;
 	int end = ports.length() - 1;
 	int i = 0;
@@ -178,10 +178,10 @@ void Data::SetPorts(std::string const &ports)
 	while (isspace(ports[end]))
 		end--;
 	//debug(6);
-	std::string portsparsed = ports.substr(start, end - start + 1);
+	string portsparsed = ports.substr(start, end - start + 1);
 	int count = 0;
 	size_t j = 0;
-	while ((j = portsparsed.find(" ", j)) != std::string::npos) {
+	while ((j = portsparsed.find(" ", j)) != string::npos) {
 		++count;
 		++j;
 	}
@@ -207,10 +207,10 @@ void Data::SetPorts(std::string const &ports)
 	_nbrPorts = i;
 }
 
-void Data::SetServerNames(std::string const &servernames)
+void Data::SetServerNames(string const &servernames)
 {
 	size_t oldpos = 0;
-	std::size_t pos = 0;
+	size_t pos = 0;
 	int start = 0;
 	int end = servernames.length() - 1;
 	while (isspace(servernames[start]))
@@ -218,7 +218,7 @@ void Data::SetServerNames(std::string const &servernames)
 	while (isspace(servernames[end]))
 		end--;
 	//debug(9);
-	std::string servernamesparsed = servernames.substr(start, end - start + 1);
+	string servernamesparsed = servernames.substr(start, end - start + 1);
 	while (pos <= servernamesparsed.size() && pos != servernamesparsed.npos)
 	{
 		pos = servernamesparsed.find(' ', pos);
@@ -237,10 +237,10 @@ void Data::SetServerNames(std::string const &servernames)
 	}
 }
 
-std::vector<std::string> Data::setMethods(const std::string &loc)
+vector<string> Data::setMethods(const string &loc)
 {
-	std::vector<std::string> method;
-	std::size_t start;
+	vector<string> method;
+	size_t start;
 	start = loc.find("Method", 0);
 	if (start  != loc.npos)
 	{
@@ -257,14 +257,14 @@ std::vector<std::string> Data::setMethods(const std::string &loc)
 	return method;
 }
 
-void Data::SetLocations(std::string const &location)
+void Data::SetLocations(string const &location)
 {
-	std::string path;
-	std::string page;
-	std::size_t path_start;
-	std::size_t path_end;
-	std::size_t page_start;
-	std::size_t page_end;
+	string path;
+	string page;
+	size_t path_start;
+	size_t path_end;
+	size_t page_start;
+	size_t page_end;
 
 	// debug(PURPLE, location);
 	path_start = location.find("/");
@@ -279,23 +279,23 @@ void Data::SetLocations(std::string const &location)
 		page = location.substr(page_start, page_end - page_start + 5);
 
 	_loc[path] = page;
-	std::vector<std::string> method;
+	vector<string> method;
 	method = setMethods(location);
 	_method[path] = method;
 }
 
-void Data::SetErrors(std::string const &errors)
+void Data::SetErrors(string const &errors)
 {
-	std::string err;
-	std::string page;
-	std::size_t err_start;
-	std::size_t page_start;
-	std::size_t page_end;
-	std::istringstream err_stream(errors);
-	std::string line;
+	string err;
+	string page;
+	size_t err_start;
+	size_t page_start;
+	size_t page_end;
+	istringstream err_stream(errors);
+	string line;
 	while (err_stream)
 	{
-		std::getline(err_stream, line);
+		getline(err_stream, line);
 		if (line.find("504", 0) != line.npos)
 			err_start = line.find("504", 0);
 		else if (line.find("4", 0) != line.npos)
@@ -319,9 +319,9 @@ void Data::SetErrors(std::string const &errors)
 char **Data::envToCharpp()
 {
 	char **str = new char *[_env.size() + 1];
-	std::string tmp;
+	string tmp;
 	int i = 0;
-	for (std::map<string,string>::iterator it = _env.begin(); it != _env.end(); ++it)
+	for (map<string,string>::iterator it = _env.begin(); it != _env.end(); ++it)
 	{
 		tmp = it->first + "=" + it->second;
 		str[i++] = strdup(tmp.c_str());
@@ -331,11 +331,11 @@ char **Data::envToCharpp()
 }
 
 void Data::cpEnv(char **env) {
-	std::string tmp;
-	std::string name;
-	std::string var;
-	std::size_t name_end;
-	std::size_t var_start;
+	string tmp;
+	string name;
+	string var;
+	size_t name_end;
+	size_t var_start;
 	for (int j = 0; env[j]; j++) {
 		tmp = env[j];
 		name_end = tmp.find("=", 0);
@@ -355,13 +355,13 @@ void Data::fill_uploads() {
 	
 	struct dirent* entry;
 	while ((entry = readdir(dir)) != NULL) {
-		std::string filename = entry->d_name;
+		string filename = entry->d_name;
 		if (filename == "." || filename == "..") {
             continue;
         }
 		_uploads.push_back(filename);
 		_loc["/downloads/" + filename] = "./site/downloads/" + filename;
-		std::vector<std::string> method;
+		vector<string> method;
 		method.push_back("GET");
 		_method["/downloads/" + filename] = method;
 	}
