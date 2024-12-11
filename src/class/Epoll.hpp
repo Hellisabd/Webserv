@@ -11,20 +11,20 @@ class Client;
 
 typedef struct s_requestclient
 {
-	string req;
-	string body;
-	int nbr_of_read;
-	bool recvEnd;
-	bool sendEnd;
-	bool disconnect;
-	size_t bodysize;
-	size_t size_to_reach;
-	size_t size_of_file_to_send;
-	bool sending;
-	string headerresponse;
-	int infile;
-	string connectionType;
-	string id;
+	string 	req;
+	string 	body;
+	int 	nbr_of_read;
+	bool 	recvEnd;
+	bool 	sendEnd;
+	bool 	disconnect;
+	size_t 	bodysize;
+	size_t 	size_to_reach;
+	size_t 	size_of_file_to_send;
+	bool 	sending;
+	string 	headerresponse;
+	int 	infile;
+	string 	connectionType;
+	string 	id;
 } t_requestClient;
 
 class Epoll {
@@ -44,7 +44,7 @@ public:
 	bool isSockPort(int fd);
 	void topars(string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, int epoll_fd);
-	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, std::string page);
+	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, std::string page, string id);
 	bool check_ID(int id);
 	string findRightUser(string id);
 

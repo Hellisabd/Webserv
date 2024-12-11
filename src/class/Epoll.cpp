@@ -228,6 +228,7 @@ string findSessionID(string request)
 
 void clearLogMsg(string page)
 {
+	debug(YELLOW, "delete: ", page);
 	std::ifstream inputFile(page.c_str());
 	if (!inputFile.is_open()) {
 		std::cerr << "Error: Unable to open file " << page << std::endl;
@@ -259,7 +260,7 @@ void clearLogMsg(string page)
 
 void addLogMessage(string page, string user)
 {
-	debug(YELLOW, user);
+	debug(YELLOW, "add: ", page);
 	std::ifstream inputFile(page.c_str());
 	if (!inputFile.is_open()) {
 		std::cerr << "Error: Unable to open file " << page << std::endl;
@@ -282,8 +283,6 @@ void addLogMessage(string page, string user)
 	"</div>\n";
 
 	content = content.substr(0, bodyPos) + "\n" + loginBanner + content.substr(bodyPos);
-
-	debug(content);
 	std::ofstream outputFile(page.c_str(), std::ios::trunc);
 	if (!outputFile.is_open()) {
 		std::cerr << "Error: Unable to open file for writing " << page << std::endl;
@@ -380,7 +379,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		else if (page.empty())
 			page = data.getErrors().find("404")->second;
 		if (_ClientsData.empty())
-			id = "\r\n";
+			id = "saucisson";
 		else if (id.empty())
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		ostringstream oss;
@@ -393,8 +392,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
 			else {
-				if (id != "\r\n")
-					oss << getFileSize(page)
+				if (id != "saucisson")
+					addLogMessage(page, findRightUser(id));
 				oss << getFileSize(page);
 				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
 				headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
@@ -417,9 +416,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
-		if (id != "\r\n") {
-			addLogMessage(page, findRightUser(id));
-		}
 		int infile = open(page.c_str(), O_RDONLY);
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
 		if (infile < 0)
@@ -429,10 +425,11 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			generate_comment_page();
 		}
 	}
-	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it, page));
+	debug(BLUE, "id: ", id);
+	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it, page, id));
 }
 
-map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, std::string page) {
+map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, std::string page, string id) {
 	char tosend[1024];
 	ssize_t file_read;
 	_HTTPRequest[fd].sending = true;
@@ -458,7 +455,9 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		if (_HTTPRequest[fd].connectionType != "keep-alive")
 			it = deleteClient(it);
 	}
-	clearLogMsg(page);
+	if (id != "saucisson") {
+		clearLogMsg(page);
+	}
 	return it;
 }
 
