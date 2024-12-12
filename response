@@ -17637,3 +17637,7698 @@ End of the request
 
 
 
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 973
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 973
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 973
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 936
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>       <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=726046376; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>      <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1086
+
+t" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>      <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>      <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=929062738; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1086
+
+t" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=410129091; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1086
+
+t" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=368128187; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1085
+
+" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=904996883; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=281668488; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 939
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>     
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1086
+
+t" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1287
+
+label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1140
+
+ogin">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1488
+
+ype="text" id="pwd" name="password" required><br><br>
+		<input type="submit" value="Send">
+	</form>
+<h1>Create an account:</h1>
+<form action="/try_login" method="POST">
+	<label for="new_user">Pseudo:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1341
+
+  <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1689
+
+
+	<form action="/try_login" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="pwd">Password:</label><br>
+		<input type="text" id="pwd" name="password" required><br><br>
+		<input type="submit" value="Send">
+	</form>
+<h1>Create an account:</h1>
+<form action="/try_login" method="POST">
+	<label for="new_user">Pseudo:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1542
+
+ background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+    
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1084
+
+/a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1743
+
+ background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+    
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041772
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 973
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 883
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1689
+
+
+	<form action="/try_login" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="pwd">Password:</label><br>
+		<input type="text" id="pwd" name="password" required><br><br>
+		<input type="submit" value="Send">
+	</form>
+<h1>Create an account:</h1>
+<form action="/try_login" method="POST">
+	<label for="new_user">Pseudo:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=506184238; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=506184238
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1890
+
+position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+1>Login:</h1>
+	<form action="/try_login" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="pwd">Password:</label><br>
+		<input type="text" id="pwd" name="password" required><br><br>
+		<input type="submit" value="Send">
+	</form>
+<h1>Create an account:</h1>
+<form action="/try_login" method="POST">
+	<label for="new_user">Pseudo:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=506184238
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1084
+
+/a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1337
+
+ain>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1135
+
+equired></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1538
+
+ background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 973
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=847352647
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1739
+
+ background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1135
+
+equired></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1337
+
+ain>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1084
+
+/a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1538
+
+ background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1490
+
+ type="text" id="pwd" name="password" required><br><br>
+		<input type="submit" value="Send">
+	</form>
+<h1>Create an account:</h1>
+<form action="/try_login" method="POST">
+	<label for="new_user">Pseudo:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1739
+
+ background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1090041145
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1285
+
+" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1490
+
+ type="text" id="pwd" name="password" required><br><br>
+		<input type="submit" value="Send">
+	</form>
+<h1>Create an account:</h1>
+<form action="/try_login" method="POST">
+	<label for="new_user">Pseudo:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1188333919; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1188333919
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1691
+
+1>
+	<form action="/try_login" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="pwd">Password:</label><br>
+		<input type="text" id="pwd" name="password" required><br><br>
+		<input type="submit" value="Send">
+	</form>
+<h1>Create an account:</h1>
+<form action="/try_login" method="POST">
+	<label for="new_user">Pseudo:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1188333919
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1188333919
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 973
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1188333919
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1337
+
+ain>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 934
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Comments</h1>
+	<div class="comment">
+		<strong>Léon:</strong><br>
+		<p>Jade, ich liebe dich.<br></p>
+	</div>
+	<h2>Leave a comment</h2>
+	<form action="/submit_comment" method="POST">
+		<label for="pseudo">Pseudo:</label><br>
+		<input type="text" id="pseudo" name="pseudo" required><br><br>
+		<label for="comment">Comment:</label><br>
+		<textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+mit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1673061994; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1673061994
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1673061994
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1287
+
+label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1135
+
+equired></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1134
+
+login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1286
+
+abel><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1133
+
+ogin</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1084
+
+/a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1132
+
+gin</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1285
+
+bel><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1131
+
+in</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1284
+
+el><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1130
+
+n</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1283
+
+l><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1129
+
+</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1282
+
+><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1647014711
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1128
+
+/a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 973
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+</style>
+</head>
+    <header>
+        <h1>Count Words</h1>
+    </header>
+    <form action="/cgi-bin/word_count.py" method="POST">
+        <label for="text">Write your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Word count">
+        <p>Result: </p>
+    </form>
+    <br><br>
+	<a href="/cgi-bin/script.php">Script</a>
+    <a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1089
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 728
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1291
+
+o:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1085
+
+</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1134
+
+quired></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1134
+
+quired></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1291
+
+o:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+n">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=151595882
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1089
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=628369150; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=628369150
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1290
+
+:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=628369150
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1496
+
+:</label><br>
+	<input type="text" id="new_user" name="new_user" required><br><br>
+	<label for="pwd">Password:</label><br>
+	<input type="text" id="pwd" name="password" required><br><br>
+	<input type="submit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1089
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1290
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1491
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1337
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1692
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1538
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1818572653
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1893
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1290
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1137
+
+ing: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1291
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1138
+
+ding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1292
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=110297823
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1139
+
+dding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1092
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+
+
+
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=322472514; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=322472514
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=322472514
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=322472514
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=322472514
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=322472514
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=322472514
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1861078211; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1861078211
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1861078211
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1002459571; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1002459571
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1002459571
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1860184756; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1860184756
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1860184756
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1082676393; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1082676393
+; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1471289226; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1471289226; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1471289226; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=saucisson; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=2023766147; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=2023766147; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+

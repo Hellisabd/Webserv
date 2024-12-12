@@ -218,8 +218,8 @@ string findSessionID(string request)
 		if(request[i] != '\r' || request[i] != '\n')
 		{
 			size_t end = request.find('\n', i);
-			null = request.substr(i, end - i + 1);
-			debug(RED, "substr: ",null);
+			null = request.substr(i, end - i);
+			debug(RED, "Session ID: ",null);
 			return null;
 		}
 	}
@@ -228,7 +228,6 @@ string findSessionID(string request)
 
 void clearLogMsg(string page)
 {
-	debug(YELLOW, "delete: ", page);
 	std::ifstream inputFile(page.c_str());
 	if (!inputFile.is_open()) {
 		std::cerr << "Error: Unable to open file " << page << std::endl;
@@ -237,18 +236,7 @@ void clearLogMsg(string page)
 	std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
 	inputFile.close();
 	size_t start = content.find("<div style=\"position: absolute; top: 10px; right: 10px;");
-	size_t end = content.find("</div>", start);
-	if (start != std::string::npos && end != std::string::npos) {
-    	end += 6;
-		while (start > 0 && (content[start - 1] == '\n' || content[start - 1] == '\r')) {
-        	--start;
-    	}
-    	while (end < content.length() && (content[end] == '\n' || content[end] == '\r')) {
-        	++end;
-    	}
-		end++;
-	    content = content.substr(0, start) + content.substr(end);
-	}
+	content = content.substr(0, start - 1);
 	std::ofstream outputFile(page.c_str(), std::ios::trunc);
 	if (!outputFile.is_open()) {
 		std::cerr << "Error: Unable to open file for writing " << page << std::endl;
@@ -260,7 +248,7 @@ void clearLogMsg(string page)
 
 void addLogMessage(string page, string user)
 {
-	debug(YELLOW, "add: ", page);
+	debug(PURPLE, "user: ", user);
 	std::ifstream inputFile(page.c_str());
 	if (!inputFile.is_open()) {
 		std::cerr << "Error: Unable to open file " << page << std::endl;
@@ -268,12 +256,6 @@ void addLogMessage(string page, string user)
 	}
 	std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
 	inputFile.close();
-	size_t bodyPos = content.find("<body>");
-	if (bodyPos == string::npos) {
-		std::cerr << "Error: <body> tag not found in file " << page << std::endl;
-	return;
-	}
-	bodyPos += 6;
 
 	std::string loginBanner = 
 	"<div style=\"position: absolute; top: 10px; right: 10px; "
@@ -282,7 +264,7 @@ void addLogMessage(string page, string user)
 	"    Log as: " + user + "\n"
 	"</div>\n";
 
-	content = content.substr(0, bodyPos) + "\n" + loginBanner + content.substr(bodyPos);
+	content += "\n" + loginBanner;
 	std::ofstream outputFile(page.c_str(), std::ios::trunc);
 	if (!outputFile.is_open()) {
 		std::cerr << "Error: Unable to open file for writing " << page << std::endl;
@@ -294,13 +276,13 @@ void addLogMessage(string page, string user)
 
 string Epoll::findRightUser(string id)
 {
+	debug(YELLOW, id);
 	for (vector<Client>::iterator it = _ClientsData.begin(); it != _ClientsData.end(); ++it)
 	{
-		debug(BLUE, "cherche l user");
+		debug(BLUE, (*it).getID());
 		if ((*it).getID() == id)
 		{
-
-			debug("a trouver l user");
+			debug(ORANGE, "find user: ", (*it).getUser());
 			return (*it).getUser();
 		}
 	}
@@ -381,7 +363,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		if (_ClientsData.empty())
 			id = "saucisson";
 		else if (id.empty())
+		{
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			debug("sessionid: ", id);
+		}
 		ostringstream oss;
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
 			string headerHTTP;
@@ -424,12 +409,14 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			save_comment(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			generate_comment_page();
 		}
+		_HTTPRequest[_epollClient[clientID].data.fd].page = page;
 	}
-	debug(BLUE, "id: ", id);
-	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it, page, id));
+	if (id.empty())
+		id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it, id));
 }
 
-map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, std::string page, string id) {
+map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, string id) {
 	char tosend[1024];
 	ssize_t file_read;
 	_HTTPRequest[fd].sending = true;
@@ -443,8 +430,11 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		throw Error("");
 	}
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
+		if (id != "saucisson")
+			clearLogMsg(_HTTPRequest[fd].page);
 		print_in_response(headerHTTP, tosend, fd);
 		_HTTPRequest[fd].req.clear();
+		_HTTPRequest[fd].page.clear();
 		_HTTPRequest[fd].nbr_of_read = 0;
 		_HTTPRequest[fd].recvEnd = false;
 		_HTTPRequest[fd].bodysize = 0;
@@ -455,9 +445,10 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		if (_HTTPRequest[fd].connectionType != "keep-alive")
 			it = deleteClient(it);
 	}
-	if (id != "saucisson") {
-		clearLogMsg(page);
-	}
+	//  && _HTTPRequest[fd].size_to_reach >= size_to_send) {
+	// 	debug("cleared");
+	// 	clearLogMsg(page);
+	// }
 	return it;
 }
 
