@@ -49,8 +49,9 @@ void generate_login_result_page(int n) {
 void encrypt_pw(string &pw, string user) {
 	const char *base = "0123456789abcdef";
 	int i = 0;
+	int size = user.length();
 	for (string::iterator it = pw.begin(); it != pw.end(); it++) {
-		*it += user.length() + base[i % 16];
+		*it = (*it) * size * base[i % 16];
 		i++;
 	}
 }
@@ -119,11 +120,8 @@ vector<string> pars_login(string rq) {
 		replace(password);
 		encrypt_pw(password, pseudo);
 		if (check_login(pseudo, password) == true)
-		{
 			generate_login_result_page(1);
-		}
-		else
-		{
+		else {
 			pseudo.clear();
 			generate_login_result_page(2);
 		}
@@ -142,8 +140,7 @@ vector<string> pars_login(string rq) {
 			add_user(pseudo, password);
 			generate_login_result_page(3);
 		}
-		else
-		{
+		else {
 			generate_login_result_page(4);
 			pseudo.clear();
 		}
