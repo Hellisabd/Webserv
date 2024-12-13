@@ -180,7 +180,6 @@ map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, st
 	_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 	_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
 	modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
-	// debug(_epollClient[clientID].events);
 	if (_HTTPRequest[_epollClient[clientID].data.fd].connectionType != "keep-alive")
 		it = deleteClient(it);
 	return it;
@@ -208,8 +207,7 @@ void	print_in_response(string headerHTTP, string tosend, int clientFD) {
 	fd.close();
 }
 
-string findSessionID(string request)
-{
+string findSessionID(string request) {
 	string null = "\r\n";
 	size_t i = request.find("session_id=");
 	if (i != string::npos)
@@ -217,17 +215,15 @@ string findSessionID(string request)
 		i += 11;
 		if(request[i] != '\r' || request[i] != '\n')
 		{
-			size_t end = request.find('\n', i);
+			size_t end = request.find('\r', i);
 			null = request.substr(i, end - i);
-			debug(RED, "Session ID: ",null);
 			return null;
 		}
 	}
 	return null;
 }
 
-void clearLogMsg(string page)
-{
+void clearLogMsg(string page) {
 	std::ifstream inputFile(page.c_str());
 	if (!inputFile.is_open()) {
 		std::cerr << "Error: Unable to open file " << page << std::endl;
@@ -246,9 +242,7 @@ void clearLogMsg(string page)
 	outputFile.close();
 }
 
-void addLogMessage(string page, string user)
-{
-	debug(PURPLE, "user: ", user);
+void addLogMessage(string page, string user) {
 	std::ifstream inputFile(page.c_str());
 	if (!inputFile.is_open()) {
 		std::cerr << "Error: Unable to open file " << page << std::endl;
@@ -274,17 +268,10 @@ void addLogMessage(string page, string user)
 	outputFile.close();
 }
 
-string Epoll::findRightUser(string id)
-{
-	debug(YELLOW, id);
-	for (vector<Client>::iterator it = _ClientsData.begin(); it != _ClientsData.end(); ++it)
-	{
-		debug(BLUE, (*it).getID());
+string Epoll::findRightUser(string id) {
+	for (vector<Client>::iterator it = _ClientsData.begin(); it != _ClientsData.end(); ++it) {
 		if ((*it).getID() == id)
-		{
-			debug(ORANGE, "find user: ", (*it).getUser());
 			return (*it).getUser();
-		}
 	}
 	string truc;
 	return truc;
@@ -310,7 +297,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			Client tmp = login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
 			if (!tmp.getUser().empty())
 			{
-				debug(tmp.getUser());
 				_ClientsData.push_back(tmp);
 				id = tmp.getID();
 			}
@@ -361,11 +347,9 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		else if (page.empty())
 			page = data.getErrors().find("404")->second;
 		if (_ClientsData.empty())
-			id = "saucisson";
-		else if (id.empty())
-		{
+			id = "default";
+		else if (id.empty()) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			debug("sessionid: ", id);
 		}
 		ostringstream oss;
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
@@ -377,7 +361,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
 			else {
-				if (id != "saucisson")
+				if (id != "default")
 					addLogMessage(page, findRightUser(id));
 				oss << getFileSize(page);
 				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
@@ -430,7 +414,7 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		throw Error("");
 	}
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
-		if (id != "saucisson")
+		if (id != "default")
 			clearLogMsg(_HTTPRequest[fd].page);
 		print_in_response(headerHTTP, tosend, fd);
 		_HTTPRequest[fd].req.clear();
@@ -445,10 +429,6 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		if (_HTTPRequest[fd].connectionType != "keep-alive")
 			it = deleteClient(it);
 	}
-	//  && _HTTPRequest[fd].size_to_reach >= size_to_send) {
-	// 	debug("cleared");
-	// 	clearLogMsg(page);
-	// }
 	return it;
 }
 
