@@ -38,7 +38,7 @@ public:
 	map<int, int>::iterator sendToClient(int clientID, Data &data, map<int, int>::iterator it);
 	void readFromClient(int clientID);
 	map<int, int>::iterator deleteClient(map<int, int>::iterator it);
-	map<int, int>::iterator exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it);
+	map<int, int>::iterator exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it, string id);
 	void set_new_env(Data &data, HttpRequest rq);
 	bool checkRequestIsValid(const string &url, Data &data, string const &method);
 	void downloadFile(string request);

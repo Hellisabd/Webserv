@@ -104,7 +104,7 @@ void Epoll::set_new_env(Data &data, HttpRequest rq) {
 	data._env["REQUEST_METHOD"] = rq.getMethod();
 }
 
-map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it) {
+map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it, string id) {
 	int fd[2];
 	if (pipe(fd) == -1)
 		return it;
@@ -167,7 +167,7 @@ map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, st
 	buf[byte_read] = '\0';
 	ostringstream oss;
 	oss << byte_read;
-	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + _HTTPRequest[_epollClient[clientID].data.fd].id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
 	if (send(_epollClient[clientID].data.fd, buf, byte_read, MSG_NOSIGNAL) < 0) {
@@ -335,8 +335,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		if (path.find("cgi-bin") != path.npos) {
 			if (page != "./site/cgi.html")
 				page = data.getErrors().find("404")->second;
-			else
-				it = exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, it);
+			else {
+				id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+				it = exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, it, id);
+			}
 		}
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE") {
 			delete_file(path, data);
