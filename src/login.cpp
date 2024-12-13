@@ -46,6 +46,15 @@ void generate_login_result_page(int n) {
 	}
 }
 
+void encrypt_pw(string &pw, string user) {
+	const char *base = "0123456789abcdef";
+	int i = 0;
+	for (string::iterator it = pw.begin(); it != pw.end(); it++) {
+		*it += user.length() + base[i % 16];
+		i++;
+	}
+}
+
 string generateSessionID() {
     srand(time(0));
 	ostringstream oss;
@@ -108,6 +117,7 @@ vector<string> pars_login(string rq) {
 		password = rq.substr(pw_start, pw_end - pw_start);
 		replace(pseudo);
 		replace(password);
+		encrypt_pw(password, pseudo);
 		if (check_login(pseudo, password) == true)
 		{
 			generate_login_result_page(1);
@@ -128,6 +138,7 @@ vector<string> pars_login(string rq) {
 		replace(pseudo);
 		replace(password);
 		if (pseudo_available(pseudo)) {
+			encrypt_pw(password, pseudo);
 			add_user(pseudo, password);
 			generate_login_result_page(3);
 		}
