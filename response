@@ -25875,3 +25875,659 @@ End of the request
 
 
 
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1069396888; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1069396888; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1296
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1069396888; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1143
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1069396888; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1296
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1250465357; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 724
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: John
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1250465357; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1293
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: John
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1250465357; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1140
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: John
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1250465357; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1293
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: John
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=825989983; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 723
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>Your user account was successfully created!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: oui
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=825989983; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1292
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: oui
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=825989983; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1139
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: oui
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=825989983; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1177
+
+10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: oui
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1135
+
+g: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 889
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment posted</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <p>Your comment has been successfully posted.</p>
+    </main>
+    <a href="/comments">Back</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1244
+
+a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1084
+
+ 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1289
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1252441165; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 727
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments about Webserv</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+	<p>You were successfully logged! Welcome back!</p>
+<a href="/login">back</a>
+</body>
+</html>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1252441165; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1296
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1252441165; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1143
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=1252441165; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 2789
+
+lor: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+<div style="position: absolute; top: 10px; right: 10px; background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: Antoine
+</div>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1136
+
+ng: 5px 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+    Log as: 
+</div>
+
+End of the request
+
+
+
+
+
+
+
