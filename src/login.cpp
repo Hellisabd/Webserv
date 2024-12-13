@@ -51,7 +51,7 @@ void encrypt_pw(string &pw, string user) {
 	int i = 0;
 	int size = user.length();
 	for (string::iterator it = pw.begin(); it != pw.end(); it++) {
-		*it = (*it) * size * base[i % 16];
+		*it = (*it) * (size + base[i % 16]);
 		i++;
 	}
 }
