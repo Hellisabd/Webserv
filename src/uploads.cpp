@@ -80,7 +80,7 @@ void generate_uploads_url(vector<string> filenames)
 	oss << "<head>\n";
 	oss << "	<meta charset=\"UTF-8\">\n";
 	oss << "	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
-	oss << "	<title>Comments about Webserv</title>\n";
+	oss << "	<title>Uploads</title>\n";
 	oss << "	<style>\n";
 	oss << "		body {\n";
 	oss << "			a {\n";
