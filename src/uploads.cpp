@@ -125,12 +125,14 @@ void generate_uploads_url(vector<string> filenames)
 
 bool check_file_availability(string rq, Data &data) {
 	size_t start = rq.find("downloads/") + 10;
-	size_t end = rq.find(" ", start);
+	// size_t end = rq.find(" ", start);
 	string filename;
-	if (start != rq.npos && end != rq.npos)
-		filename = rq.substr(start, end - start);
+	if (start != rq.npos/* && end != rq.npos*/)
+		filename = rq.substr(start);
+	debug("file: ", filename);
 	vector<string>::iterator it;
 	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
+		debug(*it);
 		if (filename == *it)
 			break ;
 	}

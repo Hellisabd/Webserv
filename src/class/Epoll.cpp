@@ -542,15 +542,16 @@ void Epoll::handleRequest(Data &data) {
 			else if (it->second == _sock[port] && !isSockPort(_epollClient[clientID].data.fd)) {
 				if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP)) {
 					it = deleteClient(it);
-					break;
+					// break;
 				}
 				else if (_epollClient[clientID].events & EPOLLIN) {
 					readFromClient(clientID);
-					break;
+					// debug (clientID);
+					// break;
 				}
 				else if (_epollClient[clientID].events & EPOLLOUT) {
 					it = sendToClient(clientID, data, it);
-					break ;
+					// break ;
 				}
 			}
 			if (_noclient == true) {

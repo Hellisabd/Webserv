@@ -71,6 +71,7 @@ class HttpRequest {
 	bool						parseHeader();
 	bool						parseBody();
 	bool						parseAll();
+	void 						split_header_body();
 
 	bool						parsingError;
 	string						parsingStrError;
@@ -122,4 +123,6 @@ class HttpRequest {
 	t_multipart					_multipart;
 	bool						_isUrlEncoded;
 	string						_urlEncodedBody;
+	string						_strheader;
+	string						_strbody;
 };

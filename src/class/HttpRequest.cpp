@@ -106,12 +106,26 @@ void	HttpRequest::setErr(int n, const string& s) {
 	errNo = n;
 }
 
+void HttpRequest::split_header_body()
+{
+	size_t endheader = _request.find("\r\n\r\n") + 4;
+	if (endheader != string::npos)
+	{
+		_strheader = _request.substr(0, endheader);
+		_strbody = _request.substr(endheader);
+	}
+}
+
 bool HttpRequest::parseAll() {
+	split_header_body();
 	if (!parseHeader()) {
 		return (false);
 	}
-	if (!parseBody()) {
-		return (false);
+	if (_url != "/upload")
+	{
+		if (!parseBody()) {
+			return (false);
+		}
 	}
 	return (true);
 }
@@ -333,7 +347,6 @@ bool	HttpRequest::allBoundaryAreValid() {
 				return (false);
 			} else if (!static_cast<string>(&(*(bit + bpos - 2))).compare(0, bsize + 4, "--" + b + "--")) {
 				lastB = &(*(bit + bpos - 2));
-				cout << "alsdjflasdf" << endl;
 				break ;
 			}
 			lastB = &(*bit);
@@ -714,13 +727,13 @@ t_headerValue HttpRequest::extractUserAgent(string::iterator& it) {
 }
 
 bool HttpRequest::fillHeaders() {
-	string::iterator	it = _request.begin();
+	string::iterator	it = _strheader.begin();
 	string				key;
 
 	it += _requestLineSize;
-	while (it != _request.end() && !isDoubleCrlf(&(*it))) {
+	while (it != _strheader.end() && !isDoubleCrlf(&(*it))) {
 		key.clear();
-		while (it != _request.end() && !isCrlf(&(*it)) &&  *it != ':') {
+		while (it != _strheader.end() && !isCrlf(&(*it)) &&  *it != ':') {
 			key += *it;
 			it++;
 		}
