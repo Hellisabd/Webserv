@@ -43,7 +43,7 @@ unsigned long getFileSize(string const &file_path);
 void generate_uploads_url(vector<string> filenames);
 void generate_comment_page();
 void save_comment(string rq);
-string uploadFile(string request, Data &data);
+string uploadFile(string request, Data &data, bool *uploading);
 void replace(string &com);
 void delete_file(string path, Data &data);
 bool check_file_availability(string rq, Data &data);

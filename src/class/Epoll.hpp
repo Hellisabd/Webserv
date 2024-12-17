@@ -25,7 +25,8 @@ typedef struct s_requestclient
 	int 	infile;
 	string 	connectionType;
 	string 	id;
-	string page;
+	string 	page;
+	bool	uploading;
 } t_requestClient;
 
 class Epoll {
@@ -33,7 +34,7 @@ public:
 	Epoll(vector<int> sock, int nbr_port);
 	~Epoll();
 	void wait(int stop);
-	void handleRequest(/* vector<struct sockaddr_in> address,  */Data &data);
+	void handleRequest(Data &data);
 	void addClient(int port);
 	map<int, int>::iterator sendToClient(int clientID, Data &data, map<int, int>::iterator it);
 	void readFromClient(int clientID);

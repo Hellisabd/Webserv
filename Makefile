@@ -55,7 +55,8 @@ endif
 all	: $(NAME) clean
 
 $(NAME) : $(OBJS)
-	@{ ./$(EXECUTABLE) $(SRC_COUNT) & $(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) ; wait; }
+#	@{ ./$(EXECUTABLE) $(SRC_COUNT) & $(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) ; wait; }
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(MAGENTA)Make Done$(DEF_COLOR)"
 
 clean : 

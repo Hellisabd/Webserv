@@ -1,6 +1,6 @@
 #include <webserv.hpp>
 
-string uploadFile(string request, Data &data)
+string uploadFile(string request, Data &data, bool *uploading)
 {
 	string body;
 	string filename;
@@ -66,6 +66,7 @@ string uploadFile(string request, Data &data)
 		file << body;
 		file.close();
 	}
+	*uploading = true;
 	return filename;
 }
 

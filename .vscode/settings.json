@@ -49,13 +49,8 @@
 		"ranges": "cpp",
 		"span": "cpp",
 		"sstream": "cpp",
-		"stdexcept": "cpp",
-		"streambuf": "cpp",
-		"typeinfo": "cpp",
-		"cstring": "cpp",
-		"cinttypes": "cpp",
-		"chrono": "cpp",
-		"condition_variable": "cpp",
+		"stdexcept": "cpp",				debug(page);
+
 		"ratio": "cpp",
 		"mutex": "cpp",
 		"stop_token": "cpp",
