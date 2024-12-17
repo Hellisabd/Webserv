@@ -77,7 +77,7 @@ ex :	re clean
 	@./webserv
 
 git	:	fclean
-	@$(RM) */a.out a.out
+	@$(RM) */a.out a.out request response && touch request response
 	@git add . > /dev/null 2>&1
 	@@msg=$${MSG:-"$(CURRENT_DATE)"}; git commit -m "$(USER) $(CURRENT_DATE) $$msg" > /dev/null 2>&1 
 	@git push > /dev/null 2>&1

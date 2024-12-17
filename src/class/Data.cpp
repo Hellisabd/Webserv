@@ -54,7 +54,7 @@ void Data::fill_info(ifstream &infile)
 			SetHost(line.substr(line.find("host ", 0) + 5, line.size()));
 		}
 		else if (line.find("bodysize ", 0) != line.npos)
-			_bodySize = atoi(line.c_str() + line.find("bodysize ", 0) + 9);
+			_MaxBodySize = atoi(line.c_str() + line.find("bodysize ", 0) + 9);
 		else if (line.find("server_name ", 0) != line.npos)
 		{
 			//debug(3);
@@ -127,7 +127,7 @@ int const &Data::getNbrPort() const
 
 size_t const &Data::getBodySize() const
 {
-	return _bodySize;
+	return _MaxBodySize;
 }
 
 vector<string> const &Data::getServerNames() const

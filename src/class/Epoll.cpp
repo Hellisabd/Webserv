@@ -295,6 +295,12 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				cout << rq.parsingStrError << endl;
 				page = data.getErrors().find("400")->second;
 			}
+			debug("rq bodysize: ", _HTTPRequest[_epollClient[clientID].data.fd].bodysize);
+			debug("data bodysize: ", data.getBodySize());
+			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getBodySize())
+			{
+				page = data.getErrors().find("403")->second;
+			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
 		string path = rq.getUrl();
@@ -333,7 +339,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
-		for(map<string, string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2 && page != "./site/415.html"; i++) {
+		for(map<string, string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2 && page.empty(); i++) {
 			if (path == i->first) {
 				page = i->second;
 				if (!checkRequestIsValid(i->first, data, rq.getMethodToString())) 
@@ -542,16 +548,16 @@ void Epoll::handleRequest(Data &data) {
 			else if (it->second == _sock[port] && !isSockPort(_epollClient[clientID].data.fd)) {
 				if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP)) {
 					it = deleteClient(it);
-					// break;
+					break;
 				}
 				else if (_epollClient[clientID].events & EPOLLIN) {
 					readFromClient(clientID);
 					// debug (clientID);
-					// break;
+					break;
 				}
 				else if (_epollClient[clientID].events & EPOLLOUT) {
 					it = sendToClient(clientID, data, it);
-					// break ;
+					break ;
 				}
 			}
 			if (_noclient == true) {

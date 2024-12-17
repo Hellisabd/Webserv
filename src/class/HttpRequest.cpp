@@ -778,6 +778,7 @@ void	HttpRequest::calcBodySize() {
 		size++;
 	}
 	_bodySize = size;
+	debug("bodysize in http request: ", _bodySize);
 }
 
 bool HttpRequest::fillBody() {

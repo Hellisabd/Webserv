@@ -35,7 +35,7 @@ class Data {
 		int *_ports;
 		int _nbrPorts;
 		string _host;
-		size_t _bodySize;
+		size_t _MaxBodySize;
 		vector<string> _serverNames;
 		map<string, string> _loc;
 		map<string, vector<string> > _method;
