@@ -29544,3 +29544,2024 @@ End of the request
 
 
 
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3447
+
+de la Corée -->
+    <button class="korea-flag-button" onclick="window.location.href='/'">
+        <div class="circle"></div>
+        <div class="blue-half"></div>
+        <div class="stripes stripe-1"></div>
+        <div class="stripes stripe-2"></div>
+        <div class="stripes stripe-3"></div>
+        <div class="stripes stripe-4"></div>
+    </button>
+
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3664
+
+ndes -->
+        <div class="stripe" style="top: 0;"></div>
+        <div class="stripe" style="top: 12.5%;"></div>
+        <div class="stripe" style="top: 25%;"></div>
+        <div class="stripe" style="top: 37.5%;"></div>
+        <div class="stripe" style="top: 50%;"></div>
+        <div class="stripe" style="top: 62.5%;"></div>
+        <div class="stripe" style="top: 75%;"></div>
+        <div class="stripe" style="top: 87.5%;"></div>
+        <!-- La croix blanche -->
+        <div class="cross horizontal"></div>
+        <div class="cross vertical"></div>
+    </button>
+
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3548
+
+drapeau de la Grèce -->
+    <button class="greece-flag-button" onclick="window.location.href='/'">
+        <!-- Bandes horizontales -->
+        <div class="stripe" style="top: 12.5%;"></div>
+        <div class="stripe" style="top: 37.5%;"></div>
+        <div class="stripe" style="top: 62.5%;"></div>
+        <div class="stripe" style="top: 87.5%;"></div>
+        <!-- Carré bleu avec croix blanche -->
+        <div class="blue-square"></div>
+    </button>
+
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3758
+
+drapeau de la Grèce -->
+    <button class="greece-flag-button" onclick="window.location.href='/'">
+        <!-- Bandes horizontales -->
+        <div class="stripe" style="top: 0;"></div>
+        <div class="stripe" style="top: 12.5%;"></div>
+        <div class="stripe" style="top: 25%;"></div>
+        <div class="stripe" style="top: 37.5%;"></div>
+        <div class="stripe" style="top: 50%;"></div>
+        <div class="stripe" style="top: 62.5%;"></div>
+        <div class="stripe" style="top: 75%;"></div>
+        <div class="stripe" style="top: 87.5%;"></div>
+        <!-- Carré bleu avec croix blanche -->
+        <div class="blue-square"></div>
+    </button>
+
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 3159
+
+all">★</div>
+        <div class="star-small">★</div>
+    </button>
+
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 967
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+<tr>
+	<td>📁 </td>
+	<td><a href="./downloads/" class=download download="">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1253
+
+over {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>415</h1>
+    <p>Unsupported Media Type</p>
+    <p>Only text files are allowed.</p>
+    <a href="/">Come back to home</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;82;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;82;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;82;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;82;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;82;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 11
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;��;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 9
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;a;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;82;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 8
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;82;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 9
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>408 Χρονικό όριο αιτήματος</title>
+    <style>
+        /* Styles généraux */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0.5em;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;a;
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1253
+
+over {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>415</h1>
+    <p>Unsupported Media Type</p>
+    <p>Only text files are allowed.</p>
+    <a href="/">Come back to home</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1088
+
+bmit" value="Send">
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 868
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uploads</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+			a.download {
+				background-color: #16b84e;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Upload</h1>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<label for="file">Pick a file:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">Upload</button>
+	</form>
+<h2>Downloads</h2>
+<table>
+<tr>
+	<td>📁 1.txt</td>
+	<td><a href="./downloads/1.txt" class=download download="1.txt">Download</a></td></tr>
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 1253
+
+over {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>415</h1>
+    <p>Unsupported Media Type</p>
+    <p>Only text files are allowed.</p>
+    <a href="/">Come back to home</a>
+</body>
+</html>
+
+End of the request
+
+
+
+
+
+
+
+Start of the request for fd: 6
+HTTP/1.1 200 OK
+Set-Cookie: session_id=default; Path=/; HttpOnly
+Content-Type: text/html
+Content-Length: 935
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {
+            a {
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <h1>Bienvenue sur webserv</h1>
+    </header>
+    <main>
+        <p>Ce site est une page de base pour le projet webserv.</p>
+    </main>
+    <a href="/cgi">CGI</a>
+    <a href="/comments">Comments</a>
+    <a href="/upload">upload</a>
+    <a href="/login">login</a>
+    <footer>
+        <p>&copy; 2025 - bgrosjea, achatzit, amirloup</p>
+    </footer>
+</body>
+</html>
+End of the request
+
+
+
+
+
+
+

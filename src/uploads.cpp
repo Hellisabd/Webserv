@@ -44,9 +44,6 @@ string uploadFile(string request, Data &data)
 		type = body.substr(body_start, body_end - body_start - 1);
 		if (type != "application/octet-stream" && type != "text/plain")
 			return ("415");
-			// throw Error("Wrong type of file for upload.");
-			// mettre en place page 415 plutot que throw une erreur
-			// segfault qund on load un PNG par ex, requete fragmenteee
 	}
 	if (body.find(boundaryKey, body_end) != body.npos)
 	{

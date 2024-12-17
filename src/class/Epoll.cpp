@@ -303,6 +303,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
 			string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data);
+			if (filename == "415")
+				page = data.getErrors().find(filename)->second;
 			string tmp_name;
 			if (filename.find("/downloads") != filename.npos)
 				tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
@@ -324,7 +326,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
-		for(map<string, string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2; i++) {
+		for(map<string, string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2 && page != "./site/415.html"; i++) {
 			if (path == i->first) {
 				page = i->second;
 				if (!checkRequestIsValid(i->first, data, rq.getMethodToString())) 
