@@ -486,6 +486,7 @@ void Epoll::readFromClient(int clientID) {
 			if (content_length_pos != string::npos) {
 				size_t start = content_length_pos + 15;
 				_HTTPRequest[_epollClient[clientID].data.fd].bodysize = getbodysize(_HTTPRequest[_epollClient[clientID].data.fd].req, start);
+				debug(BLUE, "bodysize: ", _HTTPRequest[_epollClient[clientID].data.fd].bodysize);
 				if (bytes_read < 1024) {
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
