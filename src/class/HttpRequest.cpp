@@ -121,11 +121,8 @@ bool HttpRequest::parseAll() {
 	if (!parseHeader()) {
 		return (false);
 	}
-	if (_url != "/upload")
-	{
-		if (!parseBody()) {
-			return (false);
-		}
+	if (!parseBody()) {
+		return (false);
 	}
 	return (true);
 }
