@@ -36,6 +36,7 @@ int main(int argc, char **argv, char **env)
 			}
 		}
 		catch (exception const &e) {
+			//500 internal server error
 			cerr << e.what() << endl;
 		}
 	}

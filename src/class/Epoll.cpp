@@ -295,11 +295,11 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				cout << rq.parsingStrError << endl;
 				page = data.getErrors().find("400")->second;
 			}
-			debug("rq bodysize: ", _HTTPRequest[_epollClient[clientID].data.fd].bodysize);
-			debug("data bodysize: ", data.getBodySize());
+			debug("rq bodysize: ", rq.getContentLength());
+			debug("data bodysize: ", rq.getBodySize());
 			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getBodySize())
 			{
-				page = data.getErrors().find("403")->second;
+				page = data.getErrors().find("413")->second;
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
@@ -376,6 +376,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
 				page = data.getErrors().find("404")->second;
 				oss << getFileSize(page);
+				// if (log)
+					// _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page) + taille balise log;
 				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
 				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
