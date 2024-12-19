@@ -55,6 +55,7 @@ t_requestClient newRequestClient() {
 	_HTTPRequest.nbr_of_read = 0;
 	_HTTPRequest.size_to_reach = 0;
 	_HTTPRequest.bodysize = 0;
+	_HTTPRequest.Loged = false;
 	return _HTTPRequest;
 }
 
@@ -213,7 +214,7 @@ void	print_in_response(string headerHTTP, string tosend, int clientFD) {
 }
 
 string findSessionID(string request) {
-	string null = "\r\n";
+	string null = "default";
 	size_t i = request.find("session_id=");
 	if (i != string::npos)
 	{
@@ -247,30 +248,14 @@ void clearLogMsg(string page) {
 	outputFile.close();
 }
 
-void addLogMessage(string page, string user) {
-	std::ifstream inputFile(page.c_str());
-	if (!inputFile.is_open()) {
-		std::cerr << "Error: Unable to open file " << page << std::endl;
-		return;
-	}
-	std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
-	inputFile.close();
-
-	std::string loginBanner = 
+void Epoll::addLogMessage(string user, int index) {
+	_HTTPRequest[index].logMsg =
 	"<div style=\"position: absolute; top: 10px; right: 10px; "
 	"background-color: #f0f0f0; padding: 5px 10px; border: 1px solid #ccc; "
 	"border-radius: 5px; font-family: Arial, sans-serif;\">\n"
-	"    Log as: " + user + "\n"
+	"    Log as: " + user + "\n<br>"
+	"<a href=\"/logout\">logout</a>"
 	"</div>\n";
-
-	content += "\n" + loginBanner;
-	std::ofstream outputFile(page.c_str(), std::ios::trunc);
-	if (!outputFile.is_open()) {
-		std::cerr << "Error: Unable to open file for writing " << page << std::endl;
-	return;
-	}
-	outputFile << content;
-	outputFile.close();
 }
 
 string Epoll::findRightUser(string id) {
@@ -295,8 +280,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				cout << rq.parsingStrError << endl;
 				page = data.getErrors().find("400")->second;
 			}
-			debug("rq bodysize: ", rq.getContentLength());
-			debug("data bodysize: ", rq.getBodySize());
 			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getBodySize())
 			{
 				page = data.getErrors().find("413")->second;
@@ -304,6 +287,12 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
 		string path = rq.getUrl();
+		if (path == "/logout")
+		{
+			id = "default";
+			path = "/";
+			_HTTPRequest[_epollClient[clientID].data.fd].Loged = false;
+		}
 		valid = check_timeout(_time_out, path);
 		if (path.find("/try_login") != path.npos) {
 			Client tmp = login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
@@ -311,6 +300,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			{
 				_ClientsData.push_back(tmp);
 				id = tmp.getID();
+				_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 			}
 		}
 		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
@@ -365,26 +355,28 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		else if (page.empty())
 			page = data.getErrors().find("404")->second;
-		if (_ClientsData.empty())
-			id = "default";
-		else if (id.empty()) {
+		if (id.empty())
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-		}
+		if ((id == "default" && _HTTPRequest[_epollClient[clientID].data.fd].Loged == false) || _ClientsData.empty())
+			_HTTPRequest[_epollClient[clientID].data.fd].Loged = false;
+		else
+			_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 		ostringstream oss;
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
 			string headerHTTP;
 			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
 				page = data.getErrors().find("404")->second;
 				oss << getFileSize(page);
-				// if (log)
-					// _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page) + taille balise log;
 				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
 				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
 			else {
-				if (id != "default")
-					addLogMessage(page, findRightUser(id));
-				oss << getFileSize(page);
+				if (_HTTPRequest[_epollClient[clientID].data.fd].Loged == true && _HTTPRequest[_epollClient[clientID].data.fd].logMsg.empty())
+				{
+					_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
+					addLogMessage(findRightUser(id), _epollClient[clientID].data.fd);
+				}
+				oss << getFileSize(page) + _HTTPRequest[_epollClient[clientID].data.fd].logMsg.length();
 				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
 				headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
@@ -419,10 +411,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	}
 	if (id.empty())
 		id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it, id));
+	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it));
 }
 
-map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, string id) {
+map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it) {
 	char tosend[1024];
 	ssize_t file_read;
 	_HTTPRequest[fd].sending = true;
@@ -436,8 +428,8 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		throw Error("");
 	}
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
-		if (id != "default")
-			clearLogMsg(_HTTPRequest[fd].page);
+		if (_HTTPRequest[fd].Loged == true)
+			send(fd, _HTTPRequest[fd].logMsg.c_str(), _HTTPRequest[fd].logMsg.length(), MSG_NOSIGNAL);
 		print_in_response(headerHTTP, tosend, fd);
 		_HTTPRequest[fd].req.clear();
 		_HTTPRequest[fd].page.clear();

@@ -27,6 +27,8 @@ typedef struct s_requestclient
 	string 	id;
 	string 	page;
 	bool	uploading;
+	string  logMsg;
+	bool 	Loged;
 } t_requestClient;
 
 class Epoll {
@@ -46,9 +48,10 @@ public:
 	bool isSockPort(int fd);
 	void topars(string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, int epoll_fd);
-	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it, string id);
+	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it);
 	bool check_ID(int id);
 	string findRightUser(string id);
+	void addLogMessage(string user, int index);
 
 private:
 	int	_epoll_fd;
