@@ -205,6 +205,14 @@ void Data::SetPorts(string const &ports)
 		oldpos = pos;
 	}
 	_nbrPorts = i;
+	int count2;
+	while (i-- > 0)
+	{
+		count2 = _nbrPorts;
+		while (count2-- > 0)
+			if (_ports[count2] == _ports[i] && i != count2)
+				throw Error("Error: 2 similar ports.");
+	}
 }
 
 void Data::SetServerNames(string const &servernames)
