@@ -1,7 +1,6 @@
 #include <webserv.hpp>
 
 void delete_file(string path, Data &data) {
-	(void)data;
 	size_t start = path.find("filename=", 0) + 9;
 	string filename;
 	if (start != path.npos) {
