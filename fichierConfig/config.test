@@ -8,26 +8,6 @@ location / {
 	./site/index.html
 }
 
-location /cgi {
-	Method GET
-	./site/cgi.html
-}
-
-location /cgi-bin/script.php {
-	Method GET
-	./site/cgi.html
-}
-
-location /cgi-bin/word_count.py {
-	Method GET POST
-	./site/cgi.html
-}
-
-location /comments {
-	Method GET
-	./site/comments.html
-}
-
 location /login {
 	Method GET
 	./site/login.html
@@ -36,11 +16,6 @@ location /login {
 location /try_login {
 	Method GET POST
 	./site/try_login.html
-}
-
-location /submit_comment { 
-	Method GET POST
-	./site/submit_comment.html
 }
 
 location /upload {

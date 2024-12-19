@@ -403,10 +403,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
 		if (infile < 0)
 			page = data.getErrors().find("403")->second;
-		if (page == "./site/submit_comment.html") {
-			save_comment(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			generate_comment_page();
-		}
 		_HTTPRequest[_epollClient[clientID].data.fd].page = page;
 	}
 	if (id.empty())
