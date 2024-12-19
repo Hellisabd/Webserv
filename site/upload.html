@@ -24,16 +24,13 @@
 </head>
 <body>
 <h1>Upload</h1>
-	<form action="/upload" method="POST" enctype="multipart/form-data">
+	<form action="/cgi-bin/upload.py" method="POST" enctype="multipart/form-data">
 		<label for="file">Pick a file:</label>
 		<input type="file" id="file" name="file">
 		<button type="submit">Upload</button>
 	</form>
 <h2>Downloads</h2>
 <table>
-<tr>
-	<td>📁 50m.txt</td>
-	<td><a href="./downloads/50m.txt" class=download download="50m.txt">Download</a></td></tr>
 </table>
 <a href="/">HOME</a>
 </body>

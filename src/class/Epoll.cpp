@@ -295,8 +295,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				cout << rq.parsingStrError << endl;
 				page = data.getErrors().find("400")->second;
 			}
-			debug("rq bodysize: ", _HTTPRequest[_epollClient[clientID].data.fd].bodysize);
-			debug("data bodysize: ", data.getBodySize());
 			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getBodySize())
 			{
 				page = data.getErrors().find("403")->second;
@@ -313,22 +311,22 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				id = tmp.getID();
 			}
 		}
-		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
-			string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data, &_HTTPRequest[_epollClient[clientID].data.fd].uploading);
-			if (filename == "415")
-				page = data.getErrors().find(filename)->second;
-			string tmp_name;
-			if (filename.find("/downloads") != filename.npos)
-				tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
-			vector<string> method;
-			method.push_back("GET");
-			map<string, vector<string> > &tmp = data.getMethods();
-			tmp["/downloads/" + tmp_name] = method;
-			map<string, string> &tmploc = data.getLocations();
-			if (filename.find("/downloads") != filename.npos)
-				tmploc["/downloads/" + tmp_name] = filename;
-			generate_uploads_url(data._uploads);
-		}
+		// if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
+		// 	string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data, &_HTTPRequest[_epollClient[clientID].data.fd].uploading);
+		// 	if (filename == "415")
+		// 		page = data.getErrors().find(filename)->second;
+		// 	string tmp_name;
+		// 	if (filename.find("/downloads") != filename.npos)
+		// 		tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
+		// 	vector<string> method;
+		// 	method.push_back("GET");
+		// 	map<string, vector<string> > &tmp = data.getMethods();
+		// 	tmp["/downloads/" + tmp_name] = method;
+		// 	map<string, string> &tmploc = data.getLocations();
+		// 	if (filename.find("/downloads") != filename.npos)
+		// 		tmploc["/downloads/" + tmp_name] = filename;
+		// 	generate_uploads_url(data._uploads);
+		// }
 		if (rq.getUrl() == "/favicon.ico"){
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
@@ -348,12 +346,9 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 		}
 		if (path.find("cgi-bin") != path.npos) {
-			if (page != "./site/cgi.html")
-				page = data.getErrors().find("404")->second;
-			else {
-				id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-				it = exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, it, id);
-			}
+			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			cgi execcgi(path, data, _epollClient[clientID].data.fd);
+			// 	it = exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, it, id);
 		}
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE") {
 			delete_file(path, data);
@@ -486,7 +481,6 @@ void Epoll::readFromClient(int clientID) {
 			if (content_length_pos != string::npos) {
 				size_t start = content_length_pos + 15;
 				_HTTPRequest[_epollClient[clientID].data.fd].bodysize = getbodysize(_HTTPRequest[_epollClient[clientID].data.fd].req, start);
-				debug(BLUE, "bodysize: ", _HTTPRequest[_epollClient[clientID].data.fd].bodysize);
 				if (bytes_read < 1024) {
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;

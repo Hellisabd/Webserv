@@ -20,6 +20,7 @@ SRCS	=	src/main.cpp \
 			src/class/Epoll.cpp \
 			src/class/Client.cpp \
 			src/class/HttpRequest.cpp \
+			src/class/cgi.cpp \
 			src/comments.cpp \
 			src/uploads.cpp \
 			src/login.cpp \

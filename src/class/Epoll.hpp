@@ -8,6 +8,7 @@ using namespace std;
 class Data;
 class HttpRequest;
 class Client;
+class cgi;
 
 typedef struct s_requestclient
 {
