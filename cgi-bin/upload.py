@@ -3,69 +3,28 @@
 import cgi
 import os
 import cgitb
+import sys
+from typing import Optional
 
 cgitb.enable()
 
-upload_dir = "./site/downloads"
+directory: str = "./site/downloads/"
 
-form = cgi.FieldStorage()
+raw_input: str = sys.stdin.read()
 
-file_item = form['file']
+index_start: int = raw_input.find("filename=") + 10
+index_end: int = raw_input.find("\"", index_start)
 
-print("Content-Type: text/html; charset=utf-8")
-print()
+filename: str = raw_input[index_start:index_end]
 
-if file_item.filename:
-    filename = os.path.basename(file_item.filename)
-    filepath = os.path.join(upload_dir, filename)
+directory += filename
 
-    try:
-        with open(filepath, 'wb') as output_file:
-            while True:
-                chunk = file_item.file.read(1024)
-                if not chunk:
-                    break
-                output_file.write(chunk)
+start: int = raw_input.find("\r\n\r\n")
+start = raw_input.find("Content-Type: ", start)
+start = raw_input.find("\r\n", start) + 4
+end: int = raw_input.find(os.environ.get("BOUNDARY") + "--") - 4
 
-        value = f"'{filename}' a été uploader avec succès et enregistré à '{upload_dir}'"
-    except Exception as e:
-        value = f"Erreur lors de l'enregistrement du fichier : {e}"
-else:
-    value = "Aucun fichier n'a été téléchargé."
+with open(directory, "wb") as f:
+	f.write(raw_input[start:end])
 
-
-
-html_content = f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Upload</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-        body {{
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }}
-        .container {{
-            text-align: center;
-        }}
-    </style>
-</head>
-<body>
-    <div class="container">
-				<h2> {value} </h2>
-				<a href="/">Back home</a>
-    </div>
-</body>
-</html>
-"""
-
-
-print(html_content)
+print("You successfully uploaded " + filename)
