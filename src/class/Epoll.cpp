@@ -91,105 +91,99 @@ int check_timeout(clock_t time, string url) {
 	return 0;
 }
 
-string getScriptName(string url) {
-	size_t start;
-	size_t end;
-	start = url.find("cgi-bin/", 0);
-	if (start == url.npos)
-		return "";
-	end = url.find("/", start + 8);
-	if (end == url.npos)
-		return "./" + url.substr(start, url.length() - start);
-	else
-		return "./" + url.substr(start, end - start);
-}
+// string getScriptName(string url) {
+// 	size_t start;
+// 	size_t end;
+// 	start = url.find("cgi-bin/", 0);
+// 	if (start == url.npos)
+// 		return "";
+// 	end = url.find("/", start + 8);
+// 	if (end == url.npos)
+// 		return "./" + url.substr(start, url.length() - start);
+// 	else
+// 		return "./" + url.substr(start, end - start);
+// }
 
-void Epoll::set_new_env(Data &data, HttpRequest rq) {
-	data._env["PATH_INFO"] = rq.getUrl();
-	data._env["SCRIPT_NAME"] = getScriptName(rq.getUrl());
-	data._env["REQUEST_METHOD"] = rq.getMethod();
-}
-
-map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it, string id) {
-	int fd[2];
-	if (pipe(fd) == -1)
-		return it;
-	string text;
-	if (req_str.find("text=") != req_str.npos) {
-		size_t start = req_str.find("text=") + 5;
-		if (start != req_str.npos)
-			text = req_str.substr(start, req_str.length() - start);
-		if (text.length() > 18000)
-			text = "Text too long.";
-		replace(text);
-		data._env["text"] = text;
-	}
-	int pid = fork();
-	if (pid == -1) {
-		close (fd[0]);
-		close (fd[1]);
-		return it;
-	}
-	set_new_env(data, rq);
-	if (pid == 0) {
-		char **env;
-		env = data.envToCharpp();
-		if (-1 == dup2(fd[1], STDOUT_FILENO)) {
-			close (fd[0]);
-			close (fd[1]);
-			return it;
-		}
-		close(fd[0]);
-		close(fd[1]);
-		char **filename = new char*[2];
-		if (rq.getUrl().find("script.php") != rq.getUrl().npos) {
-			filename[0] = strdup("./script.php");
-			filename[1] = NULL;
-			execve("cgi-bin/script.php", filename, env);
-		}
-		else if (rq.getUrl().find("word_count.py") != rq.getUrl().npos) {
-			filename[0] = strdup("./word_count.py");
-			filename[1] = NULL;
-			execve("cgi-bin/word_count.py", filename, env);
-		}
-		for (int i = 0; env[i]; i++)
-			free(env[i]);
-		delete[] env;
-		free(filename[0]);
-		free(filename[1]);
-		delete[] filename;
-		exit(EXIT_FAILURE);
-	}
-	waitpid(pid, NULL, 0);
-	char buf[20000];
-	int byte_read = read(fd[0], buf, sizeof(buf));
-	if (byte_read < 0) {
-		close (fd[0]);
-		close (fd[1]);
-		return it;
-	}
-	close(fd[0]);
-	close(fd[1]);
-	buf[byte_read] = '\0';
-	ostringstream oss;
-	oss << byte_read;
-	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-		throw Error("Error sending HTTP header");
-	if (send(_epollClient[clientID].data.fd, buf, byte_read, MSG_NOSIGNAL) < 0) {
-		perror("exec send body");
-		throw Error("");
-	}
-	_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-	_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-	_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-	_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-	_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-	modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
-	if (_HTTPRequest[_epollClient[clientID].data.fd].connectionType != "keep-alive")
-		it = deleteClient(it);
-	return it;
-}
+// map<int, int>::iterator Epoll::exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it, string id) {
+// 	int fd[2];
+// 	if (pipe(fd) == -1)
+// 		return it;
+// 	string text;
+// 	if (req_str.find("text=") != req_str.npos) {
+// 		size_t start = req_str.find("text=") + 5;
+// 		if (start != req_str.npos)
+// 			text = req_str.substr(start, req_str.length() - start);
+// 		if (text.length() > 18000)
+// 			text = "Text too long.";
+// 		replace(text);
+// 		data._env["text"] = text;
+// 	}
+// 	int pid = fork();
+// 	if (pid == -1) {
+// 		close (fd[0]);
+// 		close (fd[1]);
+// 		return it;
+// 	}
+// 	set_new_env(data, rq);
+// 	if (pid == 0) {
+// 		char **env;
+// 		env = data.envToCharpp();
+// 		if (-1 == dup2(fd[1], STDOUT_FILENO)) {
+// 			close (fd[0]);
+// 			close (fd[1]);
+// 			return it;
+// 		}
+// 		close(fd[0]);
+// 		close(fd[1]);
+// 		char **filename = new char*[2];
+// 		if (rq.getUrl().find("script.php") != rq.getUrl().npos) {
+// 			filename[0] = strdup("./script.php");
+// 			filename[1] = NULL;
+// 			execve("cgi-bin/script.php", filename, env);
+// 		}
+// 		else if (rq.getUrl().find("word_count.py") != rq.getUrl().npos) {
+// 			filename[0] = strdup("./word_count.py");
+// 			filename[1] = NULL;
+// 			execve("cgi-bin/word_count.py", filename, env);
+// 		}
+// 		for (int i = 0; env[i]; i++)
+// 			free(env[i]);
+// 		delete[] env;
+// 		free(filename[0]);
+// 		free(filename[1]);
+// 		delete[] filename;
+// 		exit(EXIT_FAILURE);
+// 	}
+// 	waitpid(pid, NULL, 0);
+// 	char buf[20000];
+// 	int byte_read = read(fd[0], buf, sizeof(buf));
+// 	if (byte_read < 0) {
+// 		close (fd[0]);
+// 		close (fd[1]);
+// 		return it;
+// 	}
+// 	close(fd[0]);
+// 	close(fd[1]);
+// 	buf[byte_read] = '\0';
+// 	ostringstream oss;
+// 	oss << byte_read;
+// 	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+// 	if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+// 		throw Error("Error sending HTTP header");
+// 	if (send(_epollClient[clientID].data.fd, buf, byte_read, MSG_NOSIGNAL) < 0) {
+// 		perror("exec send body");
+// 		throw Error("");
+// 	}
+// 	_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+// 	_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+// 	_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+// 	_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+// 	_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+// 	modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+// 	if (_HTTPRequest[_epollClient[clientID].data.fd].connectionType != "keep-alive")
+// 		it = deleteClient(it);
+// 	return it;
+// }
 
 bool Epoll::checkRequestIsValid(const string &url, Data &data, string const &method) {
 	map<string, vector<string> > tmp =  data.getMethods();
@@ -303,22 +297,22 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 			}
 		}
-		if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
-			string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data, &_HTTPRequest[_epollClient[clientID].data.fd].uploading);
-			if (filename == "415")
-				page = data.getErrors().find(filename)->second;
-			string tmp_name;
-			if (filename.find("/downloads") != filename.npos)
-				tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
-			vector<string> method;
-			method.push_back("GET");
-			map<string, vector<string> > &tmp = data.getMethods();
-			tmp["/downloads/" + tmp_name] = method;
-			map<string, string> &tmploc = data.getLocations();
-			if (filename.find("/downloads") != filename.npos)
-				tmploc["/downloads/" + tmp_name] = filename;
-			generate_uploads_url(data._uploads);
-		}
+		// if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
+		// 	string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data, &_HTTPRequest[_epollClient[clientID].data.fd].uploading);
+		// 	if (filename == "415")
+		// 		page = data.getErrors().find(filename)->second;
+		// 	string tmp_name;
+		// 	if (filename.find("/downloads") != filename.npos)
+		// 		tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
+		// 	vector<string> method;
+		// 	method.push_back("GET");
+		// 	map<string, vector<string> > &tmp = data.getMethods();
+		// 	tmp["/downloads/" + tmp_name] = method;
+		// 	map<string, string> &tmploc = data.getLocations();
+		// 	if (filename.find("/downloads") != filename.npos)
+		// 		tmploc["/downloads/" + tmp_name] = filename;
+		// 	generate_uploads_url(data._uploads);
+		// }
 		if (rq.getUrl() == "/favicon.ico"){
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
@@ -338,12 +332,16 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 		}
 		if (path.find("cgi-bin") != path.npos) {
-			if (page != "./site/cgi.html")
-				page = data.getErrors().find("404")->second;
-			else {
-				id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-				it = exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, it, id);
-			}
+			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
+			// 	it = exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, it, id);
+			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			return it;
 		}
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE") {
 			delete_file(path, data);

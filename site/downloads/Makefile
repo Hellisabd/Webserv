@@ -21,6 +21,7 @@ SRCS	=	src/main.cpp \
 			src/class/Client.cpp \
 			src/class/HttpRequest.cpp \
 			src/class/cgi.cpp \
+			src/comments.cpp \
 			src/uploads.cpp \
 			src/login.cpp \
 			src/delete.cpp
@@ -66,6 +67,9 @@ clean :
 fclean : 
 	$(RM) $(NAME) $(OBJS)
 	@echo "$(MAGENTA)¯|_(ツ)_/¯ I'M SO PROUD OF U!$(DEF_COLOR)"
+
+dir_clean :
+	@rm ./site/comments/* && rm ./site/downloads/* || rm ./site/downloads/*
 
 re :	fclean all
 

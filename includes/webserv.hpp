@@ -30,6 +30,7 @@
 #include "../src/class/ServerSocket.hpp"
 #include "../src/class/Epoll.hpp"
 #include "../src/class/HttpRequest.hpp"
+#include "../src/class/cgi.hpp"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

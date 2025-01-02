@@ -99,7 +99,7 @@ void generate_uploads_url(vector<string> filenames)
 	oss << "</head>\n";
 	oss << "<body>\n";
 	oss << "<h1>Upload</h1>\n";
-	oss << "	<form action=\"/upload\" method=\"POST\" enctype=\"multipart/form-data\">\n";
+	oss << "	<form action=\"/cgi-bin/upload.py\" method=\"POST\" enctype=\"multipart/form-data\">\n";
 	oss << "		<label for=\"file\">Pick a file:</label>\n";
 	oss << "		<input type=\"file\" id=\"file\" name=\"file\">\n";
 	oss << "		<button type=\"submit\">Upload</button>\n";
