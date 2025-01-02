@@ -27,8 +27,8 @@ int main(int argc, char **argv, char **env)
 		Data data(argv[1], env);
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, data.getPort(),  data.getHostIP(), 10, data.getNbrPort());
 		Epoll epoll(servSock.getSock(), data.getNbrPort());
-		generate_comment_page();
-		generate_uploads_url(data._uploads);
+		// generate_comment_page();
+		// generate_upload_page(data._uploads);
 		try {
 			while (g_stop) {
 				epoll.wait(g_stop);

@@ -70,7 +70,7 @@ string uploadFile(string request, Data &data, bool *uploading)
 	return filename;
 }
 
-void generate_uploads_url(vector<string> filenames)
+string generate_upload_page(vector<string> filenames)
 {
 	ostringstream oss;
 	oss << "<!DOCTYPE html>\n";
@@ -116,11 +116,7 @@ void generate_uploads_url(vector<string> filenames)
 	oss << "<a href=\"/\">HOME</a>\n";
 	oss << "</body>\n";
 	oss << "</html>\n";
-	ofstream page("./site/upload.html");
-	if (page.is_open()) {
-		page << oss.str();
-		page.close();
-	}
+	return oss.str();
 }
 
 bool check_file_availability(string rq, Data &data) {

@@ -41,7 +41,7 @@
 using namespace std;
 
 unsigned long getFileSize(string const &file_path);
-void generate_uploads_url(vector<string> filenames);
+string generate_upload_page(vector<string> filenames);
 void save_comment(string rq);
 string uploadFile(string request, Data &data, bool *uploading);
 void replace(string &com);
