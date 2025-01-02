@@ -24,7 +24,35 @@ start = raw_input.find("Content-Type: ", start)
 start = raw_input.find("\r\n", start) + 4
 end: int = raw_input.find(os.environ.get("BOUNDARY") + "--") - 4
 
-with open(directory, "wb") as f:
+with open(directory, "w") as f:
 	f.write(raw_input[start:end])
 
-print("You successfully uploaded " + filename)
+content: str = f"""<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur webserv</title>
+    <style>
+        body {{
+            a {{
+                display: inline-block;
+                margin-top: 1em;
+                padding: 0.5em 1em;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1em;
+            }}
+        }}
+    </style>
+</head>
+<body> 
+	You successfully uploaded {filename}
+	<br>
+	<a href=\"/\">HOME</a>
+</body>
+</html>"""
+
+print(content)

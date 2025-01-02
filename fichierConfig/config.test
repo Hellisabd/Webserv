@@ -1,4 +1,4 @@
-port 4343 4444 4343
+port 4343 4444
 host 127.0.0.1
 bodysize 2048
 server_name  bonjour lol
@@ -21,6 +21,11 @@ location /try_login {
 location /upload {
 	Method GET POST
 	./site/upload.html
+}
+
+location /download {
+	Method GET POST
+	./site/download.html
 }
 
 error_pages {
