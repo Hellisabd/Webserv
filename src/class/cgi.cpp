@@ -71,12 +71,8 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 	ostringstream oss;
 	oss << byte_read;
 	string headerHTTP;
-	if (script.find("download") == string::npos) {
-		headerHTTP = "HTTP/1.1 200 OK\r\n; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-		if (send(fd_cli, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-			throw Error("Error sending HTTP header");
-	}
-	print_in_response(headerHTTP, buf, fd_cli);
+	if (send(fd_cli, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+		throw Error("Error sending HTTP header");
 	if (send(fd_cli, buf, byte_read, MSG_NOSIGNAL) < 0) {
 		throw Error("exec send body");
 	}
@@ -85,10 +81,6 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 
 char **cgi::get_argv(string script) {
 	_argv = new char*[2];
-	if (script.find(".py") + 3 != script.length()) {
-		_filename = script.substr(script.find(".py") + 4);
-		script = script.substr(0, script.length() + (script.find(".py") + 3 - script.length()));
-	}
 	_argv[0] = strdup(("." + script).c_str());
 	_argv[1] = NULL;
 	return _argv;
