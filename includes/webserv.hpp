@@ -12,7 +12,6 @@
 #include <string.h>
 #include <sys/poll.h>
 #include <sys/epoll.h>
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #include <exception>
@@ -31,23 +30,21 @@
 #include "../src/class/Epoll.hpp"
 #include "../src/class/HttpRequest.hpp"
 #include "../src/class/cgi.hpp"
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <csignal>
-#include <fstream>
 #include "../src/class/Client.hpp"
 
 using namespace std;
 
 unsigned long getFileSize(string const &file_path);
-void generate_uploads_url(vector<string> filenames);
-void save_comment(string rq);
-string uploadFile(string request, Data &data, bool *uploading);
+string generate_upload_page(vector<string> filenames);
 void replace(string &com);
 void delete_file(string path, Data &data);
 bool check_file_availability(string rq, Data &data);
 Client login(string rq, string url);
+string find_filename(string request);
+void	print_in_response(string headerHTTP, string tosend, int clientFD);
 
 # define NC 	string("\e[0m")
 # define RED 	string("\e[1;31m")

@@ -9,6 +9,7 @@ class cgi {
 		char **get_argv(string script);
 		void set_new_env(Data &data, HttpRequest &rq, string request);
 	private:
-		char **_argv;
-		char **_env;
+		char 	**_argv;
+		char 	**_env;
+		string	_filename;
 };

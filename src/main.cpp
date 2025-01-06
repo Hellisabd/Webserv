@@ -12,7 +12,6 @@ void signal_handler(int sig)
 unsigned long getFileSize(string const &file_path)
 {
 	struct stat file_stat;
-	// debug(YELLOW, "file_path: ", file_path);
 	if (stat(file_path.c_str(), &file_stat) != 0)
 		throw Error("failed to get file size");
 	return file_stat.st_size;
@@ -27,15 +26,13 @@ int main(int argc, char **argv, char **env)
 		Data data(argv[1], env);
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, data.getPort(),  data.getHostIP(), 10, data.getNbrPort());
 		Epoll epoll(servSock.getSock(), data.getNbrPort());
-		// generate_uploads_url(data._uploads);
 		try {
 			while (g_stop) {
 				epoll.wait(g_stop);
-				epoll.handleRequest(/* servSock.getAddr(),  */data);
+				epoll.handleRequest(data);
 			}
 		}
 		catch (exception const &e) {
-			//500 internal server error
 			cerr << e.what() << endl;
 		}
 	}

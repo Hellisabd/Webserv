@@ -376,6 +376,21 @@ void Data::fill_uploads() {
 	closedir(dir);
 }
 
+void Data::add_upload(string filename) {
+	vector<string>::iterator it;
+	for (it = _uploads.begin(); it != _uploads.end(); it++) {
+		if (filename == *it)
+			break ;
+	}
+	if (it == _uploads.end()) {
+		_uploads.push_back(filename);
+	}
+	_loc["/downloads/" + filename] = "./site/downloads/" + filename;
+	vector<string> method;
+	method.push_back("GET");
+	_method["/downloads/" + filename] = method;
+}
+
 Data::~Data()
 {
 	LOG(RED + "Destructor by default" + NC);

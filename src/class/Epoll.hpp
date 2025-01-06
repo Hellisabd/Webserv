@@ -52,6 +52,7 @@ public:
 	bool check_ID(int id);
 	string findRightUser(string id);
 	void addLogMessage(string user, int index);
+	map<int, int>::iterator	sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it);
 
 private:
 	int	_epoll_fd;

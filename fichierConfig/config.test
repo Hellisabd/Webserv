@@ -23,11 +23,6 @@ location /upload {
 	./site/upload.html
 }
 
-location /download {
-	Method GET POST
-	./site/download.html
-}
-
 error_pages {
 	400 ./site/400.html
 	401 ./site/401.html

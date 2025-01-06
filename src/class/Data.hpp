@@ -25,6 +25,7 @@ class Data {
 		void cpEnv(char **env);
 		char **envToCharpp();
 		void fill_uploads();
+		void add_upload(string filename);
 		map<string, string> _env;
 		vector<string> _uploads;
 
