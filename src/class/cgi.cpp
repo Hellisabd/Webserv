@@ -70,7 +70,7 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 	buf[byte_read] = '\0';
 	ostringstream oss;
 	oss << byte_read;
-	string headerHTTP;
+	string headerHTTP = "HTTP/1.1 200 OK\r\nPath=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	if (send(fd_cli, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 		throw Error("Error sending HTTP header");
 	if (send(fd_cli, buf, byte_read, MSG_NOSIGNAL) < 0) {
