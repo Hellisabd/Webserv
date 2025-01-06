@@ -239,17 +239,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _HTTPRequest);
+			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
 			if (path.find("upload.py") != path.npos) {
 				string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
-				vector<string>::iterator it;
-				for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
-					if (filename == *it)
-						break ;
-				}
-				if (it == data._uploads.end()) {
-					data._uploads.push_back(filename);	
-				}
+				data.add_upload(filename);
 			}
 			// 	it = exec(data, clientID, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, it, id);
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();

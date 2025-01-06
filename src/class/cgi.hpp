@@ -5,7 +5,7 @@
 class cgi {
 	public:
 		// ~cgi();
-		cgi(string script, Data &data, int fd_cli, HttpRequest &rq, string request, t_requestClient &requestclient);
+		cgi(string script, Data &data, int fd_cli, HttpRequest &rq, string request);
 		char **get_argv(string script);
 		void set_new_env(Data &data, HttpRequest &rq, string request);
 	private:

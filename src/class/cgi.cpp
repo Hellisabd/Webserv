@@ -9,7 +9,7 @@
 // 	delete[] _argv;	d
 // }
 
-cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string request, t_requestClient &clientRequest) {
+cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string request) {
 	int fdrecv[2];
 	int fdsend[2];
 	if (pipe(fdsend) == -1)
