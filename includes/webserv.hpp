@@ -44,6 +44,7 @@ void delete_file(string path, Data &data);
 bool check_file_availability(string rq, Data &data);
 Client login(string rq, string url);
 string find_filename(string request);
+void	print_in_response(string headerHTTP, string tosend, int clientFD);
 
 # define NC 	string("\e[0m")
 # define RED 	string("\e[1;31m")

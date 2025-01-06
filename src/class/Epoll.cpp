@@ -239,7 +239,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
+			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _HTTPRequest);
 			if (path.find("upload.py") != path.npos) {
 				string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 				vector<string>::iterator it;
@@ -281,10 +281,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			string headerHTTP;
 			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
 				page = data.getErrors().find("404")->second;
-					debug("celui ci?");
+				debug("celui ci?");
 				oss << getFileSize(page);
-					_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-					headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
 			else {
 				if (_HTTPRequest[_epollClient[clientID].data.fd].Loged == true && _HTTPRequest[_epollClient[clientID].data.fd].logMsg.empty())
