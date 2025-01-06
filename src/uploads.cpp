@@ -109,7 +109,7 @@ string generate_upload_page(vector<string> filenames)
 	for (vector<string>::iterator it = filenames.begin(); it != filenames.end(); it++) {	
 	oss << "<tr>\n";
 	oss << "	<td>📁 " + *it + "</td>\n";
-	oss << "	<td><a href=\"./cgi-bin/download.py/" + *it + /* "\" class=download download=\"" + *it +  */"\">Download</a></td>";
+	oss << "	<td><a href=\"./downloads/" + *it + "\" class=download download=\"" + *it + "\">Download</a></td>";
 	oss << "</tr>\n";
 	}
 	oss << "</table>\n";
