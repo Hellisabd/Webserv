@@ -7,53 +7,56 @@ import sys
 import urllib.parse
 from typing import Optional
 
-cgitb.enable()
+while 1:
+	i = 1
 
-directory: str = "./site/downloads/"
+# cgitb.enable()
 
-raw_input: str = sys.stdin.read()
+# directory: str = "./site/downloads/"
 
-body_start: int = raw_input.find("\r\n\r\n") + 4
+# raw_input: str = sys.stdin.read()
 
-body: str = raw_input[body_start:]
+# body_start: int = raw_input.find("\r\n\r\n") + 4
 
-parsed_body: str = urllib.parse.parse_qs(body)
+# body: str = raw_input[body_start:]
 
-filename = parsed_body.get("filename", [""])[0]
-content = parsed_body.get("content", [""])[0]
+# parsed_body: str = urllib.parse.parse_qs(body)
 
-filename += ".txt"
-directory += filename
+# filename = parsed_body.get("filename", [""])[0]
+# content = parsed_body.get("content", [""])[0]
 
-with open(directory, "w") as f:
-	f.write(content)
+# filename += ".txt"
+# directory += filename
 
-content = f"""<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue sur webserv</title>
-    <style>
-        body {{
-            a {{
-                display: inline-block;
-                margin-top: 1em;
-                padding: 0.5em 1em;
-                background-color: #3498db;
-                color: white;
-                text-decoration: none;
-                border-radius: 4px;
-                font-size: 1em;
-            }}
-        }}
-    </style>
-</head>
-<body> 
-	You successfully created {filename}
-	<br>
-	<a href=\"/\">HOME</a>
-</body>
-</html>"""
+# with open(directory, "w") as f:
+# 	f.write(content)
 
-print(content)
+# content = f"""<!DOCTYPE html>
+# <html lang="fr">
+# <head>
+#     <meta charset="UTF-8">
+#     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#     <title>Bienvenue sur webserv</title>
+#     <style>
+#         body {{
+#             a {{
+#                 display: inline-block;
+#                 margin-top: 1em;
+#                 padding: 0.5em 1em;
+#                 background-color: #3498db;
+#                 color: white;
+#                 text-decoration: none;
+#                 border-radius: 4px;
+#                 font-size: 1em;
+#             }}
+#         }}
+#     </style>
+# </head>
+# <body> 
+# 	You successfully created {filename}
+# 	<br>
+# 	<a href=\"/\">HOME</a>
+# </body>
+# </html>"""
+
+# print(content)

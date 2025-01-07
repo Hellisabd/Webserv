@@ -54,8 +54,49 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 		execve(_argv[0], _argv, _env);
 		exit(EXIT_FAILURE);
 	}
-	waitpid(pid, NULL, 0);
+	int result = 0;
+	clock_t time = clock();
+	while (1)
+	{
+		result = waitpid(pid, NULL, WNOHANG);
+		if (result > 0)
+			break ;
+		if (check_timeout(time, requestinfo.getUrl()))
+		{
+			debug("passe");
+			result = 2;
+			break ;
+		}
+	}
+	debug(result);
 	char buf[20000];
+	if (result == 2)
+	{
+		kill(pid, SIGINT);
+		int infile = open(data.getErrors().find("500")->second.c_str(), O_RDONLY);
+		int byte_read = read(infile, buf, sizeof(buf));
+		if (byte_read < 0) {
+			close (fdrecv[0]);
+			close (fdrecv[1]);
+			close (fdsend[0]);
+			close (fdsend[1]);
+			return ;
+		}
+		close (fdrecv[0]);
+		close (fdrecv[1]);
+		close (fdsend[0]);
+		close (fdsend[1]);
+		buf[byte_read] = '\0';
+		ostringstream oss;
+		oss << byte_read;
+		string headerHTTP = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\nConnection: close\r\n\r\n";
+		if (send(fd_cli, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
+			throw Error("Error sending HTTP header");
+		if (send(fd_cli, buf, byte_read, MSG_NOSIGNAL) < 0) {
+			throw Error("exec send body");
+		}
+		return ;
+	}
 	int byte_read = read(fdsend[0], buf, sizeof(buf));
 	if (byte_read < 0) {
 		close (fdrecv[0]);
@@ -65,6 +106,7 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 		return ;
 	}
 	close(fdrecv[0]);
+	close(fdrecv[1]);
 	close (fdsend[0]);
 	close (fdsend[1]);
 	buf[byte_read] = '\0';

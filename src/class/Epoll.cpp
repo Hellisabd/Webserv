@@ -86,7 +86,7 @@ int validToSend(string const &str) {
 }
 
 int check_timeout(clock_t time, string url) {
-	if (clock() - time > 10000 && url != "/upload")
+	if (clock() - time > 10000000 && url != "/upload")
 		return 2;
 	return 0;
 }
