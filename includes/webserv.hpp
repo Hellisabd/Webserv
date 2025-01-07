@@ -1,6 +1,6 @@
 #pragma once
 
-# define MAX_EVENTS 10
+# define MAX_EVENTS 100
 
 #include <errno.h>
 #include <netdb.h>
