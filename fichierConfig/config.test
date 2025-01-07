@@ -23,6 +23,11 @@ location /upload {
 	./site/upload.html
 }
 
+location /add_file {
+	Method GET POST
+	./site/add_file.html
+}
+
 error_pages {
 	400 ./site/400.html
 	401 ./site/401.html
