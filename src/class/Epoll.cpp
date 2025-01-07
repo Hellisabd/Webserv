@@ -187,6 +187,20 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
 		string path = rq.getUrl();
+		for (map<string, string>::const_iterator itm = data.getRedirections().begin(); itm !=  data.getRedirections().end(); ++itm)
+		{
+			if (path == itm->first)
+			{
+				string response = "HTTP/1.1 302 Moved Temporary\r\n"
+								"Location: " + itm->second + "\r\n"
+								"Content-Length: 0\r\n"
+								"Connection: close\r\n"
+								"\r\n";
+				if (send(_epollClient[clientID].data.fd, response.c_str(), response.length(), 0) < 0)
+					throw Error("Error sending HTTP header");
+				return it;
+			}
+		}
 		if (path == "/logout")
 		{
 			id = "default";
@@ -203,22 +217,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 			}
 		}
-		// if (path.find("/upload") != path.npos && rq.getMethodToString() == "POST") {
-		// 	string filename = uploadFile(_HTTPRequest[_epollClient[clientID].data.fd].req, data, &_HTTPRequest[_epollClient[clientID].data.fd].uploading);
-		// 	if (filename == "415")
-		// 		page = data.getErrors().find(filename)->second;
-		// 	string tmp_name;
-		// 	if (filename.find("/downloads") != filename.npos)
-		// 		tmp_name = filename.substr(filename.find("/downloads") + 11, filename.length() - (filename.find("/downloads")) + 11);
-		// 	vector<string> method;
-		// 	method.push_back("GET");
-		// 	map<string, vector<string> > &tmp = data.getMethods();
-		// 	tmp["/downloads/" + tmp_name] = method;
-		// 	map<string, string> &tmploc = data.getLocations();
-		// 	if (filename.find("/downloads") != filename.npos)
-		// 		tmploc["/downloads/" + tmp_name] = filename;
-		// 	generate_uploads_url(data._uploads);
-		// }
 		if (rq.getUrl() == "/favicon.ico"){
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
@@ -281,7 +279,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 					_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 					addLogMessage(findRightUser(id), _epollClient[clientID].data.fd);
 				}
-				if (rq.getUrl() != "/upload")
+				if (rq.getUrl() != "/download")
 				{
 					oss << getFileSize(page) + _HTTPRequest[_epollClient[clientID].data.fd].logMsg.length();
 					_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);

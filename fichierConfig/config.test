@@ -28,6 +28,15 @@ location /add_file {
 	./site/add_file.html
 }
 
+location /download {
+	Method GET POST
+	./site/download.html
+}
+
+redirection /redirect {
+	https://www.google.com/search?q=%EA%B7%B8+%EC%82%AC%EB%9E%8C%EC%9D%B4+%EA%B7%B8%EA%B1%B8+%EC%9A%94%EA%B5%AC%ED%96%88%EC%9C%BC%EB%8B%88%EA%B9%8C.&client=firefox-b-d&sca_esv=7caec7b3ee93c0f3&sxsrf=ADLYWIKiMqb6Yvg2eG-rNLaK8e8LqRxF8g%3A1736246102927&ei=VgN9Z_2GOI7tkdUPuarmqAo&ved=0ahUKEwj9idThtOOKAxWOdqQEHTmVGaUQ4dUDCBA&uact=5&oq=%EA%B7%B8+%EC%82%AC%EB%9E%8C%EC%9D%B4+%EA%B7%B8%EA%B1%B8+%EC%9A%94%EA%B5%AC%ED%96%88%EC%9C%BC%EB%8B%88%EA%B9%8C.&gs_lp=Egxnd3Mtd2l6LXNlcnAiKOq3uCDsgqzrnozsnbQg6re46rG4IOyalOq1rO2WiOycvOuLiOq5jC4yBRAhGKABMgUQIRigATIFECEYoAFIlQpQvwJYvwJwAXgBkAEAmAFuoAFuqgEDMC4xuAEDyAEA-AEC-AEBmAICoAJ2wgIKEAAYsAMY1gQYR8ICDRAAGIAEGLADGEMYigWYAwCIBgGQBgqSBwMxLjGgB50E&sclient=gws-wiz-serp
+}
+
 error_pages {
 	400 ./site/400.html
 	401 ./site/401.html

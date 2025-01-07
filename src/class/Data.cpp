@@ -39,31 +39,28 @@ void Data::fill_info(ifstream &infile)
 	string ports;
 	string loc;
 	string err;
+	string redirect;
 	while (!infile.eof())
 	{
 		getline(infile, line);
 		if (line.find("port ", 0) != line.npos)
 		{
-			//debug(1);
 			ports = line.substr(line.find("port ", 0) + 5, line.size());
 			SetPorts(ports);
 		}
 		if (line.find("host ", 0) != line.npos)
 		{
-			//debug(2);
 			SetHost(line.substr(line.find("host ", 0) + 5, line.size()));
 		}
 		else if (line.find("bodysize ", 0) != line.npos)
 			_MaxBodySize = atoi(line.c_str() + line.find("bodysize ", 0) + 9);
 		else if (line.find("server_name ", 0) != line.npos)
 		{
-			//debug(3);
 			serverNames = line.substr(line.find("server_name ", 0) + 12, line.size());
 			SetServerNames(serverNames);
 		}
 		else if (line.find("location ", 0) != line.npos)
 		{
-			//debug(4);
 			loc = line.substr(line.find("location ", 0) + 9, line.size());
 			while (getline(infile, line))
 			{
@@ -75,7 +72,6 @@ void Data::fill_info(ifstream &infile)
 		}
 		else if (line.find("error_pages ", 0) != line.npos)
 		{
-			//debug(5);
 			err = line.substr(line.find("error_pages ", 0) + 12, line.size());
 			while (getline(infile, line))
 			{
@@ -84,6 +80,13 @@ void Data::fill_info(ifstream &infile)
 					break;
 			}
 			SetErrors(err);
+		}
+		else if (line.find("redirection") != string::npos)
+		{
+			//12 parce que "redirection " fait 12
+			redirect = line.substr(12, line.find(" {") - 12);
+			getline(infile, line);
+			_redirect[redirect] = line.substr(1, line.length() - 1);
 		}
 	}
 	infile.close();
@@ -148,6 +151,10 @@ map<string, string> const &Data::getErrors() const
 map<string, vector<string> > &Data::getMethods()
 {
 	return _method;
+}
+
+map<string, string> const &Data::getRedirections() const {
+	return _redirect;
 }
 
 
