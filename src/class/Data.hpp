@@ -20,6 +20,7 @@ class Data {
 		size_t const &getBodySize() const;
 		map<string, string> &getLocations();
 		map<string, string> const &getErrors() const;
+		map<string, string> const &getRedirections() const;
 		map<string, vector<string> > &getMethods();
 		vector<string> const &getServerNames() const;
 		void cpEnv(char **env);
@@ -41,6 +42,7 @@ class Data {
 		map<string, string> _loc;
 		map<string, vector<string> > _method;
 		map<string, string> _errors;
+		map<string, string> _redirect;
 
 		void fill_info(ifstream &infile);
 		void SetServerNames(string const &servernames);

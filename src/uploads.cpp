@@ -98,19 +98,13 @@ string generate_upload_page(vector<string> filenames)
 	oss << "</style>\n";
 	oss << "</head>\n";
 	oss << "<body>\n";
-	oss << "<h1>Upload</h1>\n";
-	oss << "	<form action=\"/cgi-bin/upload.py\" method=\"POST\" enctype=\"multipart/form-data\">\n";
-	oss << "		<label for=\"file\">Pick a file:</label>\n";
-	oss << "		<input type=\"file\" id=\"file\" name=\"file\">\n";
-	oss << "		<button type=\"submit\">Upload</button>\n";
-	oss << "	</form>\n";
-	oss << "<h2>Downloads</h2>\n";
+	oss << "<h1>Downloads</h1>\n";
 	oss << "<table>\n";
 	for (vector<string>::iterator it = filenames.begin(); it != filenames.end(); it++) {	
-	oss << "<tr>\n";
-	oss << "	<td>📁 " + *it + "</td>\n";
-	oss << "	<td><a href=\"./downloads/" + *it + "\" class=download download=\"" + *it + "\">Download</a></td>";
-	oss << "</tr>\n";
+		oss << "<tr>\n";
+		oss << "	<td>📁 " + *it + "</td>\n";
+		oss << "	<td><a href=\"./downloads/" + *it + "\" class=download download=\"" + *it + "\">Download</a></td>";
+		oss << "</tr>\n";
 	}
 	oss << "</table>\n";
 	oss << "<a href=\"/\">HOME</a>\n";
