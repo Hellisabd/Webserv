@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Add file</title>
+	<style>
+		body {
+			a {
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.5em 1em;
+				background-color: #3498db;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+		}
+</style>
+</head>
+<body>
+<h1>Add a .txt file on the server</h1>
+	<form action="/cgi-bin/add_file.py" method="POST">
+		<label for="filename">File name:</label><br>
+		<input type="text" id="filename" name="filename" required><br><br>
+		<label for="content">File content:</label><br>
+		<textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+		<input type="submit" value="Send">
+	</form>
+<a href="/">HOME</a>
+</body>
+</html>

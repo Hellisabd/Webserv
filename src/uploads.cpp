@@ -144,6 +144,7 @@ string find_filename(string request) {
 	size_t body_start;
 	size_t body_end;
 	string boundaryKey;
+	string extension;
 
 	body_start = request.find("\r\n\r\n");
 	if (body_start == request.npos)
@@ -164,9 +165,18 @@ string find_filename(string request) {
 		else
 			throw Error("Didn't find filename=");
 		body_end = body.find("\"", body_start);
+		if (body_end == body.npos) {
+			body_end = body.find("&", body_start);
+			body_start--;
+			extension = ".txt";
+		}
+		if (body_end == body.npos) {
+			body_end = body.find("\n", body_start);
+			extension.clear();
+		}
 		if (body_end == body.npos)
-			throw Error("Didn't find last quote");
-		filename = body.substr(body_start, body_end - body_start);
+			throw Error("Didn't find filename's end.");
+		filename = body.substr(body_start, body_end - body_start) + extension;
 	}
 	return filename;
 }
