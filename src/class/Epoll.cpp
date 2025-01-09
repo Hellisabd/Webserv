@@ -111,11 +111,9 @@ void	print_in_response(string headerHTTP, string tosend, int clientFD) {
 string findSessionID(string request) {
 	string null = "default";
 	size_t i = request.find("session_id=");
-	if (i != string::npos)
-	{
+	if (i != string::npos) {
 		i += 11;
-		if(request[i] != '\r' || request[i] != '\n')
-		{
+		if(request[i] != '\r' || request[i] != '\n') {
 			size_t end = request.find('\r', i);
 			null = request.substr(i, end - i);
 			return null;
@@ -176,16 +174,12 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				page = data.getErrors().find("400")->second;
 			}
 			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getBodySize())
-			{
 				page = data.getErrors().find("413")->second;
-			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
 		string path = rq.getUrl();
-		for (map<string, string>::const_iterator itm = data.getRedirections().begin(); itm !=  data.getRedirections().end(); ++itm)
-		{
-			if (path == itm->first)
-			{
+		for (map<string, string>::const_iterator itm = data.getRedirections().begin(); itm !=  data.getRedirections().end(); ++itm) {
+			if (path == itm->first) {
 				string response = "HTTP/1.1 302 Moved Temporary\r\n"
 								"Location: " + itm->second + "\r\n"
 								"Content-Length: 0\r\n"
@@ -196,8 +190,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				return it;
 			}
 		}
-		if (path == "/logout")
-		{
+		if (path == "/logout") {
 			id = "default";
 			path = "/";
 			_HTTPRequest[_epollClient[clientID].data.fd].Loged = false;
@@ -205,14 +198,13 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		valid = check_timeout(_time_out, path);
 		if (path.find("/try_login") != path.npos) {
 			Client tmp = login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
-			if (!tmp.getUser().empty())
-			{
+			if (!tmp.getUser().empty()) {
 				_ClientsData.push_back(tmp);
 				id = tmp.getID();
 				_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 			}
 		}
-		if (rq.getUrl() == "/favicon.ico"){
+		if (rq.getUrl() == "/favicon.ico") {
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
 			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
@@ -248,9 +240,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			// generate_uploads_url(data._uploads);
 		}
 		else if (page.empty() && valid == 2 && _HTTPRequest[_epollClient[clientID].data.fd].uploading == false)
-		{
 			page = data.getErrors().find("408")->second;
-		}
 		else if (page.empty())
 			page = data.getErrors().find("404")->second;
 		if (id.empty())
@@ -269,13 +259,11 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			}
 			else {
-				if (_HTTPRequest[_epollClient[clientID].data.fd].Loged == true && _HTTPRequest[_epollClient[clientID].data.fd].logMsg.empty())
-				{
+				if (_HTTPRequest[_epollClient[clientID].data.fd].Loged == true && _HTTPRequest[_epollClient[clientID].data.fd].logMsg.empty()) {
 					_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 					addLogMessage(findRightUser(id), _epollClient[clientID].data.fd);
 				}
-				if (rq.getUrl() != "/download")
-				{
+				if (rq.getUrl() != "/download") {
 					oss << getFileSize(page) + _HTTPRequest[_epollClient[clientID].data.fd].logMsg.length();
 					_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
 					headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
@@ -284,8 +272,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 					return sending_upload(_epollClient[clientID].data.fd, generate_upload_page(data._uploads), _epollClient[clientID].data.fd, id, it);
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
-			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-			{
+			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0) {
 				perror("send");
 				throw Error("Error sending HTTP header5");
 			}
@@ -316,8 +303,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it));
 }
 
-map<int, int>::iterator	Epoll::sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it)
-{
+map<int, int>::iterator	Epoll::sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it) {
 	ostringstream oss;
 	oss << page.length() + _HTTPRequest[index].logMsg.length();
 	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
@@ -354,10 +340,6 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		_HTTPRequest[fd].uploading = false;
 		modifEvents(fd, EPOLLIN, _epoll_fd);
 		close(infile);
-		if (_HTTPRequest[fd].connectionType != "keep-alive")
-		{
-			;// it = deleteClient(it, fd);
-		}
 	}
 	return it;
 }
@@ -378,13 +360,8 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 	ssize_t bytes_read = 0;
 	bytes_read = recv(_epollClient[clientID].data.fd, buffer, 1024, 0);
 	if (bytes_read < 0)
-	{
-		debug("error read");
 		return it;
-	}
 	buffer[bytes_read] = '\0';
-	// if (bytes_read == 0)
-	// 	return deleteClient(it, clientID);
 	if (bytes_read > 0) {
 		_HTTPRequest[_epollClient[clientID].data.fd].req.append(buffer, bytes_read);
 		if (_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read != 0)

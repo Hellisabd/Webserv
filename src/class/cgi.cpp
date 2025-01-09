@@ -5,8 +5,7 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 	int fdsend[2];
 	if (pipe(fdsend) == -1)
 		return ;
-	if (pipe(fdrecv) == -1)
-	{
+	if (pipe(fdrecv) == -1) {
 		close (fdrecv[0]);
 		close (fdrecv[1]);
 		return ;
@@ -17,8 +16,7 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 		close (fdrecv[1]);
 		return ;
 	}
-	if (pid != 0)
-	{
+	if (pid != 0) {
 		write(fdrecv[1], request.c_str(), request.length());
 		close(fdrecv[1]);
 	}
@@ -47,20 +45,17 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 	}
 	int result = 0;
 	clock_t time = clock();
-	while (1)
-	{
+	while (1) {
 		result = waitpid(pid, NULL, WNOHANG);
 		if (result > 0)
 			break ;
-		if (check_timeout(time, requestinfo.getUrl()))
-		{
+		if (check_timeout(time, requestinfo.getUrl())) {
 			result = 2;
 			break ;
 		}
 	}
 	char buf[20000];
-	if (result == 2)
-	{
+	if (result == 2) {
 		kill(pid, SIGTERM);
 		int infile = open(data.getErrors().find("500")->second.c_str(), O_RDONLY);
 		int byte_read = read(infile, buf, sizeof(buf));

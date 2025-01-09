@@ -12,7 +12,6 @@ class Data {
 		Data(const Data& other);
 		Data(string const &str, char **env);
 		virtual ~Data();
-		Data& operator=(const Data& other);
 		unsigned long const &getHostIP() const;
 		string const &getHostStr() const;
 		int* const &getPort() const;
@@ -32,17 +31,17 @@ class Data {
 
 
 	private:
-		unsigned long _hostIP;
-		string _hostStr;
-		int *_ports;
-		int _nbrPorts;
-		string _host;
-		size_t _MaxBodySize;
-		vector<string> _serverNames;
-		map<string, string> _loc;
-		map<string, vector<string> > _method;
-		map<string, string> _errors;
-		map<string, string> _redirect;
+		unsigned long 					_hostIP;
+		string 							_hostStr;
+		int 							*_ports;
+		int 							_nbrPorts;
+		string 							_host;
+		size_t 							_MaxBodySize;
+		vector<string> 					_serverNames;
+		map<string, string> 			_loc;
+		map<string, vector<string> > 	_method;
+		map<string, string> 			_errors;
+		map<string, string> 			_redirect;
 
 		void fill_info(ifstream &infile);
 		void SetServerNames(string const &servernames);

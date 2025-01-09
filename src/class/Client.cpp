@@ -1,7 +1,6 @@
 #include "Client.hpp"
 
-Client::Client(vector<string> user_pw_id)
-{
+Client::Client(vector<string> user_pw_id) {
 	vector<string>::iterator it = user_pw_id.begin();
 	_user = *it;
 	++it;
@@ -35,8 +34,7 @@ Client::~Client()
 {
 }
 
-bool Client::checkLog(string username)
-{
+bool Client::checkLog(string username) {
 	if (username == _user)
 		return true;
 	return false;

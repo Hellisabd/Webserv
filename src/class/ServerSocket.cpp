@@ -1,10 +1,8 @@
 #include "ServerSocket.hpp"
 
-ServerSocket::ServerSocket(int domain, int service, int protocol, int *port, unsigned long interface, int backlog, int nbr_port) : _backlog(backlog), _nbrPort(nbr_port)
-{
+ServerSocket::ServerSocket(int domain, int service, int protocol, int *port, unsigned long interface, int backlog, int nbr_port) : _backlog(backlog), _nbrPort(nbr_port) {
 	_address.resize(_nbrPort);
-	for (int i = 0; i != _nbrPort; i++)
-	{
+	for (int i = 0; i != _nbrPort; i++) {
 		_address[i].sin_family = domain;
 		_address[i].sin_port = htons(port[i]);
 		_address[i].sin_addr.s_addr = htonl(interface); // host

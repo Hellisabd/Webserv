@@ -3,8 +3,7 @@
 #include <webserv.hpp>
 using namespace std;
 
-class Client
-{
+class Client {
 private:
 	string _id;
 	string _pw;
