@@ -1,14 +1,5 @@
 #include "cgi.hpp"
 
-// cgi::~cgi() {
-// 	for (int i = 0; _env[i]; i++)
-// 		free(_env[i]);
-// 	delete[] _env;
-// 	free(_argv[0]);
-// 	free(_argv[1]);
-// 	delete[] _argv;	d
-// }
-
 cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string request) {
 	int fdrecv[2];
 	int fdsend[2];
