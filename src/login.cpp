@@ -42,8 +42,7 @@ Client login(string rq, string url) {
 
 void replace(string &com) {
 	size_t	pos = 0;
-	while (pos < com.length())
-	{
+	while (pos < com.length()) {
 		if (pos == com.find("+", pos))
 			com.replace(pos, 1, " ");
 		if (pos == com.find("%0D%0A", pos))

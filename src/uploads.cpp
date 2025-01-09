@@ -1,77 +1,6 @@
 #include <webserv.hpp>
 
-// string uploadFile(string request, Data &data, bool *uploading)
-// {
-// 	string body;
-// 	string filename;
-// 	string type;
-// 	size_t body_start;
-// 	size_t body_end;
-// 	string content;
-// 	string boundaryKey;
-
-// 	body_start = request.find("\r\n\r\n");
-// 	if (body_start == request.npos)
-// 		throw Error("in Uploads.cpp cant find rnrn");
-// 	body = request.substr(body_start + 4, request.length() - body_start);
-// 	if (body.find("\n") != body.npos)
-// 	{
-// 		body_end = body.find("\n", 0);
-// 		if (body_end == body.npos)
-// 			throw Error("Didn't find the boundary key.");
-// 		boundaryKey = body.substr(0, body_end - 1);
-// 	}
-// 	if (body.find("filename=") != body.npos)
-// 	{
-// 		body_start = body.find("filename=");
-// 		if (body_start != body.npos)
-// 			body_start += 10;
-// 		else
-// 			throw Error("Didn't find filename=");
-// 		body_end = body.find("\"", body_start);
-// 		if (body_end == body.npos)
-// 			throw Error("Didn't find last quote");
-// 		filename = body.substr(body_start, body_end - body_start);
-// 	}
-// 	if (body.find("Content-Type: ") != body.npos)
-// 	{
-// 		body_start = body.find("Content-Type: ");
-// 		if (body_start != body.npos)
-// 			body_start += 14;
-// 		body_end = body.find("\n", body_start);
-// 		if (body_end == body.npos)
-// 			throw Error("Didn't find new line char");
-// 		type = body.substr(body_start, body_end - body_start - 1);
-// 		if (type != "application/octet-stream" && type != "text/plain")
-// 			return ("415");
-// 	}
-// 	if (body.find(boundaryKey, body_end) != body.npos)
-// 	{
-// 		body_start = body_end + 3;
-// 		body_end = body.find(boundaryKey, body_start);
-// 		body = body.substr(body_start, body_end - body_start - 1);
-// 	}
-// 	vector<string>::iterator it;
-// 	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
-// 		if (filename == *it)
-// 			break ;
-// 	}
-// 	if (it == data._uploads.end()) {
-// 		data._uploads.push_back(filename);	
-// 	}
-// 	filename = "./site/downloads/" + filename;
-// 	ofstream file(filename.c_str());
-// 	if (file.is_open())
-// 	{
-// 		file << body;
-// 		file.close();
-// 	}
-// 	*uploading = true;
-// 	return filename;
-// }
-
-string generate_upload_page(vector<string> filenames)
-{
+string generate_upload_page(vector<string> filenames) {
 	ostringstream oss;
 	oss << "<!DOCTYPE html>\n";
 	oss << "<html lang=\"fr\">\n";
@@ -115,9 +44,8 @@ string generate_upload_page(vector<string> filenames)
 
 bool check_file_availability(string rq, Data &data) {
 	size_t start = rq.find("downloads/") + 10;
-	// size_t end = rq.find(" ", start);
 	string filename;
-	if (start != rq.npos/* && end != rq.npos*/)
+	if (start != rq.npos)
 		filename = rq.substr(start);
 	vector<string>::iterator it;
 	for (it = data._uploads.begin(); it != data._uploads.end(); it++) {
@@ -142,15 +70,13 @@ string find_filename(string request) {
 	if (body_start == request.npos)
 		throw Error("in Uploads.cpp cant find rnrn");
 	body = request.substr(body_start + 4, request.length() - body_start);
-	if (body.find("\n") != body.npos)
-	{
+	if (body.find("\n") != body.npos) {
 		body_end = body.find("\n", 0);
 		if (body_end == body.npos)
 			throw Error("Didn't find the boundary key.");
 		boundaryKey = body.substr(0, body_end - 1);
 	}
-	if (body.find("filename=") != body.npos)
-	{
+	if (body.find("filename=") != body.npos) {
 		body_start = body.find("filename=");
 		if (body_start != body.npos)
 			body_start += 10;
