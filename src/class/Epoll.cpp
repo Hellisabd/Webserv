@@ -20,7 +20,6 @@ Epoll::~Epoll() {
 }
 
 void Epoll::wait(int stop) {
-	debug("run");
 	_n = epoll_wait(_epoll_fd, _epollClient.data(), MAX_EVENTS, -1);
 	_time_out = clock();
 	if (_n < 0 || stop == 0) {
@@ -421,12 +420,10 @@ void Epoll::handleRequest(Data &data) {
 				if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP | EPOLLERR)) {
 					epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, _epollClient[clientID].data.fd, &_epollServ);
 					close(_epollClient[clientID].data.fd);
-					debug("prout");
 					break;
 				}
 				else if (_epollClient[clientID].events & EPOLLIN) {
 					it = readFromClient(clientID, it);
-					debug (PURPLE, "request");
 					break;
 				}
 				else if (_epollClient[clientID].events & EPOLLOUT && _HTTPRequest[_epollClient[clientID].data.fd].recvEnd == true) {
