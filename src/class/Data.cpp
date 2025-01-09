@@ -96,7 +96,7 @@ int const &Data::getNbrPort() const {
 	return _nbrPorts;
 }
 
-size_t const &Data::getBodySize() const {
+size_t const &Data::getMaxBodySize() const {
 	return _MaxBodySize;
 }
 

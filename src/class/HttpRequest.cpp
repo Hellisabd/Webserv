@@ -103,7 +103,7 @@ static string trimWhitespaces(const string& str) {
 void	HttpRequest::setErr(int n, const string& s) {
 	parsingError = true;
 	parsingStrError = s;
-	errNo = n;
+	errNo = n; // c est chiant ton n minuscule et n majuscule coridialement
 }
 
 void HttpRequest::split_header_body()

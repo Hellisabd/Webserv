@@ -16,7 +16,7 @@ class Data {
 		string const &getHostStr() const;
 		int* const &getPort() const;
 		int const &getNbrPort() const;
-		size_t const &getBodySize() const;
+		size_t const &getMaxBodySize() const;
 		map<string, string> &getLocations();
 		map<string, string> const &getErrors() const;
 		map<string, string> const &getRedirections() const;

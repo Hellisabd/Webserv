@@ -49,7 +49,7 @@ public:
 	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it);
 	string findRightUser(string id);
 	void addLogMessage(string user, int index);
-	map<int, int>::iterator	sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it);
+	map<int, int>::iterator	sending_upload(std::string page, int index, string id, map<int, int>::iterator it);
 	void sendingToClient(int fd);
 
 private:

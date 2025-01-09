@@ -172,8 +172,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				cout << rq.parsingStrError << endl;
 				page = data.getErrors().find("400")->second;
 			}
-			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getBodySize())
-				page = data.getErrors().find("413")->second;
+			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getMaxBodySize())5646
+				page = data.getErrors().find("413")->second; // a gerer;
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
 		string path = rq.getUrl();
@@ -221,7 +221,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response);
+			cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			data.add_upload(filename);
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
@@ -264,7 +264,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 					headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 				}
 				else
-					return sending_upload(_epollClient[clientID].data.fd, generate_upload_page(data._uploads), _epollClient[clientID].data.fd, id, it);
+					return sending_upload(generate_upload_page(data._uploads), _epollClient[clientID].data.fd, id, it);
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			_response = headerHTTP;
@@ -294,9 +294,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it));
 }
 
-map<int, int>::iterator	Epoll::sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it) {
+map<int, int>::iterator	Epoll::sending_upload(std::string page, int index, string id, map<int, int>::iterator it) {
 	ostringstream oss;
-	(void)fd;
 	oss << page.length() + _HTTPRequest[index].logMsg.length();
 	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	_response = headerHTTP + page + _HTTPRequest[index].logMsg;
@@ -309,6 +308,8 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 	_HTTPRequest[fd].sending = true;
 	file_read = read(infile, tosend, sizeof(tosend));
 	_HTTPRequest[fd].size_to_reach += file_read;
+	if (file_read < 0)
+		throw Disconnect("Error reading file.");
 	if (file_read < 1024)
 		tosend[file_read] = '\0';
 	if (!_response.empty())
@@ -438,12 +439,11 @@ void Epoll::handleRequest(Data &data) {
 		}
 		catch (Disconnect const &e) {
 			deleteClient(_epollClient[clientID].data.fd);
-			cerr << e.what() << endl;
 		}
 	}
 }
 
 void Epoll::sendingToClient(int fd) {
 	if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
-		throw Disconnect("Error sending");
+		throw Disconnect("");
 }

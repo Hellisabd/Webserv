@@ -1,9 +1,8 @@
 #include "cgi.hpp"
 
-cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string request, string &_response) {
+cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response) {
 	int fdrecv[2];
 	int fdsend[2];
-	(void)fd_cli;
 	// int sendCheck;
 	if (pipe(fdsend) == -1)
 		return ;
@@ -19,7 +18,8 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 		return ;
 	}
 	if (pid != 0) {
-		write(fdrecv[1], request.c_str(), request.length());
+		if (write(fdrecv[1], request.c_str(), request.length()) <= 0)
+			throw Disconnect("Error writing."); 
 		close(fdrecv[1]);
 	}
 	if (pid == 0) {
@@ -77,7 +77,6 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 		oss << byte_read;
 		string headerHTTP = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\nConnection: close\r\n\r\n";
 		_response = (headerHTTP + (string)buf);
-		debug("probleme", _response);
 		return ;
 	}
 	int byte_read = read(fdsend[0], buf, sizeof(buf));
