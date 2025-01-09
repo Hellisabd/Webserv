@@ -68,4 +68,16 @@ private :
 	const string _message;
 };
 
+class Disconnect : public exception {
+
+public :
+virtual ~Disconnect()  _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {};
+Disconnect(const string &msg) : _message(msg) {}
+virtual const char *what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {return _message.c_str();}
+private :
+	const string _message;
+};
+
+
+
 #include "../tools/debug.tpp"

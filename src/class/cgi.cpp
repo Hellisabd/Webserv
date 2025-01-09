@@ -1,8 +1,10 @@
 #include "cgi.hpp"
 
-cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string request) {
+cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string request, string &_response) {
 	int fdrecv[2];
 	int fdsend[2];
+	(void)fd_cli;
+	// int sendCheck;
 	if (pipe(fdsend) == -1)
 		return ;
 	if (pipe(fdrecv) == -1) {
@@ -74,11 +76,8 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 		ostringstream oss;
 		oss << byte_read;
 		string headerHTTP = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\nConnection: close\r\n\r\n";
-		if (send(fd_cli, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-			throw Error("Error sending HTTP header2");
-		if (send(fd_cli, buf, byte_read, MSG_NOSIGNAL) < 0) {
-			throw Error("exec send body");
-		}
+		_response = (headerHTTP + (string)buf);
+		debug("probleme", _response);
 		return ;
 	}
 	int byte_read = read(fdsend[0], buf, sizeof(buf));
@@ -97,11 +96,7 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 	ostringstream oss;
 	oss << byte_read;
 	string headerHTTP = "HTTP/1.1 200 OK\r\nPath=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-	if (send(fd_cli, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-		throw Error("Error sending HTTP header1");
-	if (send(fd_cli, buf, byte_read, MSG_NOSIGNAL) < 0) {
-		throw Error("exec send body");
-	}
+	_response = (headerHTTP + (string)buf);
 	return ;
 }
 

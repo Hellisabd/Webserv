@@ -41,18 +41,16 @@ public:
 	void addClient(int port);
 	map<int, int>::iterator sendToClient(int clientID, Data &data, map<int, int>::iterator it);
 	map<int, int>::iterator readFromClient(int clientID, map<int, int>::iterator it);
-	map<int, int>::iterator deleteClient(map<int, int>::iterator it, int fd);
-	map<int, int>::iterator exec(Data &data, int clientID, HttpRequest rq, string req_str, map<int, int>::iterator it, string id);
+	void deleteClient(int fd);
 	bool checkRequestIsValid(const string &url, Data &data, string const &method);
-	void downloadFile(string request);
 	bool isSockPort(int fd);
 	void topars(string HTTPRequest, int clientFD);
 	void modifEvents(int fd, int event, uint32_t epoll_fd);
 	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it);
-	bool check_ID(int id);
 	string findRightUser(string id);
 	void addLogMessage(string user, int index);
 	map<int, int>::iterator	sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it);
+	void sendingToClient(int fd);
 
 private:
 	int							_epoll_fd;
@@ -65,4 +63,5 @@ private:
 	map<int, int> 				_cliport;
 	vector<Client> 				_ClientsData;
 	clock_t 					_time_out;
+	string						_response;
 };

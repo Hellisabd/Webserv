@@ -23,14 +23,14 @@ int main(int argc, char **argv, char **env) {
 		Data data(argv[1], env);
 		ServerSocket servSock(AF_INET, SOCK_STREAM, 0, data.getPort(),  data.getHostIP(), 10, data.getNbrPort());
 		Epoll epoll(servSock.getSock(), data.getNbrPort());
-		try {
-			while (g_stop) {
+		while (g_stop) {
+			try {
 				epoll.wait(g_stop);
 				epoll.handleRequest(data);
 			}
-		}
-		catch (exception const &e) {
-			cerr << e.what() << endl;
+			catch (exception const &e) {
+				cerr << e.what() << endl;
+			}
 		}
 	}
 	catch (exception const &e) {

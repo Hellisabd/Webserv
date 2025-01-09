@@ -179,13 +179,11 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		string path = rq.getUrl();
 		for (map<string, string>::const_iterator itm = data.getRedirections().begin(); itm !=  data.getRedirections().end(); ++itm) {
 			if (path == itm->first) {
-				string response = "HTTP/1.1 302 Moved Temporary\r\n"
+				_response = "HTTP/1.1 302 Moved Temporary\r\n"
 								"Location: " + itm->second + "\r\n"
 								"Content-Length: 0\r\n"
 								"Connection: close\r\n"
 								"\r\n";
-				if (send(_epollClient[clientID].data.fd, response.c_str(), response.length(), 0) < 0)
-					throw Error("Error sending HTTP header3");
 				return it;
 			}
 		}
@@ -223,7 +221,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req);
+			cgi execcgi(path, data, _epollClient[clientID].data.fd, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			data.add_upload(filename);
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
@@ -234,10 +232,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
-		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE") {
+		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE")
 			delete_file(path, data);
-			// generate_uploads_url(data._uploads);
-		}
 		else if (page.empty() && valid == 2 && _HTTPRequest[_epollClient[clientID].data.fd].uploading == false)
 			page = data.getErrors().find("408")->second;
 		else if (page.empty())
@@ -271,16 +267,12 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 					return sending_upload(_epollClient[clientID].data.fd, generate_upload_page(data._uploads), _epollClient[clientID].data.fd, id, it);
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
-			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0) {
-				perror("send");
-				throw Error("Error sending HTTP header5");
-			}
+			_response = headerHTTP;
 		}
 		else if (rq.getMethodToString() == "DELETE") {
 			string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
-			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
-				throw Error("Error sending HTTP header4");
+			_response = headerHTTP;
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
@@ -304,10 +296,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 
 map<int, int>::iterator	Epoll::sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it) {
 	ostringstream oss;
+	(void)fd;
 	oss << page.length() + _HTTPRequest[index].logMsg.length();
 	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-	string tosend = headerHTTP + page + _HTTPRequest[index].logMsg;
-	send(fd, tosend.c_str(), tosend.length(), MSG_NOSIGNAL);
+	_response = headerHTTP + page + _HTTPRequest[index].logMsg;
 	return (it);
 }
 
@@ -319,14 +311,14 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 	_HTTPRequest[fd].size_to_reach += file_read;
 	if (file_read < 1024)
 		tosend[file_read] = '\0';
-	if (send(fd, tosend, file_read, MSG_NOSIGNAL) < 0) {
-		close(infile);
-		perror("client send body");
-		throw Error("");
-	}
+	if (!_response.empty())
+		_response += tosend;
+	else
+		_response = tosend;
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
-		if (_HTTPRequest[fd].Loged == true)
-			send(fd, _HTTPRequest[fd].logMsg.c_str(), _HTTPRequest[fd].logMsg.length(), MSG_NOSIGNAL);
+		if (_HTTPRequest[fd].Loged == true) {
+			_response += _HTTPRequest[fd].logMsg;
+		}
 		(void)headerHTTP;
 		// print_in_response(headerHTTP, tosend, fd);
 		_HTTPRequest[fd].req.clear();
@@ -358,8 +350,10 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 	char buffer[1025];
 	ssize_t bytes_read = 0;
 	bytes_read = recv(_epollClient[clientID].data.fd, buffer, 1024, 0);
-	if (bytes_read < 0)
+	if (bytes_read < 0) {
+		deleteClient(_epollClient[clientID].data.fd);
 		return it;
+	}
 	buffer[bytes_read] = '\0';
 	if (bytes_read > 0) {
 		_HTTPRequest[_epollClient[clientID].data.fd].req.append(buffer, bytes_read);
@@ -409,31 +403,47 @@ bool Epoll::isSockPort(int fd) {
 	return false;
 }
 
+void Epoll::deleteClient(int fd) {
+	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, fd, &_epollServ);
+	close(fd);
+}
+
 void Epoll::handleRequest(Data &data) {
 	map<int, int>::iterator it = _cliport.begin();
 	for (int clientID = 0; clientID < _n; clientID++) {
-		for (size_t port = 0; port < _sock.size(); port++) {
-			if (_epollClient[clientID].data.fd == _sock[port]) {
-				addClient(port);
+		try {
+			for (size_t port = 0; port < _sock.size(); port++) {
+				if (_epollClient[clientID].data.fd == _sock[port]) {
+					addClient(port);
+				}
+				else if (it->second == _sock[port] && !isSockPort(_epollClient[clientID].data.fd)) {
+					if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP | EPOLLERR)) {
+						deleteClient(_epollClient[clientID].data.fd);
+						break;
+					}
+					else if (_epollClient[clientID].events & EPOLLIN) {
+						it = readFromClient(clientID, it);
+						break;
+					}
+					else if (_epollClient[clientID].events & EPOLLOUT && _HTTPRequest[_epollClient[clientID].data.fd].recvEnd == true) {
+						it = sendToClient(clientID, data, it);
+						sendingToClient(_epollClient[clientID].data.fd);
+						break ;
+					}
+				}
 			}
-			else if (it->second == _sock[port] && !isSockPort(_epollClient[clientID].data.fd)) {
-				if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP | EPOLLERR)) {
-					epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, _epollClient[clientID].data.fd, &_epollServ);
-					close(_epollClient[clientID].data.fd);
-					break;
-				}
-				else if (_epollClient[clientID].events & EPOLLIN) {
-					it = readFromClient(clientID, it);
-					break;
-				}
-				else if (_epollClient[clientID].events & EPOLLOUT && _HTTPRequest[_epollClient[clientID].data.fd].recvEnd == true) {
-					it = sendToClient(clientID, data, it);
-					break ;
-				}
-			}
-		}
 		if (it == _cliport.end())
 			break;
 		++it;
+		}
+		catch (Disconnect const &e) {
+			deleteClient(_epollClient[clientID].data.fd);
+			cerr << e.what() << endl;
+		}
 	}
+}
+
+void Epoll::sendingToClient(int fd) {
+	if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
+		throw Disconnect("Error sending");
 }
