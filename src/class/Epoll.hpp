@@ -55,16 +55,14 @@ public:
 	map<int, int>::iterator	sending_upload(int fd, std::string page, int index, string id, map<int, int>::iterator it);
 
 private:
-	int	_epoll_fd;
-	int _n;
-	int _nbr_client;
-	map<int, t_requestClient> _HTTPRequest;
-	vector<int> _sock;
-	vector<int> _ClientSock;
-	struct epoll_event _epollServ;
-	vector<struct epoll_event> _epollClient;
-	map<int, int> _cliport;
-	vector<Client> _ClientsData;
-	clock_t _time_out;
-	bool _noclient;
+	int							_epoll_fd;
+	int 						_n;
+	int 						_nbr_client;
+	map<int, t_requestClient> 	_HTTPRequest;
+	vector<int> 				_sock;
+	struct epoll_event 			_epollServ;
+	vector<struct epoll_event> 	_epollClient;
+	map<int, int> 				_cliport;
+	vector<Client> 				_ClientsData;
+	clock_t 					_time_out;
 };

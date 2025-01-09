@@ -12,16 +12,9 @@ Epoll::Epoll(vector<int> sock, int nbr_port) : _sock(sock) {
 			throw Error("Error during epoll ctl");
 	}
 	_epollClient.resize(MAX_EVENTS);
-	_ClientSock.resize(MAX_EVENTS);
-	for (vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++)
-		*i = -1;
 }
 
 Epoll::~Epoll() {
-	for (vector<int>::iterator i = _ClientSock.begin(); i != _ClientSock.end(); i++) {
-		if (*i != -1)
-			close(*i);
-	}
 	if (_epoll_fd != -1)
 		close(_epoll_fd);
 }
@@ -77,7 +70,6 @@ void Epoll::addClient(int port) {
 		close(client);
 		throw Error("Error adding new client to epoll");
 	}
-	_ClientSock.push_back(client);
 	_cliport[client] = _sock[port];
 	_HTTPRequest[client] = newRequestClient();
 }
@@ -177,7 +169,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false) {
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		if (valid == 1) {
-			// topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
+			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
 			rq.parseAll();
 			if (rq.parsingError) {
 				cout << rq.parsingStrError << endl;
@@ -433,43 +425,6 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 	return it;
 }
 
-void reset(t_requestClient &stru)
-{
-	stru.body.erase();
-	stru.req.erase();
-	stru.nbr_of_read = 0;
-	stru.recvEnd = false;
-	stru.sendEnd = false;
-	stru.disconnect = false;
-	stru.bodysize = 0;
-	stru.size_to_reach = 0;
-	stru.size_of_file_to_send = 0;
-	stru.sending = false;
-	stru.headerresponse.clear();
-	stru.infile = -1;
-	stru.connectionType.clear();
-	stru.page.clear();
-	stru.uploading = false;
-}
-
-map<int, int>::iterator Epoll::deleteClient(map<int, int>::iterator it, int fd) {
-	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, it->first, &_epollServ);
-	for (vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd) {
-		if (*fd == it->first) {
-			_ClientSock.erase(fd);
-			break;
-		}
-	}
-	debug("disconnect");
-	_noclient = true;
-	close(it->first);
-	map<int, int>::iterator next_it = it;
-	++next_it;
-	reset(_HTTPRequest[fd]);
-	_cliport.erase(it);
-	return next_it;
-}
-
 bool Epoll::isSockPort(int fd) {
 	for (vector<int>::iterator it = _sock.begin(); it != _sock.end(); ++it) {
 		if (fd == *it)
@@ -480,21 +435,15 @@ bool Epoll::isSockPort(int fd) {
 
 void Epoll::handleRequest(Data &data) {
 	map<int, int>::iterator it = _cliport.begin();
-	_noclient = false;
 	for (int clientID = 0; clientID < _n; clientID++) {
 		for (size_t port = 0; port < _sock.size(); port++) {
-			if (it == _cliport.end() && _noclient) {
-				_noclient = false;
-				break;
-			}
 			if (_epollClient[clientID].data.fd == _sock[port]) {
 				addClient(port);
 			}
 			else if (it->second == _sock[port] && !isSockPort(_epollClient[clientID].data.fd)) {
 				if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP | EPOLLERR)) {
-					// it = deleteClient(it, clientID);
 					epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, _epollClient[clientID].data.fd, &_epollServ);
-					// close(_epollClient[clientID].data.fd);
+					close(_epollClient[clientID].data.fd);
 					debug("prout");
 					break;
 				}
@@ -507,11 +456,6 @@ void Epoll::handleRequest(Data &data) {
 					it = sendToClient(clientID, data, it);
 					break ;
 				}
-			}
-			if (_noclient == true) {
-				debug("breaking");
-				_noclient = false;
-				break;
 			}
 		}
 		if (it == _cliport.end())
