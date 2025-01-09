@@ -27,6 +27,7 @@ Epoll::~Epoll() {
 }
 
 void Epoll::wait(int stop) {
+	debug("run");
 	_n = epoll_wait(_epoll_fd, _epollClient.data(), MAX_EVENTS, -1);
 	_time_out = clock();
 	if (_n < 0 || stop == 0) {
@@ -60,13 +61,15 @@ t_requestClient newRequestClient() {
 }
 
 void Epoll::addClient(int port) {
-	int client = accept(_sock[port], NULL, NULL);
+	struct sockaddr_in	addr;
+	socklen_t			addrLen = sizeof(addr);
+
+	int client = accept(_sock[port], (struct sockaddr *)&addr, &addrLen);
 	if (client == -1) {
 		perror("Accept: ");
 		throw Error("Failed to accept client connexion");
 	}
-	int flags = fcntl(client, F_GETFL, 0);
-	fcntl(client, F_SETFL, flags | O_NONBLOCK);
+	fcntl(client, F_SETFL, O_NONBLOCK);
 	struct epoll_event new_client;
 	new_client.events = EPOLLIN | EPOLLRDHUP | EPOLLHUP;
 	new_client.data.fd = client;
@@ -291,7 +294,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			if (send(_epollClient[clientID].data.fd, headerHTTP.c_str(), headerHTTP.size(), 0) < 0)
 			{
-				debug(_epollClient[clientID].data.fd);
 				perror("send");
 				throw Error("Error sending HTTP header5");
 			}
@@ -361,7 +363,9 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		modifEvents(fd, EPOLLIN, _epoll_fd);
 		close(infile);
 		if (_HTTPRequest[fd].connectionType != "keep-alive")
-			it = deleteClient(it);
+		{
+			;// it = deleteClient(it, fd);
+		}
 	}
 	return it;
 }
@@ -370,25 +374,31 @@ size_t getbodysize(string str, size_t start) {
 	return atoi(str.c_str() + start);
 }
 
-void Epoll::modifEvents(int fd, int event, int epoll_fd) {
+void Epoll::modifEvents(int fd, int event, uint32_t epoll_fd) {
 	struct epoll_event ev;
 	ev.events = event | EPOLLRDHUP | EPOLLHUP;
 	ev.data.fd = fd;
 	epoll_ctl(epoll_fd, EPOLL_CTL_MOD, fd, &ev);
 }
 
-void Epoll::readFromClient(int clientID) {
+map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::iterator it) {
 	char buffer[1025];
 	ssize_t bytes_read = 0;
 	bytes_read = recv(_epollClient[clientID].data.fd, buffer, 1024, 0);
 	if (bytes_read < 0)
-		return ;
+	{
+		debug("error read");
+		return it;
+	}
 	buffer[bytes_read] = '\0';
+	// if (bytes_read == 0)
+	// 	return deleteClient(it, clientID);
 	if (bytes_read > 0) {
 		_HTTPRequest[_epollClient[clientID].data.fd].req.append(buffer, bytes_read);
 		if (_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read != 0)
 			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read++;
 		_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach += bytes_read;
+		_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = true;
 	}
 	if (_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read == 0) {
 		size_t header_end = _HTTPRequest[_epollClient[clientID].data.fd].req.find("\r\n\r\n");
@@ -402,15 +412,15 @@ void Epoll::readFromClient(int clientID) {
 				if (bytes_read < 1024) {
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-					modifEvents(_epollClient[clientID].data.fd, EPOLLOUT, _epoll_fd);
-					return ;
+					modifEvents(_epollClient[clientID].data.fd, EPOLLIN | EPOLLOUT, _epoll_fd);
+					return it;
 				}
 			}
 			else {
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-					modifEvents(_epollClient[clientID].data.fd, EPOLLOUT, _epoll_fd);
-				return ;
+					modifEvents(_epollClient[clientID].data.fd, EPOLLIN | EPOLLOUT, _epoll_fd);
+				return it;
 			}
 		}
 	}
@@ -418,24 +428,44 @@ void Epoll::readFromClient(int clientID) {
 		_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 		_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 		// debug(_HTTPRequest[_epollClient[clientID].data.fd].req);
-		modifEvents(_epollClient[clientID].data.fd, EPOLLOUT, _epoll_fd);
+		modifEvents(_epollClient[clientID].data.fd,  EPOLLIN | EPOLLOUT, _epoll_fd);
 	}
+	return it;
 }
 
-map<int, int>::iterator Epoll::deleteClient(map<int, int>::iterator it) {
+void reset(t_requestClient &stru)
+{
+	stru.body.erase();
+	stru.req.erase();
+	stru.nbr_of_read = 0;
+	stru.recvEnd = false;
+	stru.sendEnd = false;
+	stru.disconnect = false;
+	stru.bodysize = 0;
+	stru.size_to_reach = 0;
+	stru.size_of_file_to_send = 0;
+	stru.sending = false;
+	stru.headerresponse.clear();
+	stru.infile = -1;
+	stru.connectionType.clear();
+	stru.page.clear();
+	stru.uploading = false;
+}
+
+map<int, int>::iterator Epoll::deleteClient(map<int, int>::iterator it, int fd) {
 	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, it->first, &_epollServ);
 	for (vector<int>::iterator fd = _ClientSock.begin(); fd != _ClientSock.end(); ++fd) {
-		debug(YELLOW, it->first);
 		if (*fd == it->first) {
 			_ClientSock.erase(fd);
 			break;
 		}
 	}
+	debug("disconnect");
 	_noclient = true;
-	debug(BLUE, it->first);
 	close(it->first);
 	map<int, int>::iterator next_it = it;
 	++next_it;
+	reset(_HTTPRequest[fd]);
 	_cliport.erase(it);
 	return next_it;
 }
@@ -462,15 +492,18 @@ void Epoll::handleRequest(Data &data) {
 			}
 			else if (it->second == _sock[port] && !isSockPort(_epollClient[clientID].data.fd)) {
 				if (_epollClient[clientID].events & (EPOLLHUP | EPOLLRDHUP | EPOLLERR)) {
-					it = deleteClient(it);
+					// it = deleteClient(it, clientID);
+					epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, _epollClient[clientID].data.fd, &_epollServ);
+					// close(_epollClient[clientID].data.fd);
+					debug("prout");
 					break;
 				}
 				else if (_epollClient[clientID].events & EPOLLIN) {
-					readFromClient(clientID);
-					// debug (clientID);
+					it = readFromClient(clientID, it);
+					debug (PURPLE, "request");
 					break;
 				}
-				else if (_epollClient[clientID].events & EPOLLOUT) {
+				else if (_epollClient[clientID].events & EPOLLOUT && _HTTPRequest[_epollClient[clientID].data.fd].recvEnd == true) {
 					it = sendToClient(clientID, data, it);
 					break ;
 				}

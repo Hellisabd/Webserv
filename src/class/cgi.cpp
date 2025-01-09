@@ -63,16 +63,14 @@ cgi::cgi(string script, Data &data, int fd_cli, HttpRequest &requestinfo, string
 			break ;
 		if (check_timeout(time, requestinfo.getUrl()))
 		{
-			debug("passe");
 			result = 2;
 			break ;
 		}
 	}
-	debug(result);
 	char buf[20000];
 	if (result == 2)
 	{
-		kill(pid, SIGINT);
+		kill(pid, SIGTERM);
 		int infile = open(data.getErrors().find("500")->second.c_str(), O_RDONLY);
 		int byte_read = read(infile, buf, sizeof(buf));
 		if (byte_read < 0) {
