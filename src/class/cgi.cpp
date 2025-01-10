@@ -1,54 +1,56 @@
 #include "cgi.hpp"
 #include <ctime>
 
-cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response, bool &inCgi, clock_t &time) {
+cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response, bool &inCgi, clock_t &time, int &pid) {
 	int fdrecv[2];
 	int fdsend[2];
 	// int sendCheck;
 	if (inCgi == false)
+	{
 		time = clock();
+		if (pipe(fdsend) == -1)
+			return ;
+		if (pipe(fdrecv) == -1) {
+			close (fdrecv[0]);
+			close (fdrecv[1]);
+			return ;
+		}
+		pid = fork();
+		if (pid == -1) {
+			close (fdrecv[0]);
+			close (fdrecv[1]);
+			return ;
+		}
+		if (pid != 0) {
+			if (write(fdrecv[1], request.c_str(), request.length()) <= 0)
+				throw Disconnect("Error writing."); 
+			close(fdrecv[1]);
+		}
+		if (pid == 0) {
+			_argv = get_argv(script);
+			set_new_env(data, requestinfo, request);
+			_env = data.envToCharpp();
+			if (-1 == dup2(fdrecv[0], STDIN_FILENO)) {
+				close (fdrecv[0]);
+				close (fdrecv[1]);
+				close (fdsend[0]);
+				close (fdsend[1]);
+				return ;
+			}
+			if (-1 == dup2(fdsend[1], STDOUT_FILENO)) {
+				close (fdrecv[0]);
+				close (fdrecv[1]);
+				close (fdsend[0]);
+				close (fdsend[1]);
+				return ;
+			}
+			close(fdrecv[0]);
+			close(fdrecv[1]);
+			execve(_argv[0], _argv, _env);
+			exit(EXIT_FAILURE);
+		}
+	}
 	inCgi = true;
-	if (pipe(fdsend) == -1)
-		return ;
-	if (pipe(fdrecv) == -1) {
-		close (fdrecv[0]);
-		close (fdrecv[1]);
-		return ;
-	}
-	int pid = fork();
-	if (pid == -1) {
-		close (fdrecv[0]);
-		close (fdrecv[1]);
-		return ;
-	}
-	if (pid != 0) {
-		if (write(fdrecv[1], request.c_str(), request.length()) <= 0)
-			throw Disconnect("Error writing."); 
-		close(fdrecv[1]);
-	}
-	if (pid == 0) {
-		_argv = get_argv(script);
-		set_new_env(data, requestinfo, request);
-		_env = data.envToCharpp();
-		if (-1 == dup2(fdrecv[0], STDIN_FILENO)) {
-			close (fdrecv[0]);
-			close (fdrecv[1]);
-			close (fdsend[0]);
-			close (fdsend[1]);
-			return ;
-		}
-		if (-1 == dup2(fdsend[1], STDOUT_FILENO)) {
-			close (fdrecv[0]);
-			close (fdrecv[1]);
-			close (fdsend[0]);
-			close (fdsend[1]);
-			return ;
-		}
-		close(fdrecv[0]);
-		close(fdrecv[1]);
-		execve(_argv[0], _argv, _env);
-		exit(EXIT_FAILURE);
-	}
 	int result = 0;
 	result = waitpid(pid, NULL, WNOHANG);
 	if (result > 0)

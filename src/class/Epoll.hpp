@@ -31,6 +31,7 @@ typedef struct s_requestclient
 	bool 	Loged;
 	bool	cgi;
 	clock_t time;
+	int		pid;
 } t_requestClient;
 
 class Epoll {
