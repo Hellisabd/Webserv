@@ -220,14 +220,17 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		for(map<string, string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2 && page.empty(); i++) {
 			if (path == i->first) {
 				page = i->second;
-				if (!checkRequestIsValid(i->first, data, rq.getMethodToString())) 
+				if (!checkRequestIsValid(i->first, data, rq.getMethodToString())) {
 					_status = "403";
+					return it;
+				}
 				break ;
 			}
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response, _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time, _HTTPRequest[_epollClient[clientID].data.fd].pid, _status);
+			cgi execcgi(path, data, _response, rq, _HTTPRequest[_epollClient[clientID].data.fd], _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time, _HTTPRequest[_epollClient[clientID].data.fd].pid, _status);
+			// cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response, _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time, _HTTPRequest[_epollClient[clientID].data.fd].pid, _status);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			data.add_upload(filename);
 			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false)
@@ -244,9 +247,15 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE")
 			delete_file(path, data);
 		else if (page.empty() && valid == 2 && _HTTPRequest[_epollClient[clientID].data.fd].uploading == false)
+		{
 			_status = "408";
+			return it;
+		}
 		else if (page.empty())
+		{
 			_status = "404";
+			return it;
+		}
 		if (id.empty())
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		if ((id == "default" && _HTTPRequest[_epollClient[clientID].data.fd].Loged == false) || _ClientsData.empty())
@@ -441,9 +450,7 @@ void Epoll::handleRequest(Data &data) {
 					}
 					else if (_epollClient[clientID].events & EPOLLOUT && _HTTPRequest[_epollClient[clientID].data.fd].recvEnd == true) {
 						it = sendToClient(clientID, data, it);
-						debug(BLUE, _response);
 						sendingToClient(_epollClient[clientID].data.fd, data);
-						debug(ORANGE, _response);
 						break ;
 					}
 				}
@@ -461,7 +468,7 @@ void Epoll::handleRequest(Data &data) {
 void Epoll::sendingToClient(int fd, Data &data) {
 	if (_HTTPRequest[fd].cgi == false) {
 		Response response(_status, _response, _HTTPRequest[fd].id, data);
-		debug(_response);
+		// debug(_response);
 		if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
 			throw Disconnect("");
 	}

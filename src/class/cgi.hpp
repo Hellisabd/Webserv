@@ -4,7 +4,8 @@
 
 class cgi {
 	public:
-		cgi(string script, Data &data, HttpRequest &rq, string request, string &_response, bool &inCgi, clock_t &time, int &pid, string &_status);
+		cgi(string script, Data &data, string &_response, t_requestClient &stru, HttpRequest &requestinfo, string &_status);
+		// cgi(string script, Data &data, HttpRequest &rq, string request, string &_response, bool &inCgi, clock_t &time, int &pid, string &_status);
 		char **get_argv(string script);
 		void set_new_env(Data &data, HttpRequest &rq, string request);
 	private:

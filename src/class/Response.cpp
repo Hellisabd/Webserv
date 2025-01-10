@@ -7,7 +7,6 @@ Response::Response(string status, string &response, string &id, Data &data) : _i
 void Response::validResponse(int status, string &response) {
 	string temp;
 	ostringstream oss;
-	debug(status);
 	oss << response.length();
 	switch (status) {
 		case 200:
@@ -20,7 +19,6 @@ void Response::validResponse(int status, string &response) {
 			temp = "HTTP/1.1 204 No Content\r\nSet-Cookie: session_id=" + _id + "; Path=/; HttpOnly\r\n\r\n";
 			break ;
 	}
-	debug(temp);
 	temp += response;
 	response = temp;
 }
@@ -35,6 +33,7 @@ void Response::errorHandling(int status, string &response, Data &data)
 		throw Disconnect("Error opening Error file");
 	while (getline(inputfile, str))
 		body += str;
+	debug(ORANGE, body);
 	oss << body.length();
 	switch (status) {
 		case 400:
@@ -87,6 +86,7 @@ void Response::errorHandling(int status, string &response, Data &data)
 }
 
 void Response::StatusHandling(string &response, Data &data) {
+	debug (_status);
 	int StatusCode = atoi(_status.c_str());
 	switch (StatusCode) {
 		case 200:
