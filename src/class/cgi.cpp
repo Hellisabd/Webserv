@@ -1,9 +1,13 @@
 #include "cgi.hpp"
+#include <ctime>
 
-cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response) {
+cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response, bool &inCgi, clock_t &time) {
 	int fdrecv[2];
 	int fdsend[2];
 	// int sendCheck;
+	if (inCgi == false)
+		time = clock();
+	inCgi = true;
 	if (pipe(fdsend) == -1)
 		return ;
 	if (pipe(fdrecv) == -1) {
@@ -46,15 +50,12 @@ cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, st
 		exit(EXIT_FAILURE);
 	}
 	int result = 0;
-	clock_t time = clock();
-	while (1) {
-		result = waitpid(pid, NULL, WNOHANG);
-		if (result > 0)
-			break ;
-		if (check_timeout(time, requestinfo.getUrl())) {
-			result = 2;
-			break ;
-		}
+	result = waitpid(pid, NULL, WNOHANG);
+	if (result > 0)
+		inCgi = false;
+	if (check_timeout(time, requestinfo.getUrl())) {
+		result = 2;
+		inCgi = false;
 	}
 	char buf[20000];
 	if (result == 2) {
@@ -79,23 +80,26 @@ cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, st
 		_response = (headerHTTP + (string)buf);
 		return ;
 	}
-	int byte_read = read(fdsend[0], buf, sizeof(buf));
-	if (byte_read < 0) {
-		close (fdrecv[0]);
-		close (fdrecv[1]);
+	if (result > 0)
+	{
+		int byte_read = read(fdsend[0], buf, sizeof(buf));
+		if (byte_read < 0) {
+			close (fdrecv[0]);
+			close (fdrecv[1]);
+			close (fdsend[0]);
+			close (fdsend[1]);
+			return ;
+		}
+		close(fdrecv[0]);
+		close(fdrecv[1]);
 		close (fdsend[0]);
 		close (fdsend[1]);
-		return ;
+		buf[byte_read] = '\0';
+		ostringstream oss;
+		oss << byte_read;
+		string headerHTTP = "HTTP/1.1 200 OK\r\nPath=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+		_response = (headerHTTP + (string)buf);
 	}
-	close(fdrecv[0]);
-	close(fdrecv[1]);
-	close (fdsend[0]);
-	close (fdsend[1]);
-	buf[byte_read] = '\0';
-	ostringstream oss;
-	oss << byte_read;
-	string headerHTTP = "HTTP/1.1 200 OK\r\nPath=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-	_response = (headerHTTP + (string)buf);
 	return ;
 }
 

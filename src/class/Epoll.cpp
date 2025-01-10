@@ -49,6 +49,7 @@ t_requestClient newRequestClient() {
 	_HTTPRequest.size_to_reach = 0;
 	_HTTPRequest.bodysize = 0;
 	_HTTPRequest.Loged = false;
+	_HTTPRequest.cgi = false;
 	return _HTTPRequest;
 }
 
@@ -80,8 +81,10 @@ int validToSend(string const &str) {
 }
 
 int check_timeout(clock_t time, string url) {
-	if (clock() - time > 10000000 && url != "/upload")
+	(void)url;
+	if (clock() - time > 10000000)
 		return 2;
+	debug(clock() - time);
 	return 0;
 }
 
@@ -172,8 +175,14 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				cout << rq.parsingStrError << endl;
 				page = data.getErrors().find("400")->second;
 			}
-			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getMaxBodySize())5646
+			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getMaxBodySize()) {
 				page = data.getErrors().find("413")->second; // a gerer;
+				// _response = "HTTP/1.1 413 Payload Too Large\r\n"
+				// 				"Content-Type: text/html\r\n"
+				// 				"Content-Length: 142\r\n"
+				// 				"Connection: close\r\n"
+				// 				"\r\n";
+			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
 		string path = rq.getUrl();
@@ -221,15 +230,18 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response);
+			cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response, _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			data.add_upload(filename);
-			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false)
+			{
+				_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+				_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+				_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+				_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+				_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+				modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			}
 			return it;
 		}
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE")
@@ -283,6 +295,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
+		debug("open error page");
 		int infile = open(page.c_str(), O_RDONLY);
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
 		if (infile < 0)
@@ -444,6 +457,9 @@ void Epoll::handleRequest(Data &data) {
 }
 
 void Epoll::sendingToClient(int fd) {
-	if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
-		throw Disconnect("");
+	if (_HTTPRequest[fd].cgi == false)
+	{
+		if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
+			throw Disconnect("");
+	}
 }

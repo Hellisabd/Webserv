@@ -1,6 +1,5 @@
 #pragma once
 #include <webserv.hpp>
-// #include "Client.hpp"
 #include <ctime>
 using namespace std;
 
@@ -30,6 +29,8 @@ typedef struct s_requestclient
 	bool	uploading;
 	string  logMsg;
 	bool 	Loged;
+	bool	cgi;
+	clock_t time;
 } t_requestClient;
 
 class Epoll {
@@ -64,4 +65,5 @@ private:
 	vector<Client> 				_ClientsData;
 	clock_t 					_time_out;
 	string						_response;
+	string						_status;
 };

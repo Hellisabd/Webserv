@@ -1,6 +1,6 @@
 port 4343 4444
 host 127.0.0.1
-bodysize 520
+bodysize 1024
 server_name  bonjour lol
 
 location / {

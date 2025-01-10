@@ -75,7 +75,7 @@ ostream &operator<<(ostream &os, Data const &data) {
 	os << "this is the content of my Data class named data" << endl;
 	os << "_port = " << data.getPort() << endl;
 	os << "_host = " << data.getHostIP() << endl;
-	os << "_bodySize = " << data.getBodySize() << endl;
+	os << "_bodySize = " << data.getMaxBodySize() << endl;
 	::debug_container(RED, "Servernames:", data.getServerNames(), os);
 	return os;
 }
