@@ -13,11 +13,13 @@ class Response {
 
 	public:
 
-		Response(string status, string &_response);
+		Response(string status, string &_response, string &id, Data data);
 		~Response() {}
-		void StatusHandling();
-		void validResponse(int status);
+		void StatusHandling(string &response, Data data);
+		void validResponse(int status, string &response);
+		void errorHandling(int status, string &response, Data data);
 
 	private:
-		string &_completedResponse;
+		string _id;
+		string _status;
 };
