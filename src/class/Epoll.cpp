@@ -173,15 +173,12 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			rq.parseAll();
 			if (rq.parsingError) {
 				cout << rq.parsingStrError << endl;
-				page = data.getErrors().find("400")->second;
+				_status = "400";
+				return it;
 			}
 			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getMaxBodySize()) {
-				page = data.getErrors().find("413")->second; // a gerer;
-				// _response = "HTTP/1.1 413 Payload Too Large\r\n"
-				// 				"Content-Type: text/html\r\n"
-				// 				"Content-Length: 142\r\n"
-				// 				"Connection: close\r\n"
-				// 				"\r\n";
+				_status = "403";
+				return it;
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
@@ -224,13 +221,13 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			if (path == i->first) {
 				page = i->second;
 				if (!checkRequestIsValid(i->first, data, rq.getMethodToString())) 
-					page = data.getErrors().find("403")->second;
+					_status = "403";
 				break ;
 			}
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response, _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time, _HTTPRequest[_epollClient[clientID].data.fd].pid);
+			cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response, _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time, _HTTPRequest[_epollClient[clientID].data.fd].pid, _status);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			data.add_upload(filename);
 			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false)
@@ -247,9 +244,9 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE")
 			delete_file(path, data);
 		else if (page.empty() && valid == 2 && _HTTPRequest[_epollClient[clientID].data.fd].uploading == false)
-			page = data.getErrors().find("408")->second;
+			_status = "408";
 		else if (page.empty())
-			page = data.getErrors().find("404")->second;
+			_status = "404";
 		if (id.empty())
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		if ((id == "default" && _HTTPRequest[_epollClient[clientID].data.fd].Loged == false) || _ClientsData.empty())
@@ -260,10 +257,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
 			string headerHTTP;
 			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
-				page = data.getErrors().find("404")->second;
-				oss << getFileSize(page);
-				_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-				headerHTTP = "HTTP/1.1 404 Not Found\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+				_status = "404";
+				return it;
 			}
 			else {
 				if (_HTTPRequest[_epollClient[clientID].data.fd].Loged == true && _HTTPRequest[_epollClient[clientID].data.fd].logMsg.empty()) {
@@ -271,9 +266,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 					addLogMessage(findRightUser(id), _epollClient[clientID].data.fd);
 				}
 				if (rq.getUrl() != "/download") {
-					oss << getFileSize(page) + _HTTPRequest[_epollClient[clientID].data.fd].logMsg.length();
-					_HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-					headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+					_status = "200";
+					// oss << getFileSize(page) + _HTTPRequest[_epollClient[clientID].data.fd].logMsg.length();
+					// _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
+					// headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 				}
 				else
 					return sending_upload(generate_upload_page(data._uploads), _epollClient[clientID].data.fd, id, it);
@@ -282,9 +278,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_response = headerHTTP;
 		}
 		else if (rq.getMethodToString() == "DELETE") {
-			string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
-			_response = headerHTTP;
+			_status = "200";
+			// string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+			// _HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
+			// _response = headerHTTP;
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
@@ -295,11 +292,11 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
-		debug("open error page");
+		// debug("open error page");
 		int infile = open(page.c_str(), O_RDONLY);
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
 		if (infile < 0)
-			page = data.getErrors().find("403")->second;
+			_status = "403";
 		_HTTPRequest[_epollClient[clientID].data.fd].page = page;
 	}
 	if (id.empty())
@@ -308,10 +305,13 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 }
 
 map<int, int>::iterator	Epoll::sending_upload(std::string page, int index, string id, map<int, int>::iterator it) {
-	ostringstream oss;
-	oss << page.length() + _HTTPRequest[index].logMsg.length();
-	string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-	_response = headerHTTP + page + _HTTPRequest[index].logMsg;
+	(void)index;
+	(void)id;
+	_status = "200";
+	// ostringstream oss;
+	// oss << page.length() + _HTTPRequest[index].logMsg.length();
+	// string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
+	_response = page;
 	return (it);
 }
 
@@ -441,7 +441,9 @@ void Epoll::handleRequest(Data &data) {
 					}
 					else if (_epollClient[clientID].events & EPOLLOUT && _HTTPRequest[_epollClient[clientID].data.fd].recvEnd == true) {
 						it = sendToClient(clientID, data, it);
-						sendingToClient(_epollClient[clientID].data.fd);
+						debug(BLUE, _response);
+						sendingToClient(_epollClient[clientID].data.fd, data);
+						debug(ORANGE, _response);
 						break ;
 					}
 				}
@@ -456,9 +458,10 @@ void Epoll::handleRequest(Data &data) {
 	}
 }
 
-void Epoll::sendingToClient(int fd) {
-	if (_HTTPRequest[fd].cgi == false)
-	{
+void Epoll::sendingToClient(int fd, Data &data) {
+	if (_HTTPRequest[fd].cgi == false) {
+		Response response(_status, _response, _HTTPRequest[fd].id, data);
+		debug(_response);
 		if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
 			throw Disconnect("");
 	}

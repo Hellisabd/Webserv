@@ -30,6 +30,7 @@
 #include "../src/class/Epoll.hpp"
 #include "../src/class/HttpRequest.hpp"
 #include "../src/class/cgi.hpp"
+#include "../src/class/Response.hpp"
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <csignal>

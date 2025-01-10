@@ -1,7 +1,7 @@
 #include "cgi.hpp"
 #include <ctime>
 
-cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response, bool &inCgi, clock_t &time, int &pid) {
+cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response, bool &inCgi, clock_t &time, int &pid, string &_status) {
 	int fdrecv[2];
 	int fdsend[2];
 	if (inCgi == false) {
@@ -60,24 +60,11 @@ cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, st
 	char buf[20000];
 	if (result == 2) {
 		kill(pid, SIGTERM);
-		int infile = open(data.getErrors().find("500")->second.c_str(), O_RDONLY);
-		int byte_read = read(infile, buf, sizeof(buf));
-		if (byte_read < 0) {
-			close (fdrecv[0]);
-			close (fdrecv[1]);
-			close (fdsend[0]);
-			close (fdsend[1]);
-			return ;
-		}
+		_status = "500";
 		close (fdrecv[0]);
 		close (fdrecv[1]);
 		close (fdsend[0]);
 		close (fdsend[1]);
-		buf[byte_read] = '\0';
-		ostringstream oss;
-		oss << byte_read;
-		string headerHTTP = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\nConnection: close\r\n\r\n";
-		_response = (headerHTTP + (string)buf);
 		return ;
 	}
 	if (result > 0) {
@@ -94,10 +81,8 @@ cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, st
 		close (fdsend[0]);
 		close (fdsend[1]);
 		buf[byte_read] = '\0';
-		ostringstream oss;
-		oss << byte_read;
-		string headerHTTP = "HTTP/1.1 200 OK\r\nPath=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-		_response = (headerHTTP + (string)buf);
+		_response = (string)buf;
+		_status = "200";
 	}
 	return ;
 }

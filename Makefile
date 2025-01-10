@@ -21,6 +21,7 @@ SRCS	=	src/main.cpp \
 			src/class/Client.cpp \
 			src/class/HttpRequest.cpp \
 			src/class/cgi.cpp \
+			src/class/Response.cpp \
 			src/uploads.cpp \
 			src/login.cpp \
 			src/delete.cpp

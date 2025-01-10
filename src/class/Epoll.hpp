@@ -52,7 +52,7 @@ public:
 	string findRightUser(string id);
 	void addLogMessage(string user, int index);
 	map<int, int>::iterator	sending_upload(std::string page, int index, string id, map<int, int>::iterator it);
-	void sendingToClient(int fd);
+	void sendingToClient(int fd, Data &data);
 
 private:
 	int							_epoll_fd;
