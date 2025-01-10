@@ -4,9 +4,7 @@
 cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, string &_response, bool &inCgi, clock_t &time, int &pid) {
 	int fdrecv[2];
 	int fdsend[2];
-	// int sendCheck;
-	if (inCgi == false)
-	{
+	if (inCgi == false) {
 		time = clock();
 		if (pipe(fdsend) == -1)
 			return ;
@@ -82,8 +80,7 @@ cgi::cgi(string script, Data &data, HttpRequest &requestinfo, string request, st
 		_response = (headerHTTP + (string)buf);
 		return ;
 	}
-	if (result > 0)
-	{
+	if (result > 0) {
 		int byte_read = read(fdsend[0], buf, sizeof(buf));
 		if (byte_read < 0) {
 			close (fdrecv[0]);

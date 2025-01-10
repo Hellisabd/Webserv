@@ -3,7 +3,7 @@
 Response::Response(string status, string &response) : _completedResponse(response) {}
 
 void Response::validResponse(int status) {
-	response
+	switch (status)
 }
 
 void Response::StatusHandling() {
