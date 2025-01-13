@@ -30,8 +30,7 @@
 #include <csignal>
 using namespace std;
 
-typedef struct s_requestclient
-{
+typedef struct s_requestclient {
 	string 	req;
 	string 	body;
 	int 	nbr_of_read;
@@ -53,8 +52,8 @@ typedef struct s_requestclient
 	bool	cgi;
 	clock_t time;
 	int		pid;
-	int fdrecv[2];
-	int fdsend[2];
+	int 	fdrecv[2];
+	int 	fdsend[2];
 } t_requestClient;
 
 #include "../src/class/Data.hpp"

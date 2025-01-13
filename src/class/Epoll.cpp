@@ -50,6 +50,7 @@ t_requestClient newRequestClient() {
 	_HTTPRequest.bodysize = 0;
 	_HTTPRequest.Loged = false;
 	_HTTPRequest.cgi = false;
+	_HTTPRequest.id.erase();
 	return _HTTPRequest;
 }
 
@@ -115,32 +116,13 @@ string findSessionID(string request) {
 	size_t i = request.find("session_id=");
 	if (i != string::npos) {
 		i += 11;
-		if(request[i] != '\r' || request[i] != '\n') {
+		if(request[i] != '\r' && request[i] != '\n') {
 			size_t end = request.find('\r', i);
 			null = request.substr(i, end - i);
 			return null;
 		}
 	}
 	return null;
-}
-
-void clearLogMsg(string page) {
-	std::ifstream inputFile(page.c_str());
-	if (!inputFile.is_open()) {
-		std::cerr << "Error: Unable to open file " << page << std::endl;
-		return;
-	}
-	std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
-	inputFile.close();
-	size_t start = content.find("<div style=\"position: absolute; top: 10px; right: 10px;");
-	content = content.substr(0, start - 1);
-	std::ofstream outputFile(page.c_str(), std::ios::trunc);
-	if (!outputFile.is_open()) {
-		std::cerr << "Error: Unable to open file for writing " << page << std::endl;
-		return;
-	}
-	outputFile << content;
-	outputFile.close();
 }
 
 void Epoll::addLogMessage(string user, int index) {
@@ -164,7 +146,6 @@ string Epoll::findRightUser(string id) {
 
 map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, int>::iterator it) {
 	string page;
-	string id;
 	HttpRequest rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false) {
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req);
@@ -194,7 +175,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 		}
 		if (path == "/logout") {
-			id = "default";
+			_HTTPRequest[_epollClient[clientID].data.fd].id = "default";
 			path = "/";
 			_HTTPRequest[_epollClient[clientID].data.fd].Loged = false;
 		}
@@ -203,7 +184,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			Client tmp = login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
 			if (!tmp.getUser().empty()) {
 				_ClientsData.push_back(tmp);
-				id = tmp.getID();
+				_HTTPRequest[_epollClient[clientID].data.fd].id = tmp.getID();
 				_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 			}
 		}
@@ -228,12 +209,11 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 		}
 		if (path.find("cgi-bin") != path.npos) {
-			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			cgi execcgi(path, data, _response, _HTTPRequest[_epollClient[clientID].data.fd], rq, _status);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			data.add_upload(filename);
-			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false)
-			{
+			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false) {
 				_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 				_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
 				_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
@@ -245,19 +225,17 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		else if (path.find("delete") != path.npos && rq.getMethodToString() == "DELETE")
 			delete_file(path, data);
-		else if (page.empty() && valid == 2 && _HTTPRequest[_epollClient[clientID].data.fd].uploading == false)
-		{
+		else if (page.empty() && valid == 2 && _HTTPRequest[_epollClient[clientID].data.fd].uploading == false) {
 			_status = "408";
 			return it;
 		}
-		else if (page.empty())
-		{
+		else if (page.empty()) {
 			_status = "404";
 			return it;
 		}
-		if (id.empty())
-			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-		if ((id == "default" && _HTTPRequest[_epollClient[clientID].data.fd].Loged == false) || _ClientsData.empty())
+		if (_HTTPRequest[_epollClient[clientID].data.fd].id.empty())
+			_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+		if ((_HTTPRequest[_epollClient[clientID].data.fd].id == "default" && _HTTPRequest[_epollClient[clientID].data.fd].Loged == false) || _ClientsData.empty())
 			_HTTPRequest[_epollClient[clientID].data.fd].Loged = false;
 		else
 			_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
@@ -269,27 +247,16 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				return it;
 			}
 			else {
-				if (_HTTPRequest[_epollClient[clientID].data.fd].Loged == true && _HTTPRequest[_epollClient[clientID].data.fd].logMsg.empty()) {
-					_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
-					addLogMessage(findRightUser(id), _epollClient[clientID].data.fd);
-				}
-				if (rq.getUrl() != "/download") {
+				if (rq.getUrl() != "/download")
 					_status = "200";
-					// oss << getFileSize(page) + _HTTPRequest[_epollClient[clientID].data.fd].logMsg.length();
-					// _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send = getFileSize(page);
-					// headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-				}
 				else
-					return sending_upload(generate_upload_page(data._uploads), _epollClient[clientID].data.fd, id, it);
+					return sending_upload(generate_upload_page(data._uploads), it, _HTTPRequest[_epollClient[clientID].data.fd]);
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			_response = headerHTTP;
 		}
 		else if (rq.getMethodToString() == "DELETE") {
 			_status = "200";
-			// string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
-			// _HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
-			// _response = headerHTTP;
 			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
 			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
@@ -300,25 +267,20 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
-		// debug("open error page");
 		int infile = open(page.c_str(), O_RDONLY);
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
 		if (infile < 0)
 			_status = "403";
 		_HTTPRequest[_epollClient[clientID].data.fd].page = page;
 	}
-	if (id.empty())
-		id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
+	if (_HTTPRequest[_epollClient[clientID].data.fd].id.empty())
+		_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it));
 }
 
-map<int, int>::iterator	Epoll::sending_upload(std::string page, int index, string id, map<int, int>::iterator it) {
-	(void)index;
-	(void)id;
+map<int, int>::iterator	Epoll::sending_upload(std::string page, map<int, int>::iterator it, t_requestClient &stru) {
+	(void)stru;
 	_status = "200";
-	// ostringstream oss;
-	// oss << page.length() + _HTTPRequest[index].logMsg.length();
-	// string headerHTTP = "HTTP/1.1 200 OK\r\nSet-Cookie: session_id=" + id + "; Path=/; HttpOnly\r\nContent-Type: text/html\r\nContent-Length: " + oss.str() + "\r\n\r\n";
 	_response = page;
 	return (it);
 }
@@ -338,9 +300,6 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 	else
 		_response = tosend;
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
-		if (_HTTPRequest[fd].Loged == true) {
-			_response += _HTTPRequest[fd].logMsg;
-		}
 		(void)headerHTTP;
 		// print_in_response(headerHTTP, tosend, fd);
 		_HTTPRequest[fd].req.clear();
@@ -411,7 +370,6 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 	if (_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach >= _HTTPRequest[_epollClient[clientID].data.fd].bodysize) {
 		_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 		_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-		// debug(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		modifEvents(_epollClient[clientID].data.fd,  EPOLLIN | EPOLLOUT, _epoll_fd);
 	}
 	return it;
@@ -466,9 +424,13 @@ void Epoll::handleRequest(Data &data) {
 
 void Epoll::sendingToClient(int fd, Data &data) {
 	if (_HTTPRequest[fd].cgi == false) {
+		if (_HTTPRequest[fd].Loged) {
+			addLogMessage(findRightUser(_HTTPRequest[fd].id), fd);
+			_response += _HTTPRequest[fd].logMsg;
+		}
 		Response response(_status, _response, _HTTPRequest[fd].id, data);
-		// debug(_response);
 		if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
 			throw Disconnect("");
+		_response.clear();
 	}
 }

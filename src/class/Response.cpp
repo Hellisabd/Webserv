@@ -33,7 +33,7 @@ void Response::errorHandling(int status, string &response, Data &data)
 		throw Disconnect("Error opening Error file");
 	while (getline(inputfile, str))
 		body += str;
-	debug(ORANGE, body);
+	// debug(ORANGE, body);
 	oss << body.length();
 	switch (status) {
 		case 400:
@@ -86,7 +86,7 @@ void Response::errorHandling(int status, string &response, Data &data)
 }
 
 void Response::StatusHandling(string &response, Data &data) {
-	debug (_status);
+	// debug (_status);
 	int StatusCode = atoi(_status.c_str());
 	switch (StatusCode) {
 		case 200:
