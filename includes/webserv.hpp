@@ -64,7 +64,6 @@ typedef struct s_requestclient {
 #include "../src/class/Response.hpp"
 #include "../src/class/Client.hpp"
 
-unsigned long getFileSize(string const &file_path);
 string generate_upload_page(vector<string> filenames);
 void replace(string &com);
 void delete_file(string path, Data &data);

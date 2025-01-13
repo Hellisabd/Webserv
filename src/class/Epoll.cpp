@@ -26,7 +26,7 @@ void Epoll::wait(int stop) {
 		close (_epoll_fd);
 		for (vector<int>::iterator i = _sock.begin(); i != _sock.end(); i++)
 			close (*i);
-		throw Error("Error during epoll_wait");
+		throw Error("500");
 	}
 }
 
@@ -60,8 +60,7 @@ void Epoll::addClient(int port) {
 
 	int client = accept(_sock[port], (struct sockaddr *)&addr, &addrLen);
 	if (client == -1) {
-		perror("Accept: ");
-		throw Error("Failed to accept client connexion");
+		throw Error("500");
 	}
 	fcntl(client, F_SETFL, O_NONBLOCK);
 	struct epoll_event new_client;
@@ -69,7 +68,7 @@ void Epoll::addClient(int port) {
 	new_client.data.fd = client;
 	if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, client, &new_client) < 0) {
 		close(client);
-		throw Error("Error adding new client to epoll");
+		throw Error("500");
 	}
 	_cliport[client] = _sock[port];
 	_HTTPRequest[client] = newRequestClient();
@@ -425,6 +424,10 @@ void Epoll::handleRequest(Data &data) {
 		}
 		catch (Disconnect const &e) {
 			deleteClient(_epollClient[clientID].data.fd);
+		}
+		catch (exception const &e) {
+			_status = e.what();
+			sendingToClient(_epollClient[clientID].data.fd, data);
 		}
 	}
 }

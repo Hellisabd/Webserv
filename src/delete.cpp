@@ -7,7 +7,7 @@ void delete_file(string path, Data &data) {
 		filename = path.substr(start, path.length() - start);
 	}
 	else
-		throw Error("File to delete not found.");
+		throw Error("404");
 	string file_path = "./site/downloads/" + filename;
 	if (remove(file_path.c_str()) == 0) {
 		debug(GREEN, filename + " has been deleted successfully.");

@@ -1,18 +1,10 @@
 #include "webserv.hpp"
-#define PORT 4343
 int g_stop = 1;
 
 void signal_handler(int sig) {
 	if (sig == SIGINT) {
 		g_stop = 0;
 	}
-}
-
-unsigned long getFileSize(string const &file_path) {
-	struct stat file_stat;
-	if (stat(file_path.c_str(), &file_stat) != 0)
-		throw Error("failed to get file size");
-	return file_stat.st_size;
 }
 
 int main(int argc, char **argv, char **env) {

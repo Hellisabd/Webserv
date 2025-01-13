@@ -68,12 +68,12 @@ string find_filename(string request) {
 
 	body_start = request.find("\r\n\r\n");
 	if (body_start == request.npos)
-		throw Error("in Uploads.cpp cant find rnrn");
+		throw Error("500");
 	body = request.substr(body_start + 4, request.length() - body_start);
 	if (body.find("\n") != body.npos) {
 		body_end = body.find("\n", 0);
 		if (body_end == body.npos)
-			throw Error("Didn't find the boundary key.");
+			throw Error("500");
 		boundaryKey = body.substr(0, body_end - 1);
 	}
 	if (body.find("filename=") != body.npos) {
@@ -81,7 +81,7 @@ string find_filename(string request) {
 		if (body_start != body.npos)
 			body_start += 10;
 		else
-			throw Error("Didn't find filename=");
+			throw Error("500");
 		body_end = body.find("\"", body_start);
 		if (body_end == body.npos) {
 			body_end = body.find("&", body_start);
@@ -93,7 +93,7 @@ string find_filename(string request) {
 			extension.clear();
 		}
 		if (body_end == body.npos)
-			throw Error("Didn't find filename's end.");
+			throw Error("500");
 		filename = body.substr(body_start, body_end - body_start) + extension;
 	}
 	string contentType;
