@@ -229,8 +229,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		if (path.find("cgi-bin") != path.npos) {
 			id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			cgi execcgi(path, data, _response, rq, _HTTPRequest[_epollClient[clientID].data.fd], _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time, _HTTPRequest[_epollClient[clientID].data.fd].pid, _status);
-			// cgi execcgi(path, data, rq, _HTTPRequest[_epollClient[clientID].data.fd].req, _response, _HTTPRequest[_epollClient[clientID].data.fd].cgi, _HTTPRequest[_epollClient[clientID].data.fd].time, _HTTPRequest[_epollClient[clientID].data.fd].pid, _status);
+			cgi execcgi(path, data, _response, _HTTPRequest[_epollClient[clientID].data.fd], rq, _status);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			data.add_upload(filename);
 			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false)

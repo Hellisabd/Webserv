@@ -9,31 +9,6 @@ class HttpRequest;
 class Client;
 class cgi;
 
-typedef struct s_requestclient
-{
-	string 	req;
-	string 	body;
-	int 	nbr_of_read;
-	bool 	recvEnd;
-	bool 	sendEnd;
-	bool 	disconnect;
-	size_t 	bodysize;
-	size_t 	size_to_reach;
-	size_t 	size_of_file_to_send;
-	bool 	sending;
-	string 	headerresponse;
-	int 	infile;
-	string 	connectionType;
-	string 	id;
-	string 	page;
-	bool	uploading;
-	string  logMsg;
-	bool 	Loged;
-	bool	cgi;
-	clock_t time;
-	int		pid;
-} t_requestClient;
-
 class Epoll {
 public:
 	Epoll(vector<int> sock, int nbr_port);

@@ -25,18 +25,45 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <csignal>
+using namespace std;
+
+typedef struct s_requestclient
+{
+	string 	req;
+	string 	body;
+	int 	nbr_of_read;
+	bool 	recvEnd;
+	bool 	sendEnd;
+	bool 	disconnect;
+	size_t 	bodysize;
+	size_t 	size_to_reach;
+	size_t 	size_of_file_to_send;
+	bool 	sending;
+	string 	headerresponse;
+	int 	infile;
+	string 	connectionType;
+	string 	id;
+	string 	page;
+	bool	uploading;
+	string  logMsg;
+	bool 	Loged;
+	bool	cgi;
+	clock_t time;
+	int		pid;
+	int fdrecv[2];
+	int fdsend[2];
+} t_requestClient;
+
 #include "../src/class/Data.hpp"
 #include "../src/class/ServerSocket.hpp"
 #include "../src/class/Epoll.hpp"
 #include "../src/class/HttpRequest.hpp"
 #include "../src/class/cgi.hpp"
 #include "../src/class/Response.hpp"
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <csignal>
 #include "../src/class/Client.hpp"
-
-using namespace std;
 
 unsigned long getFileSize(string const &file_path);
 string generate_upload_page(vector<string> filenames);

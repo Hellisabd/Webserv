@@ -1,49 +1,47 @@
 #include "cgi.hpp"
-#include <ctime>
+// #include <ctime>
 
 cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, HttpRequest &requestinfo, string &_status) {
-	int fdrecv[2];
-	int fdsend[2];
 	if (stru.cgi == false) {
 		stru.time = clock();
-		if (pipe(fdsend) == -1)
+		if (pipe(stru.fdsend) == -1)
 			return ;
-		if (pipe(fdrecv) == -1) {
-			close (fdrecv[0]);
-			close (fdrecv[1]);
+		if (pipe(stru.fdrecv) == -1) {
+			close (stru.fdrecv[0]);
+			close (stru.fdrecv[1]);
 			return ;
 		}
 		stru.pid = fork();
 		if (stru.pid == -1) {
-			close (fdrecv[0]);
-			close (fdrecv[1]);
+			close (stru.fdrecv[0]);
+			close (stru.fdrecv[1]);
 			return ;
 		}
 		if (stru.pid != 0) {
-			if (write(fdrecv[1], stru.req.c_str(), stru.req.length()) <= 0)
+			if (write(stru.fdrecv[1], stru.req.c_str(), stru.req.length()) <= 0)
 				throw Disconnect("Error writing."); 
-			close(fdrecv[1]);
+			close(stru.fdrecv[1]);
 		}
 		if (stru.pid == 0) {
 			_argv = get_argv(script);
 			set_new_env(data, requestinfo, stru.req);
 			_env = data.envToCharpp();
-			if (-1 == dup2(fdrecv[0], STDIN_FILENO)) {
-				close (fdrecv[0]);
-				close (fdrecv[1]);
-				close (fdsend[0]);
-				close (fdsend[1]);
+			if (-1 == dup2(stru.fdrecv[0], STDIN_FILENO)) {
+				close (stru.fdrecv[0]);
+				close (stru.fdrecv[1]);
+				close (stru.fdsend[0]);
+				close (stru.fdsend[1]);
 				return ;
 			}
-			if (-1 == dup2(fdsend[1], STDOUT_FILENO)) {
-				close (fdrecv[0]);
-				close (fdrecv[1]);
-				close (fdsend[0]);
-				close (fdsend[1]);
+			if (-1 == dup2(stru.fdsend[1], STDOUT_FILENO)) {
+				close (stru.fdrecv[0]);
+				close (stru.fdrecv[1]);
+				close (stru.fdsend[0]);
+				close (stru.fdsend[1]);
 				return ;
 			}
-			close(fdrecv[0]);
-			close(fdrecv[1]);
+			close(stru.fdrecv[0]);
+			close(stru.fdrecv[1]);
 			execve(_argv[0], _argv, _env);
 			exit(EXIT_FAILURE);
 		}
@@ -60,29 +58,29 @@ cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, Ht
 	if (result == 2) {
 		kill(stru.pid, SIGTERM);
 		_status = "500";
-		close (fdrecv[0]);
-		close (fdrecv[1]);
-		close (fdsend[0]);
-		close (fdsend[1]);
+		close (stru.fdrecv[0]);
+		close (stru.fdrecv[1]);
+		close (stru.fdsend[0]);
+		close (stru.fdsend[1]);
 		return ;
 	}
 	if (result > 0) {
 		char buf[20000];
 		debug(BLUE, result);
-		int byte_read = read(fdsend[0], buf, sizeof(buf));
+		int byte_read = read(stru.fdsend[0], buf, sizeof(buf));
 		debug("byte_read: ", byte_read);
 		if (byte_read < 0) {
-			close (fdrecv[0]);
-			close (fdrecv[1]);
-			close (fdsend[0]);
-			close (fdsend[1]);
+			close (stru.fdrecv[0]);
+			close (stru.fdrecv[1]);
+			close (stru.fdsend[0]);
+			close (stru.fdsend[1]);
 			debug("read failed");
 			return ;
 		}
-		close(fdrecv[0]);
-		close(fdrecv[1]);
-		close (fdsend[0]);
-		close (fdsend[1]);
+		close(stru.fdrecv[0]);
+		close(stru.fdrecv[1]);
+		close(stru.fdsend[0]);
+		close(stru.fdsend[1]);
 		buf[byte_read] = '\0';
 		_response = (string)buf;
 		debug(requestinfo.getUrl());
