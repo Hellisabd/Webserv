@@ -24,7 +24,8 @@ SRCS	=	src/main.cpp \
 			src/class/Response.cpp \
 			src/uploads.cpp \
 			src/login.cpp \
-			src/delete.cpp
+			src/delete.cpp \
+			src/dir.cpp
 			
 
 OBJS	= $(SRCS:.cpp=.o)

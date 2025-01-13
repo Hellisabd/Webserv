@@ -70,6 +70,8 @@ string find_filename(string request) {
 	if (body_start == request.npos)
 		throw Error("500");
 	body = request.substr(body_start + 4, request.length() - body_start);
+	if (body.empty())
+		return "empty body";
 	if (body.find("\n") != body.npos) {
 		body_end = body.find("\n", 0);
 		if (body_end == body.npos)

@@ -28,6 +28,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <csignal>
+#include <dirent.h>
 using namespace std;
 
 typedef struct s_requestclient {
@@ -54,6 +55,7 @@ typedef struct s_requestclient {
 	int		pid;
 	int 	fdrecv[2];
 	int 	fdsend[2];
+	bool	multipart;
 } t_requestClient;
 
 #include "../src/class/Data.hpp"
@@ -74,6 +76,8 @@ Client login(string rq, string url);
 string find_filename(string request);
 void	print_in_response(string headerHTTP, string tosend, int clientFD);
 int		check_timeout(clock_t time);
+bool 	isDir(const std::string path);
+void sendDir(string &_response, string dirPath);
 
 
 # define NC 	string("\e[0m")

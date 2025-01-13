@@ -509,7 +509,7 @@ bool HttpRequest::isValidRequestLine() {
 		}
 	}
 	if (found == false) {
-		setErr(400, "Couldnt find the method at the start of the request\n");
+		// setErr(400, "Couldnt find the method at the start of the request\n");
 		return (false);
 	}
 	string uri;

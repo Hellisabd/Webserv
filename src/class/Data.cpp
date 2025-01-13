@@ -1,5 +1,4 @@
 #include "Data.hpp"
-#include <dirent.h>
 
 Data::Data() {}
 

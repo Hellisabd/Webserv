@@ -35,22 +35,22 @@ void Epoll::wait() {
 
 // Printing Request and Response
 
-// void Epoll::topars(string HTTPRequest, int ClientFD) {
-// 	ofstream fd("./request", ios::app);
-// 	if (!fd.is_open())
-// 		throw Error("cant open outfile for debug request");
-// 	debug_file(HTTPRequest, &fd, ClientFD);
-// 	fd.close();
-// }
+void Epoll::topars(string HTTPRequest, int ClientFD) {
+	ofstream fd("./request", ios::app);
+	if (!fd.is_open())
+		throw Error("cant open outfile for debug request");
+	debug_file(HTTPRequest, &fd, ClientFD);
+	fd.close();
+}
 
-// void	print_in_response(string headerHTTP, string tosend, int clientFD) {
-// 	string response = headerHTTP + tosend;
-// 	ofstream fd("./response", ios::app);
-// 	if (!fd.is_open())
-// 		throw Error("cant open outfile for debug response");
-// 	debug_file(response, &fd, clientFD);
-// 	fd.close();
-// }
+void	print_in_response(string headerHTTP, string tosend, int clientFD) {
+	string response = headerHTTP + tosend;
+	ofstream fd("./response", ios::app);
+	if (!fd.is_open())
+		throw Error("cant open outfile for debug response");
+	debug_file(response, &fd, clientFD);
+	fd.close();
+}
 
 t_requestClient newRequestClient() {
 	t_requestClient _HTTPRequest;
@@ -152,7 +152,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false) {
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		if (valid == 1) {
-			// topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
+			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
 			rq.parseAll();
 			if (rq.parsingError) {
 				cout << rq.parsingStrError << endl;
@@ -165,7 +165,25 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
 		}
+		if (_HTTPRequest[_epollClient[clientID].data.fd].multipart == true)
+			_HTTPRequest[_epollClient[clientID].data.fd].multipart = false;
+		else if (rq.getHeaderByKey("Content-Type").first.second.rawValue == "multipart/form-data" && _HTTPRequest[_epollClient[clientID].data.fd].cgi == false && rq.getBody().empty()) {
+			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			_HTTPRequest[_epollClient[clientID].data.fd].multipart = true;
+			return it;
+		}
 		string path = rq.getUrl();
+		if (isDir(path) && path != "/") {
+			sendDir(_response, path);
+			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+			_HTTPRequest[_epollClient[clientID].data.fd].uploading = false;
+			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			return it;
+		}
 		for (map<string, string>::const_iterator itm = data.getRedirections().begin(); itm !=  data.getRedirections().end(); ++itm) {
 			if (path == itm->first) {
 				_response = "HTTP/1.1 302 Moved Temporary\r\n"
@@ -214,6 +232,16 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			cgi execcgi(path, data, _response, _HTTPRequest[_epollClient[clientID].data.fd], rq, _status);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			if (filename == "empty body")
+			{
+				_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+				_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+				_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+				_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+				_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+				modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+				return it;
+			}
 			if (filename.empty()) {
 				_status = "415";
 				return it;
@@ -305,8 +333,8 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 	else
 		_response = tosend;
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
-		(void)headerHTTP;
-		// print_in_response(headerHTTP, tosend, fd);
+		// (void)headerHTTP;
+		print_in_response(headerHTTP, tosend, fd);
 		_HTTPRequest[fd].req.clear();
 		_HTTPRequest[fd].page.clear();
 		_HTTPRequest[fd].nbr_of_read = 0;
@@ -432,7 +460,7 @@ void Epoll::handleRequest(Data &data) {
 }
 
 void Epoll::sendingToClient(int fd, Data &data) {
-	if (_HTTPRequest[fd].cgi == false) {
+	if (_HTTPRequest[fd].cgi == false && _HTTPRequest[fd].multipart == false) {
 		if (_HTTPRequest[fd].Loged) {
 			addLogMessage(findRightUser(_HTTPRequest[fd].id), fd);
 			_response += _HTTPRequest[fd].logMsg;
