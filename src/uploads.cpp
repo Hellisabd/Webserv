@@ -96,5 +96,18 @@ string find_filename(string request) {
 			throw Error("Didn't find filename's end.");
 		filename = body.substr(body_start, body_end - body_start) + extension;
 	}
+	string contentType;
+	body_start += filename.length();
+	body_start = body.find("Content-Type: ", body_start);
+	if (body_start != string::npos) {
+		body_start += 14;
+		body_end = body.find("\r\n", body_start);
+		if (body_end != string::npos)
+			contentType = body.substr(body_start, body_end - body_start);
+		if (contentType != "text/plain" && contentType != "application/octet-stream" && contentType != "text/x-c++src" && contentType != "text/x-csrc" && contentType != "text/x-c++hdr" && contentType != "text/x-chdr") {
+			filename.erase();
+			return filename;
+		}
+	}
 	return filename;
 }

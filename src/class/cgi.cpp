@@ -3,6 +3,11 @@
 
 cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, HttpRequest &requestinfo, string &_status) {
 	if (stru.cgi == false) {
+		string s = "." + script;
+		if (access(s.c_str(), F_OK) < 0 || access(s.c_str(), X_OK) < 0) {
+			_status = "404";
+			return ;
+		}
 		stru.time = clock();
 		if (pipe(stru.fdsend) == -1)
 			return ;
@@ -66,7 +71,6 @@ cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, Ht
 	}
 	if (result > 0) {
 		char buf[20000];
-		debug(BLUE, result);
 		int byte_read = read(stru.fdsend[0], buf, sizeof(buf));
 		if (byte_read < 0) {
 			close (stru.fdrecv[0]);
@@ -81,7 +85,6 @@ cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, Ht
 		close(stru.fdsend[1]);
 		buf[byte_read] = '\0';
 		_response = (string)buf;
-		debug(requestinfo.getUrl());
 		if (requestinfo.getUrl() == "/cgi-bin/add_file.py")
 			_status = "202";
 		else

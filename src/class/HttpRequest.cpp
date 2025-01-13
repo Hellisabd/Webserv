@@ -103,7 +103,7 @@ static string trimWhitespaces(const string& str) {
 void	HttpRequest::setErr(int n, const string& s) {
 	parsingError = true;
 	parsingStrError = s;
-	errNo = n; // c est chiant ton n minuscule et n majuscule coridialement
+	errNo = n; // c est chiant ton n minuscule et n majuscule coridialement Basile Grosjean
 }
 
 void HttpRequest::split_header_body()
@@ -174,6 +174,7 @@ bool HttpRequest::parseBody() {
 				// has content-type ?
 				const pair<headerpair_t, bool> hp = getHeaderByKey("content-type");
 				if (hp.second) {
+					debug("hp.second?????????");
 					const string& rawVal = hp.first.second.rawValue;
 
 					// est multipart
@@ -808,7 +809,7 @@ string HttpRequest::getHttpVersion() const {
 }
 
 string HttpRequest::getBody() const {
-	return  static_cast<string>("haha");
+	return _strbody;
 }
 
 string HttpRequest::getSpecHeader(string& spec) const {

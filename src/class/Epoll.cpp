@@ -152,13 +152,16 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		if (valid == 1) {
 			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
 			rq.parseAll();
+			// debug(ORANGE, "body: ", rq.getBody());
+			// debug("prout");
 			if (rq.parsingError) {
+				// debug("prout2");
 				cout << rq.parsingStrError << endl;
 				_status = "400";
 				return it;
 			}
 			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getMaxBodySize()) {
-				_status = "403";
+				_status = "413";
 				return it;
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
@@ -212,6 +215,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			cgi execcgi(path, data, _response, _HTTPRequest[_epollClient[clientID].data.fd], rq, _status);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
+			if (filename.empty()) {
+				_status = "415";
+				return it;
+			}
 			data.add_upload(filename);
 			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false) {
 				_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
