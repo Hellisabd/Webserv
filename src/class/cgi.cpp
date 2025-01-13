@@ -56,7 +56,7 @@ cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, Ht
 	result = waitpid(stru.pid, NULL, WNOHANG);
 	if (result > 0)
 		stru.cgi = false;
-	if (check_timeout(stru.time, requestinfo.getUrl())) {
+	if (check_timeout(stru.time)) {
 		result = 2;
 		stru.cgi = false;
 	}

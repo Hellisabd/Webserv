@@ -174,7 +174,6 @@ bool HttpRequest::parseBody() {
 				// has content-type ?
 				const pair<headerpair_t, bool> hp = getHeaderByKey("content-type");
 				if (hp.second) {
-					debug("hp.second?????????");
 					const string& rawVal = hp.first.second.rawValue;
 
 					// est multipart
@@ -776,7 +775,6 @@ void	HttpRequest::calcBodySize() {
 		size++;
 	}
 	_bodySize = size;
-	debug("bodysize in http request: ", _bodySize);
 }
 
 bool HttpRequest::fillBody() {

@@ -19,24 +19,38 @@ Epoll::~Epoll() {
 		close(_epoll_fd);
 }
 
-void Epoll::wait(int stop) {
+void Epoll::wait() {
 	_n = epoll_wait(_epoll_fd, _epollClient.data(), MAX_EVENTS, -1);
 	_time_out = clock();
-	if (_n < 0 || stop == 0) {
+	if (_n < 0 || g_stop == 0) {
 		close (_epoll_fd);
 		for (vector<int>::iterator i = _sock.begin(); i != _sock.end(); i++)
 			close (*i);
-		throw Error("500");
+		if (g_stop == 0)
+			throw Error("Crtl + C detected\n");
+		else
+			throw Error("Error during epoll wait.");
 	}
 }
 
-void Epoll::topars(string HTTPRequest, int ClientFD) {
-	ofstream fd("./request", ios::app);
-	if (!fd.is_open())
-		throw Error("cant open outfile for debug request");
-	debug_file(HTTPRequest, &fd, ClientFD);
-	fd.close();
-}
+// Printing Request and Response
+
+// void Epoll::topars(string HTTPRequest, int ClientFD) {
+// 	ofstream fd("./request", ios::app);
+// 	if (!fd.is_open())
+// 		throw Error("cant open outfile for debug request");
+// 	debug_file(HTTPRequest, &fd, ClientFD);
+// 	fd.close();
+// }
+
+// void	print_in_response(string headerHTTP, string tosend, int clientFD) {
+// 	string response = headerHTTP + tosend;
+// 	ofstream fd("./response", ios::app);
+// 	if (!fd.is_open())
+// 		throw Error("cant open outfile for debug response");
+// 	debug_file(response, &fd, clientFD);
+// 	fd.close();
+// }
 
 t_requestClient newRequestClient() {
 	t_requestClient _HTTPRequest;
@@ -80,11 +94,9 @@ int validToSend(string const &str) {
 	return 0;
 }
 
-int check_timeout(clock_t time, string url) {
-	(void)url;
+int check_timeout(clock_t time) {
 	if (clock() - time > 10000000)
 		return 2;
-	// debug(clock() - time);
 	return 0;
 }
 
@@ -99,15 +111,6 @@ bool Epoll::checkRequestIsValid(const string &url, Data &data, string const &met
 		}
 	}
 	return false;
-}
-
-void	print_in_response(string headerHTTP, string tosend, int clientFD) {
-	string response = headerHTTP + tosend;
-	ofstream fd("./response", ios::app);
-	if (!fd.is_open())
-		throw Error("cant open outfile for debug response");
-	debug_file(response, &fd, clientFD);
-	fd.close();
 }
 
 string findSessionID(string request) {
@@ -149,12 +152,9 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false) {
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		if (valid == 1) {
-			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
+			// topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
 			rq.parseAll();
-			// debug(ORANGE, "body: ", rq.getBody());
-			// debug("prout");
 			if (rq.parsingError) {
-				// debug("prout2");
 				cout << rq.parsingStrError << endl;
 				_status = "400";
 				return it;
@@ -181,7 +181,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			path = "/";
 			_HTTPRequest[_epollClient[clientID].data.fd].Loged = false;
 		}
-		valid = check_timeout(_time_out, path);
+		valid = check_timeout(_time_out);
 		if (path.find("/try_login") != path.npos) {
 			Client tmp = login(_HTTPRequest[_epollClient[clientID].data.fd].req, path);
 			if (!tmp.getUser().empty()) {
@@ -256,7 +256,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				if (rq.getUrl() != "/download")
 					_status = "200";
 				else
-					return sending_upload(generate_upload_page(data._uploads), it, _HTTPRequest[_epollClient[clientID].data.fd]);
+					return sending_upload(generate_upload_page(data._uploads), it);
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			_response = headerHTTP;
@@ -284,8 +284,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it));
 }
 
-map<int, int>::iterator	Epoll::sending_upload(std::string page, map<int, int>::iterator it, t_requestClient &stru) {
-	(void)stru;
+map<int, int>::iterator	Epoll::sending_upload(std::string page, map<int, int>::iterator it) {
 	_status = "200";
 	_response = page;
 	return (it);

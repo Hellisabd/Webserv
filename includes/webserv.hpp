@@ -64,6 +64,8 @@ typedef struct s_requestclient {
 #include "../src/class/Response.hpp"
 #include "../src/class/Client.hpp"
 
+extern int g_stop;
+
 string generate_upload_page(vector<string> filenames);
 void replace(string &com);
 void delete_file(string path, Data &data);
@@ -71,7 +73,8 @@ bool check_file_availability(string rq, Data &data);
 Client login(string rq, string url);
 string find_filename(string request);
 void	print_in_response(string headerHTTP, string tosend, int clientFD);
-int		check_timeout(clock_t time, string url);
+int		check_timeout(clock_t time);
+
 
 # define NC 	string("\e[0m")
 # define RED 	string("\e[1;31m")

@@ -1,4 +1,5 @@
 #include "webserv.hpp"
+
 int g_stop = 1;
 
 void signal_handler(int sig) {
@@ -17,7 +18,7 @@ int main(int argc, char **argv, char **env) {
 		Epoll epoll(servSock.getSock(), data.getNbrPort());
 		while (g_stop) {
 			try {
-				epoll.wait(g_stop);
+				epoll.wait();
 				epoll.handleRequest(data);
 			}
 			catch (exception const &e) {

@@ -13,7 +13,7 @@ class Epoll {
 public:
 	Epoll(vector<int> sock, int nbr_port);
 	~Epoll();
-	void wait(int stop);
+	void wait();
 	void handleRequest(Data &data);
 	void addClient(int port);
 	map<int, int>::iterator sendToClient(int clientID, Data &data, map<int, int>::iterator it);
@@ -26,7 +26,7 @@ public:
 	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it);
 	string findRightUser(string id);
 	void addLogMessage(string user, int index);
-	map<int, int>::iterator	sending_upload(std::string page, map<int, int>::iterator it, t_requestClient &stru);
+	map<int, int>::iterator	sending_upload(std::string page, map<int, int>::iterator it);
 	void sendingToClient(int fd, Data &data);
 
 private:
