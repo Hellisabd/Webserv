@@ -146,6 +146,16 @@ string Epoll::findRightUser(string id) {
 	return truc;
 }
 
+void Epoll::reset(int fd) {
+	_HTTPRequest[fd].req.clear();
+	_HTTPRequest[fd].recvEnd = false;
+	_HTTPRequest[fd].nbr_of_read = 0;
+	_HTTPRequest[fd].size_to_reach = 0;
+	_HTTPRequest[fd].bodysize = 0;
+	_HTTPRequest[fd].uploading = false;
+	modifEvents(fd, EPOLLIN, _epoll_fd);
+}
+
 map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, int>::iterator it) {
 	string page;
 	HttpRequest rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
@@ -175,13 +185,14 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		string path = rq.getUrl();
 		if (isDir(path) && path != "/") {
 			sendDir(_response, path);
-			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].uploading = false;
-			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			reset(_epollClient[clientID].data.fd);
+			// _HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+			// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+			// _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].uploading = false;
+			// modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
 		for (map<string, string>::const_iterator itm = data.getRedirections().begin(); itm !=  data.getRedirections().end(); ++itm) {
@@ -209,13 +220,14 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 		}
 		if (rq.getUrl() == "/favicon.ico") {
-			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].uploading = false;
-			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			reset(_epollClient[clientID].data.fd);
+			// _HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+			// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+			// _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].uploading = false;
+			// modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
 		for(map<string, string>::const_iterator i = data.getLocations().begin(); i != data.getLocations().end() && valid != 2 && page.empty(); i++) {
@@ -232,14 +244,14 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 			cgi execcgi(path, data, _response, _HTTPRequest[_epollClient[clientID].data.fd], rq, _status);
 			string filename = find_filename(_HTTPRequest[_epollClient[clientID].data.fd].req);
-			if (filename == "empty body")
-			{
-				_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-				_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-				_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-				_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-				_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-				modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			if (filename == "empty body") {
+				reset(_epollClient[clientID].data.fd);
+				// _HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+				// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+				// _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+				// _HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+				// _HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+				// modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 				return it;
 			}
 			if (filename.empty()) {
@@ -248,12 +260,13 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 			data.add_upload(filename);
 			if (_HTTPRequest[_epollClient[clientID].data.fd].cgi == false) {
-				_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-				_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-				_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-				_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-				_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-				modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+				reset(_epollClient[clientID].data.fd);
+				// _HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+				// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+				// _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+				// _HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+				// _HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+				// modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			}
 			return it;
 		}
@@ -291,14 +304,15 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		else if (rq.getMethodToString() == "DELETE") {
 			_status = "200";
-			_HTTPRequest[_epollClient[clientID].data.fd].req.clear();
-			_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
-			_HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
-			_HTTPRequest[_epollClient[clientID].data.fd].sending = false;
-			_HTTPRequest[_epollClient[clientID].data.fd].uploading = false;
-			modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
+			reset(_epollClient[clientID].data.fd);
+			// _HTTPRequest[_epollClient[clientID].data.fd].req.clear();
+			// _HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].recvEnd = false;
+			// _HTTPRequest[_epollClient[clientID].data.fd].bodysize = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
+			// _HTTPRequest[_epollClient[clientID].data.fd].sending = false;
+			// _HTTPRequest[_epollClient[clientID].data.fd].uploading = false;
+			// modifEvents(_epollClient[clientID].data.fd, EPOLLIN, _epoll_fd);
 			return it;
 		}
 		int infile = open(page.c_str(), O_RDONLY);
@@ -335,14 +349,15 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
 		// (void)headerHTTP;
 		print_in_response(headerHTTP, tosend, fd);
-		_HTTPRequest[fd].req.clear();
-		_HTTPRequest[fd].page.clear();
-		_HTTPRequest[fd].nbr_of_read = 0;
-		_HTTPRequest[fd].recvEnd = false;
-		_HTTPRequest[fd].bodysize = 0;
-		_HTTPRequest[fd].size_to_reach = 0;
-		_HTTPRequest[fd].sending = false;
-		_HTTPRequest[fd].uploading = false;
+		reset(fd);
+		// _HTTPRequest[fd].req.clear();
+		// _HTTPRequest[fd].page.clear();
+		// _HTTPRequest[fd].nbr_of_read = 0;
+		// _HTTPRequest[fd].recvEnd = false;
+		// _HTTPRequest[fd].bodysize = 0;
+		// _HTTPRequest[fd].size_to_reach = 0;
+		// _HTTPRequest[fd].sending = false;
+		// _HTTPRequest[fd].uploading = false;
 		modifEvents(fd, EPOLLIN, _epoll_fd);
 		close(infile);
 	}

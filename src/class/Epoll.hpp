@@ -13,21 +13,22 @@ class Epoll {
 public:
 	Epoll(vector<int> sock, int nbr_port);
 	~Epoll();
-	void wait();
-	void handleRequest(Data &data);
-	void addClient(int port);
-	map<int, int>::iterator sendToClient(int clientID, Data &data, map<int, int>::iterator it);
-	map<int, int>::iterator readFromClient(int clientID, map<int, int>::iterator it);
-	void deleteClient(int fd);
-	bool checkRequestIsValid(const string &url, Data &data, string const &method);
-	bool isSockPort(int fd);
-	void topars(string HTTPRequest, int clientFD);
-	void modifEvents(int fd, int event, uint32_t epoll_fd);
-	map<int, int>::iterator sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it);
-	string findRightUser(string id);
-	void addLogMessage(string user, int index);
+	void	wait();
+	void	handleRequest(Data &data);
+	void	addClient(int port);
+	void	deleteClient(int fd);
+	bool	checkRequestIsValid(const string &url, Data &data, string const &method);
+	bool	isSockPort(int fd);
+	void	topars(string HTTPRequest, int clientFD);
+	void	modifEvents(int fd, int event, uint32_t epoll_fd);
+	string	findRightUser(string id);
+	void	addLogMessage(string user, int index);
+	void	sendingToClient(int fd, Data &data);
+	void	reset(int fd);
+	map<int, int>::iterator	sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it);
 	map<int, int>::iterator	sending_upload(std::string page, map<int, int>::iterator it);
-	void sendingToClient(int fd, Data &data);
+	map<int, int>::iterator	sendToClient(int clientID, Data &data, map<int, int>::iterator it);
+	map<int, int>::iterator	readFromClient(int clientID, map<int, int>::iterator it);
 
 private:
 	int							_epoll_fd;
