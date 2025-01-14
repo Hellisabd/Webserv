@@ -25,7 +25,7 @@ public:
 	void	addLogMessage(string user, int index);
 	void	sendingToClient(int fd, Data &data);
 	void	reset(int fd);
-	map<int, int>::iterator	sendingFile(int fd, int infile, string headerHTTP, /* size_t size_to_send,  */map<int, int>::iterator it);
+	map<int, int>::iterator	sendingFile(int fd, int infile, string headerHTTP, map<int, int>::iterator it);
 	map<int, int>::iterator	sending_upload(std::string page, map<int, int>::iterator it);
 	map<int, int>::iterator	sendToClient(int clientID, Data &data, map<int, int>::iterator it);
 	map<int, int>::iterator	readFromClient(int clientID, map<int, int>::iterator it);
