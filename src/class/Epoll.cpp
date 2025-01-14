@@ -23,11 +23,13 @@ void Epoll::wait() {
 	_n = epoll_wait(_epoll_fd, _epollClient.data(), MAX_EVENTS, -1);
 	_time_out = clock();
 	if (_n < 0 || g_stop == 0) {
+		for (vector<struct epoll_event>::iterator i = _epollClient.begin(); i != _epollClient.end(); i++)
+			close(i->data.fd);
 		close (_epoll_fd);
 		for (vector<int>::iterator i = _sock.begin(); i != _sock.end(); i++)
 			close (*i);
 		if (g_stop == 0)
-			throw Error("Crtl + C detected\n");
+			throw Error("\n\e[1;31m Crtl + C detected\e[0m\n");
 		else
 			throw Error("Error during epoll wait.");
 	}
@@ -64,6 +66,7 @@ t_requestClient newRequestClient() {
 	_HTTPRequest.bodysize = 0;
 	_HTTPRequest.Loged = false;
 	_HTTPRequest.cgi = false;
+	_HTTPRequest.multipart = false;
 	_HTTPRequest.id.erase();
 	return _HTTPRequest;
 }
@@ -149,6 +152,11 @@ string Epoll::findRightUser(string id) {
 void Epoll::reset(int fd) {
 	_HTTPRequest[fd].req.clear();
 	_HTTPRequest[fd].recvEnd = false;
+	_HTTPRequest[fd].sendEnd = false;
+	_HTTPRequest[fd].disconnect = false;
+	_HTTPRequest[fd].sending = false;
+	_HTTPRequest[fd].multipart = false;
+	_HTTPRequest[fd].cgi = false;
 	_HTTPRequest[fd].nbr_of_read = 0;
 	_HTTPRequest[fd].size_to_reach = 0;
 	_HTTPRequest[fd].bodysize = 0;
@@ -323,7 +331,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	}
 	if (_HTTPRequest[_epollClient[clientID].data.fd].id.empty())
 		_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
-	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send, it));
+	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, /* _HTTPRequest[_epollClient[clientID].data.fd].size_of_file_to_send,  */it));
 }
 
 map<int, int>::iterator	Epoll::sending_upload(std::string page, map<int, int>::iterator it) {
@@ -332,7 +340,7 @@ map<int, int>::iterator	Epoll::sending_upload(std::string page, map<int, int>::i
 	return (it);
 }
 
-map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, size_t size_to_send, map<int, int>::iterator it) {
+map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, /* size_t size_to_send,  */map<int, int>::iterator it) {
 	char tosend[1024];
 	ssize_t file_read;
 	_HTTPRequest[fd].sending = true;
@@ -346,10 +354,10 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		_response += tosend;
 	else
 		_response = tosend;
-	if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
+	// if (_HTTPRequest[fd].size_to_reach >= size_to_send) {
 		// (void)headerHTTP;
-		print_in_response(headerHTTP, tosend, fd);
-		reset(fd);
+	print_in_response(headerHTTP, tosend, fd);
+	reset(fd);
 		// _HTTPRequest[fd].req.clear();
 		// _HTTPRequest[fd].page.clear();
 		// _HTTPRequest[fd].nbr_of_read = 0;
@@ -358,9 +366,9 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		// _HTTPRequest[fd].size_to_reach = 0;
 		// _HTTPRequest[fd].sending = false;
 		// _HTTPRequest[fd].uploading = false;
-		modifEvents(fd, EPOLLIN, _epoll_fd);
-		close(infile);
-	}
+		// modifEvents(fd, EPOLLIN, _epoll_fd);
+	// }
+	close(infile);
 	return it;
 }
 

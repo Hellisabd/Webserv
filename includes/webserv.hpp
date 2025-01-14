@@ -40,7 +40,7 @@ typedef struct s_requestclient {
 	bool 	disconnect;
 	size_t 	bodysize;
 	size_t 	size_to_reach;
-	size_t 	size_of_file_to_send;
+	// size_t 	size_of_file_to_send;
 	bool 	sending;
 	string 	headerresponse;
 	int 	infile;
