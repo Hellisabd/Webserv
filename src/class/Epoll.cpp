@@ -67,6 +67,7 @@ t_requestClient newRequestClient() {
 	_HTTPRequest.Loged = false;
 	_HTTPRequest.cgi = false;
 	_HTTPRequest.multipart = false;
+	_HTTPRequest.print = false;
 	_HTTPRequest.id.erase();
 	return _HTTPRequest;
 }
@@ -161,6 +162,7 @@ void Epoll::reset(int fd) {
 	_HTTPRequest[fd].size_to_reach = 0;
 	_HTTPRequest[fd].bodysize = 0;
 	_HTTPRequest[fd].uploading = false;
+	_HTTPRequest[fd].print = false;
 	modifEvents(fd, EPOLLIN, _epoll_fd);
 }
 
@@ -204,6 +206,8 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 								"Content-Length: 0\r\n"
 								"Connection: close\r\n"
 								"\r\n";
+				_status = "302";
+				reset(_epollClient[clientID].data.fd);
 				return it;
 			}
 		}
@@ -276,10 +280,15 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				return it;
 			}
 			else {
+				_HTTPRequest[_epollClient[clientID].data.fd].print = false;
 				if (rq.getUrl() != "/download")
 					_status = "200";
-				else
-					return sending_upload(generate_upload_page(data._uploads), it);
+				else {
+					_status = "200";
+					_response = generate_upload_page(data._uploads);
+					reset(_epollClient[clientID].data.fd);
+					return it;
+				}
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
 			_response = headerHTTP;
@@ -298,12 +307,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	if (_HTTPRequest[_epollClient[clientID].data.fd].id.empty())
 		_HTTPRequest[_epollClient[clientID].data.fd].id = findSessionID(_HTTPRequest[_epollClient[clientID].data.fd].req);
 	return (sendingFile(_epollClient[clientID].data.fd, _HTTPRequest[_epollClient[clientID].data.fd].infile, _HTTPRequest[_epollClient[clientID].data.fd].headerresponse, it));
-}
-
-map<int, int>::iterator	Epoll::sending_upload(std::string page, map<int, int>::iterator it) {
-	_status = "200";
-	_response = page;
-	return (it);
 }
 
 map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, map<int, int>::iterator it) {
@@ -337,6 +340,21 @@ void Epoll::modifEvents(int fd, int event, uint32_t epoll_fd) {
 	epoll_ctl(epoll_fd, EPOLL_CTL_MOD, fd, &ev);
 }
 
+void	Epoll::print_rq(string rq) {
+	string line;
+	size_t end = rq.find("\r\n");
+	if (end != rq.npos)
+		line = rq.substr(0, end);
+	cout << PURPLE + line << "  ";
+}
+
+void	Epoll::print_status(int fd) {
+	if (!_HTTPRequest[fd].print) {
+		debug(YELLOW, _status);
+		_HTTPRequest[fd].print = true;
+	}
+}
+
 map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::iterator it) {
 	char buffer[1025];
 	ssize_t bytes_read = 0;
@@ -366,6 +384,7 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 					modifEvents(_epollClient[clientID].data.fd, EPOLLIN | EPOLLOUT, _epoll_fd);
+					print_rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 					return it;
 				}
 			}
@@ -373,6 +392,7 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					modifEvents(_epollClient[clientID].data.fd, EPOLLIN | EPOLLOUT, _epoll_fd);
+					print_rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 				return it;
 			}
 		}
@@ -381,6 +401,7 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 		_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 		_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 		modifEvents(_epollClient[clientID].data.fd,  EPOLLIN | EPOLLOUT, _epoll_fd);
+		print_rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 	}
 	return it;
 }
@@ -443,6 +464,7 @@ void Epoll::sendingToClient(int fd, Data &data) {
 			_response += _HTTPRequest[fd].logMsg;
 		}
 		Response response(_status, _response, _HTTPRequest[fd].id, data);
+		print_status(fd);
 		if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
 			throw Disconnect("");
 		_response.clear();

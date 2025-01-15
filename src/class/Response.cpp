@@ -25,6 +25,8 @@ void Response::validResponse(int status, string &response) {
 
 void Response::errorHandling(int status, string &response, Data &data)
 {
+	if (status == 302)
+		return ;
 	string str;
 	string body;
 	ostringstream oss;

@@ -40,7 +40,6 @@ typedef struct s_requestclient {
 	bool 	disconnect;
 	size_t 	bodysize;
 	size_t 	size_to_reach;
-	// size_t 	size_of_file_to_send;
 	bool 	sending;
 	string 	headerresponse;
 	int 	infile;
@@ -56,6 +55,7 @@ typedef struct s_requestclient {
 	int 	fdrecv[2];
 	int 	fdsend[2];
 	bool	multipart;
+	bool	print;
 } t_requestClient;
 
 #include "../src/class/Data.hpp"

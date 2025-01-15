@@ -329,7 +329,7 @@ void Data::add_upload(string filename) {
 }
 
 Data::~Data() {
-	LOG(RED + "Destructor by default" + NC);
+	// LOG(RED + "Destructor by default" + NC);
 	delete[] _ports;
 }
 
