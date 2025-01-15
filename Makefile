@@ -38,26 +38,9 @@ RM	= @rm -rf
 
 CURRENT_DATE	:= $(shell date +"%Y-%m-%d %H:%M:%S")
 
-SRC_COUNT = $(shell echo $(SRCS) | wc -w)
-
-USER1 = bgrosjea
-USER2 = amirloup
-USER3 = achatzit
-
-ifeq ($(USER), $(USER1))
-	EXECUTABLE = /loadings/loadingbasile
-else ifeq ($(USER), $(USER2))
-	EXECUTABLE = /loadings/loadingantoine
-else ifeq ($(USER), $(USER3))
-	EXECUTABLE = /loadings/loadingantoine
-else
-	$(error Unknown user, please set the correct executable)
-endif
-
 all	: $(NAME) clean
 
 $(NAME) : $(OBJS)
-#	@{ ./$(EXECUTABLE) $(SRC_COUNT) & $(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) ; wait; }
 	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(MAGENTA)Make Done$(DEF_COLOR)"
 
@@ -83,7 +66,7 @@ git	:	fclean
 	@echo "$(GREEN)(•̀ᴗ•́)و ̑̑GIT UPDATE!(•̀ᴗ•́)و ̑̑$(DEF_COLOR)"
 
 val : re clean
-	@valgrind -s --leak-check=full --show-leak-kinds=all ./webserv
+	@valgrind -s --leak-check=full --track-fds=yes --trace-children=yes ./webserv fichierConfig/config
 
 run : 
 	@./loadingtriangle $(SRC_COUNT) & wait

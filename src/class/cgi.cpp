@@ -1,5 +1,4 @@
 #include "cgi.hpp"
-// #include <ctime>
 
 cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, HttpRequest &requestinfo, string &_status) {
 	if (stru.cgi == false) {
@@ -47,7 +46,11 @@ cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, Ht
 			}
 			close(stru.fdrecv[0]);
 			close(stru.fdrecv[1]);
+			close(stru.fdsend[0]);
+			close(stru.fdsend[1]);
 			execve(_argv[0], _argv, _env);
+			free(_argv[0]);
+			free(_argv[1]);
 			exit(EXIT_FAILURE);
 		}
 	}
