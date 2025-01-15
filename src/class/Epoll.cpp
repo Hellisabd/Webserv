@@ -202,7 +202,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			return it;
 		}
 		for (map<string, string>::const_iterator itm = data.getRedirections().begin(); itm !=  data.getRedirections().end(); ++itm) {
-			if (path == itm->first) {
+			if (path == itm->first && !itm->second.empty()) {
 				_response = "HTTP/1.1 302 Moved Temporary\r\n"
 								"Location: " + itm->second + "\r\n"
 								"Content-Length: 0\r\n"
@@ -282,6 +282,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
 			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
 				_status = "404";
+				reset(_epollClient[clientID].data.fd);
 				return it;
 			}
 			else {
@@ -306,6 +307,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		if (infile < 0) {
 			_status = "403";
 			reset(_epollClient[clientID].data.fd);
+			return it;
 		}
 		_HTTPRequest[_epollClient[clientID].data.fd].page = page;
 	}
