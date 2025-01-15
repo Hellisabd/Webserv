@@ -177,10 +177,12 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			if (rq.parsingError) {
 				cout << rq.parsingStrError << endl;
 				_status = "400";
+				reset(_epollClient[clientID].data.fd);
 				return it;
 			}
 			if (_HTTPRequest[_epollClient[clientID].data.fd].bodysize > data.getMaxBodySize()) {
 				_status = "413";
+				reset(_epollClient[clientID].data.fd);
 				return it;
 			}
 			_HTTPRequest[_epollClient[clientID].data.fd].connectionType = rq.getHeaderByKey("Connection").first.second.rawValue;
@@ -234,6 +236,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 				page = i->second;
 				if (!checkRequestIsValid(i->first, data, rq.getMethodToString())) {
 					_status = "403";
+					reset(_epollClient[clientID].data.fd);
 					return it;
 				}
 				break ;
@@ -249,6 +252,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			}
 			if (filename.empty()) {
 				_status = "415";
+				reset(_epollClient[clientID].data.fd);
 				return it;
 			}
 			data.add_upload(filename);
@@ -260,10 +264,12 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			delete_file(path, data);
 		else if (page.empty() && valid == 2 && _HTTPRequest[_epollClient[clientID].data.fd].uploading == false) {
 			_status = "408";
+			reset(_epollClient[clientID].data.fd);
 			return it;
 		}
 		else if (page.empty()) {
 			_status = "404";
+			reset(_epollClient[clientID].data.fd);
 			return it;
 		}
 		if (_HTTPRequest[_epollClient[clientID].data.fd].id.empty())
@@ -274,7 +280,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 			_HTTPRequest[_epollClient[clientID].data.fd].Loged = true;
 		ostringstream oss;
 		if (rq.getMethodToString() == "POST" || rq.getMethodToString() == "GET") {
-			string headerHTTP;
 			if (rq.getUrl().find("downloads/") != rq.getUrl().npos && check_file_availability(rq.getUrl(), data) == false) {
 				_status = "404";
 				return it;
@@ -290,8 +295,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 					return it;
 				}
 			}
-			_HTTPRequest[_epollClient[clientID].data.fd].headerresponse = headerHTTP;
-			_response = headerHTTP;
 		}
 		else if (rq.getMethodToString() == "DELETE") {
 			_status = "200";
@@ -300,8 +303,10 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 		}
 		int infile = open(page.c_str(), O_RDONLY);
 		_HTTPRequest[_epollClient[clientID].data.fd].infile = infile;
-		if (infile < 0)
+		if (infile < 0) {
 			_status = "403";
+			reset(_epollClient[clientID].data.fd);
+		}
 		_HTTPRequest[_epollClient[clientID].data.fd].page = page;
 	}
 	if (_HTTPRequest[_epollClient[clientID].data.fd].id.empty())
