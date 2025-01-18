@@ -62,12 +62,12 @@ void Data::fill_info(ifstream &infile) {
 		}
 	}
 	infile.close();
-	ofstream file("/etc/hosts", ios::app);
-	if (!file.is_open())
-		throw Error("Can't open host file");
-	for (vector<string>::iterator it = _serverNames.begin(); it != _serverNames.end(); ++it)
-		file << getHostStr() << " "  <<  *it << endl;
-	file.close();
+	// ofstream file("/etc/hosts", ios::app);
+	// if (!file.is_open())
+	// 	throw Error("Can't open host file");
+	// for (vector<string>::iterator it = _serverNames.begin(); it != _serverNames.end(); ++it)
+	// 	file << getHostStr() << " "  <<  *it << endl;
+	// file.close();
 }
 
 ostream &operator<<(ostream &os, Data const &data) {

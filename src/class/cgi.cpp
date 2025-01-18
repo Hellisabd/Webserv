@@ -56,7 +56,18 @@ cgi::cgi(string script, Data &data, string &_response, t_requestClient &stru, Ht
 	}
 	stru.cgi = true;
 	int result = 0;
-	result = waitpid(stru.pid, NULL, WNOHANG);
+	int status = 0;
+	result = waitpid(stru.pid, &status, WNOHANG);
+	if (status > 0) {
+		kill(stru.pid, SIGTERM);
+		_status = "500";
+		close (stru.fdrecv[0]);
+		close (stru.fdrecv[1]);
+		close (stru.fdsend[0]);
+		close (stru.fdsend[1]);
+		return ;
+	}
+
 	if (result > 0)
 		stru.cgi = false;
 	if (check_timeout(stru.time)) {

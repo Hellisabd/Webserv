@@ -6,8 +6,8 @@ import cgitb
 import sys
 from typing import Optional
 
-# while 1:
-	# i = 1
+while 1:
+	i = 1
 
 cgitb.enable()
 

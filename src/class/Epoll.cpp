@@ -172,7 +172,6 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 	if (_HTTPRequest[_epollClient[clientID].data.fd].sending == false) {
 		int valid = validToSend(_HTTPRequest[_epollClient[clientID].data.fd].req);
 		if (valid == 1) {
-			topars(_HTTPRequest[_epollClient[clientID].data.fd].req, _epollClient[clientID].data.fd);
 			rq.parseAll();
 			if (rq.parsingError) {
 				cout << rq.parsingStrError << endl;
@@ -319,6 +318,7 @@ map<int, int>::iterator Epoll::sendToClient(int clientID, Data &data, map<int, i
 map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP, map<int, int>::iterator it) {
 	char tosend[1024];
 	ssize_t file_read;
+	(void)headerHTTP;
 	_HTTPRequest[fd].sending = true;
 	file_read = read(infile, tosend, sizeof(tosend));
 	_HTTPRequest[fd].size_to_reach += file_read;
@@ -330,7 +330,6 @@ map<int, int>::iterator	Epoll::sendingFile(int fd, int infile, string headerHTTP
 		_response += tosend;
 	else
 		_response = tosend;
-	print_in_response(headerHTTP, tosend, fd);
 	reset(fd);
 	close(infile);
 	return it;
@@ -391,7 +390,7 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 					modifEvents(_epollClient[clientID].data.fd, EPOLLIN | EPOLLOUT, _epoll_fd);
-					print_rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
+					// print_rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 					return it;
 				}
 			}
@@ -399,7 +398,7 @@ map<int, int>::iterator Epoll::readFromClient(int clientID, map<int, int>::itera
 					_HTTPRequest[_epollClient[clientID].data.fd].nbr_of_read = 0;
 					_HTTPRequest[_epollClient[clientID].data.fd].size_to_reach = 0;
 					modifEvents(_epollClient[clientID].data.fd, EPOLLIN | EPOLLOUT, _epoll_fd);
-					print_rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
+					// print_rq(_HTTPRequest[_epollClient[clientID].data.fd].req);
 				return it;
 			}
 		}
@@ -471,7 +470,7 @@ void Epoll::sendingToClient(int fd, Data &data) {
 			_response += _HTTPRequest[fd].logMsg;
 		}
 		Response response(_status, _response, _HTTPRequest[fd].id, data);
-		print_status(fd);
+		// print_status(fd);
 		if (send(fd, _response.c_str(), _response.length(), MSG_NOSIGNAL) <= 0)
 			throw Disconnect("");
 		_response.clear();
